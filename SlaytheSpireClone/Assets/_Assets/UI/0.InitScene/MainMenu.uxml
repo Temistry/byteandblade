@@ -1,0 +1,12 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Assets/UI/0.InitScene/MainMenu.uss?fileID=7433441132597879392&amp;guid=bf4794bd6b43c3249960001b8eb102b3&amp;type=3#MainMenu" />
+    <engine:VisualElement name="Main" style="flex-grow: 1; width: 907px;">
+        <engine:Label text="Slay the Spire Clone" name="Title" style="-unity-text-align: middle-center; justify-content: space-around; align-items: auto; align-self: center; align-content: flex-start; top: 30%; -unity-font-style: bold; font-size: 52px;" />
+    </engine:VisualElement>
+    <engine:VisualElement name="Buttons" style="flex-grow: 1; bottom: 30%; top: 0; -unity-text-align: middle-center; justify-content: center;">
+        <engine:Button text="Game Start" name="Start" class="button" style="align-self: center; align-content: center; bottom: 0;" />
+        <engine:Button text="Exit" name="Exit" class="button" style="align-self: center; align-content: center; bottom: 0;" />
+        <engine:Button text="Option" name="Option" class="button" style="align-self: center; align-content: center; bottom: 0;" />
+    </engine:VisualElement>
+    <engine:VisualElement style="flex-grow: 1; position: absolute; height: 100%; width: 100%; top: 0; left: 0; bottom: 0; right: 0;" />
+</engine:UXML>

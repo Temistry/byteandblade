@@ -72,5 +72,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # PackageCache 디렉토리 추가
-/[Pp]ackageCache/
-/[Ll]ibrary/  # Library 폴더 제외
+[Pp]ackageCache/
+[Ll]ibrary/  # Library 폴더 제외
+[Uu]ser[Ss]ettings/
