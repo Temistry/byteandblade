@@ -1,0 +1,17 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd">
+    <Style src="project://database/Assets/_Assets/UI/0.InitScene/CharacterSelect.uss?fileID=7433441132597879392&amp;guid=8a15cb87fbd0a864b8b3b11de3742c3a&amp;type=3#CharacterSelect" />
+    <engine:VisualElement class="container">
+        <engine:Button text="뒤로" name="Back" class="side-button" />
+        <engine:VisualElement class="center-panel">
+            <engine:Label text="캐릭터 설명" name="Description" class="description" />
+            <engine:VisualElement class="button-row">
+                <engine:Button text="캐릭터 1" name="Character1" class="character-button" />
+                <engine:Button text="캐릭터 2" name="Character2" class="character-button" />
+                <engine:Button text="캐릭터 3" name="Character3" class="character-button" />
+                <engine:Button text="캐릭터 4" name="Character4" class="character-button" />
+                <engine:Button text="캐릭터 5" name="Character5" class="character-button" />
+            </engine:VisualElement>
+        </engine:VisualElement>
+        <engine:Button text="출정" name="Start" class="side-button" />
+    </engine:VisualElement>
+</engine:UXML>

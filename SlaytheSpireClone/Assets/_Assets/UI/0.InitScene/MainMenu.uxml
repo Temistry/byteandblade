@@ -3,10 +3,14 @@
     <engine:VisualElement name="Main" style="flex-grow: 1; width: 907px;">
         <engine:Label text="Slay the Spire Clone" name="Title" style="-unity-text-align: middle-center; justify-content: space-around; align-items: auto; align-self: center; align-content: flex-start; top: 30%; -unity-font-style: bold; font-size: 52px;" />
     </engine:VisualElement>
-    <engine:VisualElement name="Buttons" style="flex-grow: 1; bottom: 30%; top: 0; -unity-text-align: middle-center; justify-content: center;">
-        <engine:Button text="Game Start" name="Start" class="button" style="align-self: center; align-content: center; bottom: 0;" />
-        <engine:Button text="Exit" name="Exit" class="button" style="align-self: center; align-content: center; bottom: 0;" />
-        <engine:Button text="Option" name="Option" class="button" style="align-self: center; align-content: center; bottom: 0;" />
+    <engine:VisualElement name="Buttons" class="button">
+        <engine:Button text="계속" name="Continue" class="button Button mouseover" style="align-self: flex-start;" />
+        <engine:Button text="전투를 포기" name="QuitBattle" class="button" style="align-self: flex-start;" />
+        <engine:Button text="백과사전" name="Encyclopedia" class="button" style="align-self: flex-start;" />
+        <engine:Button text="통계" name="Statistics" class="button" style="align-self: flex-start;" />
+        <engine:Button text="설정" name="Settings" class="button" style="align-self: flex-start;" />
+        <engine:Button text="패치 노트" name="PatchNotes" class="button" style="align-self: flex-start;" />
+        <engine:Button text="종료" name="Exit" class="button" style="align-self: flex-start;" />
     </engine:VisualElement>
     <engine:VisualElement style="flex-grow: 1; position: absolute; height: 100%; width: 100%; top: 0; left: 0; bottom: 0; right: 0;" />
 </engine:UXML>
