@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9c69fd0030dd74af2965de4ca9e2c7dc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Types/Skill.asset
+  uploadId: 701277

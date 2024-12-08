@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e3d4069cec10e471fa7bef7aa28518f9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scripts/Systems/CardWithoutArrowSelectionSystem.cs
+  uploadId: 701277

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ffee93868fb684a13b209af2c6c54bfe
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Third-PartyNotices.txt
+  uploadId: 701277

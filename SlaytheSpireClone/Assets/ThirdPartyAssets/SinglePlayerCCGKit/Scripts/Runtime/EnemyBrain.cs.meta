@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 29157294c12e6414a9e81a27b30740e1
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scripts/Runtime/EnemyBrain.cs
+  uploadId: 701277

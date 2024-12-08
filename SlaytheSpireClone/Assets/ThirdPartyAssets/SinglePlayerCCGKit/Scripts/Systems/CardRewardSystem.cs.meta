@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 6e3837ae21d324321b7dad926cfc4eb7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scripts/Systems/CardRewardSystem.cs
+  uploadId: 701277

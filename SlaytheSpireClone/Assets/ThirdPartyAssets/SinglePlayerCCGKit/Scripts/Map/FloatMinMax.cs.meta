@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: e5e04989ff8eb4c15b5810714efb35c9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scripts/Map/FloatMinMax.cs
+  uploadId: 701277

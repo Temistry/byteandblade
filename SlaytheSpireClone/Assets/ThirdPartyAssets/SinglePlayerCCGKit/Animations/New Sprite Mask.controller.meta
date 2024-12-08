@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1a084aab6011b4eef9022d1ee5f87f57
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Animations/New Sprite Mask.controller
+  uploadId: 701277

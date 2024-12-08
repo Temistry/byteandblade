@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 7cb8d5a5edc564c6cabb4e73260713f9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scripts/Runtime/RuntimeCard.cs
+  uploadId: 701277

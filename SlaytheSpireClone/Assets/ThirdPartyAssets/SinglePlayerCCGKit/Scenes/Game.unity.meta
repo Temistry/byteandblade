@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d0b42c3c1f4c743cbabb99ffbe23de6a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scenes/Game.unity
+  uploadId: 701277

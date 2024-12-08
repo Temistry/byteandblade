@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a164d78d5023c4e98a6003f6865987cc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/Cards/CardUI_Reward.controller
+  uploadId: 701277

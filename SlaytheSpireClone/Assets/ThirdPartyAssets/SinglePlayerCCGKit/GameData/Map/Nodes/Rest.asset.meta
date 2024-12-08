@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 39658e13211b94917be5b4ad97acbd10
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Map/Nodes/Rest.asset
+  uploadId: 701277

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7500ff32c32a440dca03c8b1c01b3d5b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Cards/ToxicFog.asset
+  uploadId: 701277

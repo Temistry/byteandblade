@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 53030f4b933644115a80ce9e8b2396a1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/Characters/Wizard.prefab
+  uploadId: 701277

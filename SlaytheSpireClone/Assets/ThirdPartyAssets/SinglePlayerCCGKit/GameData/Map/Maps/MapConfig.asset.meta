@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3da73a4d92a91482cb97c1e99dcef299
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Map/Maps/MapConfig.asset
+  uploadId: 701277

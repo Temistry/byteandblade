@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7669e48c8eaf24dc2a9f578c96c5c98f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/Characters/Demon.prefab
+  uploadId: 701277

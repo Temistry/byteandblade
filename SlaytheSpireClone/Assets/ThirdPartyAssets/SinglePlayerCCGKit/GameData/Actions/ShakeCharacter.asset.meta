@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 94a1649b897694424a73f09fe91cd518
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Actions/ShakeCharacter.asset
+  uploadId: 701277

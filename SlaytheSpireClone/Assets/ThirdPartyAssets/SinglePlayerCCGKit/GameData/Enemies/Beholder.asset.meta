@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e0f28064a3bdb40c5bda164a623dd985
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Enemies/Beholder.asset
+  uploadId: 701277

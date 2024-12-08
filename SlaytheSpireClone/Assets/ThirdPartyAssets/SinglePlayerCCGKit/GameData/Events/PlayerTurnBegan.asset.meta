@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 36e38c94ff32a40629fcafd4ef9c50e2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Events/PlayerTurnBegan.asset
+  uploadId: 701277

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec6a36f80cc1048ad90b84787d083c7c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Events/Enemy1IntentChangedEvent.asset
+  uploadId: 701277

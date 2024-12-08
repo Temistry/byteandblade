@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6eee2b6d0779645d294aa4eadde9497a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Events/EnemyTurnBegan.asset
+  uploadId: 701277

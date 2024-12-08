@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ef58ff5518cc9e349ad4197ae1c5b70e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/TargetingArrow/ArrowHead.prefab
+  uploadId: 701277

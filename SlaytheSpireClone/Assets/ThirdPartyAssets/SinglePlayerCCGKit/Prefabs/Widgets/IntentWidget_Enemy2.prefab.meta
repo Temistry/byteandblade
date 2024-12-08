@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: de7d2bf5066c44f8fbc8a37ac42435fd
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/Widgets/IntentWidget_Enemy2.prefab
+  uploadId: 701277

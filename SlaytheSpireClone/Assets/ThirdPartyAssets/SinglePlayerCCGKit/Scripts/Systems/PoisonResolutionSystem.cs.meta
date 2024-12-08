@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 1c89589f56aaf4e41bf7b14b2993d384
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scripts/Systems/PoisonResolutionSystem.cs
+  uploadId: 701277

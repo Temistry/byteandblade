@@ -1,0 +1,6 @@
+<engine:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:engine="UnityEngine.UIElements" xmlns:editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Assets/UI/0.InitScene/CardCollections.uss?fileID=7433441132597879392&amp;guid=f0d85154053fade4c89c9481f0da01e0&amp;type=3#CardCollections" />
+    <engine:VisualElement class="container" style="height: 513px;">
+        <engine:Button name="Exit" text="돌아가기" class="exit-button" style="position: absolute; right: 20px; bottom: 20px; width: 100px; height: 50px;" />
+    </engine:VisualElement>
+</engine:UXML> 

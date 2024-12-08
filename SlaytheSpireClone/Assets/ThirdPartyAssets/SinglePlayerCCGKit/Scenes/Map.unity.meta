@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8da417e458d8248218d82c73e3253276
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Scenes/Map.unity
+  uploadId: 701277

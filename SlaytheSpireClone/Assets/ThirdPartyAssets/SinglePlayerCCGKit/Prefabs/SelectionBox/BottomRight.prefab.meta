@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ab871cd6f39274b6e9e73ddd319fd400
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/SelectionBox/BottomRight.prefab
+  uploadId: 701277

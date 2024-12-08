@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c058c34778e3945ea94d1a407caaa3e3
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Fonts/FontLicense.txt
+  uploadId: 701277

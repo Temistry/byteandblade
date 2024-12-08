@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 321a9ba6fd35a40a9b2394733f15e082
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Materials/Heart.mat
+  uploadId: 701277

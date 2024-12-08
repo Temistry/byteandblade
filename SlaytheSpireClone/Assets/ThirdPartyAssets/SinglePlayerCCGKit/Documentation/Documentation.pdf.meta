@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 52c85cc4506954dac86432e589261451
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Documentation/Documentation.pdf
+  uploadId: 701277

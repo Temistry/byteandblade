@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ab53698461d8b4a8aa052c6a75b67c23
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Shaders/Overlay.shader
+  uploadId: 701277

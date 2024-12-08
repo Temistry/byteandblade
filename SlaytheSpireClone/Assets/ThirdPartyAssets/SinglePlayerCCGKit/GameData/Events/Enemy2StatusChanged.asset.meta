@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 71c8ed2f587bd4d699ce0c174fec3d12
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Events/Enemy2StatusChanged.asset
+  uploadId: 701277

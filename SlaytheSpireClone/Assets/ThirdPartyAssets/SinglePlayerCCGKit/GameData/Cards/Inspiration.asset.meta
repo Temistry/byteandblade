@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 887b0d08a2bf2439ab3933e1fc07242f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Cards/Inspiration.asset
+  uploadId: 701277

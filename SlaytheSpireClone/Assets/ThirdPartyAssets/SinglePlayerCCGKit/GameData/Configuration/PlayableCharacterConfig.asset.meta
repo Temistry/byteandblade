@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e4f1172a907f94a81bd96611cefb5d7d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Configuration/PlayableCharacterConfig.asset
+  uploadId: 701277

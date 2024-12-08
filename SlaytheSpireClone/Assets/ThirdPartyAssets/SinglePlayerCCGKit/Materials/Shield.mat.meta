@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 46123d7850c7f4c02a2d4e15f8950daa
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Materials/Shield.mat
+  uploadId: 701277

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 19768f948d6b24aa4a339f1b27fc59ed
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Variables/Enemy1Hp.asset
+  uploadId: 701277

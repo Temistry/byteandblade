@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 741b304e2bf8743909275720b1b78c1b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/Widgets/StatusWidget_Enemy2.prefab
+  uploadId: 701277

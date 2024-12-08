@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 450b1a86240da45a1b2669f99a3ee781
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Prefabs/Widgets/HpWidget_Player.prefab
+  uploadId: 701277

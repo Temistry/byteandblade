@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b8bef6315b5d94a08b5a4e9f15c32b19
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Rigs/Animations/BeholderIdle.anim
+  uploadId: 701277

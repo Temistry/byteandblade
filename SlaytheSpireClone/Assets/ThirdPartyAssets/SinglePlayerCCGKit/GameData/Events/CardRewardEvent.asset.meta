@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7ef7f12dba69c4e599ecad75ca4c3c6a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Events/CardRewardEvent.asset
+  uploadId: 701277

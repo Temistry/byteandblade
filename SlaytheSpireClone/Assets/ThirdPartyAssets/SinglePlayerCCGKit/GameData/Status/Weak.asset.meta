@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5a3b5b978683c4a72a25d84d8a36060d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Status/Weak.asset
+  uploadId: 701277

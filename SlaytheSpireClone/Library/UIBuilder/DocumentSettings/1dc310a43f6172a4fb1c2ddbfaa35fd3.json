@@ -1,0 +1,30 @@
+{
+    "UxmlGuid": "1dc310a43f6172a4fb1c2ddbfaa35fd3",
+    "UxmlPath": "Assets/_Assets/UI/0.InitScene/CardCollections.uxml",
+    "CanvasX": 5,
+    "CanvasY": 0,
+    "CanvasWidth": 708,
+    "CanvasHeight": 513,
+    "MatchGameView": false,
+    "ZoomScale": 0.949999988079071,
+    "PanOffset": {
+        "x": 54.90008544921875,
+        "y": 48.7501220703125
+    },
+    "ColorModeBackgroundOpacity": 1.0,
+    "ImageModeCanvasBackgroundOpacity": 1.0,
+    "CameraModeCanvasBackgroundOpacity": 1.0,
+    "EnableCanvasBackground": false,
+    "CanvasBackgroundMode": 0,
+    "CanvasBackgroundColor": {
+        "r": 0.0,
+        "g": 0.0,
+        "b": 0.0,
+        "a": 1.0
+    },
+    "CanvasBackgroundImage": {
+        "instanceID": 0
+    },
+    "CanvasBackgroundImageScaleMode": 1,
+    "CanvasBackgroundCameraName": ""
+}

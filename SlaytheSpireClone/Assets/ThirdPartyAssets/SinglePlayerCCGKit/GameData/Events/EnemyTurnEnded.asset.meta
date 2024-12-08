@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 428c5d1140a064114b2ffe332e4540d6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Events/EnemyTurnEnded.asset
+  uploadId: 701277

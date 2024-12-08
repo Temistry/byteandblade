@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 505810a6babac44eeb589a2e2696ca99
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Variables/PlayerMana.asset
+  uploadId: 701277

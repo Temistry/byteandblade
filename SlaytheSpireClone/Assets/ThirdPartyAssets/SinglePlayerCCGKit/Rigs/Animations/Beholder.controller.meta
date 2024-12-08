@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a2807306cd8244e02b89c4fef7651bc4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/Rigs/Animations/Beholder.controller
+  uploadId: 701277

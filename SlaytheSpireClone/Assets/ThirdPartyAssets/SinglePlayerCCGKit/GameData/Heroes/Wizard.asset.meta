@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a38da095e6e0d4d799c6cfa500e10b5f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Heroes/Wizard.asset
+  uploadId: 701277

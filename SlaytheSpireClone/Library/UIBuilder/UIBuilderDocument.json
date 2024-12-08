@@ -17,35 +17,33 @@
                     {
                         "m_StyleSheet": {
                             "fileID": 7433441132597879392,
-                            "guid": "bf4794bd6b43c3249960001b8eb102b3",
+                            "guid": "8a15cb87fbd0a864b8b3b11de3742c3a",
                             "type": 3
                         },
-                        "m_OldPath": "Assets/_Assets/UI/0.InitScene/MainMenu.uss"
+                        "m_OldPath": "Assets/_Assets/UI/0.InitScene/CharacterSelect.uss"
                     }
                 ],
-                "m_OpenendVisualTreeAssetOldPath": "Assets/_Assets/UI/0.InitScene/MainMenu.uxml",
+                "m_OpenendVisualTreeAssetOldPath": "Assets/_Assets/UI/0.InitScene/CharacterSelect.uxml",
                 "m_VisualTreeAssetRef": {
                     "fileID": 9197481963319205126,
-                    "guid": "a4ad835ecc5f4e94d9a4843f12059212",
+                    "guid": "74e7d3c94a5a1504782fdd61985aae6a",
                     "type": 3
                 },
                 "m_ActiveStyleSheet": {
-                    "fileID": 7433441132597879392,
-                    "guid": "bf4794bd6b43c3249960001b8eb102b3",
-                    "type": 3
+                    "instanceID": 0
                 },
                 "m_Settings": {
-                    "UxmlGuid": "a4ad835ecc5f4e94d9a4843f12059212",
-                    "UxmlPath": "Assets/_Assets/UI/0.InitScene/MainMenu.uxml",
+                    "UxmlGuid": "74e7d3c94a5a1504782fdd61985aae6a",
+                    "UxmlPath": "Assets/_Assets/UI/0.InitScene/CharacterSelect.uxml",
                     "CanvasX": 0,
                     "CanvasY": 0,
-                    "CanvasWidth": 911,
-                    "CanvasHeight": 825,
+                    "CanvasWidth": 945,
+                    "CanvasHeight": 746,
                     "MatchGameView": false,
-                    "ZoomScale": 0.6000000238418579,
+                    "ZoomScale": 1.0,
                     "PanOffset": {
-                        "x": 43.586639404296878,
-                        "y": 236.9068603515625
+                        "x": 20.0,
+                        "y": 20.0
                     },
                     "ColorModeBackgroundOpacity": 1.0,
                     "ImageModeCanvasBackgroundOpacity": 1.0,

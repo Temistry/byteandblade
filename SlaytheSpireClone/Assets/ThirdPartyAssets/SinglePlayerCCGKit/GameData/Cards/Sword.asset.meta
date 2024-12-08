@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6e08841db905043afb99a7e7d6e64724
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 150156
+  packageName: Single-Player CCG Kit
+  packageVersion: 1.2.0
+  assetPath: Assets/SinglePlayerCCGKit/GameData/Cards/Sword.asset
+  uploadId: 701277
