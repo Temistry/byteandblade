@@ -3,9 +3,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "RelicData", menuName = "Game Data/Relic")]
 public class RelicData : ScriptableObject
 {
+    
+    [Header("기본 정보")]
     public int relicId;          // 유물의 고유 키값
     public string relicName;     // 유물 이름
     public string description;   // 유물 설명
+    public string selectDescription; // 선택 시 설명
     public Sprite icon;          // 유물 아이콘
     
     [Header("효과")]

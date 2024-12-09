@@ -605,8 +605,8 @@
 "Assets/_Assets/Scripts/0.Init_Scene/UI_CharacterSelect.cs"
 "Assets/_Assets/Scripts/0.Init_Scene/UI_MainMenuController.cs"
 "Assets/_Assets/Scripts/1.Lobby/UI_StartRelic.cs"
+"Assets/_Assets/Scripts/99.Util/ToolFunctions.cs"
 "Assets/_Assets/Scripts/MakeScriptable/Relics.cs"
-"Assets/_Assets/Scripts/MakeScriptable/StartRelicData.cs"
 -langversion:9.0
 /deterministic
 /optimize-
