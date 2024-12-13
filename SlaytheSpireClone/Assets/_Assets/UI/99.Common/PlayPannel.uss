@@ -1,0 +1,128 @@
+.top-panel {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.8);
+    height: 50px;
+    width: 100%;
+}
+
+.info-text {
+    color: white;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.stats-container {
+    flex-direction: row;
+    align-items: center;
+}
+
+.stat-text {
+    color: white;
+    font-size: 16px;
+    margin: 0 10px;
+}
+
+.potions-container {
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
+.potion-button {
+    width: 24px;
+    height: 24px;
+    margin: 0 2px;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-width: 1px;
+    border-color: rgb(180, 180, 180);
+    border-radius: 3px;
+}
+
+.potion-button:hover {
+    scale: 1.1;
+    border-color: white;
+}
+
+.potion-button:active {
+    scale: 0.95;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.potion-icon {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 255, 0);  /* 디버그용 초록색 */
+    border-radius: 2px;
+}
+
+.buttons-container {
+    flex-direction: row;
+    align-items: center;
+}
+
+.panel-button {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 1px;
+    border-color: white;
+}
+
+.panel-button:hover {
+    scale: 1.1;
+}
+
+.panel-button:active {
+    scale: 0.95;
+}
+
+.time-text {
+    color: #FFD700;
+    font-size: 16px;
+    margin: 0 10px;
+    -unity-text-align: middle-center;
+}
+
+.bottom-panel {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5px;
+}
+
+.relics-container {
+    height: 100%;
+}
+
+.relics-row {
+    flex-direction: row;
+    height: 100%;
+    align-items: center;
+}
+
+.relic-item {
+    width: 40px;
+    height: 40px;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+}
+
+.relic-image {
+    width: 100%;
+    height: 100%;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.stats-container, .potions-container, .buttons-container {
+    flex-direction: row;
+    align-items: center;
+}

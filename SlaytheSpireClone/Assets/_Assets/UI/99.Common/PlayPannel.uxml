@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd"
+>
+    
+    <engine:VisualElement name="top-panel" class="top-panel">
+        <engine:Label name="nickname" text="닉네임" class="info-text"/>
+        <engine:Label name="character-name" text="캐릭터" class="info-text"/>
+        
+        <engine:VisualElement name="stats" class="stats-container">
+            <engine:Label name="health" text="♥ 80/80" class="stat-text"/>
+            <engine:Label name="gold" text="💰 99" class="stat-text"/>
+        </engine:VisualElement>
+        
+        <engine:VisualElement name="potions" class="potions-container">
+            <engine:Button name="potion1" class="potion-button">
+                <engine:Image class="potion-icon" />
+            </engine:Button>
+            <engine:Button name="potion2" class="potion-button">
+                <engine:Image class="potion-icon" />
+            </engine:Button>
+            <engine:Button name="potion3" class="potion-button">
+                <engine:Image class="potion-icon" />
+            </engine:Button>
+        </engine:VisualElement>
+        
+        <engine:Label name="battle-count" text="전투: 7" class="info-text"/>
+        <engine:Label name="current-stage" text="3층" class="info-text"/>
+        
+        <engine:VisualElement name="buttons" class="buttons-container">
+            <engine:Label name="play-time" text="23:35" class="time-text"/>
+            <engine:Button name="map-button" text="🗺️" class="panel-button"/>
+            <engine:Button name="deck-button" text="🎴" class="panel-button"/>
+            <engine:Button name="settings-button" text="⚙️" class="panel-button"/>
+        </engine:VisualElement>
+    </engine:VisualElement>
+    
+    <engine:VisualElement name="bottom-panel" class="bottom-panel">
+        <engine:ScrollView horizontal-scroller-visibility="Hidden" class="relics-container">
+            <engine:VisualElement name="relics-row" class="relics-row">
+                <!-- 스크립트에서 동적으로 추가될 유물들 -->
+            </engine:VisualElement>
+        </engine:ScrollView>
+    </engine:VisualElement>
+    
+</engine:UXML>

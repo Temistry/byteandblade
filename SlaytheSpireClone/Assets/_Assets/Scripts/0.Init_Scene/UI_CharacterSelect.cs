@@ -44,7 +44,7 @@ public class UI_CharacterSelect : MonoBehaviour
     private void OnStart()
     {
         Debug.Log("출정 버튼 클릭됨");
-        SceneManager.LoadScene("1.Lobby");
+        SceneManager.LoadScene("1.Map");
     }
 
     private void SetupCharacterButton(VisualElement root, string buttonName, string characterName)
