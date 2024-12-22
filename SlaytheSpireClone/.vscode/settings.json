@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "SlaytheSpireClone.sln"
+    "dotnet.defaultSolution": "SlaytheSpireClone.sln",
+    "git.ignoreLimitWarning": true
 }

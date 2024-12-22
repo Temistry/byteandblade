@@ -17,6 +17,10 @@ namespace CCGKit
     ///     - Creating the player character and the associated UI widgets.
     ///     - Creating the enemy character/s and the associated UI widgets.
     ///     - Starting the turn sequence.
+    ///(한국어번역)이 컴포넌트는 게임/전투 장면을 부트스트랩하는 역할을 합니다. 이 과정은 주로 다음을 포함합니다:
+    ///     - 플레이어 캐릭터와 관련 UI 위젯 생성.
+    ///     - 적 캐릭터/적 캐릭터들과 관련 UI 위젯 생성.
+    ///     - 턴 시퀀스 시작.
     /// </summary>
     public class GameBootstrap : MonoBehaviour
     {
@@ -271,6 +275,8 @@ namespace CCGKit
 
         private void CreateHpWidget(GameObject prefab, GameObject character, IntVariable hp, int maxHp, IntVariable shield)
         {
+            if (canvas == null) return;
+            
             var hpWidget = Instantiate(prefab, canvas.transform, false);
             var pivot = character.transform;
             var canvasPos = mainCamera.WorldToViewportPoint(pivot.position + new Vector3(0.0f, -0.5f, 0.0f));
@@ -297,6 +303,11 @@ namespace CCGKit
                 pivot.position + new Vector3(-0.5f, size.y + 0.7f, 0.0f));
             widget.GetComponent<RectTransform>().anchorMin = canvasPos;
             widget.GetComponent<RectTransform>().anchorMax = canvasPos;
+        }
+
+        public List<CardTemplate> GetPlayerDeck()
+        {
+            return playerDeck;
         }
     }
 }

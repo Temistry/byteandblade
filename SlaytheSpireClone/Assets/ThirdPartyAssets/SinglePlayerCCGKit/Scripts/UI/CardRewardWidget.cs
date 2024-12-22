@@ -22,6 +22,9 @@ namespace CCGKit
         {
             var id =  cardWidget.Card.Id;
             var gameInfo = FindFirstObjectByType<GameInfo>();
+            if(gameInfo == null)
+                return;
+            
             gameInfo.SaveData.Deck.Add(id);
             Canvas.gameObject.SetActive(false);
             PopupCanvas.gameObject.SetActive(true);

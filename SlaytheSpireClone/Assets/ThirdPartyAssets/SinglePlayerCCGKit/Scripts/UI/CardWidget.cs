@@ -47,5 +47,10 @@ namespace CCGKit
             descriptionText.text = builder.ToString();
             picture.sprite = template.Picture;
         }
+
+        public CardTemplate GetInfo()
+        {
+            return Card;
+        }
     }
 }

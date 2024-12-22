@@ -3,10 +3,9 @@
 // a copy of which is available at http://unity3d.com/company/legal/as_terms.
 
 using DG.Tweening;
-using TMPro;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
-
 namespace CCGKit
 {
     /// <summary>
@@ -66,7 +65,7 @@ namespace CCGKit
 
         public void OnContinueButtonPressed()
         {
-            Transition.LoadLevel("Map", 0.5f, Color.black);
+            Transition.LoadLevel("1.Map", 0.5f, Color.black);
         }
 
         public void OnCardRewardButtonPressed()

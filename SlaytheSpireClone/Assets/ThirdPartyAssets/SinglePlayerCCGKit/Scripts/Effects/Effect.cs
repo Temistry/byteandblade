@@ -16,6 +16,8 @@ namespace CCGKit
     /// <summary>
     /// The base type of all the card effects available in the kit. As with most of the
     /// configuration elements in the codebase, effect templates are scriptable objects.
+    /// (한국어 번역) 이 키트에서 사용 가능한 모든 카드 효과의 기본 유형입니다. 코드베이스의 대부분의
+    /// 구성 요소와 마찬가지로, 효과 템플릿은 스크립터블 오브젝트입니다.
     /// </summary>
     public abstract class Effect : ScriptableObject
     {
