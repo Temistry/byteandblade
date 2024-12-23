@@ -6,8 +6,8 @@ public class UI_MainMenuController : MonoBehaviour
     public Button startGameButton; 
     public Button optionsButton;
 
-    public GameObject CharacterSelectPanel; 
-    public GameObject OptionPanel;
+    [SerializeField] GameObject CharacterSelectPanel; 
+    [SerializeField] GameObject OptionPanel;
     void Start()
     {
         // 버튼 클릭 이벤트 등록

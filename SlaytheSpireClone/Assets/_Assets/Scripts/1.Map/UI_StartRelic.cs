@@ -3,15 +3,23 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 
+public enum StartRelic
+{
+    RemoveCard = 0,
+    AddGold = 1,
+    LoseHealth = 2,
+    LoseRelic = 3,
+}
+
 public class UI_StartRelic : MonoBehaviour
 {
     // 시작 유물 선택지
     Dictionary<int, string> startRelicDescriptions = new Dictionary<int, string>()
     {
-        { 0, "덱에서 카드 1장을 제거합니다." },
-        { 1, "100 골드를 획득합니다." },
-        { 2, "21 체력 잃고 최대 체력 10 증가" },
-        { 3, "시작 유물을 잃고 무작위 새로운 유물을 획득합니다." },
+        { (int)StartRelic.RemoveCard, "덱에서 카드 1장을 제거합니다." },
+        { (int)StartRelic.AddGold, "100 골드를 획득합니다." },
+        { (int)StartRelic.LoseHealth, "21 체력 잃고 최대 체력 10 증가" },
+        { (int)StartRelic.LoseRelic, "시작 유물을 잃고 무작위 새로운 유물을 획득합니다." },
     };
 
     public GameObject[] relicButtons;

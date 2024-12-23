@@ -74,3 +74,6 @@ ehthumbs.db         # Windows 미리보기 파일
 /SlaytheSpireClone/Library
 /SlaytheSpireClone/Library
 /SlaytheSpireClone/Logs
+/SlaytheSpireClone/Library
+/SlaytheSpireClone/Library/PackageCache/com.unity.visualscripting
+SlaytheSpireClone/Library/ArtifactDB

@@ -55,8 +55,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 633d28e3abbe7b449bec3e1f63e37f64
+    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Maps/Layer8.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 85e54fd0a77f94c628d02f5d3a063bd1
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Maps/Layer3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8f64182b9b3b98e4ab7051c403c75fd9
+    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Maps/Layer7.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -67,6 +77,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a38da095e6e0d4d799c6cfa500e10b5f
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Heroes/Wizard.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4f2be6dfac43bb42af6a483a4ebc69d
+    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Maps/Layer6.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
