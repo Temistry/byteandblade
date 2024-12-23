@@ -65,6 +65,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8ee10ee1ca3934959a0ed6b7d905fa78
+    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/Prefabs/Cards/Card.prefab
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8f64182b9b3b98e4ab7051c403c75fd9
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Maps/Layer7.asset
     m_ReadOnly: 0

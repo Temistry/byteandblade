@@ -80,6 +80,7 @@ namespace CCGKit
         private GameObject CreateInstance()
         {
             var obj = Instantiate(Prefab, transform, true);
+            obj.transform.localScale = Prefab.transform.localScale;
             var pooledObject = obj.AddComponent<PooledObject>();
             pooledObject.Pool = this;
             return obj;

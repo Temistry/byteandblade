@@ -87,7 +87,7 @@ namespace CCGKit
             obj.SetInfo(card);
             obj.SetGlowEnabled(playerMana.Value);
             go.transform.position = deckWidget.transform.position;
-            go.transform.localScale = Vector3.zero;
+            //go.transform.localScale = Vector3.zero;
 
             return go;
         }
