@@ -95,22 +95,33 @@ public class GameManager : BaseSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplate);
+        // 로드가 완료되면 실행할 작업을 정의합니다.
         handle.Completed += op =>
         {
+            // 로드된 주소 가능한 자산의 결과를 가져옵니다.
             var template = op.Result;
+            // 저장된 데이터가 있는지 확인합니다.
             if (PlayerPrefs.HasKey(saveDataPrefKey))
             {
+                // 저장된 데이터를 JSON 문자열로 가져옵니다.
                 var json = PlayerPrefs.GetString(saveDataPrefKey);
+                // JSON 문자열을 SaveData 객체로 변환합니다.
                 var saveData = JsonUtility.FromJson<SaveData>(json);
+                // 플레이어 덱을 초기화합니다.
                 playerDeck.Clear();
+                // 저장된 덱 데이터를 반복합니다.
                 foreach (var id in saveData.Deck)
                 {
+                    // 시작 덱에서 카드를 찾습니다.
                     var card = template.StartingDeck.Entries.Find(x => x.Card.Id == id);
+                    // 시작 덱에서 카드를 찾지 못하면 보상 덱에서 찾습니다.
                     if (card == null)
                     {
                         card = template.RewardDeck.Entries.Find(x => x.Card.Id == id);
                     }
+                    // 카드를 찾았다면 플레이어 덱에 추가합니다.
                     if (card != null)
                     {
                         playerDeck.Add(card.Card);
@@ -119,8 +130,10 @@ public class GameManager : BaseSingleton<GameManager>
             }
             else
             {
+                // 저장된 데이터가 없으면 시작 덱을 플레이어 덱으로 설정합니다.
                 foreach (var entry in template.StartingDeck.Entries)
                 {
+                    // 카드의 복사 수만큼 플레이어 덱에 추가합니다.
                     for (var i = 0; i < entry.NumCopies; i++)
                     {
                         playerDeck.Add(entry.Card);
@@ -217,4 +230,6 @@ public class GameManager : BaseSingleton<GameManager>
     {
         playerDeck.Remove(card);
     }
+
+    
 }
