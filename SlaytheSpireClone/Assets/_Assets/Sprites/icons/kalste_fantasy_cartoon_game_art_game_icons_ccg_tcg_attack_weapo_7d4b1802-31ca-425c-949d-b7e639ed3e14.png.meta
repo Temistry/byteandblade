@@ -129,10 +129,10 @@ TextureImporter:
       name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 9
+        y: 517
+        width: 336
+        height: 499
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,11 +147,121 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_1
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 517
+        width: 336
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347c33dd9aefc6d4aa7481067f2dae45
+      internalID: -1470961829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_2
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 517
+        width: 336
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55af3363f6bd47a4c9f79748a326032e
+      internalID: -1043062072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_3
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 18
+        width: 336
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c988b0531a46a974ca91266a982270b4
+      internalID: -315653112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_4
+      rect:
+        serializedVersion: 2
+        x: 345
+        y: 18
+        width: 336
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b90b387f2e0a98c4aa4962e82dc8606b
+      internalID: 521625157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_5
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 18
+        width: 336
+        height: 499
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2d0fdb16137839142b76d26093483183
+      internalID: -315741008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d4b229bf6816f8b43a5e5f7202118ecb
     internalID: 0
     vertices: []
     indices: 
@@ -162,6 +272,11 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_0: 6812739087220609359
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_1: -1470961829
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_2: -1043062072
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_3: -315653112
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_4: 521625157
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_attack_weapo_7d4b1802-31ca-425c-949d-b7e639ed3e14_5: -315741008
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

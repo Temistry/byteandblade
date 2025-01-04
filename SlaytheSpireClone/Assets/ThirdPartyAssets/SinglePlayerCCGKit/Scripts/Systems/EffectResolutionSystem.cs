@@ -30,6 +30,7 @@ namespace CCGKit
                     var targets = GetTargets(targetableEffect, playerSelectedTarget, true);
                     foreach (var target in targets)
                     {
+                        Player.Character.CurrentUsedCard = card.Template;
                         targetableEffect.Resolve(Player.Character, target.Character);
                         foreach (var group in targetableEffect.SourceActions)
                         {
@@ -67,6 +68,7 @@ namespace CCGKit
                     var targets = GetTargets(targetableEffect, null, true);
                     foreach (var target in targets)
                     {
+                        Player.Character.CurrentUsedCard = card.Template;
                         targetableEffect.Resolve(Player.Character, target.Character);
                         foreach (var group in targetableEffect.SourceActions)
                         {

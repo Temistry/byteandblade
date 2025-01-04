@@ -216,6 +216,8 @@ namespace CCGKit
                         new GUIContent("Apply buff"), false, CreateEffectCallback, typeof(ApplyStatusEffect));
                     menu.AddItem(
                         new GUIContent("Draw cards"), false, CreateEffectCallback, typeof(DrawCardsEffect));
+                    menu.AddItem(
+                        new GUIContent("Clone card"), false, CreateEffectCallback, typeof(CloneCardEffect));
                     menu.ShowAsContext();
                 },
                 x =>

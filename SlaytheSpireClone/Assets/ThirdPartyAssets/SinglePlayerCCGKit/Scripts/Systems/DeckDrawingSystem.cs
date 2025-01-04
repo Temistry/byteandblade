@@ -140,5 +140,16 @@ namespace CCGKit
 
             hand.Clear();
         }
+
+        public void AddCardToDeck(CardTemplate card)
+        {
+            // 런타임 중에 카드를 덱에 추가하는 함수
+            var runtimeCard = new RuntimeCard
+            {
+                Template = card
+            };
+            deck.Add(runtimeCard);
+            deckWidget.SetAmount(deck.Count);
+        }
     }
 }

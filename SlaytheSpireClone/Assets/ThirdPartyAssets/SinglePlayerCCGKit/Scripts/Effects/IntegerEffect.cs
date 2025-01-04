@@ -12,6 +12,8 @@ namespace CCGKit
     /// <summary>
     /// The base class of all the targetable card effects that have an associated integer value
     /// (e.g., "Deal X damage", "Gain X HP").
+    /// (한국어 번역) 모든 대상이 할당된 정수 값을 가진 카드 효과의 기본 클래스입니다.
+    /// (예: "X 데미지 주기", "X HP 얻기").
     /// </summary>
     public abstract class IntegerEffect : TargetableEffect
     {

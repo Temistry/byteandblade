@@ -15,8 +15,10 @@ MonoBehaviour:
   Name: Deck
   Entries:
   - Card: {fileID: 11400000, guid: 6e08841db905043afb99a7e7d6e64724, type: 2}
-    NumCopies: 3
+    NumCopies: 1
   - Card: {fileID: 11400000, guid: b3adc74dfca5945f29d9d1d448f32f79, type: 2}
-    NumCopies: 3
+    NumCopies: 1
   - Card: {fileID: 11400000, guid: 45d3db3b521f94bcab2b4e598649dcbf, type: 2}
-    NumCopies: 2
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: 242a563e54f61144f98348dafd049db8, type: 2}
+    NumCopies: 1

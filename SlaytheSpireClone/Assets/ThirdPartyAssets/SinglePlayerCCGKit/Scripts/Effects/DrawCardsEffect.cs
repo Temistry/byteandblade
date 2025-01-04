@@ -2,11 +2,10 @@
 // This code can only be used under the standard Unity Asset Store End User License Agreement,
 // a copy of which is available at http://unity3d.com/company/legal/as_terms.
 
-using System;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 #endif
 
 namespace CCGKit
@@ -14,7 +13,7 @@ namespace CCGKit
     /// <summary>
     /// The type corresponding to the "Draw X cards" card effect.
     /// </summary>
-    [Serializable]
+    [CreateAssetMenu(fileName = "New Draw Cards Effect", menuName = "Effects/Draw Cards Effect")]
     public class DrawCardsEffect : Effect
     {
         public int Amount;

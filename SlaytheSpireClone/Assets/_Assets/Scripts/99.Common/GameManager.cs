@@ -231,5 +231,8 @@ public class GameManager : BaseSingleton<GameManager>
         playerDeck.Remove(card);
     }
 
-    
+    public bool IsContinueGame()
+    {
+        return PlayerPrefs.HasKey(saveDataPrefKey);
+    }
 }

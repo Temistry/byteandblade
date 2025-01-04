@@ -129,10 +129,10 @@ TextureImporter:
       name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 23
+        y: 687
+        width: 329
+        height: 330
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,11 +147,187 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_1
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 687
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b970c3b8bb31afb468b72f2260f852f8
+      internalID: -121218324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_2
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 687
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 035488a39751ca14585420201a15b445
+      internalID: 813439505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_3
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 357
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c430bb098c88f154496d8c2891a133f7
+      internalID: 1633765961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_4
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 357
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c35c5b65b2fd5e4abb2f08ba3af37c2
+      internalID: 55335356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_5
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 357
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6b7908d5973c374b91a57aab6373614
+      internalID: -801396000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_6
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 27
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c42dbf343b3d018419cb2851653e30b7
+      internalID: -1837638820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_7
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 27
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f056a5d8d76f264682e3fe3f5d6bbb3
+      internalID: -853424930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_8
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 27
+        width: 329
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c2ba0522c16d464189cf4e4780adf9d
+      internalID: -1542070937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 88f2e96e824dd7d49bd55d3b0080fc1a
     internalID: 0
     vertices: []
     indices: 
@@ -162,6 +338,14 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_0: 2542512923375389787
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_1: -121218324
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_2: 813439505
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_3: 1633765961
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_4: 55335356
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_5: -801396000
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_6: -1837638820
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_7: -853424930
+      kalste_fantasy_cartoon_game_art_game_icons_ccg_tcg_relic_icon_i_d66e80f3-dc9b-4a59-9fc1-0e408adb7b77_8: -1542070937
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

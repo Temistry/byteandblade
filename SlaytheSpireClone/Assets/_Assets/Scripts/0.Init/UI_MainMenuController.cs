@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.UI;
 
 public class UI_MainMenuController : MonoBehaviour
@@ -6,6 +8,8 @@ public class UI_MainMenuController : MonoBehaviour
     public Button startGameButton; 
     public Button optionsButton;
 
+    string continueGameText = "이어하기";
+    bool bLateOnceUpdate = false;
     [SerializeField] GameObject CharacterSelectPanel; 
     [SerializeField] GameObject OptionPanel;
     void Start()
@@ -16,6 +20,25 @@ public class UI_MainMenuController : MonoBehaviour
 
         CharacterSelectPanel.SetActive(false);
         OptionPanel.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(!bLateOnceUpdate)
+        {
+            if(GameManager.instance.IsContinueGame())
+            {
+                continueGameText = "이어하기";
+            }
+            else
+            {
+                continueGameText = "새 게임";
+            }
+            ToolFunctions.FindChild<TextMeshProUGUI>(startGameButton.gameObject, "Text (TMP)", true).text = continueGameText;
+        
+            bLateOnceUpdate = true;
+        }
+       
     }
 
     private void StartGame() 

@@ -2,11 +2,10 @@
 // This code can only be used under the standard Unity Asset Store End User License Agreement,
 // a copy of which is available at http://unity3d.com/company/legal/as_terms.
 
-using System;
+using UnityEngine;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEngine;
 #endif
 
 namespace CCGKit
@@ -14,7 +13,10 @@ namespace CCGKit
     /// <summary>
     /// The type corresponding to the "Apply X status" card effect.
     /// </summary>
-    [Serializable]
+    /// <summary>
+    /// "X 상태를 적용" 카드 효과에 해당하는 유형입니다.
+    /// </summary>
+    [CreateAssetMenu(fileName = "New Apply Status Effect", menuName = "Effects/Apply Status Effect")]
     public class ApplyStatusEffect : IntegerEffect, IEntityEffect
     {
         public StatusTemplate Status;

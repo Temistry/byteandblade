@@ -192,7 +192,8 @@ namespace CCGKit
                     Shield = shield,
                     Mana = mana, 
                     Status = playerConfig.Status,
-                    MaxHp = template.Hp
+                    MaxHp = template.Hp,
+                    CurrentUsedCard = null
                 };
                 obj.Character.Status.Value.Clear();
 
