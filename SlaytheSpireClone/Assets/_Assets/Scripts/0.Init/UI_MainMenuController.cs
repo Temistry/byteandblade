@@ -1,7 +1,10 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Diagnostics;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class UI_MainMenuController : MonoBehaviour
 {
@@ -12,6 +15,9 @@ public class UI_MainMenuController : MonoBehaviour
     bool bLateOnceUpdate = false;
     [SerializeField] GameObject CharacterSelectPanel; 
     [SerializeField] GameObject OptionPanel;
+
+    [SerializeField] GameObject InitVideo; // 게임 시작 누르면 비디오 연출
+    [SerializeField] GameObject InitVideoLoop; // 루프 비디오
     void Start()
     {
         // 버튼 클릭 이벤트 등록
@@ -20,13 +26,21 @@ public class UI_MainMenuController : MonoBehaviour
 
         CharacterSelectPanel.SetActive(false);
         OptionPanel.SetActive(false);
+
+        GameManager.GetInstance().OnResetPlayerData += ResetPlayerData;
+    }
+
+    private void ResetPlayerData()
+    {
+        bLateOnceUpdate = false;
+        Debug.Log("플레이어 데이터 초기화");
     }
 
     private void Update()
     {
         if(!bLateOnceUpdate)
         {
-            if(GameManager.instance.IsContinueGame())
+            if(GameManager.GetInstance().IsContinueGame())
             {
                 continueGameText = "이어하기";
             }
@@ -44,8 +58,25 @@ public class UI_MainMenuController : MonoBehaviour
     private void StartGame() 
     {
         Debug.Log("게임 시작!");
-        CharacterSelectPanel.SetActive(true);
+
+        InitVideo.SetActive(true);
+        InitVideoLoop.SetActive(false);
+
+        // 비디오 재생이 끝나면 캐릭터 선택 패널 열기
+        InitVideo.GetComponent<VideoPlayer>().Play();
+
+        // 비디오 재생이 끝났는지 확인
+        if (!InitVideo.GetComponent<VideoPlayer>().isPlaying)
+        {
+           Invoke("VideoEnd", 3f);
+        }
     }
+
+    void VideoEnd()
+    {
+        SceneManager.LoadScene("1.Map");
+    }
+
     private void OpenCardCollections()
     {
 

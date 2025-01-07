@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kalste_concept_cyberpunk_pixel_art_illust_card_battle_game_in_t_9839faa4-afa9-46fd-9f07-1341c1dba810_0: -4497024179186996979
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

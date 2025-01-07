@@ -17,7 +17,7 @@ public class UI_Option : MonoBehaviour
 
     public void OnResetButton()
     {
-        GameManager.instance.ResetPlayerData();
+        GameManager.GetInstance().ResetPlayerData();
     }
 
     // Update is called once per frame

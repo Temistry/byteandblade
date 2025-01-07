@@ -35,7 +35,14 @@ public class UI_StartRelic : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if(GameManager.instance.IsGetStartRelic)
+        // 이어서 하는 경우 시작 유물 선택창 띄우지 않음
+        if(GameManager.GetInstance().IsContinueGame())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        if(GameManager.GetInstance().IsGetStartRelic)
         {
             gameObject.SetActive(false);
             mapObject.SetActive(true);
@@ -77,7 +84,7 @@ public class UI_StartRelic : MonoBehaviour
                 relicButtons[i].GetComponent<Button>().onClick.AddListener(() => 
                 {
                     ToolFunctions.FindChild<TMP_Text>(popUpUI, "Discription_Relic", true).text = "그냥 시작합니다.";
-                    GameManager.instance.SetIsGetStartRelic(true);
+                    GameManager.GetInstance().SetIsGetStartRelic(true);
                     popUpUI.SetActive(true);
                 });
             }
@@ -90,34 +97,34 @@ public class UI_StartRelic : MonoBehaviour
     // 덱에서 카드 1장 제거하는 버튼
     void OnRemoveCardClick()
     {
-        GameManager.instance.RemoveCard();
-         GameManager.instance.SetIsGetStartRelic(true);
+        GameManager.GetInstance().RemoveCard();
+        GameManager.GetInstance().SetIsGetStartRelic(true);
         popUpUI.SetActive(true);
     }
 
     // 100 골드 획득하는 버튼
     void OnAddGoldClick()
     {
-        GameManager.instance.AddGold(100);
-        GameManager.instance.SetIsGetStartRelic(true);
+        GameManager.GetInstance().AddGold(100);
+        GameManager.GetInstance().SetIsGetStartRelic(true);
         popUpUI.SetActive(true);
     }
 
     // 21 체력 잃고 최대 체력 10 증가하는 버튼
     void OnLoseHealthClick()
     {
-        GameManager.instance.LoseHealth(21);
-        GameManager.instance.AddMaxHealth(10);
-        GameManager.instance.SetIsGetStartRelic(true);
+        GameManager.GetInstance().LoseHealth(21);
+        GameManager.GetInstance().AddMaxHealth(10);
+        GameManager.GetInstance().SetIsGetStartRelic(true);
         popUpUI.SetActive(true);
     }
 
     // 시작 유물 갱신 버튼
     void OnResetRelicClick()
     {
-        GameManager.instance.LoseRandomRelic();
-        GameManager.instance.AddRandomRelic();
-        GameManager.instance.SetIsGetStartRelic(true);
+        GameManager.GetInstance().LoseRandomRelic();
+        GameManager.GetInstance().AddRandomRelic();
+        GameManager.GetInstance().SetIsGetStartRelic(true);
         popUpUI.SetActive(true);
     }
 
@@ -129,7 +136,7 @@ public class UI_StartRelic : MonoBehaviour
 
         ToolFunctions.FindChild<TMP_Text>(popUpUI, "Discription_Relic", true).text = relicData[relicIndex].relicName;
         ToolFunctions.FindChild<TMP_Text>(popUpUI, "Discription_Relic", true).text += "\n\n" + relicData[relicIndex].description;
-        GameManager.instance.SetIsGetStartRelic(true);
+        GameManager.GetInstance().SetIsGetStartRelic(true);
         popUpUI.SetActive(true);
     }
 }

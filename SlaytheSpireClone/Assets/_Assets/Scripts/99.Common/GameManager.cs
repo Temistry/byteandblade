@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using WanzyeeStudio;
 
-public class GameManager : BaseSingleton<GameManager>
+public class GameManager : Singleton<GameManager>
 {   
     private readonly string saveDataPrefKey = "save";
-    private readonly string mapPrefKey = "map";
     private readonly string playTimePrefKey = "playTime";
     
     #region 플레이어 데이터
@@ -17,7 +16,10 @@ public class GameManager : BaseSingleton<GameManager>
     public event Action OnGoldChanged;
     public event Action OnPlayTimeChanged;
 
-    private int maxHealth;
+
+    public event Action OnResetPlayerData;
+
+    private int maxHealth = 50;
     public int MaxHealth
     {
         get => maxHealth;
@@ -28,7 +30,7 @@ public class GameManager : BaseSingleton<GameManager>
         }
     }
 
-    private int health;
+    private int health = 50;
     public int Health
     {
         get => health;
@@ -47,17 +49,14 @@ public class GameManager : BaseSingleton<GameManager>
         }
     }
 
-    private int gold;
+    private int gold = 0;
     public int Gold
     {
         get => gold;
         set
         {
-            if (gold != value)
-            {
-                gold = value;
-                OnGoldChanged?.Invoke();
-            }
+            gold = value;
+            OnGoldChanged?.Invoke();  
         }
     }
 
@@ -80,9 +79,7 @@ public class GameManager : BaseSingleton<GameManager>
             return $"{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
         }
     }
-    
     #endregion
-    
     
     private List<CardTemplate> playerDeck = new List<CardTemplate>();
     public AssetReference characterTemplate;
@@ -92,9 +89,8 @@ public class GameManager : BaseSingleton<GameManager>
         private set;
     }
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplate);
         // 로드가 완료되면 실행할 작업을 정의합니다.
@@ -146,7 +142,7 @@ public class GameManager : BaseSingleton<GameManager>
 
     void Start()
     {
-        InitPlayerData();
+
     }
     
     void InitPlayerData()
@@ -170,16 +166,21 @@ public class GameManager : BaseSingleton<GameManager>
     public void SetIsGetStartRelic(bool value)
     {
         IsGetStartRelic = value;
+        if(value)
+        {
+            InitPlayerData();
+        }
     }
 
     public void ResetPlayerData()
     {
         PlayerPrefs.DeleteAll();
         playerDeck.Clear();
+        OnResetPlayerData?.Invoke();
     }
     void UpdatePlayTime()
     {
-         // 플레이 시간 업데이트
+        // 플레이 시간 업데이트
         PlayTime += Time.deltaTime;
         timeSpan = TimeSpan.FromSeconds(playTime);
     }

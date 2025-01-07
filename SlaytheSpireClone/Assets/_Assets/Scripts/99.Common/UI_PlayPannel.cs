@@ -12,10 +12,10 @@ public class UI_PlayPannel : MonoBehaviour
     
     void Awake()
     {
-        GameManager.instance.OnHealthChanged += UpdateHealthText;
-        GameManager.instance.OnGoldChanged += UpdateGoldText;
-        GameManager.instance.OnMaxHealthChanged += UpdateMaxHealthText;
-        GameManager.instance.OnPlayTimeChanged += UpdatePlayTimeText;
+        GameManager.GetInstance().OnHealthChanged += UpdateHealthText;
+        GameManager.GetInstance().OnGoldChanged += UpdateGoldText;
+        GameManager.GetInstance().OnMaxHealthChanged += UpdateMaxHealthText;
+        GameManager.GetInstance().OnPlayTimeChanged += UpdatePlayTimeText;
     }
 
     void Start()
@@ -25,30 +25,30 @@ public class UI_PlayPannel : MonoBehaviour
     
     void OnDestroy()
     {
-        GameManager.instance.OnHealthChanged -= UpdateHealthText;
-        GameManager.instance.OnGoldChanged -= UpdateGoldText;
-        GameManager.instance.OnMaxHealthChanged -= UpdateMaxHealthText;
-        GameManager.instance.OnPlayTimeChanged -= UpdatePlayTimeText;
+        GameManager.GetInstance().OnHealthChanged -= UpdateHealthText;
+        GameManager.GetInstance().OnGoldChanged -= UpdateGoldText;
+        GameManager.GetInstance().OnMaxHealthChanged -= UpdateMaxHealthText;
+        GameManager.GetInstance().OnPlayTimeChanged -= UpdatePlayTimeText;
     }
 
     void UpdateHealthText()
     {
-        healthText.text = GameManager.instance.Health.ToString();
+        healthText.text = GameManager.GetInstance().Health.ToString();
     }
 
     void UpdateGoldText()
     {
-        goldText.text = GameManager.instance.Gold.ToString();
+        goldText.text = GameManager.GetInstance().Gold.ToString();
     }
 
     void UpdateMaxHealthText()
     {
-        healthText.text = GameManager.instance.MaxHealth.ToString();
+        healthText.text = GameManager.GetInstance().MaxHealth.ToString();
     }   
 
     void UpdatePlayTimeText()
     {
-        playTimeText.text = GameManager.instance.PlayTimeString;
+        playTimeText.text = GameManager.GetInstance().PlayTimeString;
     }
 
 }

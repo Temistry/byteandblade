@@ -20,7 +20,7 @@ namespace CCGKit
 
         public override void Resolve(RuntimeCharacter instigator, RuntimeCharacter target)
         {
-            DeckDrawingSystem deckDrawingSystem = FindObjectOfType<DeckDrawingSystem>();
+            DeckDrawingSystem deckDrawingSystem = FindFirstObjectByType<DeckDrawingSystem>();
             deckDrawingSystem.AddCardToDeck(instigator.CurrentUsedCard);
         }
     }

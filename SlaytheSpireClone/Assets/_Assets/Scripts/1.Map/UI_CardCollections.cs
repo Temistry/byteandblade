@@ -39,7 +39,7 @@ private int GetSelectedIndex(GameObject item)
 
     private void DisplayCardList()
     {
-        var cardList = GameManager.instance.GetCardList();
+        var cardList = GameManager.GetInstance().GetCardList();
 
         cardTemplates.Clear(); // 카드 템플릿 리스트 초기화
         foreach (var card in cardList)

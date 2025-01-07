@@ -40,6 +40,7 @@ namespace CCGKit
         private float xSize;
         [SerializeField]
         private float yOffset;
+
 #pragma warning restore 649
 
         public readonly List<NodeView> MapNodes = new List<NodeView>();
@@ -232,7 +233,11 @@ namespace CCGKit
             sprite.drawMode = SpriteDrawMode.Sliced;
             sprite.sprite = background;
             sprite.size = new Vector2(xSize, span + yOffset * 2f);
-            
+
+
+            // 배경 색상 회색 농도
+            sprite.color = new Color(0.5f, 0.5f, 0.5f, 1);
+
             var newCamPos = mainCamera.transform.position;
             newCamPos.x = bossNode.transform.localPosition.x;
             mainCamera.transform.position = newCamPos;
