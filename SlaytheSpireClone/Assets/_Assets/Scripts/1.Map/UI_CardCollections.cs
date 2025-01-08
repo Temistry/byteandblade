@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using CCGKit;
 using UnityEngine.Diagnostics;
 using TMPro;
-using Unity.VisualScripting;
+
 
 public class UI_CardCollections : MonoBehaviour
 {

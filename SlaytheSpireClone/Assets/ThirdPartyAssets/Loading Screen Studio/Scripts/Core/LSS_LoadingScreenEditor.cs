@@ -8,7 +8,7 @@ namespace Michsky.LSS
 {
     [CustomEditor(typeof(LSS_LoadingScreen))]
     [System.Serializable]
-    public class LSS_LoadingScreenEditor : Editor
+    public class LSS_LoadingScreenEditor : UnityEditor.Editor
     {
         private LSS_LoadingScreen lsTarget;
         private GUISkin customSkin;

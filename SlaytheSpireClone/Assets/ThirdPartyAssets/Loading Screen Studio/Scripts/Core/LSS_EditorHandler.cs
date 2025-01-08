@@ -4,7 +4,7 @@ using UnityEditor;
 
 namespace Michsky.LSS
 {
-    public class LSS_EditorHandler : Editor
+    public class LSS_EditorHandler : UnityEditor.Editor
     {
         public static GUISkin GetDarkEditor(GUISkin tempSkin)
         {

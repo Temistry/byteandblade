@@ -6,7 +6,7 @@ using System.Security.Policy;
 
 namespace Michsky.LSS
 {
-    public class ToolsMenu : Editor
+    public class ToolsMenu : UnityEditor.Editor
     {
         static void MakeSceneDirty(GameObject source, string sourceName)
         {

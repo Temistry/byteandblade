@@ -9,7 +9,7 @@ namespace Michsky.LSS
 {
     [CustomEditor(typeof(LSS_Manager))]
     [System.Serializable]
-    public class LSS_ManagerEditor : Editor
+    public class LSS_ManagerEditor : UnityEditor.Editor
     {
         private LSS_Manager lssmTarget;
         private GUISkin customSkin;
