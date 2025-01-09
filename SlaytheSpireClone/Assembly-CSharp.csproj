@@ -119,6 +119,7 @@
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\ScrollGamepadManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\CardRewardView.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\CardSelectionSystem.cs" />
+    <Compile Include="Assets\_Assets\Scripts\0.Init\UI_Campain.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerGameLogo.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Configuration\NonPlayableCharacterConfiguration.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Demo\DemoListShadow.cs" />

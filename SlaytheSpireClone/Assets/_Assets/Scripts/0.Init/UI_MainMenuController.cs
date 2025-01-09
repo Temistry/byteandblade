@@ -10,6 +10,7 @@ public class UI_MainMenuController : MonoBehaviour
 {
     public Button startGameButton; 
     public Button optionsButton;
+    public Button campaignButton;
 
     string continueGameText = "이어하기";
     bool bLateOnceUpdate = false;
@@ -22,6 +23,7 @@ public class UI_MainMenuController : MonoBehaviour
     [SerializeField] GameObject TopPanel;   // 상단 패널
     [SerializeField] GameObject buttonPanel; // 버튼 패널
     [SerializeField] GameObject lobbyMenu; // 로비 메뉴
+    [SerializeField] GameObject campaignPanel; // 캠페인 패널
     void Start()
     {
         // 버튼 클릭 이벤트 등록
@@ -32,7 +34,10 @@ public class UI_MainMenuController : MonoBehaviour
         OptionPanel.SetActive(false);
 
         GameManager.GetInstance().OnResetPlayerData += ResetPlayerData;
+    
+        campaignButton.onClick.AddListener(ToggleCampaignPanel);
     }
+
 
     private void ResetPlayerData()
     {
@@ -110,6 +115,36 @@ public class UI_MainMenuController : MonoBehaviour
     {
         OptionPanel.SetActive(true);
         Debug.Log("옵션 열기"); 
+    }
+
+    void ToggleCampaignPanel()
+    {
+        if(campaignPanel.activeSelf)
+        {
+            CloseCampaignPanel();
+        }
+        else
+        {
+            OpenCampaignPanel();
+        }
+    }
+
+    private void OpenCampaignPanel()
+    {
+        campaignPanel.SetActive(true);
+        //campaignPanel.GetComponent<CanvasGroup>().DOFade(1, 0.5f).OnComplete(() =>
+        //{
+        //    campaignPanel.GetComponent<CanvasGroup>().blocksRaycasts = true;
+        //});
+    }
+
+    private void CloseCampaignPanel()
+    {
+        campaignPanel.SetActive(false);
+        //campaignPanel.GetComponent<CanvasGroup>().DOFade(0, 0.5f).OnComplete(() =>
+        //{
+        //    campaignPanel.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        //});
     }
 
     private void OpenRelicCollection() { Debug.Log("유물 모음집 열기"); }
