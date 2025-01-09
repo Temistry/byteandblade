@@ -115,7 +115,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 573}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_1
     originalName: 
@@ -137,7 +137,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 573}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_2
     originalName: 
@@ -159,7 +159,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 478}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_3
     originalName: 
@@ -181,7 +181,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 478}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_4
     originalName: 
@@ -203,7 +203,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 383}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_5
     originalName: 
@@ -225,7 +225,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 383}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_6
     originalName: 
@@ -247,7 +247,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 288}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_7
     originalName: 
@@ -269,7 +269,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 288}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_8
     originalName: 
@@ -291,7 +291,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 193}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_9
     originalName: 
@@ -313,7 +313,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 193}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_10
     originalName: 
@@ -335,7 +335,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 98}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_11
     originalName: 
@@ -357,7 +357,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 98}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_12
     originalName: 
@@ -379,7 +379,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 5, y: 3}
     spritePosition: {x: 0, y: 0}
   - name: UI_3_13
     originalName: 
@@ -401,7 +401,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 0, y: 0}
+    uvTransform: {x: 98, y: 3}
     spritePosition: {x: 0, y: 0}
   spriteImportData: []
   rigSpriteImportData: []

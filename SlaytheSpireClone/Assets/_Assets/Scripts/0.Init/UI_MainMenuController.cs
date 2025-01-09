@@ -18,6 +18,10 @@ public class UI_MainMenuController : MonoBehaviour
 
     [SerializeField] GameObject InitVideo; // 게임 시작 누르면 비디오 연출
     [SerializeField] GameObject InitVideoLoop; // 루프 비디오
+    [SerializeField] GameObject lobbyMap;   // 로비 맵
+    [SerializeField] GameObject TopPanel;   // 상단 패널
+    [SerializeField] GameObject buttonPanel; // 버튼 패널
+    [SerializeField] GameObject lobbyMenu; // 로비 메뉴
     void Start()
     {
         // 버튼 클릭 이벤트 등록
@@ -42,20 +46,20 @@ public class UI_MainMenuController : MonoBehaviour
         {
             if(GameManager.GetInstance().IsContinueGame())
             {
-                continueGameText = "이어하기";
+                continueGameText = "Continue";
             }
             else
             {
-                continueGameText = "새 게임";
+                continueGameText = "New Game";
             }
-            ToolFunctions.FindChild<TextMeshProUGUI>(startGameButton.gameObject, "Text (TMP)", true).text = continueGameText;
+            ToolFunctions.FindChild<TextMeshProUGUI>(startGameButton.gameObject, "Title", true).text = continueGameText;
         
             bLateOnceUpdate = true;
         }
        
     }
 
-    private void StartGame() 
+    public void StartGame() 
     {
         Debug.Log("게임 시작!");
 
@@ -65,16 +69,37 @@ public class UI_MainMenuController : MonoBehaviour
         // 비디오 재생이 끝나면 캐릭터 선택 패널 열기
         InitVideo.GetComponent<VideoPlayer>().Play();
 
+        // 상단패널 위로 올리기
+        TopPanel.transform.DOLocalMoveY(1000, 1f);
+
+        // 버튼 패널 오른쪽으로 옮기기
+        buttonPanel.transform.DOLocalMoveX(2000, 1f);
+
         // 비디오 재생이 끝났는지 확인
         if (!InitVideo.GetComponent<VideoPlayer>().isPlaying)
         {
-           Invoke("VideoEnd", 3f);
+           Invoke("VideoEnd", 1f);
         }
     }
 
     void VideoEnd()
     {
-        SceneManager.LoadScene("1.Map");
+        InitVideo.GetComponent<CanvasGroup>().DOFade(0, 2.5f).OnComplete(() =>
+        {
+            InitVideo.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
+            lobbyMap.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
+            lobbyMap.GetComponent<CanvasGroup>().blocksRaycasts = true;
+
+
+            InitVideo.SetActive(false);
+            InitVideoLoop.SetActive(false);
+        });
+
+        lobbyMenu.GetComponent<CanvasGroup>().DOFade(0, 1.5f).OnComplete(() =>
+        {
+            lobbyMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
+        });
+
     }
 
     private void OpenCardCollections()
