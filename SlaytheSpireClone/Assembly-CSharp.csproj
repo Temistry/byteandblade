@@ -70,14 +70,14 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\NodeConfig.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\BackButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Demo\DemoLaunchURL.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\LineConnection.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\DeckButton.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\LineConnection.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\DeckDrawingSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursor.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\GamepadChecker.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Types\EffectTargetType.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CardType.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CardLibrary.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CardType.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\NodeViewState.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Patterns\RandomPattern.cs" />
@@ -103,22 +103,22 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Effects\GainHpEffect.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Rendering\GradientEffect.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Core\LSS_LoadingScreenEditor.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Listeners\GameEventListener.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Core\LSS_LoadingScreenEditor.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\EnemyBrainSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Other\ExitToSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\StatusElementWidget.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Event\HoldKeyEvent.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\RewardPopup.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Event\TimedEvent.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\BaseSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\SettingsButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\ScrollGamepadManager.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\CardRewardView.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\CardSelectionSystem.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\CardRewardView.cs" />
     <Compile Include="Assets\_Assets\Scripts\0.Init\UI_Campain.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerGameLogo.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Configuration\NonPlayableCharacterConfiguration.cs" />
@@ -130,8 +130,9 @@
     <Compile Include="Assets\Wizard - 2D Character\Demo\SimplePlayerController.cs" />
     <Compile Include="Assets\_Assets\Scripts\0.Init\UI_TopPanel.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\SaveData.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\FloatMinMax.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\TargetingArrow.cs" />
+    <Compile Include="Assets\_Assets\Scripts\99.Common\HorizontalScrollSnap.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\FloatMinMax.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\CardWithArrowSelectionSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\CardWidget.cs" />
@@ -160,8 +161,8 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\HandPresentationSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Listeners\IntentChangeEventListener.cs" />
     <Compile Include="Assets\_Assets\Scripts\MakeScriptable\Relics.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\EffectAction.cs" />
     <Compile Include="Assets\_Assets\Scripts\1.Map\UI_CardCollections.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\EffectAction.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CardTemplate.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Rendering\BlurManager.cs" />
@@ -179,8 +180,8 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\PlayParticlesAction.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Runtime\GameBootstrap.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Encounters\EncounterList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Encounters\EncounterList.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\IntMinMax.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\MapView.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\NodeView.cs" />
@@ -188,8 +189,8 @@
     <Compile Include="Assets\_Assets\Scripts\99.Common\ToolFunctions.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Effects\Effect.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_UiFrameRateCounter.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Effects\DealDamageEffect.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\MapScreen.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Effects\DealDamageEffect.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Events\GameEventStatus.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\NodeType.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Event\PointerEnterEvents.cs" />
@@ -206,14 +207,14 @@
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Core\LSS_ManagerEditor.cs" />
     <Compile Include="Assets\_Assets\Scripts\99.Common\GameManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\Coordinate.cs" />
-    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SwitchManager.cs" />
+    <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\FloatingObject.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Core\LSS_Manager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\ScrollNonUI.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Events\GameEvent.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\CardPileView.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\MoveCharacterAction.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Events\GameEvent.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerText.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\Map.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\HpWidget.cs" />
@@ -265,8 +266,8 @@
     <Compile Include="Assets\_Assets\Scripts\99.Common\UI_PlayPannel.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Types\IEntityEffect.cs" />
     <Compile Include="Assets\_Assets\Scripts\0.Init\UI_MainMenuController.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Patterns\RepeatForeverPattern.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CharacterTemplate.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Patterns\RepeatForeverPattern.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Patterns\RepeatPattern.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Core\LSS_EditorHandler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -728,16 +729,16 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.28f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Unity.Collections.LowLevel.ILSupport">
+      <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>Library\PackageCache\com.unity.ext.nunit\net40\unity-custom\nunit.framework.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Plugins\Demigiant\DOTween\DOTween.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Collections.LowLevel.ILSupport">
-      <HintPath>Library\PackageCache\com.unity.collections\Unity.Collections.LowLevel.ILSupport\Unity.Collections.LowLevel.ILSupport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
@@ -1312,20 +1313,20 @@
       <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Mathematics.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Psdimporter.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
@@ -1336,12 +1337,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.ScriptableBuildPipeline">
-      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.Burst.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Collections">
@@ -1356,12 +1357,12 @@
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.Addressables">
-      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Unity.2D.PixelPerfect.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.Cursor.Editor">
