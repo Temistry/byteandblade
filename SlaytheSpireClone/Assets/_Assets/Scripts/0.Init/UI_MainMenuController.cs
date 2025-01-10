@@ -24,6 +24,7 @@ public class UI_MainMenuController : MonoBehaviour
     [SerializeField] GameObject buttonPanel; // 버튼 패널
     [SerializeField] GameObject lobbyMenu; // 로비 메뉴
     [SerializeField] GameObject campaignPanel; // 캠페인 패널
+    [SerializeField] GameObject CurrentCharacter; // 현재 캐릭터
     void Start()
     {
         // 버튼 클릭 이벤트 등록

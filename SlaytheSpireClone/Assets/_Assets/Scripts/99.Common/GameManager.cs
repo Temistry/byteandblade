@@ -4,6 +4,7 @@ using CCGKit;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using WanzyeeStudio;
+using TMPro;
 
 public class GameManager : Singleton<GameManager>
 {   
@@ -79,25 +80,57 @@ public class GameManager : Singleton<GameManager>
             return $"{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
         }
     }
+
+
+    
     #endregion
     
     private List<CardTemplate> playerDeck = new List<CardTemplate>();
-    public AssetReference characterTemplate;
+
+
+    // 이 게임에서 사용할 수 있는 모든 캐릭터들
+    public List<AssetReference> characterTemplateList;
+
+    // 현재 유저가 가진 캐릭터 데이터
+    List<AssetReference> userCharacterList;
+    public List<HeroTemplate> UserCharacterList
+    {
+        get
+        {
+            // 주어진 캐릭터 참조 목록을 실제 HeroTemplate 오브젝트로 변환합니다.
+            // ConvertAll 메서드를 사용하여 각 캐릭터 참조를 LoadAssetAsync를 통해 비동기적으로 로드하고,
+            // WaitForCompletion을 호출하여 로드 완료를 기다립니다.
+            return userCharacterList.ConvertAll(x => x.LoadAssetAsync<HeroTemplate>().WaitForCompletion());
+        }
+    }
+
+    // 현재 선택된 캐릭터
+    AssetReference currentCharacter;
+    
     public bool IsGetStartRelic 
     { 
         get;
         private set;
     }
 
+    public GameObject CurrentCharacterUI;
+
     void Awake()
     {
+        currentCharacter = characterTemplateList[0];
+
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplate);
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(currentCharacter);
+
         // 로드가 완료되면 실행할 작업을 정의합니다.
-        handle.Completed += op =>
+        handle.Completed += heroInfo =>
         {
             // 로드된 주소 가능한 자산의 결과를 가져옵니다.
-            var template = op.Result;
+            var template = heroInfo.Result;
+
+            // 캐릭터 이름 표시
+            ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = template.Name;
+
             // 저장된 데이터가 있는지 확인합니다.
             if (PlayerPrefs.HasKey(saveDataPrefKey))
             {

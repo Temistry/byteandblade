@@ -10,6 +10,7 @@ namespace CCGKit
     public abstract class CharacterTemplate : ScriptableObject
     {
         public string Name;
+        public string Description;
         public GameObject Prefab;
 
         public List<EffectAction> Actions = new List<EffectAction>();

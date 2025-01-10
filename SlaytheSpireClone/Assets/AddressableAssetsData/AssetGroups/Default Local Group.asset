@@ -40,6 +40,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 35cfc5ceb55ed8348a744d182711722c
+    m_Address: Assets/_Assets/GameData/PlayableCharacters/Galahad.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 39658e13211b94917be5b4ad97acbd10
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Nodes/Rest.asset
     m_ReadOnly: 0
