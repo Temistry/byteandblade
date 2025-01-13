@@ -87,9 +87,17 @@ public class GameManager : Singleton<GameManager>
     
     private List<CardTemplate> playerDeck = new List<CardTemplate>();
 
+    #region InGameAllData_Character_Card_Relic_etc
+    // 이 게임에서 사용할 수 있는 모든 캐릭터들. 뽑기 데이터에서 사용한다.
+    public List<AssetReference> AllcharacterTemplateList;
 
-    // 이 게임에서 사용할 수 있는 모든 캐릭터들
-    public List<AssetReference> characterTemplateList;
+    // 이 게임에서 사용할 수 있는 모든 카드들. 뽑기 데이터에서 사용한다.
+    public List<CardTemplate> AllcardTemplateList;
+
+    // 이 게임에서 사용할 수 있는 모든 유물들. 뽑기 데이터에서 사용한다.
+    //public List<RelicTemplate> AllRelicTemplateList;
+
+    #endregion 
 
     // 현재 유저가 가진 캐릭터 데이터
     List<AssetReference> userCharacterList;
@@ -105,7 +113,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     // 현재 선택된 캐릭터
-    AssetReference currentCharacter;
+    public AssetReference currentCharacter;
     
     public bool IsGetStartRelic 
     { 
@@ -117,7 +125,7 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        currentCharacter = characterTemplateList[0];
+        currentCharacter = AllcharacterTemplateList[0];
 
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(currentCharacter);

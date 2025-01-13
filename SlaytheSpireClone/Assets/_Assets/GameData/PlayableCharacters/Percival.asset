@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd67e5e2e21cb494c93012ae29ff6b22, type: 3}
-  m_Name: Lanslot
+  m_Name: Percival
   m_EditorClassIdentifier: 
-  Name: Lanslot
-  Description: Knight of Legend 2
-  Prefab: {fileID: 2832429604840509992, guid: f55a48c5b36c2234aaff9e757cfa403c, type: 3}
+  Name: Percival
+  Description: King's Blood
+  Prefab: {fileID: -8653719598885068355, guid: c05f2242b3c106f4991300f52c846574, type: 3}
   Actions: []
-  Hp: 100
-  Mana: 3
+  Hp: 40
+  Mana: 5
   StartingDeck: {fileID: 11400000, guid: a7bda807eca7559418fa53ab37f762b0, type: 2}
   RewardDeck: {fileID: 11400000, guid: 8c069151c2b4d144c9febb24a77e82f8, type: 2}
