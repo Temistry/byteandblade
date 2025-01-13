@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kalste_skin_1b29a8f1-47ed-43ee-8fb9-f734e6dae790_0: -7844521065310920740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

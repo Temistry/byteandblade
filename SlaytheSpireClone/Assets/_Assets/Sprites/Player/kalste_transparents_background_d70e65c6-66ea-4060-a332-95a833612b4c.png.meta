@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kalste_transparents_background_d70e65c6-66ea-4060-a332-95a833612b4c_0: -585882315119939425
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
