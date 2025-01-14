@@ -20,6 +20,8 @@ public class GameManager : Singleton<GameManager>
 
     public event Action OnResetPlayerData;
 
+    public event Action OnSelectMainCharacter;  // 게임플레이할 메인 캐릭터 선택
+
     private int maxHealth = 50;
     public int MaxHealth
     {

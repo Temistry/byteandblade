@@ -20,26 +20,24 @@ public class UI_CharacterSelect : MonoBehaviour
 
     void Start()
     {
+        ActiveButton.onClick.AddListener(OnActivate);
+        snapScroll = ToolFunctions.FindChild<HorizontalScrollSnap>(gameObject, "CharacterSnap", true);
 
     }
 
     void OnEnable()
     {
-        ActiveButton.onClick.AddListener(OnActivate);
-
-        snapScroll = ToolFunctions.FindChild<HorizontalScrollSnap>(gameObject, "CharacterSnap", true);
-
         isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
 
         // 게임매니저로부터 캐릭터 리스트 받기
         var myCharList = SaveSystem.GetInstance().LoadGameData().SaveCharacterIndexList;
 
-        for (int i = 0; i < CharacterList.Length; i++)
+        for (int i = 0; i < (int)SaveCharacterIndex.Max; i++)
         {
             // 소지하지 않은 캐릭터는 이미지를 흑백처리
             if (!myCharList.Contains((SaveCharacterIndex)i))
             {
-                ToolFunctions.FindChild<Image>(CharacterList[i], "Placeholder Model", true).color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                ToolFunctions.FindChild<Image>(CharacterList[i], "Placeholder Model", true).color = new Color(0.1f, 0.1f, 0.1f, 1f);
             }
 
             // TODO : 캐릭터 데이터 UI에 연동시키기
