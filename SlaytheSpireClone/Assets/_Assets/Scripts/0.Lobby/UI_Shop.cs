@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using CCGKit;
+using System.Collections.Generic;
 
 public class UI_Shop : MonoBehaviour
 {
@@ -49,6 +50,12 @@ public class UI_Shop : MonoBehaviour
         {
             var heroTemplate = handle.Result;
             Debug.Log(heroTemplate.name);
+
+            // 카드와 캐릭터 저장
+            List<string> collectedCards = new List<string>(); // 수집한 카드 목록
+            // 카드 수집 로직 추가 (예: playerDeck에서 카드 수집)
+            
+            SaveSystem.GetInstance().SetSaveCollectedData(collectedCards, heroTemplate.name); // 카드와 캐릭터 저장
         };
     }
 

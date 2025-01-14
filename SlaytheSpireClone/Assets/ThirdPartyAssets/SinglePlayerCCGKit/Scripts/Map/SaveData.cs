@@ -7,11 +7,12 @@ using System.Collections.Generic;
 
 namespace CCGKit
 {
+    /*
     [Serializable]
     public class SaveData
     {
         public int Hp;
         public int Shield;
         public List<int> Deck = new List<int>();
-    }
+    }*/
 }

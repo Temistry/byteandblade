@@ -99,19 +99,6 @@ public class GameManager : Singleton<GameManager>
 
     #endregion 
 
-    // 현재 유저가 가진 캐릭터 데이터
-    List<AssetReference> userCharacterList;
-    public List<HeroTemplate> UserCharacterList
-    {
-        get
-        {
-            // 주어진 캐릭터 참조 목록을 실제 HeroTemplate 오브젝트로 변환합니다.
-            // ConvertAll 메서드를 사용하여 각 캐릭터 참조를 LoadAssetAsync를 통해 비동기적으로 로드하고,
-            // WaitForCompletion을 호출하여 로드 완료를 기다립니다.
-            return userCharacterList.ConvertAll(x => x.LoadAssetAsync<HeroTemplate>().WaitForCompletion());
-        }
-    }
-
     // 현재 선택된 캐릭터
     public AssetReference currentCharacter;
     
@@ -122,6 +109,8 @@ public class GameManager : Singleton<GameManager>
     }
 
     public GameObject CurrentCharacterUI;
+
+    SaveData mySaveData;
 
     void Awake()
     {
@@ -142,14 +131,12 @@ public class GameManager : Singleton<GameManager>
             // 저장된 데이터가 있는지 확인합니다.
             if (PlayerPrefs.HasKey(saveDataPrefKey))
             {
-                // 저장된 데이터를 JSON 문자열로 가져옵니다.
-                var json = PlayerPrefs.GetString(saveDataPrefKey);
-                // JSON 문자열을 SaveData 객체로 변환합니다.
-                var saveData = JsonUtility.FromJson<SaveData>(json);
+                // SaveSystem 클래스를 통해 저장된 데이터를 가져옵니다.
+                mySaveData = SaveSystem.GetInstance().LoadGameData();
                 // 플레이어 덱을 초기화합니다.
                 playerDeck.Clear();
                 // 저장된 덱 데이터를 반복합니다.
-                foreach (var id in saveData.Deck)
+                foreach (var id in mySaveData.Deck)
                 {
                     // 시작 덱에서 카드를 찾습니다.
                     var card = template.StartingDeck.Entries.Find(x => x.Card.Id == id);
@@ -181,10 +168,6 @@ public class GameManager : Singleton<GameManager>
         }; 
     }
 
-    void Start()
-    {
-
-    }
     
     void InitPlayerData()
     {

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Percival
   Description: King's Blood
-  Prefab: {fileID: -8653719598885068355, guid: c05f2242b3c106f4991300f52c846574, type: 3}
+  Prefab: {fileID: 2162068329897049531, guid: abe636a56067af34e89cff2b46499ee5, type: 3}
   Actions: []
   Hp: 40
   Mana: 5

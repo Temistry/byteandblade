@@ -12,43 +12,49 @@ public class UI_CharacterSelect : MonoBehaviour
     public GameObject listContent; // 캐릭터 리스트 컨텐츠
 
     HorizontalScrollSnap snapScroll;    // 캐릭터선택창 스와이프 기능
-    GameObject[] CharacterList;
+    [SerializeField] GameObject[] CharacterList;     // 전체 캐릭터 프리팹들
 
     bool isActive = false;
-
-    public GameObject characterProfilePrefab;
 
     string currentCharacterName;
 
     void Start()
     {
+
+    }
+
+    void OnEnable()
+    {
         ActiveButton.onClick.AddListener(OnActivate);
-    
+
         snapScroll = ToolFunctions.FindChild<HorizontalScrollSnap>(gameObject, "CharacterSnap", true);
 
         isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
 
         // 게임매니저로부터 캐릭터 리스트 받기
-        var characterList = GameManager.GetInstance().UserCharacterList;
+        var myCharList = SaveSystem.GetInstance().LoadGameData().SaveCharacterIndexList;
 
-        CharacterList = new GameObject[characterList.Count];
-
-        for(int i = 0; i < characterList.Count; i++)
+        for (int i = 0; i < CharacterList.Length; i++)
         {
-            CharacterList[i] = Instantiate(characterProfilePrefab, listContent.transform);
+            // 소지하지 않은 캐릭터는 이미지를 흑백처리
+            if (!myCharList.Contains((SaveCharacterIndex)i))
+            {
+                ToolFunctions.FindChild<Image>(CharacterList[i], "Placeholder Model", true).color = new Color(0.5f, 0.5f, 0.5f, 1f);
+            }
 
             // TODO : 캐릭터 데이터 UI에 연동시키기
         }
     }
-
     private void OnActivate()
     {
         isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
 
-        if(isActive)
+        if (isActive)
         {
             ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Disable";
             ToolFunctions.FindChild<Image>(CharacterList[snapScroll.GetIndex()], "ActiveCheck", true).gameObject.SetActive(true);
+
+            SaveSystem.GetInstance().SetCurrentCharacterIndex((SaveCharacterIndex)snapScroll.GetIndex());
         }
         else
         {
@@ -60,10 +66,10 @@ public class UI_CharacterSelect : MonoBehaviour
     void Update()
     {
         // 현재 캐릭터 이름 업데이트
-        if(snapScroll.GetIndex() != -1)
-        {
-            currentCharacterName = ToolFunctions.FindChild<TextMeshProUGUI>(CharacterList[snapScroll.GetIndex()], "Name", true).text;
-        }
+        //if(snapScroll.GetIndex() != -1)
+        //{
+        //    currentCharacterName = ToolFunctions.FindChild<TextMeshProUGUI>(CharacterList[snapScroll.GetIndex()], "Name", true).text;
+        //}
     }
 
     private void OnCharacterSelected(string characterName)

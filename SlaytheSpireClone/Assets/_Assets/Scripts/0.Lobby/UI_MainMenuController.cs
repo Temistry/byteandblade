@@ -8,23 +8,37 @@ using UnityEngine.Video;
 
 public class UI_MainMenuController : MonoBehaviour
 {
+    [Header("Main UI Buttons")]
     public Button startGameButton; 
     public Button optionsButton;
-    public Button campaignButton;
 
-    string continueGameText = "이어하기";
-    bool bLateOnceUpdate = false;
+    [Header("Top UI Buttons")]
+    [SerializeField] GameObject TopPanel;   // 상단 패널
+    [SerializeField] Button campaignButton;
     [SerializeField] GameObject CharacterSelectPanel; 
     [SerializeField] GameObject OptionPanel;
 
+
+    [Header("Video")]
     [SerializeField] GameObject InitVideo; // 게임 시작 누르면 비디오 연출
     [SerializeField] GameObject InitVideoLoop; // 루프 비디오
-    [SerializeField] GameObject lobbyMap;   // 로비 맵
-    [SerializeField] GameObject TopPanel;   // 상단 패널
-    [SerializeField] GameObject buttonPanel; // 버튼 패널
-    [SerializeField] GameObject lobbyMenu; // 로비 메뉴
+
+  
+
+    [Header("Panels")]
+    [SerializeField] GameObject homeButtonPanel; // 버튼 패널
     [SerializeField] GameObject campaignPanel; // 캠페인 패널
-    [SerializeField] GameObject CurrentCharacter; // 현재 캐릭터
+    [SerializeField] GameObject lobbyMenu; // 로비 메뉴
+    
+
+    [Header("InGame")]
+    [SerializeField] GameObject lobbyMap;   // 로비 맵
+    
+    GameObject CurrentCharacter; // 현재 캐릭터
+
+    string continueGameText = "이어하기";
+    bool bLateOnceUpdate = false;
+
     void Start()
     {
         // 버튼 클릭 이벤트 등록
@@ -79,7 +93,7 @@ public class UI_MainMenuController : MonoBehaviour
         TopPanel.transform.DOLocalMoveY(1000, 1f);
 
         // 버튼 패널 오른쪽으로 옮기기
-        buttonPanel.transform.DOLocalMoveX(2000, 1f);
+        homeButtonPanel.transform.DOLocalMoveX(2000, 1f);
 
         // 비디오 재생이 끝났는지 확인
         if (!InitVideo.GetComponent<VideoPlayer>().isPlaying)

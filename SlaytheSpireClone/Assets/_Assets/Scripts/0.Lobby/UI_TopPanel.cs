@@ -9,6 +9,7 @@ public class UI_TopPanel : MonoBehaviour
         Campaign = 1,
         Character = 2,
         Shop = 3,
+        Post = 4,
         MaxTopPanel
     }
 
@@ -16,6 +17,7 @@ public class UI_TopPanel : MonoBehaviour
     public Button CampaignButton;
     public Button CharacterButton;
     public Button ShopButton;
+    public Button PostButton;
     public Button exitButton;
 
     public GameObject[] Panels;
@@ -28,11 +30,21 @@ public class UI_TopPanel : MonoBehaviour
         CampaignButton.onClick.AddListener(OnCampaign);
         CharacterButton.onClick.AddListener(OnCharacter);
         ShopButton.onClick.AddListener(OnShop);
+        PostButton.onClick.AddListener(OnPost);
     }
 
     private void OnExit()
     {
         Application.Quit();
+    }
+
+    private void OnPost()
+    {
+        Panels[(int)TopPanelType.Home].SetActive(false);
+        Panels[(int)TopPanelType.Campaign].SetActive(false);
+        Panels[(int)TopPanelType.Character].SetActive(false);
+        Panels[(int)TopPanelType.Shop].SetActive(false);
+        Panels[(int)TopPanelType.Post].SetActive(true);
     }
 
     private void OnHome()
@@ -41,6 +53,7 @@ public class UI_TopPanel : MonoBehaviour
         Panels[(int)TopPanelType.Campaign].SetActive(false);
         Panels[(int)TopPanelType.Character].SetActive(false);
         Panels[(int)TopPanelType.Shop].SetActive(false);
+        Panels[(int)TopPanelType.Post].SetActive(false);
     }
 
     private void OnCampaign()
@@ -49,6 +62,7 @@ public class UI_TopPanel : MonoBehaviour
         Panels[(int)TopPanelType.Campaign].SetActive(true);
         Panels[(int)TopPanelType.Character].SetActive(false);
         Panels[(int)TopPanelType.Shop].SetActive(false);
+        Panels[(int)TopPanelType.Post].SetActive(false);
     }
 
     private void OnCharacter()
@@ -57,6 +71,7 @@ public class UI_TopPanel : MonoBehaviour
         Panels[(int)TopPanelType.Campaign].SetActive(false);
         Panels[(int)TopPanelType.Character].SetActive(true);
         Panels[(int)TopPanelType.Shop].SetActive(false);
+        Panels[(int)TopPanelType.Post].SetActive(false);
     }
 
     private void OnShop()
@@ -65,6 +80,7 @@ public class UI_TopPanel : MonoBehaviour
         Panels[(int)TopPanelType.Campaign].SetActive(false);
         Panels[(int)TopPanelType.Character].SetActive(false);
         Panels[(int)TopPanelType.Shop].SetActive(true);
+        Panels[(int)TopPanelType.Post].SetActive(false);
     }
 
 

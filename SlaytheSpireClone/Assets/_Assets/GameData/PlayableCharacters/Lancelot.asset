@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd67e5e2e21cb494c93012ae29ff6b22, type: 3}
-  m_Name: Lanslot
+  m_Name: Lancelot
   m_EditorClassIdentifier: 
-  Name: Lanslot
+  Name: Lancelot
   Description: Knight of Legend 2
-  Prefab: {fileID: 2832429604840509992, guid: f55a48c5b36c2234aaff9e757cfa403c, type: 3}
+  Prefab: {fileID: 2832429604840509992, guid: 6ba87c518fe1a024d9bb26557840e3e9, type: 3}
   Actions: []
   Hp: 100
   Mana: 3
