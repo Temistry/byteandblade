@@ -8,7 +8,8 @@ public enum SaveCharacterIndex
     Galahad,
     Lancelot,
     Percival,
-    Max
+    Max,
+    None
 }
 
 public class CharacterGachaData
@@ -45,6 +46,9 @@ public class SaveData
 
     // 캐릭터 뽑기 데이터. 중복 데이터 처리 포함
     public CharacterGachaData charGachaData = new CharacterGachaData();
+
+    // 현재 플레이어블 캐릭터
+    public SaveCharacterIndex currentCharacterIndex = SaveCharacterIndex.None;
 }
 
 
@@ -107,7 +111,7 @@ public class SaveSystem : Singleton<SaveSystem>
     public void SetCurrentCharacterIndex(SaveCharacterIndex characterIndex)
     {
         SaveData saveData = LoadGameData();
-        saveData.charGachaData.characterIndex = characterIndex;
+        saveData.currentCharacterIndex = characterIndex;
         SaveGameData(saveData);
     }
 }

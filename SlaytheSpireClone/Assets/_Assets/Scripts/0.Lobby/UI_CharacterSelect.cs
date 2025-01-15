@@ -45,6 +45,14 @@ public class UI_CharacterSelect : MonoBehaviour
     }
     private void OnActivate()
     {
+        // 다른 캐릭터들 모두 선택 해제
+        for (int i = 0; i < (int)SaveCharacterIndex.Max; i++)
+        {
+            ToolFunctions.FindChild<Image>(CharacterList[i], "ActiveCheck", true).gameObject.SetActive(false);
+        }
+        SaveSystem.GetInstance().SetCurrentCharacterIndex(SaveCharacterIndex.None);
+
+        // 현재 캐릭터 선택
         isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
 
         if (isActive)
@@ -53,6 +61,7 @@ public class UI_CharacterSelect : MonoBehaviour
             ToolFunctions.FindChild<Image>(CharacterList[snapScroll.GetIndex()], "ActiveCheck", true).gameObject.SetActive(true);
 
             SaveSystem.GetInstance().SetCurrentCharacterIndex((SaveCharacterIndex)snapScroll.GetIndex());
+
         }
         else
         {

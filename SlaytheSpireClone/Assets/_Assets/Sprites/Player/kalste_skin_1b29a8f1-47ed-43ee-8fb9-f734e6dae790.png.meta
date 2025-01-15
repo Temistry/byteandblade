@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: kalste_skin_1b29a8f1-47ed-43ee-8fb9-f734e6dae790_0
+      name: Percival
       rect:
         serializedVersion: 2
         x: 0
@@ -134,7 +134,7 @@ TextureImporter:
         width: 2048
         height: 2048
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ff0e2ca2d5c40f643b81b4dc30a94ee8
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      kalste_skin_1b29a8f1-47ed-43ee-8fb9-f734e6dae790_0: -7844521065310920740
+      Percival: -7844521065310920740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

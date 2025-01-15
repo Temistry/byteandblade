@@ -126,7 +126,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Percival_0
+      name: Percival
       rect:
         serializedVersion: 2
         x: 473
@@ -134,7 +134,7 @@ TextureImporter:
         width: 1527
         height: 1904
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0566c8298aa9a0c49849699be0ffaf0b
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Percival_0: -4038006474955714373
+      Percival: -4038006474955714373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

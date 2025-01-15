@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.AddressableAssets;
 using WanzyeeStudio;
 using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {   
@@ -91,7 +92,7 @@ public class GameManager : Singleton<GameManager>
 
     #region InGameAllData_Character_Card_Relic_etc
     // 이 게임에서 사용할 수 있는 모든 캐릭터들. 뽑기 데이터에서 사용한다.
-    public List<AssetReference> AllcharacterTemplateList;
+    public List<AssetReference> AllcharacterTemplateList;       // 순서 : Galahad, Lancelot, Percival
 
     // 이 게임에서 사용할 수 있는 모든 카드들. 뽑기 데이터에서 사용한다.
     public List<CardTemplate> AllcardTemplateList;
@@ -100,6 +101,9 @@ public class GameManager : Singleton<GameManager>
     //public List<RelicTemplate> AllRelicTemplateList;
 
     #endregion 
+
+    // 현재 내가 갖고 있는 캐릭터
+    public List<HeroTemplate> AllMyCharacterList;
 
     // 현재 선택된 캐릭터
     public AssetReference currentCharacter;
@@ -116,7 +120,40 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        currentCharacter = AllcharacterTemplateList[0];
+        CurrentCharacterUI.SetActive(false);
+
+        // 세이브 데이터에서 캐릭터를 가져온다. 없으면 꺼내지 않는다.
+        mySaveData = SaveSystem.GetInstance().LoadGameData();
+        if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
+        {
+            return;
+        }
+
+        currentCharacter = AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
+
+        if (currentCharacter == null)
+        {
+            return;
+        }
+
+        LoadMainCharacterActivate();
+
+        LoadUserData();
+    }
+
+    // 선택되었던 메인 캐릭터 UI 활성화
+    private void LoadMainCharacterActivate()
+    {
+        // 캐릭터 이름 표시
+        ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = currentCharacter.editorAsset.name;
+
+        // 캐릭터 이미지 표시
+        ToolFunctions.FindChild<Image>(CurrentCharacterUI, "Placeholder Model", true).sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[(int)mySaveData.currentCharacterIndex];
+    }
+
+    // 유저 데이터 로드
+    private void LoadUserData()
+    {
 
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(currentCharacter);
@@ -124,17 +161,14 @@ public class GameManager : Singleton<GameManager>
         // 로드가 완료되면 실행할 작업을 정의합니다.
         handle.Completed += heroInfo =>
         {
+            CurrentCharacterUI.SetActive(true);
+
             // 로드된 주소 가능한 자산의 결과를 가져옵니다.
             var template = heroInfo.Result;
-
-            // 캐릭터 이름 표시
-            ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = template.Name;
 
             // 저장된 데이터가 있는지 확인합니다.
             if (PlayerPrefs.HasKey(saveDataPrefKey))
             {
-                // SaveSystem 클래스를 통해 저장된 데이터를 가져옵니다.
-                mySaveData = SaveSystem.GetInstance().LoadGameData();
                 // 플레이어 덱을 초기화합니다.
                 playerDeck.Clear();
                 // 저장된 덱 데이터를 반복합니다.
@@ -167,10 +201,9 @@ public class GameManager : Singleton<GameManager>
                 }
             }
 
-        }; 
+        };
     }
 
-    
     void InitPlayerData()
     {
         Gold = 0;

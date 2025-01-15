@@ -64,7 +64,7 @@ public class UI_Shop : MonoBehaviour
 
             GachaCard = cardTemplateList[randomIndex];
             
-            _gachaResultUI.SetResultCard();
+            Invoke("GetCardInvoked", 0.1f);
             return;
         }
         else
@@ -95,8 +95,18 @@ public class UI_Shop : MonoBehaviour
             }
 
             GachaCharacter = heroTemplate;
-            _gachaResultUI.SetResultCharacter();
+            Invoke("GetCharacterInvoked", 0.1f);
         };
+    }
+
+    void GetCardInvoked()
+    {
+        _gachaResultUI.SetResultCard();
+    }
+
+    void GetCharacterInvoked()
+    {
+        _gachaResultUI.SetResultCharacter();
     }
 
     private static void GachaCharacterProcess(HeroTemplate heroTemplate)

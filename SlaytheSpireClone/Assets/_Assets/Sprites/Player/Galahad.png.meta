@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3ac97835ed4fb0648bcf094c980090b7
+guid: 9cb8cc9a436a45b4e8d93dc99eba6e68
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -463897187633785661
-    second: Ranslot_0
+      213: 7573979774367646749
+    second: kalste_game_character_sheet_cyberpunk_pixel_game_art_black_body_fdaaf41e-ec53-420b-87b6-e7a6dfb1a174_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,23 +126,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ranslot_0
+      name: Galahad
       rect:
         serializedVersion: 2
-        x: 17
-        y: 0
-        width: 2031
-        height: 2048
+        x: 19
+        y: 6
+        width: 514
+        height: 528
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3c419c637f7ef89f0800000000000000
-      internalID: -463897187633785661
+      spriteID: d144d23e97e2c1960800000000000000
+      internalID: 7573979774367646749
       vertices: []
       indices: 
       edges: []
@@ -151,7 +151,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8567c3b6b76490b46bc014b4cffc46be
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Ranslot_0: -463897187633785661
+      Galahad: 7573979774367646749
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

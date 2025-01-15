@@ -105,11 +105,6 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: a849fe756699f0b4aa89c8e28849b287
-    m_Address: Assets/_Assets/Prefabs/Card/CardUI Variant.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b233966173a5041a797da2fc498c54d0
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Enemies/Dragon.asset
     m_ReadOnly: 0

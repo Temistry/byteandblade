@@ -26,6 +26,8 @@ public class UI_GachaResult : MonoBehaviour
 
     public void SetResultCard()
     {
+        _resultCard.SetActive(true);
+
         // 뽑기 UI에서 뽑은 카드 정보를 가져온다.
         var gachaResult = FindFirstObjectByType<UI_Shop>();
         var card = gachaResult.GachaCard;
@@ -47,12 +49,12 @@ public class UI_GachaResult : MonoBehaviour
 //
         //// 카드 코스트
         //ToolFunctions.FindChild<TextMeshProUGUI>(_resultCard, "CostText").text = card.Cost.ToString();
-
-        _resultCard.SetActive(true);
     }
 
     public void SetResultCharacter()
     {
+        _resultCharacter.SetActive(true);
+
         // 뽑기 UI에서 뽑은 캐릭터 정보를 가져온다.
         var gachaResult = FindFirstObjectByType<UI_Shop>();
         var character = gachaResult.GachaCharacter;
@@ -61,16 +63,14 @@ public class UI_GachaResult : MonoBehaviour
         ToolFunctions.FindChild<TextMeshProUGUI>(_resultCharacter, "Name", true).text = character.name;
 
         // 캐릭터 이미지
-        // 이미지 경로
-        var charImagePath = "Sprites/Player/" + character.name + ".png";
-
-        // Assets/_Assets/Sprites/Player/Galahad.png
-        var characterImage = Resources.Load<Sprite>(charImagePath);
-
-        ToolFunctions.FindChild<Image>(_resultCharacter, "Placeholder Model").sprite = characterImage;
-
-        _resultCharacter.SetActive(true);
-
+        for(int i = 0; i < (int)SaveCharacterIndex.Max; i++)
+        {
+            if(character.name == Parser_CharacterList.GetInstance().CharacterSpriteList[i].name)
+            {
+                ToolFunctions.FindChild<Image>(_resultCharacter, "Placeholder Model").sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[i];
+                break;
+            }
+        }
     }
 
     // 활성화 될 때
