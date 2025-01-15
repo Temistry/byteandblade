@@ -20,6 +20,9 @@ namespace CCGKit
 
         public void OnCardPressed()
         {
+            if(null == cardWidget.Card)
+                return;
+
             var id =  cardWidget.Card.Id;
             var gameInfo = FindFirstObjectByType<GameInfo>();
             if(gameInfo == null)

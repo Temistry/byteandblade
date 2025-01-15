@@ -8,6 +8,23 @@ using System.Collections.Generic;
 public class UI_Shop : MonoBehaviour
 {
     [SerializeField] Button GetGachaButton;
+    [SerializeField] UI_GachaResult _gachaResultUI;
+
+    // 뽑은 카드
+    CardTemplate _gachaCard;
+    public CardTemplate GachaCard
+    {
+        get {return _gachaCard;}
+        private set{_gachaCard = value;}
+    }
+
+    // 뽑은 캐릭터
+    HeroTemplate _gachaCharacter;
+    public HeroTemplate GachaCharacter
+    {
+        get {return _gachaCharacter;}
+        private set{_gachaCharacter = value;}
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,10 +32,18 @@ public class UI_Shop : MonoBehaviour
         GetGachaButton.onClick.AddListener(OnClickGetGachaButton);
     }
 
+    void Reset()
+    {
+        // 뽑은 가챠 데이터들 초기화
+        GachaCard = null;
+    }
+
     void OnClickGetGachaButton()
     {
-        // TODO : 뽑은 데이터를 표시할 UI 생성
+        Reset();
 
+        // UI_GachaResult 활성화
+        _gachaResultUI.gameObject.SetActive(true);
 
         Debug.Log("GetGachaButton Clicked");
 
@@ -36,6 +61,10 @@ public class UI_Shop : MonoBehaviour
             SaveSystem.GetInstance().SetSaveCardData(cardTemplateList[randomIndex].name);
 
             Debug.Log(cardTemplateList[randomIndex].name);
+
+            GachaCard = cardTemplateList[randomIndex];
+            
+            _gachaResultUI.SetResultCard();
             return;
         }
         else
@@ -65,6 +94,8 @@ public class UI_Shop : MonoBehaviour
                 GachaCharacterProcess(heroTemplate);
             }
 
+            GachaCharacter = heroTemplate;
+            _gachaResultUI.SetResultCharacter();
         };
     }
 
