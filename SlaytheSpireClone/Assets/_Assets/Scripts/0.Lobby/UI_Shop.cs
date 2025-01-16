@@ -58,7 +58,7 @@ public class UI_Shop : MonoBehaviour
             randomIndex = Random.Range(0, cardTemplateList.Count);
 
             // 카드 저장
-            SaveSystem.GetInstance().SetSaveCardData(cardTemplateList[randomIndex].name);
+            SaveSystem.GetInstance().SetSaveCardData(cardTemplateList[randomIndex].Id);
 
             Debug.Log(cardTemplateList[randomIndex].name);
 

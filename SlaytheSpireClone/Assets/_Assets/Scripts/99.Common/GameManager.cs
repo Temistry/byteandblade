@@ -102,26 +102,19 @@ public class GameManager : Singleton<GameManager>
 
     #endregion 
 
-    // 현재 내가 갖고 있는 캐릭터
-    public List<HeroTemplate> AllMyCharacterList;
 
-    // 현재 선택된 캐릭터
-    AssetReference currentCharacter;
-    
     public bool IsGetStartRelic 
     { 
         get;
         private set;
     }
 
-    public GameObject CurrentCharacterUI;
+    
 
     SaveData mySaveData;
 
     void Awake()
     {
-        CurrentCharacterUI.SetActive(false);
-
         // 세이브 데이터에서 캐릭터를 가져온다. 없으면 꺼내지 않는다.
         mySaveData = SaveSystem.GetInstance().LoadGameData();
         if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
@@ -129,40 +122,20 @@ public class GameManager : Singleton<GameManager>
             return;
         }
 
-        currentCharacter = AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
-
-        if (currentCharacter == null)
-        {
-            return;
-        }
-
-        LoadMainCharacterActivate();
-
-        LoadUserData();
+        UpdateUserData();
     }
 
-    // 선택되었던 메인 캐릭터 UI 활성화
-    private void LoadMainCharacterActivate()
-    {
-        // 캐릭터 이름 표시
-        ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = currentCharacter.editorAsset.name;
 
-        // 캐릭터 이미지 표시
-        ToolFunctions.FindChild<Image>(CurrentCharacterUI, "Placeholder Model", true).sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[(int)mySaveData.currentCharacterIndex];
-    }
-
-    // 유저 데이터 로드
-    private void LoadUserData()
+    // 유저 데이터 갱신
+    public void UpdateUserData()
     {
 
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(currentCharacter);
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
 
         // 로드가 완료되면 실행할 작업을 정의합니다.
         handle.Completed += heroInfo =>
         {
-            CurrentCharacterUI.SetActive(true);
-
             // 로드된 주소 가능한 자산의 결과를 가져옵니다.
             var template = heroInfo.Result;
 
@@ -204,27 +177,18 @@ public class GameManager : Singleton<GameManager>
         };
     }
 
-    public void SetCurrentCharacter(SaveCharacterIndex characterIndex)
-    {
-        if(characterIndex == SaveCharacterIndex.None)
-        {
-            CurrentCharacterUI.SetActive(false);
-            currentCharacter = null;
-            mySaveData.currentCharacterIndex = characterIndex;
-            SaveSystem.GetInstance().SaveGameData(mySaveData);
-            return;
-        }
 
-        CurrentCharacterUI.SetActive(true);
-        currentCharacter = AllcharacterTemplateList[(int)characterIndex];
-        mySaveData.currentCharacterIndex = characterIndex;
-        SaveSystem.GetInstance().SaveGameData(mySaveData);
-        LoadMainCharacterActivate();
-    }
 
     public AssetReference GetCurrentCharacter()
     {
-        return currentCharacter;
+        mySaveData = SaveSystem.GetInstance().LoadGameData();
+
+        if(mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
+        {
+            return null;
+        }
+
+        return AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
     }
 
     void InitPlayerData()

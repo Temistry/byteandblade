@@ -29,6 +29,7 @@ public class UI_MainMenuController : MonoBehaviour
     [SerializeField] GameObject homeButtonPanel; // 버튼 패널
     [SerializeField] GameObject campaignPanel; // 캠페인 패널
     [SerializeField] GameObject lobbyMenu; // 로비 메뉴
+    [SerializeField] GameObject CurrentCharacterUI; // 현재 캐릭터 UI
     
 
     [Header("InGame")]
@@ -41,6 +42,8 @@ public class UI_MainMenuController : MonoBehaviour
 
     void Start()
     {
+        CurrentCharacterUI.SetActive(false);
+
         // 버튼 클릭 이벤트 등록
         startGameButton.onClick.AddListener(StartGame);
         optionsButton.onClick.AddListener(Options);
@@ -53,6 +56,48 @@ public class UI_MainMenuController : MonoBehaviour
         campaignButton.onClick.AddListener(ToggleCampaignPanel);
     }
 
+    // 선택되었던 메인 캐릭터 UI 활성화
+    private void LoadMainCharacterActivate()
+    {
+        var character = GameManager.GetInstance().GetCurrentCharacter();
+
+        if(character == null)
+        {
+            CurrentCharacterUI.SetActive(false);
+            return;
+        }
+
+        // 캐릭터 이름 표시
+        ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = character.editorAsset.name;
+
+        var mySaveData = SaveSystem.GetInstance().LoadGameData();
+
+        // 캐릭터 이미지 표시
+        ToolFunctions.FindChild<Image>(CurrentCharacterUI, "Placeholder Model", true).sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[(int)mySaveData.currentCharacterIndex];
+    }
+
+    void OnEnable()
+    {
+        LoadMainCharacterActivate();
+    }
+
+    public void SetCurrentCharacter(SaveCharacterIndex characterIndex)
+    {
+        var  mySaveData = SaveSystem.GetInstance().LoadGameData();
+
+        if(characterIndex == SaveCharacterIndex.None)
+        {
+            CurrentCharacterUI.SetActive(false);
+            mySaveData.currentCharacterIndex = characterIndex;
+            SaveSystem.GetInstance().SaveGameData(mySaveData);
+            return;
+        }
+
+        CurrentCharacterUI.SetActive(true);
+        mySaveData.currentCharacterIndex = characterIndex;
+        SaveSystem.GetInstance().SaveGameData(mySaveData);
+        LoadMainCharacterActivate();
+    }
 
     private void ResetPlayerData()
     {

@@ -1,6 +1,8 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.AddressableAssets;
+using CCGKit;
 
 
 public enum SaveCharacterIndex
@@ -31,15 +33,15 @@ public class CharacterGachaData
     public SaveCharacterIndex characterIndex;
 }
 
+
 [Serializable]
 public class SaveData
 {
     public int Hp;
     public int Shield;
 
-    public List<int> Deck = new List<int>();
+    public List<int> Deck = new List<int>();// 수집한 카드 목록
 
-    public List<string> CollectedCards = new List<string>(); // 수집한 카드 목록
 
     // 저장된 캐릭터들
     public List<SaveCharacterIndex> SaveCharacterIndexList = new List<SaveCharacterIndex>();
@@ -79,6 +81,18 @@ public class SaveSystem : Singleton<SaveSystem>
         SaveData saveData = LoadGameData();
         saveData.SaveCharacterIndexList.Add(collectedCharacter);
         saveData.charGachaData.characterIndex = collectedCharacter;
+
+
+        var characterTemplateList = GameManager.GetInstance().AllcharacterTemplateList;
+
+        // 캐릭터 기본 덱 추가
+        var template = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)collectedCharacter]).Result;
+        foreach (var entry in template.StartingDeck.Entries)
+        {
+            saveData.Deck.Add(entry.Card.Id);
+            Debug.Log($"캐릭터 기본 덱 추가 : {entry.Card.Id}");
+        }
+
         SaveGameData(saveData);
         Debug.Log($"캐릭터 저장 완료 : {collectedCharacter.ToString()}");
     }
@@ -94,10 +108,10 @@ public class SaveSystem : Singleton<SaveSystem>
     }
 
     // 카드 저장
-    public void SetSaveCardData(string collectedCard)
+    public void SetSaveCardData(int id)
     {
         SaveData saveData = LoadGameData();
-        saveData.CollectedCards.Add(collectedCard);
+        saveData.Deck.Add(id);
         SaveGameData(saveData);
     }
 
