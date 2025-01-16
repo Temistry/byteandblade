@@ -106,7 +106,7 @@ public class GameManager : Singleton<GameManager>
     public List<HeroTemplate> AllMyCharacterList;
 
     // 현재 선택된 캐릭터
-    public AssetReference currentCharacter;
+    AssetReference currentCharacter;
     
     public bool IsGetStartRelic 
     { 
@@ -202,6 +202,29 @@ public class GameManager : Singleton<GameManager>
             }
 
         };
+    }
+
+    public void SetCurrentCharacter(SaveCharacterIndex characterIndex)
+    {
+        if(characterIndex == SaveCharacterIndex.None)
+        {
+            CurrentCharacterUI.SetActive(false);
+            currentCharacter = null;
+            mySaveData.currentCharacterIndex = characterIndex;
+            SaveSystem.GetInstance().SaveGameData(mySaveData);
+            return;
+        }
+
+        CurrentCharacterUI.SetActive(true);
+        currentCharacter = AllcharacterTemplateList[(int)characterIndex];
+        mySaveData.currentCharacterIndex = characterIndex;
+        SaveSystem.GetInstance().SaveGameData(mySaveData);
+        LoadMainCharacterActivate();
+    }
+
+    public AssetReference GetCurrentCharacter()
+    {
+        return currentCharacter;
     }
 
     void InitPlayerData()

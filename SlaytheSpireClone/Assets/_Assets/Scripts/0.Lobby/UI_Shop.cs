@@ -75,8 +75,6 @@ public class UI_Shop : MonoBehaviour
 
         var randomCharacter = characterTemplateList[randomIndex];
 
-        GameManager.GetInstance().currentCharacter = randomCharacter;
-
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(randomCharacter);
         handle.Completed += (handle) =>
         {

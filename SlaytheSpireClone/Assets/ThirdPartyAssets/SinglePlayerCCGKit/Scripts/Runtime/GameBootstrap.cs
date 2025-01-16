@@ -30,8 +30,6 @@ namespace CCGKit
         private PlayableCharacterConfiguration playerConfig;
         [SerializeField]
         private List<NonPlayableCharacterConfiguration> enemyConfig;
-        [SerializeField]
-        private AssetReference characterTemplate;
 
         [Header("Systems")]
         [SerializeField]
@@ -96,13 +94,15 @@ namespace CCGKit
 
         private void Start()
         {
+            var character = GameManager.GetInstance().GetCurrentCharacter();
+
             mainCamera = Camera.main;
 
             cardPool.Initialize();
 
             Addressables.InitializeAsync().Completed += op =>
             {
-                CreatePlayer(characterTemplate);
+                CreatePlayer(character);
                 numAssetsToLoad++;
 
                 var gameInfo = FindFirstObjectByType<GameInfo>();

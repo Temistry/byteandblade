@@ -72394,7 +72394,7 @@ MonoBehaviour:
   PostButton: {fileID: 1581267637}
   exitButton: {fileID: 1675450084}
   Panels:
-  - {fileID: 618376196}
+  - {fileID: 1892513188}
   - {fileID: 232283649}
   - {fileID: 1974725926}
   - {fileID: 704797105}
@@ -83031,12 +83031,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7dacaec3cec56c9449ee97a1c3e612b6, type: 2}
   - {fileID: 11400000, guid: 266b21abd0cd86e4ba04dff654463b26, type: 2}
   AllMyCharacterList: []
-  currentCharacter:
-    m_AssetGUID: 
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_SubObjectGUID: 
-    m_EditorAssetChanged: 0
   CurrentCharacterUI: {fileID: 618376196}
 --- !u!1 &2097790274
 GameObject:
