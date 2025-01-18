@@ -39,12 +39,14 @@ public class UI_CharacterSelect : MonoBehaviour
             {
                 ToolFunctions.FindChild<Image>(CharacterList[i], "Placeholder Model", true).color = new Color(0.1f, 0.1f, 0.1f, 1f);
             }
+            else
+            {
+                ToolFunctions.FindChild<Image>(CharacterList[i], "Placeholder Model", true).color = new Color(1f, 1f, 1f, 1f);
+            }
         }
     }
     private void OnActivate()
     {
-
-
         // 현재 캐릭터가 소지한 캐릭터인가
         var mySaveData = SaveSystem.GetInstance().LoadGameData();
         if (mySaveData.SaveCharacterIndexList.Contains((SaveCharacterIndex)snapScroll.GetIndex()))

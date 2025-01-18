@@ -109,14 +109,10 @@ public class GameManager : Singleton<GameManager>
         private set;
     }
 
-    
-
-    SaveData mySaveData;
-
     void Awake()
     {
         // 세이브 데이터에서 캐릭터를 가져온다. 없으면 꺼내지 않는다.
-        mySaveData = SaveSystem.GetInstance().LoadGameData();
+        SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
         if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
         {
             return;
@@ -131,6 +127,7 @@ public class GameManager : Singleton<GameManager>
     {
 
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
+        SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
 
         // 로드가 완료되면 실행할 작업을 정의합니다.
@@ -180,7 +177,7 @@ public class GameManager : Singleton<GameManager>
 
     public AssetReference GetCurrentCharacterAssetReference()
     {
-        mySaveData = SaveSystem.GetInstance().LoadGameData();
+        SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
 
         if(mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
         {
@@ -192,6 +189,7 @@ public class GameManager : Singleton<GameManager>
 
     public HeroTemplate GetCurrentCharacterTemplate()
     {
+        SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
         if(mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
         {
             return null;
