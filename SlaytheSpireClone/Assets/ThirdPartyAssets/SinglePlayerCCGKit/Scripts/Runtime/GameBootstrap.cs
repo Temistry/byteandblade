@@ -94,7 +94,7 @@ namespace CCGKit
 
         private void Start()
         {
-            var character = GameManager.GetInstance().GetCurrentCharacter();
+            var character = GameManager.GetInstance().GetCurrentCharacterAssetReference();
 
             mainCamera = Camera.main;
 

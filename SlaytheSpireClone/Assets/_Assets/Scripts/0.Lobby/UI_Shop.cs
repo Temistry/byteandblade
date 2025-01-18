@@ -60,6 +60,9 @@ public class UI_Shop : MonoBehaviour
             // 카드 저장
             SaveSystem.GetInstance().SetSaveCardData(cardTemplateList[randomIndex].Id);
 
+            // 매니저에 카드 추가
+            GameManager.GetInstance().AddCard(cardTemplateList[randomIndex]);
+
             Debug.Log(cardTemplateList[randomIndex].name);
 
             GachaCard = cardTemplateList[randomIndex];

@@ -50,7 +50,19 @@ public class SaveData
     public CharacterGachaData charGachaData = new CharacterGachaData();
 
     // 현재 플레이어블 캐릭터
-    public SaveCharacterIndex currentCharacterIndex = SaveCharacterIndex.None;
+    SaveCharacterIndex _currChar = SaveCharacterIndex.None;
+    public SaveCharacterIndex currentCharacterIndex
+    {
+        get
+        {
+            return _currChar;
+        }
+        set
+        {
+            _currChar = value;
+        }
+    }
+
 }
 
 

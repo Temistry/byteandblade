@@ -59,7 +59,7 @@ public class UI_MainMenuController : MonoBehaviour
     // 선택되었던 메인 캐릭터 UI 활성화
     private void LoadMainCharacterActivate()
     {
-        var character = GameManager.GetInstance().GetCurrentCharacter();
+        var character = GameManager.GetInstance().GetCurrentCharacterAssetReference();
 
         if(character == null)
         {

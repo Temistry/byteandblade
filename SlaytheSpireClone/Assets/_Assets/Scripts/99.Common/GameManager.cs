@@ -136,7 +136,6 @@ public class GameManager : Singleton<GameManager>
         // 로드가 완료되면 실행할 작업을 정의합니다.
         handle.Completed += heroInfo =>
         {
-            // 로드된 주소 가능한 자산의 결과를 가져옵니다.
             var template = heroInfo.Result;
 
             // 저장된 데이터가 있는지 확인합니다.
@@ -179,7 +178,7 @@ public class GameManager : Singleton<GameManager>
 
 
 
-    public AssetReference GetCurrentCharacter()
+    public AssetReference GetCurrentCharacterAssetReference()
     {
         mySaveData = SaveSystem.GetInstance().LoadGameData();
 
@@ -189,6 +188,17 @@ public class GameManager : Singleton<GameManager>
         }
 
         return AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
+    }
+
+    public HeroTemplate GetCurrentCharacterTemplate()
+    {
+        if(mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
+        {
+            return null;
+        }
+
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
+        return handle.Result;
     }
 
     void InitPlayerData()
