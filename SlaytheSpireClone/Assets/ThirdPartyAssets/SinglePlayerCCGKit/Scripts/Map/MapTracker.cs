@@ -93,6 +93,7 @@ namespace CCGKit
             }
         }
 
+        // 게임 씬으로 이동
         private void TravelToNode(NodeView mapNode)
         {
             var gameInfo = FindFirstObjectByType<GameInfo>();
@@ -104,7 +105,7 @@ namespace CCGKit
             gameInfo.Encounter = mapNode.Node.Encounter;
             gameInfo.PlayerCoordinate = mapNode.Node.Coordinate;
 
-            Transition.LoadLevel("2.Game", 0.5f, Color.black);
+            Transition.LoadLevel("1.Game", 0.5f, Color.black);
         }
     }
 }

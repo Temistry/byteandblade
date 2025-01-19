@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UI_PlayPannel : MonoBehaviour
 {
@@ -20,7 +21,12 @@ public class UI_PlayPannel : MonoBehaviour
 
     void Start()
     {       
-       
+        // 게임 씬이 아니면 플레이 시간 갱신 이벤트 제거
+        if(SceneManager.GetActiveScene().name != "1.Game")
+        {
+            GameManager.GetInstance().OnPlayTimeChanged -= UpdatePlayTimeText;
+            playTimeText.text = "00:00:00";
+        }
     }
     
     void OnDestroy()

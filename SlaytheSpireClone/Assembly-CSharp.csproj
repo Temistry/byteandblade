@@ -67,6 +67,7 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Effects\DrawCardsEffect.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\MapGenerator.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\NodeConfig.cs" />
+    <Compile Include="Assets\_Assets\Scripts\0.Lobby\UI_DebugCheat.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\BackButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Demo\DemoLaunchURL.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\DeckButton.cs" />

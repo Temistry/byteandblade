@@ -9,6 +9,7 @@ public class UI_Shop : MonoBehaviour
 {
     [SerializeField] Button GetGachaButton;
     [SerializeField] UI_GachaResult _gachaResultUI;
+    [SerializeField] CanvasGroup _commonPanel;
 
     // 뽑은 카드
     CardTemplate _gachaCard;
@@ -26,6 +27,16 @@ public class UI_Shop : MonoBehaviour
         private set{_gachaCharacter = value;}
     }
 
+    void OnEnable()
+    {
+        _commonPanel.alpha = 1;
+    }
+
+    void OnDisable()
+    {
+        _commonPanel.alpha = 0;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,6 +51,13 @@ public class UI_Shop : MonoBehaviour
 
     void OnClickGetGachaButton()
     {
+        // 돈 차감
+        if(!GameManager.GetInstance().UseGold(100))
+        {
+            Debug.Log("돈이 부족합니다.");
+            return;
+        }
+
         Reset();
 
         // UI_GachaResult 활성화

@@ -39,6 +39,7 @@ public class SaveData
 {
     public int Hp;
     public int Shield;
+    public int gold;
 
     public List<int> Deck = new List<int>();// 수집한 카드 목록
 

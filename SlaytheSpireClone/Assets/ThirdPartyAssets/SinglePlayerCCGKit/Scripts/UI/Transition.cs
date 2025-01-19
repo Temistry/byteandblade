@@ -76,7 +76,11 @@ namespace CCGKit
             image.canvasRenderer.SetAlpha(1.0f);
             yield return waitForEndOfFrame;
 
-            SceneManager.LoadScene(level);
+            SceneManager.LoadSceneAsync(level).completed += (AsyncOperation operation) =>
+            {
+                GameManager.GetInstance().UpdateUserData();
+            };
+
 
             time = 0.0f;
             while (time < halfDuration)

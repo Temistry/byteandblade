@@ -8,10 +8,10 @@ using TMPro;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
-{   
+{
     private readonly string saveDataPrefKey = "save";
     private readonly string playTimePrefKey = "playTime";
-    
+
     #region 플레이어 데이터
     public event Action OnHealthChanged;
     public event Action OnMaxHealthChanged;
@@ -31,6 +31,10 @@ public class GameManager : Singleton<GameManager>
         {
             maxHealth = value;
             OnMaxHealthChanged?.Invoke();
+
+            SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+            saveData.Hp = value;
+            SaveSystem.GetInstance().SaveGameData(saveData);
         }
     }
 
@@ -42,7 +46,7 @@ public class GameManager : Singleton<GameManager>
         {
             if (health != value)
             {
-                if(value > maxHealth)
+                if (value > maxHealth)
                 {
                     value = maxHealth;
                 }
@@ -60,7 +64,13 @@ public class GameManager : Singleton<GameManager>
         set
         {
             gold = value;
-            OnGoldChanged?.Invoke();  
+
+            // 저장
+            SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+            saveData.gold = value;
+            SaveSystem.GetInstance().SaveGameData(saveData);
+
+            OnGoldChanged?.Invoke();
         }
     }
 
@@ -78,16 +88,16 @@ public class GameManager : Singleton<GameManager>
     TimeSpan timeSpan;
     public string PlayTimeString
     {
-        get 
+        get
         {
             return $"{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
         }
     }
 
 
-    
+
     #endregion
-    
+
     private List<CardTemplate> playerDeck = new List<CardTemplate>();
 
     #region InGameAllData_Character_Card_Relic_etc
@@ -103,8 +113,8 @@ public class GameManager : Singleton<GameManager>
     #endregion 
 
 
-    public bool IsGetStartRelic 
-    { 
+    public bool IsGetStartRelic
+    {
         get;
         private set;
     }
@@ -125,6 +135,7 @@ public class GameManager : Singleton<GameManager>
     // 유저 데이터 갱신
     public void UpdateUserData()
     {
+        UpdateUserConfigData();
 
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
@@ -173,13 +184,19 @@ public class GameManager : Singleton<GameManager>
         };
     }
 
-
+    // 유저 설정 데이터 갱신
+    void UpdateUserConfigData()
+    {
+        AddGold(0);
+        LoseHealth(0);
+        AddMaxHealth(0);
+    }
 
     public AssetReference GetCurrentCharacterAssetReference()
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
 
-        if(mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
+        if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
         {
             return null;
         }
@@ -190,7 +207,7 @@ public class GameManager : Singleton<GameManager>
     public HeroTemplate GetCurrentCharacterTemplate()
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
-        if(mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
+        if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
         {
             return null;
         }
@@ -220,7 +237,7 @@ public class GameManager : Singleton<GameManager>
     public void SetIsGetStartRelic(bool value)
     {
         IsGetStartRelic = value;
-        if(value)
+        if (value)
         {
             InitPlayerData();
         }
@@ -247,11 +264,31 @@ public class GameManager : Singleton<GameManager>
     public void RemoveCard()
     {
         playerDeck.RemoveAt(UnityEngine.Random.Range(0, playerDeck.Count));
+
+        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+        // 저장 데이터로 정제
+        List<int> saveDeck = new List<int>();
+        foreach (var card in playerDeck)
+            saveDeck.Add(card.Id);
+
+        saveData.Deck = saveDeck;
+
+        SaveSystem.GetInstance().SaveGameData(saveData);
     }
 
     public void AddGold(int value)
     {
         Gold += value;
+    }
+
+    public bool UseGold(int value)
+    {
+        if (Gold >= value)
+        {
+            Gold -= value;
+            return true;
+        }
+        return false;
     }
 
     public void LoseHealth(int value)
@@ -279,11 +316,31 @@ public class GameManager : Singleton<GameManager>
     public void AddCard(CardTemplate card)
     {
         playerDeck.Add(card);
+
+        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+        // 저장 데이터로 정제
+        List<int> saveDeck = new List<int>();
+        foreach (var carddata in playerDeck)
+            saveDeck.Add(carddata.Id);
+
+        saveData.Deck = saveDeck;
+
+        SaveSystem.GetInstance().SaveGameData(saveData);
     }
 
     public void RemoveCard(CardTemplate card)
     {
         playerDeck.Remove(card);
+
+        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+        // 저장 데이터로 정제
+        List<int> saveDeck = new List<int>();
+        foreach (var carddata in playerDeck)
+            saveDeck.Add(carddata.Id);
+
+        saveData.Deck = saveDeck;
+
+        SaveSystem.GetInstance().SaveGameData(saveData);
     }
 
     public bool IsContinueGame()
