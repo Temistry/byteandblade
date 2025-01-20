@@ -74,6 +74,13 @@ public class UI_MainMenuController : MonoBehaviour
 
         // 캐릭터 이미지 표시
         ToolFunctions.FindChild<Image>(CurrentCharacterUI, "Placeholder Model", true).sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[(int)mySaveData.currentCharacterIndex];
+
+        Invoke("ActiveCharacterUI", 0.5f);
+    }
+
+    void ActiveCharacterUI()
+    {
+        CurrentCharacterUI.SetActive(true);
     }
 
     void OnEnable()

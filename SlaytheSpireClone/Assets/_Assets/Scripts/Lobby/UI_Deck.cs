@@ -40,7 +40,7 @@ public class UI_Deck : MonoBehaviour
     private void OnDelete()
     {
         // 카드 삭제할 때 비용 차감
-        if(!GameManager.GetInstance().UseGold(DeleteCost))
+        if (!GameManager.GetInstance().UseGold(DeleteCost))
         {
             // 카드 삭제 실패
             Debug.Log("카드 삭제 실패. 비용이 부족합니다.");
@@ -48,7 +48,7 @@ public class UI_Deck : MonoBehaviour
         }
 
         // 카드 삭제
-        if(SelectedCardIndex == -1)
+        if (SelectedCardIndex == -1)
         {
             return;
         }
@@ -93,30 +93,32 @@ public class UI_Deck : MonoBehaviour
         Panel.GetComponent<CanvasGroup>().alpha = 1;
 
         CardContents.Clear();
+        List<CardTemplate> cardListContents = new List<CardTemplate>();
 
         // 게임매니저로부터 소지한 카드 목록 가져오기
-        List<CardTemplate> cardList = GameManager.GetInstance().GetCardList();
-
-        // 현재 캐릭터 정보 불러오기
-        var heroTemplate = GameManager.GetInstance().GetCurrentCharacterTemplate();
-
-        // 캐릭터의 기본 카드 목록 불러오기
-        List<CardTemplate> charCardList = new List<CardTemplate>();
-        if(heroTemplate != null || heroTemplate.StartingDeck != null)
+        cardListContents = GameManager.GetInstance().GetCardList();
+        if (cardListContents == null || cardListContents.Count == 0)
         {
-            foreach(CardLibraryEntry entry in heroTemplate.StartingDeck.Entries)
+            // 카드 목록이 없으면 캐릭터 카드목록만 표시
+            // 캐릭터의 기본 카드 목록 불러오기
+            var heroTemplate = GameManager.GetInstance().GetCurrentCharacterTemplate();
+            if (heroTemplate != null || heroTemplate.StartingDeck != null)
             {
-                charCardList.Add(entry.Card);
+                foreach (CardLibraryEntry entry in heroTemplate.StartingDeck.Entries)
+                {
+                    cardListContents.Add(entry.Card);
+                }
             }
+            else
+            {
+                // 기본 캐릭터도 없다면 카드 목록 없음
+                return;
+            }
+
         }
 
-        // 캐릭터 카드목록 + 소지한 카드목록. 캐릭터 카드목록이 무조건 위에 있어야함
-         List<CardTemplate> MergeCardList = new List<CardTemplate>();
-         MergeCardList.AddRange(charCardList);
-         MergeCardList.AddRange(cardList);
-
         // 카드 컨텐츠 생성
-        foreach (CardTemplate card in MergeCardList)
+        foreach (CardTemplate card in cardListContents)
         {
             // 리스트 추가
             CardContents.Add(card);

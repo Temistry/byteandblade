@@ -23,8 +23,8 @@ namespace CCGKit
 
             continueButton.onClick.AddListener(() => {
                 // 선택된 카드를 덱에 추가
-                // 맵으로 이동
-                Transition.LoadLevel("1.Map", 1.0f, Color.black);
+                // 로비로 이동
+                Transition.LoadLevel("0.Lobby", 1.0f, Color.black);
             });
         }
     }
