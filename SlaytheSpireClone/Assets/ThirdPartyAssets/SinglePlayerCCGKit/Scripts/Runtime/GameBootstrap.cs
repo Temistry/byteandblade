@@ -139,7 +139,7 @@ namespace CCGKit
                 {
                     var json = PlayerPrefs.GetString(saveDataPrefKey);
                     var saveData = JsonUtility.FromJson<SaveData>(json);
-                    hp.Value = saveData.Hp;
+                    hp.Value = saveData.MaxHp;
                     shield.Value = saveData.Shield;
 
                     playerDeck.Clear();
@@ -170,7 +170,7 @@ namespace CCGKit
                 var gameInfo = FindFirstObjectByType<GameInfo>();
                 if (gameInfo != null)
                 {
-                    gameInfo.SaveData.Hp = hp.Value;
+                    gameInfo.SaveData.MaxHp = hp.Value;
                     gameInfo.SaveData.Shield = shield.Value;
                     gameInfo.SaveData.Deck.Clear();
                     foreach (var card in playerDeck)

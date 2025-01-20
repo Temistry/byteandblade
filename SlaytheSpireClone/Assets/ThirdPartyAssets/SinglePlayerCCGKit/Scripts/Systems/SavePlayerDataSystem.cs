@@ -13,7 +13,7 @@ namespace CCGKit
         public void OnPlayerHpChanged(int hp)
         {
             var gameInfo = FindFirstObjectByType<GameInfo>();
-            gameInfo.SaveData.Hp = hp;
+            gameInfo.SaveData.MaxHp = hp;
         }
 
         public void OnPlayerShieldChanged(int shield)

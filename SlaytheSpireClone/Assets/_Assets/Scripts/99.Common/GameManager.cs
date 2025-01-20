@@ -33,8 +33,9 @@ public class GameManager : Singleton<GameManager>
             OnMaxHealthChanged?.Invoke();
 
             SaveData saveData = SaveSystem.GetInstance().LoadGameData();
-            saveData.Hp = value;
+            saveData.MaxHp = maxHealth;
             SaveSystem.GetInstance().SaveGameData(saveData);
+
         }
     }
 
@@ -48,7 +49,13 @@ public class GameManager : Singleton<GameManager>
             {
                 if (value > maxHealth)
                 {
-                    value = maxHealth;
+                    health = value;
+                    SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+                    
+                    saveData.CurrHp = health;
+                    SaveSystem.GetInstance().SaveGameData(saveData);
+
+                     
                 }
 
                 health = value;
@@ -64,13 +71,13 @@ public class GameManager : Singleton<GameManager>
         set
         {
             gold = value;
-
             // 저장
             SaveData saveData = SaveSystem.GetInstance().LoadGameData();
-            saveData.gold = value;
+            saveData.gold = gold;
             SaveSystem.GetInstance().SaveGameData(saveData);
-
             OnGoldChanged?.Invoke();
+            
+            
         }
     }
 
@@ -151,6 +158,10 @@ public class GameManager : Singleton<GameManager>
             {
                 // 플레이어 덱을 초기화합니다.
                 playerDeck.Clear();
+
+                // 현재 캐릭터 정보 불러오기
+                var heroTemplate = GetCurrentCharacterTemplate();
+
                 // 저장된 덱 데이터를 반복합니다.
                 foreach (var id in mySaveData.Deck)
                 {
@@ -187,9 +198,11 @@ public class GameManager : Singleton<GameManager>
     // 유저 설정 데이터 갱신
     void UpdateUserConfigData()
     {
-        AddGold(0);
-        LoseHealth(0);
-        AddMaxHealth(0);
+        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+
+        Gold = saveData.gold;
+        Health = saveData.CurrHp;
+        MaxHealth = saveData.MaxHp;
     }
 
     public AssetReference GetCurrentCharacterAssetReference()

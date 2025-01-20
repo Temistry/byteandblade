@@ -5,11 +5,21 @@ using CCGKit;
 using UnityEngine.AddressableAssets;
 public class UI_Deck : MonoBehaviour
 {
+    // 카드 지우는 비용
+    public int DeleteCost = 50;
+
     // 삭제버튼
     public Button DeleteButton;
 
+    // 카드 선택 -> 뒤로가기 버튼
+    public Button BackButton;
+
     // 카드 UI
     public GameObject CardUI;
+    public GameObject CardUI_Selected;
+
+    // 패널 UI
+    public GameObject Panel;
 
     // 카드 컨텐츠 위치
     public Transform CardContentParent;
@@ -24,10 +34,19 @@ public class UI_Deck : MonoBehaviour
     void Start()
     {
         DeleteButton.onClick.AddListener(OnDelete);
+        BackButton.onClick.AddListener(OnBack);
     }
 
     private void OnDelete()
     {
+        // 카드 삭제할 때 비용 차감
+        if(!GameManager.GetInstance().UseGold(DeleteCost))
+        {
+            // 카드 삭제 실패
+            Debug.Log("카드 삭제 실패. 비용이 부족합니다.");
+            return;
+        }
+
         // 카드 삭제
         if(SelectedCardIndex == -1)
         {
@@ -42,6 +61,24 @@ public class UI_Deck : MonoBehaviour
 
         // 카드 UI 삭제
         Destroy(CardContentParent.GetChild(SelectedCardIndex).gameObject);
+
+        // 카드 선택 초기화
+        SelectedCardIndex = -1;
+
+        // 카드 선택 UI 숨기기
+        CardUI_Selected.SetActive(false);
+
+        // 뒤로가기 버튼 숨기기
+        BackButton.gameObject.SetActive(false);
+    }
+
+    private void OnBack()
+    {
+        // 선택한 카드 UI -> 카드 목록으로 뒤로가기
+        CardUI_Selected.SetActive(false);
+
+        // 뒤로가기 버튼 숨기기
+        BackButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,6 +89,9 @@ public class UI_Deck : MonoBehaviour
 
     void OnEnable()
     {
+        // 패널 표시
+        Panel.GetComponent<CanvasGroup>().alpha = 1;
+
         CardContents.Clear();
 
         // 게임매니저로부터 소지한 카드 목록 가져오기
@@ -93,9 +133,22 @@ public class UI_Deck : MonoBehaviour
         }
     }
 
+    void OnDisable()
+    {
+        // 패널 숨기기
+        Panel.GetComponent<CanvasGroup>().alpha = 0;
+    }
+
     private void OnCardClick(CardTemplate card)
     {
         SelectedCardIndex = CardContents.IndexOf(card);
+
+        // 선택한 카드 UI 표시
+        CardUI_Selected.GetComponent<CardWidget>().SetInfo(card);
+        CardUI_Selected.SetActive(true);
+
+        // 뒤로가기 버튼 표시
+        BackButton.gameObject.SetActive(true);
     }
 }
 

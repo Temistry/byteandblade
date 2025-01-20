@@ -37,7 +37,8 @@ public class CharacterGachaData
 [Serializable]
 public class SaveData
 {
-    public int Hp;
+    public int MaxHp;
+    public int CurrHp;
     public int Shield;
     public int gold;
 
