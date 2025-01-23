@@ -7,11 +7,10 @@ using CCGKit;
 
 public enum SaveCharacterIndex
 {
-    Galahad,
+    Galahad,    // 갤러해드. 기본값
     Lancelot,
     Percival,
-    Max,
-    None
+    Max
 }
 
 public class CharacterGachaData
@@ -117,17 +116,18 @@ public class SaveSystem : Singleton<SaveSystem>
         SaveGameData(saveData);
     }
 
-    public void SetSaveCharacterIndex(SaveCharacterIndex characterIndex)
-    {
-        SaveData saveData = LoadGameData();
-        saveData.SaveCharacterIndexList.Add(characterIndex);
-        SaveGameData(saveData);
-    }
-
     public void SetCurrentCharacterIndex(SaveCharacterIndex characterIndex)
     {
+        // 현재 캐릭터 설정
         SaveData saveData = LoadGameData();
         saveData.currentCharacterIndex = characterIndex;
+
+        // 현재 캐릭터의 스펙 설정
+        var characterTemplateList = GameManager.GetInstance().AllcharacterTemplateList;
+        var template = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)characterIndex]).Result;
+        saveData.MaxHp = template.Hp;
+        saveData.CurrHp = template.Hp;
+
         SaveGameData(saveData);
     }
 }

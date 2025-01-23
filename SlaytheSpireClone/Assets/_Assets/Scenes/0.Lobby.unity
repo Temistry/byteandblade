@@ -44164,7 +44164,7 @@ GameObject:
   - component: {fileID: 1157283475}
   - component: {fileID: 1157283476}
   m_Layer: 0
-  m_Name: SaveSystem
+  m_Name: System_Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

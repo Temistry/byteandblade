@@ -617,12 +617,6 @@ MonoBehaviour:
   enemyConfig:
   - {fileID: 11400000, guid: 5ade46602f50f439687be71ff21ee987, type: 2}
   - {fileID: 11400000, guid: a026f77cfd2a340678a61bcca731986d, type: 2}
-  characterTemplate:
-    m_AssetGUID: 7ab58ba32a9210e41829e503fe8467d7
-    m_SubObjectName: 
-    m_SubObjectType: 
-    m_SubObjectGUID: 
-    m_EditorAssetChanged: 0
   deckDrawingSystem: {fileID: 63919146}
   handPresentationSystem: {fileID: 1259576189}
   manaResetSystem: {fileID: 747181601}
@@ -1869,7 +1863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canvas: {fileID: 1701017332}
   View: {fileID: 390655202}
-  RewardCards: {fileID: 11400000, guid: 7ef9716f3c4bf44dfac487465bc95226, type: 2}
+  RewardCards: {fileID: 11400000, guid: 8c069151c2b4d144c9febb24a77e82f8, type: 2}
 --- !u!1 &729362284
 GameObject:
   m_ObjectHideFlags: 0

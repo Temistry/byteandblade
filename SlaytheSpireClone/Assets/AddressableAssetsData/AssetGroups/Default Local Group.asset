@@ -41,7 +41,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 35cfc5ceb55ed8348a744d182711722c
-    m_Address: Assets/_Assets/GameData/PlayableCharacters/Galahad.asset
+    m_Address: Galahad
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5bf92602858db274ebde565baa3267bd
-    m_Address: Assets/_Assets/GameData/PlayableCharacters/Percival.asset
+    m_Address: Percival
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ab58ba32a9210e41829e503fe8467d7
-    m_Address: Assets/_Assets/GameData/PlayableCharacters/Lanslot.asset
+    m_Address: Lancelot
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -91,12 +91,12 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9659c406322ca4ecf8ca45c5f331f95f
-    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Enemies/Demon.asset
+    m_Address: Demon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a38da095e6e0d4d799c6cfa500e10b5f
-    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Heroes/Wizard.asset
+    m_Address: Wizard
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -106,7 +106,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b233966173a5041a797da2fc498c54d0
-    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Enemies/Dragon.asset
+    m_Address: Dragon
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e0f28064a3bdb40c5bda164a623dd985
-    m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Enemies/Beholder.asset
+    m_Address: Beholder
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

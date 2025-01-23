@@ -57,7 +57,7 @@ public class UI_MainMenuController : MonoBehaviour
     }
 
     // 선택되었던 메인 캐릭터 UI 활성화
-    private void LoadMainCharacterActivate()
+    public void LoadMainCharacterActivate()
     {
         var character = GameManager.GetInstance().GetCurrentCharacterAssetReference();
 
@@ -75,7 +75,7 @@ public class UI_MainMenuController : MonoBehaviour
         // 캐릭터 이미지 표시
         ToolFunctions.FindChild<Image>(CurrentCharacterUI, "Placeholder Model", true).sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[(int)mySaveData.currentCharacterIndex];
 
-        Invoke("ActiveCharacterUI", 0.5f);
+        Invoke("ActiveCharacterUI", 0.1f);
     }
 
     void ActiveCharacterUI()
@@ -91,14 +91,6 @@ public class UI_MainMenuController : MonoBehaviour
     public void SetCurrentCharacter(SaveCharacterIndex characterIndex)
     {
         var  mySaveData = SaveSystem.GetInstance().LoadGameData();
-
-        if(characterIndex == SaveCharacterIndex.None)
-        {
-            CurrentCharacterUI.SetActive(false);
-            mySaveData.currentCharacterIndex = characterIndex;
-            SaveSystem.GetInstance().SaveGameData(mySaveData);
-            return;
-        }
 
         CurrentCharacterUI.SetActive(true);
         mySaveData.currentCharacterIndex = characterIndex;

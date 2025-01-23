@@ -20,12 +20,17 @@ public class UI_CharacterSelect : MonoBehaviour
 
     void Start()
     {
-        ActiveButton.onClick.AddListener(OnActivate);
+        ActiveButton.onClick.AddListener(OnActivateFromSnapScroll);
         snapScroll = ToolFunctions.FindChild<HorizontalScrollSnap>(gameObject, "CharacterSnap", true);
 
     }
 
     void OnEnable()
+    {
+        LoadCharacterSelect();
+    }
+
+    public void LoadCharacterSelect()
     {
         isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
 
@@ -44,8 +49,31 @@ public class UI_CharacterSelect : MonoBehaviour
                 ToolFunctions.FindChild<Image>(CharacterList[i], "Placeholder Model", true).color = new Color(1f, 1f, 1f, 1f);
             }
         }
+
+        UpdateCharacterSelect();
     }
-    private void OnActivate()
+
+    // 현재 캐릭터 선택 업데이트
+    void UpdateCharacterSelect()
+    {
+        var mySaveData = SaveSystem.GetInstance().LoadGameData();
+        if (mySaveData.SaveCharacterIndexList.Contains((SaveCharacterIndex)mySaveData.currentCharacterIndex))
+        {
+            // 체크표시
+            ToolFunctions.FindChild<Image>(CharacterList[(int)mySaveData.currentCharacterIndex], "ActiveCheck", true).gameObject.SetActive(true);
+
+            // 체크표시 버튼 텍스트 변경
+            ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Disable";
+        }
+        else
+        {
+            // 체크표시 버튼 텍스트 변경
+            ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Activate";
+        }
+    }
+
+    // 스와이프로 캐릭터 선택
+    public void OnActivateFromSnapScroll()
     {
         // 현재 캐릭터가 소지한 캐릭터인가
         var mySaveData = SaveSystem.GetInstance().LoadGameData();
@@ -56,7 +84,7 @@ public class UI_CharacterSelect : MonoBehaviour
             {
                 ToolFunctions.FindChild<Image>(CharacterList[i], "ActiveCheck", true).gameObject.SetActive(false);
             }
-            SaveSystem.GetInstance().SetCurrentCharacterIndex(SaveCharacterIndex.None);
+            SaveSystem.GetInstance().SetCurrentCharacterIndex(SaveCharacterIndex.Galahad);
 
             // 현재 캐릭터 선택
             isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
@@ -74,7 +102,7 @@ public class UI_CharacterSelect : MonoBehaviour
             {
                 ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Activate";
                 ToolFunctions.FindChild<Image>(CharacterList[snapScroll.GetIndex()], "ActiveCheck", true).gameObject.SetActive(false);
-                FindFirstObjectByType<UI_MainMenuController>().SetCurrentCharacter(SaveCharacterIndex.None);
+                FindFirstObjectByType<UI_MainMenuController>().SetCurrentCharacter(SaveCharacterIndex.Galahad);
             }
 
             GameManager.GetInstance().UpdateUserData();

@@ -92,7 +92,12 @@ public class UI_Deck : MonoBehaviour
         // 패널 표시
         Panel.GetComponent<CanvasGroup>().alpha = 1;
 
+        // 카드 컨텐츠 초기화
         CardContents.Clear();
+        // 카드 UI 삭제
+        for(int i = 0; i < CardContentParent.childCount; ++i)
+            Destroy(CardContentParent.GetChild(i).gameObject);
+        
         List<CardTemplate> cardListContents = new List<CardTemplate>();
 
         // 게임매니저로부터 소지한 카드 목록 가져오기

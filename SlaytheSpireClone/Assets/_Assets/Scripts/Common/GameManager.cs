@@ -128,12 +128,6 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        // 세이브 데이터에서 캐릭터를 가져온다. 없으면 꺼내지 않는다.
-        SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
-        if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
-        {
-            return;
-        }
 
         UpdateUserData();
     }
@@ -209,22 +203,13 @@ public class GameManager : Singleton<GameManager>
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
 
-        if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
-        {
-            return null;
-        }
-
         return AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
     }
 
     public HeroTemplate GetCurrentCharacterTemplate()
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
-        if (mySaveData.currentCharacterIndex == SaveCharacterIndex.None)
-        {
-            return null;
-        }
-
+ 
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
         return handle.Result;
     }
@@ -261,6 +246,13 @@ public class GameManager : Singleton<GameManager>
         PlayerPrefs.DeleteAll();
         playerDeck.Clear();
         OnResetPlayerData?.Invoke();
+
+        // 캐릭터 추가
+        SaveSystem.GetInstance().SetSaveCharacterData(SaveCharacterIndex.Galahad);
+        // 현재 캐릭터 설정
+        SaveSystem.GetInstance().SetCurrentCharacterIndex(SaveCharacterIndex.Galahad);
+        // 메인 UI에서 현재 캐릭터 보여주기
+        FindFirstObjectByType<UI_MainMenuController>().LoadMainCharacterActivate();
     }
     void UpdatePlayTime()
     {
