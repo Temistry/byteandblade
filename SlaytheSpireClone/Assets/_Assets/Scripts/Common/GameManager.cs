@@ -350,6 +350,6 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsContinueGame()
     {
-        return PlayerPrefs.HasKey(saveDataPrefKey);
+        return IsGetStartRelic;
     }
 }

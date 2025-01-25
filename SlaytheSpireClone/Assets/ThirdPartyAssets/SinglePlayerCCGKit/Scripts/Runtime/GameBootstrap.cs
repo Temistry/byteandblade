@@ -126,12 +126,15 @@ namespace CCGKit
                 player = Instantiate(template.Prefab, playerPivot);
                 Assert.IsNotNull(player);
 
+
+                // 플레이어 설정 초기화
                 var hp = playerConfig.Hp;
                 var mana = playerConfig.Mana;
                 var shield = playerConfig.Shield;
                 hp.Value = template.Hp;
                 mana.Value = template.Mana;
                 shield.Value = 0;
+
 
                 manaResetSystem.SetDefaultMana(template.Mana);
 
