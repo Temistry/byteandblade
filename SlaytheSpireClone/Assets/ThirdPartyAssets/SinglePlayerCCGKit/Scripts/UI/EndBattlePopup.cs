@@ -23,6 +23,8 @@ namespace CCGKit
         private Button continueButton;
         [SerializeField]
         private Button rewardButton;
+        [SerializeField]
+        private Button goHomeButton;
 
         [SerializeField]
         private GameEvent cardRewardEvent;
@@ -53,6 +55,7 @@ namespace CCGKit
         {
             titleText.text = VictoryText;
             descriptionText.text = string.Empty;
+            goHomeButton.gameObject.SetActive(false);
         }
 
         public void SetDefeatText()
@@ -61,11 +64,17 @@ namespace CCGKit
             titleText.text = DefeatText;
             descriptionText.text = DefeatDescriptionText;
             continueButton.gameObject.SetActive(false);
+            goHomeButton.gameObject.SetActive(true);
+        }
+
+        public void OnGoHomeButtonPressed()
+        {
+            Transition.LoadLevel("0.Lobby", 0.5f, Color.black);
         }
 
         public void OnContinueButtonPressed()
         {
-            Transition.LoadLevel("1.Map", 0.5f, Color.black);
+            Transition.LoadLevel("0.Lobby", 0.5f, Color.black);
         }
 
         public void OnCardRewardButtonPressed()

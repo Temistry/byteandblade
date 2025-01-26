@@ -142,11 +142,11 @@ public class UI_MainMenuController : MonoBehaviour
         // 비디오 재생이 끝났는지 확인
         if (!InitVideo.GetComponent<VideoPlayer>().isPlaying)
         {
-           Invoke("VideoEnd", 1f);
+           Invoke("TransitionToMap", 1f);
         }
     }
 
-    void VideoEnd()
+    public void TransitionToMap()
     {
         InitVideo.GetComponent<CanvasGroup>().DOFade(0, 2.5f).OnComplete(() =>
         {

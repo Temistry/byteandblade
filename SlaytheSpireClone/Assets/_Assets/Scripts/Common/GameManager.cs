@@ -132,6 +132,11 @@ public class GameManager : Singleton<GameManager>
         UpdateUserData();
     }
 
+    public void ReturnToLobbyFromBattle()
+    {
+        // 전투에서 로비로 돌아옴, 맵 오브젝트를 보여준다.
+        FindFirstObjectByType<UI_MainMenuController>().TransitionToMap();
+    }
 
     // 유저 데이터 갱신
     public void UpdateUserData()
@@ -235,6 +240,11 @@ public class GameManager : Singleton<GameManager>
     public void SetIsGetStartRelic(bool value)
     {
         IsGetStartRelic = value;
+
+        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+        saveData.IsGetStartRelic = value;
+        SaveSystem.GetInstance().SaveGameData(saveData);
+
         if (value)
         {
             InitPlayerData();
@@ -350,6 +360,7 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsContinueGame()
     {
-        return IsGetStartRelic;
+        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+        return saveData.IsGetStartRelic;
     }
 }

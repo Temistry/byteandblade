@@ -43,6 +43,7 @@ public class SaveData
 
     public List<int> Deck = new List<int>();// 수집한 카드 목록
 
+    public bool IsGetStartRelic;
 
     // 저장된 캐릭터들
     public List<SaveCharacterIndex> SaveCharacterIndexList = new List<SaveCharacterIndex>();
