@@ -74,7 +74,7 @@ namespace CCGKit
 
         public void OnContinueButtonPressed()
         {
-            Transition.LoadLevel("0.Lobby", 0.5f, Color.black);
+            Transition.LoadLevel("1.Map", 0.5f, Color.black);
         }
 
         public void OnCardRewardButtonPressed()

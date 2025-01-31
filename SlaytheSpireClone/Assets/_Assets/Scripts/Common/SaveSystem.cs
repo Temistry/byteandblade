@@ -131,4 +131,25 @@ public class SaveSystem : Singleton<SaveSystem>
 
         SaveGameData(saveData);
     }
+
+    public void Update()
+    {
+        #if UNITY_EDITOR
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            SaveData saveData = LoadGameData();
+            saveData.IsGetStartRelic = true;
+            SaveGameData(saveData);
+        }
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            SaveData saveData = LoadGameData();
+            if(saveData.IsGetStartRelic)
+            {
+                saveData.IsGetStartRelic = false;
+                SaveGameData(saveData);
+            }
+        }
+        #endif
+    }
 }

@@ -3910,6 +3910,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1811263161622475183, guid: d2b61c51e74f8454b86a7ae827d4151f,
         type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811263161622475183, guid: d2b61c51e74f8454b86a7ae827d4151f,
+        type: 3}
       propertyPath: m_Interactable
       value: 0
       objectReference: {fileID: 0}

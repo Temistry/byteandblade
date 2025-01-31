@@ -119,16 +119,9 @@ public class GameManager : Singleton<GameManager>
 
     #endregion 
 
-
-    public bool IsGetStartRelic
+    new void Awake()
     {
-        get;
-        private set;
-    }
-
-    void Awake()
-    {
-
+        base.Awake();
         UpdateUserData();
     }
 
@@ -219,7 +212,7 @@ public class GameManager : Singleton<GameManager>
         return handle.Result;
     }
 
-    void InitPlayerData()
+    void InitDebugPlayerData()
     {
         Gold = 0;
         Health = 50;
@@ -239,15 +232,14 @@ public class GameManager : Singleton<GameManager>
 
     public void SetIsGetStartRelic(bool value)
     {
-        IsGetStartRelic = value;
-
         SaveData saveData = SaveSystem.GetInstance().LoadGameData();
         saveData.IsGetStartRelic = value;
         SaveSystem.GetInstance().SaveGameData(saveData);
 
         if (value)
         {
-            InitPlayerData();
+            UpdateUserData();
+            //InitDebugPlayerData();
         }
     }
 
@@ -360,7 +352,6 @@ public class GameManager : Singleton<GameManager>
 
     public bool IsContinueGame()
     {
-        SaveData saveData = SaveSystem.GetInstance().LoadGameData();
-        return saveData.IsGetStartRelic;
+        return SaveSystem.GetInstance().LoadGameData().IsGetStartRelic;
     }
 }

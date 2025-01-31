@@ -28,27 +28,11 @@ public class UI_StartRelic : MonoBehaviour
     public RelicData[] relicData;
     public VerticalLayoutGroup relicLayoutGroup;
 
-    public GameObject mapObject;
     int selectedRelicIndex = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // 이어서 하는 경우 시작 유물 선택창 띄우지 않음
-        if(GameManager.GetInstance().IsContinueGame())
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-
-        if(GameManager.GetInstance().IsGetStartRelic)
-        {
-            gameObject.SetActive(false);
-            mapObject.SetActive(true);
-            return;
-        }
-
-        mapObject.SetActive(false);
         GenerateRandomRelicButtons();
     }
 

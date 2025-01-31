@@ -5,7 +5,7 @@ using UnityEngine.Diagnostics;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
-
+using CCGKit;
 public class UI_MainMenuController : MonoBehaviour
 {
     [Header("Main UI Buttons")]
@@ -31,9 +31,6 @@ public class UI_MainMenuController : MonoBehaviour
     [SerializeField] GameObject lobbyMenu; // 로비 메뉴
     [SerializeField] GameObject CurrentCharacterUI; // 현재 캐릭터 UI
     
-
-    [Header("InGame")]
-    [SerializeField] GameObject lobbyMap;   // 로비 맵
     
     GameObject CurrentCharacter; // 현재 캐릭터
 
@@ -151,10 +148,6 @@ public class UI_MainMenuController : MonoBehaviour
         InitVideo.GetComponent<CanvasGroup>().DOFade(0, 2.5f).OnComplete(() =>
         {
             InitVideo.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
-            lobbyMap.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
-            lobbyMap.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
-
             InitVideo.SetActive(false);
             InitVideoLoop.SetActive(false);
         });
@@ -162,8 +155,8 @@ public class UI_MainMenuController : MonoBehaviour
         lobbyMenu.GetComponent<CanvasGroup>().DOFade(0, 1.5f).OnComplete(() =>
         {
             lobbyMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            Transition.LoadLevel("1.Map", 0.5f, Color.black);
         });
-
     }
 
     private void OpenCardCollections()
