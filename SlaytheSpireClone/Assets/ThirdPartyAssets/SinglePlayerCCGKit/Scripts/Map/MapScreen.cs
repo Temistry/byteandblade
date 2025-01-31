@@ -28,7 +28,7 @@ namespace CCGKit
         private Random rng;
 
         private readonly string mapPrefKey = "map";
-        private readonly string saveDataPrefKey = "save";
+        private readonly string saveDataPrefKey = "playerData";
 
         private void Awake()
         {
@@ -44,7 +44,8 @@ namespace CCGKit
             var map = LoadMap();
             mapView.ShowMap(map);
             mapTracker.TrackMap(map, rng);
-            SaveMap(map);
+            
+            SaveSystem.GetInstance().SaveMap(map);
 
             var gameInfo = FindFirstObjectByType<GameInfo>();
             if (gameInfo != null)
@@ -58,7 +59,7 @@ namespace CCGKit
                     mapView.SetLineColors();
                     var mapNodeView = mapView.GetNode(gameInfo.PlayerCoordinate);
                     mapNodeView.ShowSwirl();
-                    SaveMap(map);
+                    SaveSystem.GetInstance().SaveMap(map);
 
                     var camPos = Camera.main.transform.position;
                     camPos.y = mapNodeView.transform.position.y;
@@ -85,21 +86,7 @@ namespace CCGKit
 
         private Map LoadMap()
         {
-            if (PlayerPrefs.HasKey(mapPrefKey))
-            {
-                var json = PlayerPrefs.GetString(mapPrefKey);
-                return JsonUtility.FromJson<Map>(json);
-            }
-
-            var map = mapGenerator.GenerateMap(rng);
-            return map;
-        }
-
-        private void SaveMap(Map map)
-        {
-            var json = JsonUtility.ToJson(map, true);
-            PlayerPrefs.SetString(mapPrefKey, json);
-            PlayerPrefs.Save();
+            return SaveSystem.GetInstance().LoadMap() ?? mapGenerator.GenerateMap(rng);
         }
 
         private void LoadPlayerData()

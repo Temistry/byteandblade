@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Encounters:
   - Name: Beholder
-    Background: {fileID: 21300000, guid: 891ec20629d994aa78aa346489a7763f, type: 3}
+    Background: {fileID: -7417204021032782891, guid: d40cc7866e361fd4bbc825b5565b39ae,
+      type: 3}
     Enemies:
     - m_AssetGUID: e0f28064a3bdb40c5bda164a623dd985
       m_SubObjectName: 
       m_SubObjectType: 
+      m_SubObjectGUID: 
+      m_EditorAssetChanged: 0

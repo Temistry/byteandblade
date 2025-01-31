@@ -114,6 +114,10 @@ namespace CCGKit
                 }
 
                 background.sprite = gameInfo.Encounter.Background;
+
+                // background.sprite를 2배로, 하단부를 화면 하단에 맞추기
+                background.transform.localScale = new Vector3(1.1f, 1.1f, 1);
+                background.transform.position = new Vector3(0, 5, 0);
             };
         }
 

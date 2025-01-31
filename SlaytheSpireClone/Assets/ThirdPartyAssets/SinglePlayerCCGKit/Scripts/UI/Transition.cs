@@ -76,8 +76,6 @@ namespace CCGKit
             image.canvasRenderer.SetAlpha(1.0f);
             yield return waitForEndOfFrame;
 
-            //이전 씬은 잠깐 비활성화
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().name);
             SceneManager.LoadSceneAsync(level).completed += (AsyncOperation operation) =>
             {
                 GameManager.GetInstance().UpdateUserData();

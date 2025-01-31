@@ -53,12 +53,14 @@ public class SaveData
 
     // 현재 플레이어블 캐릭터
     public SaveCharacterIndex currentCharacterIndex;
+    public Map map;
 }
 
 
 public class SaveSystem : Singleton<SaveSystem>
 {
     private readonly string saveDataPrefKey = "save";
+    private readonly string mapPrefKey = "map";
 
     public void SaveGameData(SaveData saveData)
     {
@@ -151,5 +153,24 @@ public class SaveSystem : Singleton<SaveSystem>
             }
         }
         #endif
+    }
+
+    // 맵 저장
+    public void SaveMap(Map map)
+    {
+        var json = JsonUtility.ToJson(map, true);
+        PlayerPrefs.SetString(mapPrefKey, json);
+        PlayerPrefs.Save();
+    }
+
+    // 맵 로드
+    public Map LoadMap()
+    {
+        if (PlayerPrefs.HasKey(mapPrefKey))
+        {
+            var json = PlayerPrefs.GetString(mapPrefKey);
+            return JsonUtility.FromJson<Map>(json);
+        }
+        return null; // 맵이 없으면 null 반환
     }
 }
