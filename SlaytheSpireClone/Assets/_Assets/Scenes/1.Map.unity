@@ -956,7 +956,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 953160aad749d4445804d6221300168e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9304fc66c9b8ee4d9a6557c81e3d39a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1588,10 +1588,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapScreen: {fileID: 425408798}
   mapView: {fileID: 1482939202}
-  easyEnemies: {fileID: 11400000, guid: c80028614759d4572b958a7f08efe5b7, type: 2}
-  hardEnemies: {fileID: 11400000, guid: f80ec2d2ef52140009a295c06f9a5dbd, type: 2}
-  eliteEnemies: {fileID: 11400000, guid: db0b4fbf679f24d88987a750088d8097, type: 2}
-  bosses: {fileID: 11400000, guid: 231903b6fd3d8471bbec39332cf55ec8, type: 2}
+  easyEnemies: {fileID: 11400000, guid: 6f75ada6743828d43b82dea4f6b5581b, type: 2}
+  hardEnemies: {fileID: 11400000, guid: f3f81bd374832d34e8dde4ed7b9def9b, type: 2}
+  eliteEnemies: {fileID: 11400000, guid: 050f4de88d341484aac2b900e7f516ee, type: 2}
+  bosses: {fileID: 11400000, guid: a29202d8913d6c84ea6a6e07f3e67ba8, type: 2}
 --- !u!1 &397229815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3286,7 +3286,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 953160aad749d4445804d6221300168e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9304fc66c9b8ee4d9a6557c81e3d39a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3726,7 +3726,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 953160aad749d4445804d6221300168e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9304fc66c9b8ee4d9a6557c81e3d39a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -5860,7 +5860,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 953160aad749d4445804d6221300168e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b9304fc66c9b8ee4d9a6557c81e3d39a, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

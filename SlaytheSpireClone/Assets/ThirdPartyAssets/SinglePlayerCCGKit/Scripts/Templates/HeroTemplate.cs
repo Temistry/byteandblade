@@ -18,5 +18,6 @@ namespace CCGKit
         public int Mana;
         public CardLibrary StartingDeck;
         public CardLibrary RewardDeck;
+        public AudioClip[] CharacterBgm;
     }
 }

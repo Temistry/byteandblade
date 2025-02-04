@@ -29,12 +29,12 @@ public class UI_Shop : MonoBehaviour
 
     void OnEnable()
     {
-        _commonPanel.alpha = 1;
+        _commonPanel.GetComponent<CanvasGroup>().alpha = 1;
     }
 
     void OnDisable()
     {
-        _commonPanel.alpha = 0;
+        _commonPanel.GetComponent<CanvasGroup>().alpha = 0;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

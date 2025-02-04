@@ -20,3 +20,5 @@ MonoBehaviour:
   Mana: 5
   StartingDeck: {fileID: 11400000, guid: a7bda807eca7559418fa53ab37f762b0, type: 2}
   RewardDeck: {fileID: 11400000, guid: 8c069151c2b4d144c9febb24a77e82f8, type: 2}
+  CharacterBgm:
+  - {fileID: 8300000, guid: ff585d4b56271bd49931b05f371e04a0, type: 3}

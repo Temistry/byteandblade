@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 13267d92dcee2904694d89fd887711bd
+    m_Address: Assets/_Assets/GameData/Enemies/Deva.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 20394ab1ccc5d4f37b1d4308647849cc
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Nodes/Merchant.asset
     m_ReadOnly: 0
@@ -110,6 +115,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b904cf193a7ddba4499608568cb7e28e
+    m_Address: Assets/_Assets/GameData/Enemies/Zecu.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c9453373dae05448fb64f540481896f7
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Maps/Layer1.asset
     m_ReadOnly: 0
@@ -127,6 +137,16 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e8b4a3bb67d474c6fa203233fe2cb7b4
     m_Address: Assets/ThirdPartyAssets/SinglePlayerCCGKit/GameData/Map/Nodes/Enemy.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e8d67d0a14acf07449ca98f5868d9347
+    m_Address: Assets/_Assets/GameData/Enemies/Lavagerion.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e9888fe46d160314f940deb07da78cd8
+    m_Address: Assets/_Assets/GameData/Enemies/Adam.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
