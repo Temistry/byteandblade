@@ -109,7 +109,7 @@ public class GameManager : Singleton<GameManager>
 
     #region InGameAllData_Character_Card_Relic_etc
     // 이 게임에서 사용할 수 있는 모든 캐릭터들. 뽑기 데이터에서 사용한다.
-    public List<AssetReference> AllcharacterTemplateList;       // 순서 : Galahad, Lancelot, Percival
+    // public List<AssetReference> AllcharacterTemplateList; // 제거된 부분
 
     // 이 게임에서 사용할 수 있는 모든 카드들. 뽑기 데이터에서 사용한다.
     public List<CardTemplate> AllcardTemplateList;
@@ -138,7 +138,7 @@ public class GameManager : Singleton<GameManager>
 
         // 주어진 캐릭터 템플릿으로부터 주소 가능한 자산을 비동기적으로 로드합니다.
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(Parser_CharacterList.GetInstance().AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
 
         // 로드가 완료되면 실행할 작업을 정의합니다.
         handle.Completed += heroInfo =>
@@ -201,14 +201,15 @@ public class GameManager : Singleton<GameManager>
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
 
-        return AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
+        // Parser_CharacterList를 통해 캐릭터 템플릿 리스트에 접근
+        return Parser_CharacterList.GetInstance().AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex];
     }
 
     public HeroTemplate GetCurrentCharacterTemplate()
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
  
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(Parser_CharacterList.GetInstance().AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
         return handle.Result;
     }
 

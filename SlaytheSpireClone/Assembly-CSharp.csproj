@@ -135,6 +135,7 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\SaveData.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\TargetingArrow.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\FloatMinMax.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Lobby\UI_Book.cs" />
     <Compile Include="Assets\_Assets\Scripts\Parser\Parser_CharacterList.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\CardWithArrowSelectionSystem.cs" />
@@ -163,7 +164,6 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\HandPresentationSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Listeners\IntentChangeEventListener.cs" />
     <Compile Include="Assets\_Assets\Scripts\MakeScriptable\Relics.cs" />
-    <Compile Include="Assets\_Assets\Scripts\Lobby\UI_Campain.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\EffectAction.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CardTemplate.cs" />
     <Compile Include="Assets\_Assets\Scripts\Common\HorizontalScrollSnap.cs" />
@@ -288,6 +288,7 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Listeners\GameEventStatusListener.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Other\ScrollForMore.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\MapTracker.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Common\UI_MessageBox.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\MainPanelManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Rendering\UIParticleRenderer.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManager.cs" />

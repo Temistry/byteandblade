@@ -10,6 +10,7 @@ public class UI_Shop : MonoBehaviour
     [SerializeField] Button GetGachaButton;
     [SerializeField] UI_GachaResult _gachaResultUI;
     [SerializeField] CanvasGroup _commonPanel;
+    [SerializeField] GameObject TopPanel;
 
     // 뽑은 카드
     CardTemplate _gachaCard;
@@ -29,11 +30,16 @@ public class UI_Shop : MonoBehaviour
 
     void OnEnable()
     {
+        // 탑 패널 비활성화
+        TopPanel.gameObject.SetActive(false);
         _commonPanel.GetComponent<CanvasGroup>().alpha = 1;
     }
 
     void OnDisable()
     {
+        // 탑 패널 활성화
+        TopPanel.gameObject.SetActive(true);
+
         _commonPanel.GetComponent<CanvasGroup>().alpha = 0;
     }
 
@@ -54,7 +60,7 @@ public class UI_Shop : MonoBehaviour
         // 돈 차감
         if(!GameManager.GetInstance().UseGold(100))
         {
-            Debug.Log("돈이 부족합니다.");
+            UI_MessageBox.CreateMessageBox("돈이 부족합니다.", ()=>Debug.Log("OK"), null);
             return;
         }
 
@@ -65,7 +71,7 @@ public class UI_Shop : MonoBehaviour
 
         Debug.Log("GetGachaButton Clicked");
 
-        var characterTemplateList = GameManager.GetInstance().AllcharacterTemplateList;
+        var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
         var cardTemplateList = GameManager.GetInstance().AllcardTemplateList;
 
         // 90퍼센트 확률로 카드, 10퍼센트 확률로 캐릭터

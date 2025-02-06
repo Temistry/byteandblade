@@ -5,6 +5,8 @@ using CCGKit;
 using UnityEngine.AddressableAssets;
 public class UI_Deck : MonoBehaviour
 {
+    [SerializeField] GameObject TopPanel;
+
     // 카드 지우는 비용
     public int DeleteCost = 50;
 
@@ -89,6 +91,9 @@ public class UI_Deck : MonoBehaviour
 
     void OnEnable()
     {
+        // 탑 패널 비활성화
+        TopPanel.gameObject.SetActive(false);
+
         // 패널 표시
         Panel.GetComponent<CanvasGroup>().alpha = 1;
 
@@ -142,6 +147,9 @@ public class UI_Deck : MonoBehaviour
 
     void OnDisable()
     {
+        // 탑 패널 활성화
+        TopPanel.gameObject.SetActive(true);
+
         // 패널 숨기기
         Panel.GetComponent<CanvasGroup>().alpha = 0;
     }
