@@ -34,6 +34,22 @@ public class CharacterGachaData
 
 
 [Serializable]
+public class MailData
+{
+    public MailData(string title, string content, bool isRead)
+    {
+        this.title = title;
+        this.content = content;
+        this.isRead = isRead;
+    }
+
+    public string title;
+    public string content;
+    public bool isRead;
+}
+
+
+[Serializable]
 public class SaveData
 {
     public int MaxHp;
@@ -54,11 +70,14 @@ public class SaveData
     // 현재 플레이어블 캐릭터
     public SaveCharacterIndex currentCharacterIndex;
     public Map map;
+
+    public List<MailData> mailDataList = new List<MailData>();
 }
 
 
 public class SaveSystem : Singleton<SaveSystem>
 {
+
     private readonly string saveDataPrefKey = "save";
     private readonly string mapPrefKey = "map";
 
@@ -116,6 +135,13 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         SaveData saveData = LoadGameData();
         saveData.Deck.Add(id);
+        SaveGameData(saveData);
+    }
+
+    public void SetSaveMailData(MailData mailData)
+    {
+        SaveData saveData = LoadGameData();
+        saveData.mailDataList.Add(mailData);
         SaveGameData(saveData);
     }
 

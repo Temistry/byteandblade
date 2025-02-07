@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kalste_pixel_art_horizontal_scrolling_side_angle_wide_angle_dun_e7dee1ec-0ee4-467d-80d7-363935ba672d_0: 4298372934470443267
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

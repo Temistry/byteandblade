@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Galahad_illust_0: 8925699996781893103
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
