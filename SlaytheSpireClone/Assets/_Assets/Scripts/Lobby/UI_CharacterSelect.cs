@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Diagnostics;
 using TMPro;
 using UnityEngine.AddressableAssets;
-
+using CCGKit;
 public class UI_CharacterSelect : MonoBehaviour
 {
 
@@ -70,9 +70,24 @@ public class UI_CharacterSelect : MonoBehaviour
             // 체크표시 버튼 텍스트 변경
             ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Activate";
         }
+
+        // 캐릭터 선택 시 체력 업데이트
+        var heroTemplate = Parser_CharacterList.GetInstance().GetCharacterAssetReference(mySaveData.currentCharacterIndex);
+        if(heroTemplate != null)
+        {
+            var handle = heroTemplate.LoadAssetAsync<HeroTemplate>();
+            handle.Completed += (heroTemplate) =>
+            {
+                GameManager.GetInstance().MaxHealth = heroTemplate.Result.MaxHealth;
+                GameManager.GetInstance().Health = heroTemplate.Result.Health;
+            };
+
+
+        }
     }
 
     // 스와이프로 캐릭터 선택
+
     public void OnActivateFromSnapScroll()
     {
         // 현재 캐릭터가 소지한 캐릭터인가

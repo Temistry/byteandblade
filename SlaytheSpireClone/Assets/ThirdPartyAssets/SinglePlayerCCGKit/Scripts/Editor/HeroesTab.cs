@@ -76,10 +76,11 @@ namespace CCGKit
                                 EditorGUILayout.LabelField(
                                     new GUIContent("HP", "The initial health points of this character."),
                                     GUILayout.Width(EditorGUIUtility.labelWidth));
-                                currentPlayer.Hp =
-                                    EditorGUILayout.IntField(currentPlayer.Hp, GUILayout.Width(30));
+                                currentPlayer.Health =
+                                    EditorGUILayout.IntField(currentPlayer.Health, GUILayout.Width(30));
                             }
                             GUILayout.EndHorizontal();
+
 
                             GUILayout.Space(5);
 

@@ -14,8 +14,8 @@ public class GameManager : Singleton<GameManager>
     private readonly string playTimePrefKey = "playTime";
 
     #region 플레이어 데이터
+    public event Action<string> OnRegiserNickName;
     public event Action OnHealthChanged;
-    public event Action OnMaxHealthChanged;
     public event Action OnGoldChanged;
     public event Action OnPlayTimeChanged;
 
@@ -24,14 +24,31 @@ public class GameManager : Singleton<GameManager>
 
     public event Action OnSelectMainCharacter;  // 게임플레이할 메인 캐릭터 선택
 
-    private int maxHealth = 50;
+    string nickName = "";
+    public string NickName
+    {
+        get => nickName;
+        set
+        {
+            nickName = value;
+            OnRegiserNickName?.Invoke(nickName);
+
+            // 닉네임 저장
+            SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+            saveData.NickName = nickName;
+            SaveSystem.GetInstance().SaveGameData(saveData);
+        }
+    }
+
+
+    private int maxHealth;
     public int MaxHealth
+
     {
         get => maxHealth;
         set
         {
             maxHealth = value;
-            OnMaxHealthChanged?.Invoke();
 
             SaveData saveData = SaveSystem.GetInstance().LoadGameData();
             saveData.MaxHp = maxHealth;
@@ -40,28 +57,24 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    private int health = 50;
+    private int health;
     public int Health
     {
         get => health;
         set
         {
-            if (health != value)
+            if (value >= maxHealth)
             {
-                if (value > maxHealth)
-                {
-                    health = value;
-                    SaveData saveData = SaveSystem.GetInstance().LoadGameData();
-                    
-                    saveData.CurrHp = health;
-                    SaveSystem.GetInstance().SaveGameData(saveData);
-
-                     
-                }
-
                 health = value;
-                OnHealthChanged?.Invoke();
+                SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+
+                saveData.CurrHp = health;
+                SaveSystem.GetInstance().SaveGameData(saveData);
             }
+
+            health = value;
+            OnHealthChanged?.Invoke();
+
         }
     }
 
@@ -77,8 +90,8 @@ public class GameManager : Singleton<GameManager>
             saveData.gold = gold;
             SaveSystem.GetInstance().SaveGameData(saveData);
             OnGoldChanged?.Invoke();
-            
-            
+
+
         }
     }
 
@@ -128,7 +141,7 @@ public class GameManager : Singleton<GameManager>
         FindFirstObjectByType<UI_PlayPannel>().BindEvent();
 
         // 저장된 데이터가 없는 경우, 초기화
-        if(!SaveSystem.GetInstance().IsSaveDataExist())
+        if (!SaveSystem.GetInstance().IsSaveDataExist())
         {
             ResetPlayerData();
         }
@@ -219,18 +232,10 @@ public class GameManager : Singleton<GameManager>
     public HeroTemplate GetCurrentCharacterTemplate()
     {
         SaveData mySaveData = SaveSystem.GetInstance().LoadGameData();
- 
+
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(Parser_CharacterList.GetInstance().AllcharacterTemplateList[(int)mySaveData.currentCharacterIndex]);
         return handle.Result;
     }
-
-    void InitDebugPlayerData()
-    {
-        Gold = 0;
-        Health = 50;
-        MaxHealth = 50;
-    }
-
 
     public void Update()
     {
@@ -251,16 +256,12 @@ public class GameManager : Singleton<GameManager>
         if (value)
         {
             UpdateUserData();
-            //InitDebugPlayerData();
         }
     }
 
+
     public void ResetPlayerData()
     {
-        Gold = 0;
-        Health = 50;
-        MaxHealth = 50;
-
         PlayerPrefs.DeleteAll();
         playerDeck.Clear();
         OnResetPlayerData?.Invoke();

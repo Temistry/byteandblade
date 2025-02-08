@@ -132,12 +132,13 @@ namespace CCGKit
 
 
                 // 플레이어 설정 초기화
-                var hp = playerConfig.Hp;
+                var health = playerConfig.Hp;
                 var mana = playerConfig.Mana;
                 var shield = playerConfig.Shield;
-                hp.Value = template.Hp;
+                health.Value = template.Health;
                 mana.Value = template.Mana;
                 shield.Value = 0;
+
 
 
                 manaResetSystem.SetDefaultMana(template.Mana);
@@ -146,7 +147,7 @@ namespace CCGKit
                 {
                     var json = PlayerPrefs.GetString(saveDataPrefKey);
                     var saveData = JsonUtility.FromJson<SaveData>(json);
-                    hp.Value = saveData.MaxHp;
+                    health.Value = saveData.MaxHp;
                     shield.Value = saveData.Shield;
 
                     playerDeck.Clear();
@@ -177,7 +178,7 @@ namespace CCGKit
                 var gameInfo = FindFirstObjectByType<GameInfo>();
                 if (gameInfo != null)
                 {
-                    gameInfo.SaveData.MaxHp = hp.Value;
+                    gameInfo.SaveData.MaxHp = health.Value;
                     gameInfo.SaveData.Shield = shield.Value;
                     gameInfo.SaveData.Deck.Clear();
                     foreach (var card in playerDeck)
@@ -186,8 +187,10 @@ namespace CCGKit
                     }
                 }
 
-                CreateHpWidget(playerConfig.HpWidget, player, hp, template.Hp, shield);
+                CreateHpWidget(playerConfig.HpWidget, player, health, template.MaxHealth, shield);
                 CreateStatusWidget(playerConfig.StatusWidget, player);
+
+
 
                 manaWidget.Initialize(mana);
 
@@ -195,12 +198,13 @@ namespace CCGKit
                 obj.Template = template;
                 obj.Character = new RuntimeCharacter
                 { 
-                    Hp = hp, 
+                    Hp = health, 
                     Shield = shield,
                     Mana = mana, 
                     Status = playerConfig.Status,
-                    MaxHp = template.Hp,
+                    MaxHp = template.MaxHealth,
                     CurrentUsedCard = null
+
                 };
                 obj.Character.Status.Value.Clear();
 

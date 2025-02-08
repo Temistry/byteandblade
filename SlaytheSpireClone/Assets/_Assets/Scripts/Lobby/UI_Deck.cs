@@ -92,10 +92,18 @@ public class UI_Deck : MonoBehaviour
     void OnEnable()
     {
         // 탑 패널 비활성화
-        TopPanel.gameObject.SetActive(false);
+        if(TopPanel != null)
+        {
+            TopPanel.gameObject.SetActive(false);
+        }
+
 
         // 패널 표시
-        Panel.GetComponent<CanvasGroup>().alpha = 1;
+        if(Panel != null)
+        {
+            Panel.GetComponent<CanvasGroup>().alpha = 1;
+        }
+
 
         // 카드 컨텐츠 초기화
         CardContents.Clear();
@@ -148,10 +156,17 @@ public class UI_Deck : MonoBehaviour
     void OnDisable()
     {
         // 탑 패널 활성화
-        TopPanel.gameObject.SetActive(true);
+        if(TopPanel != null)
+        {
+            TopPanel.gameObject.SetActive(true);
+        }
+
 
         // 패널 숨기기
-        Panel.GetComponent<CanvasGroup>().alpha = 0;
+        if(Panel != null)
+        {
+            Panel.GetComponent<CanvasGroup>().alpha = 0;
+        }
     }
 
     private void OnCardClick(CardTemplate card)

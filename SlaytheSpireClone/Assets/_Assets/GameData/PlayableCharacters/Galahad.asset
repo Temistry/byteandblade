@@ -16,8 +16,9 @@ MonoBehaviour:
   Description: "\uAD11\uD718\uC758 \uC218\uD638\uC790 "
   Prefab: {fileID: 2832429604840509992, guid: f55a48c5b36c2234aaff9e757cfa403c, type: 3}
   Actions: []
-  Hp: 50
-  Mana: 5
+  MaxHealth: 110
+  Health: 110
+  Mana: 3
   StartingDeck: {fileID: 11400000, guid: a7bda807eca7559418fa53ab37f762b0, type: 2}
   RewardDeck: {fileID: 11400000, guid: 8c069151c2b4d144c9febb24a77e82f8, type: 2}
   CharacterBgm:

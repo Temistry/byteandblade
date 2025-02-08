@@ -54,10 +54,12 @@ public class MailData
 [Serializable]
 public class SaveData
 {
+    public string NickName;
     public int MaxHp;
     public int CurrHp;
     public int Shield;
     public int gold;
+
 
     public List<int> Deck = new List<int>();// 수집한 카드 목록
 
@@ -169,8 +171,8 @@ public class SaveSystem : Singleton<SaveSystem>
         // 현재 캐릭터의 스펙 설정
         var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
         var template = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)characterIndex]).Result;
-        saveData.MaxHp = template.Hp;
-        saveData.CurrHp = template.Hp;
+        saveData.MaxHp = template.MaxHealth;
+        saveData.CurrHp = template.Health;
 
         SaveGameData(saveData);
     }

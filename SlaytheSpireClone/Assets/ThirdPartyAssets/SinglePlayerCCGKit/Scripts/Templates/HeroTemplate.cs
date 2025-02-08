@@ -14,11 +14,13 @@ namespace CCGKit
         order = 1)]
     public class HeroTemplate : CharacterTemplate
     {
-        public int Hp;
+        public int MaxHealth;
+        public int Health;
         public int Mana;
         public CardLibrary StartingDeck;
         public CardLibrary RewardDeck;
         public AudioClip[] CharacterBgm;
+
 
         [Header("캐릭터 에피소드")]
         public string CharacterEpisodeTitle;
