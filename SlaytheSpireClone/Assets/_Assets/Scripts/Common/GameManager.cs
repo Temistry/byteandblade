@@ -6,6 +6,7 @@ using UnityEngine.AddressableAssets;
 using WanzyeeStudio;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -122,6 +123,16 @@ public class GameManager : Singleton<GameManager>
     new void Awake()
     {
         base.Awake();
+
+        // 플레이패널과 먼저 연결
+        FindFirstObjectByType<UI_PlayPannel>().BindEvent();
+
+        // 저장된 데이터가 없는 경우, 초기화
+        if(!SaveSystem.GetInstance().IsSaveDataExist())
+        {
+            ResetPlayerData();
+        }
+
         UpdateUserData();
     }
 
@@ -246,6 +257,10 @@ public class GameManager : Singleton<GameManager>
 
     public void ResetPlayerData()
     {
+        Gold = 0;
+        Health = 50;
+        MaxHealth = 50;
+
         PlayerPrefs.DeleteAll();
         playerDeck.Clear();
         OnResetPlayerData?.Invoke();
@@ -354,5 +369,22 @@ public class GameManager : Singleton<GameManager>
     public bool IsContinueGame()
     {
         return SaveSystem.GetInstance().LoadGameData().IsGetStartRelic;
+    }
+
+    public void ExitGame()
+    {
+        SavePlayTime();
+        Action exitOK = () =>
+        {
+            Debug.Log("게임 종료");
+            Application.Quit();
+        };
+
+        Action exitCancel = () =>
+        {
+            Debug.Log("게임 종료 취소");
+        };
+
+        UI_MessageBox.CreateMessageBox("게임을 종료하시겠습니까?", exitOK, exitCancel);
     }
 }

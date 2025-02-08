@@ -7,8 +7,15 @@ public class Parser_MailList : Singleton<Parser_MailList>
     [SerializeField] private Transform _mailParent;
     [SerializeField] MailData[] _mailDataList;
 
+    public List<GameObject> _currentmailDataList = new List<GameObject>();
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        InitMailList();
+    }
+
+    public void InitMailList()
     {
         // 메일 데이터 리스트 초기화
         var saveMailDataList = SaveSystem.GetInstance().LoadGameData();
@@ -24,8 +31,20 @@ public class Parser_MailList : Singleton<Parser_MailList>
             
             i++;
             var mailObj = Instantiate(_mailPrefab, _mailParent);
-            mailObj.GetComponent<UI_Mail>().SetMail(mail.title, mail.isRead, mail.content);
+            mailObj.GetComponent<UI_Mail>().SetMail(mail.title, mail.isRead, mail.content, mail.giftGold);
+            _currentmailDataList.Add(mailObj);
         }
+    }
+
+    public void ResetMailList()
+    {
+        foreach (var mail in _currentmailDataList)
+        {
+            Destroy(mail);
+        }
+        _currentmailDataList.Clear();
+        
+        InitMailList();
     }
 
     // Update is called once per frame

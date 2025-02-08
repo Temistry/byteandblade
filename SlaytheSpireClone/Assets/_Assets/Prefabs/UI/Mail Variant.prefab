@@ -111,6 +111,27 @@ PrefabInstance:
       propertyPath: hoverSFX
       value: 
       objectReference: {fileID: 8300000, guid: a6473f5264a14804e992a7a4a29cd744, type: 3}
+    - target: {fileID: 114760049611576100, guid: aa8145fb86032604db291ad957867be9,
+        type: 3}
+      propertyPath: audioObject
+      value: 
+      objectReference: {fileID: 137886533968626403, guid: 0dbb8bc794ddf494a8de5d208ffee949,
+        type: 3}
+    - target: {fileID: 114760049611576100, guid: aa8145fb86032604db291ad957867be9,
+        type: 3}
+      propertyPath: enableClickSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114760049611576100, guid: aa8145fb86032604db291ad957867be9,
+        type: 3}
+      propertyPath: enableHoverSound
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114760049611576100, guid: aa8145fb86032604db291ad957867be9,
+        type: 3}
+      propertyPath: checkForInteraction
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224030875400899704, guid: aa8145fb86032604db291ad957867be9,
         type: 3}
       propertyPath: m_AnchorMax.y

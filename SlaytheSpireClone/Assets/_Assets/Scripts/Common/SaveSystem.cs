@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.AddressableAssets;
 using CCGKit;
 
-
+// 배열 이름과 에디터상의 문자는 반드시 같아야 한다!!
 public enum SaveCharacterIndex
 {
     Galahad,    // 갤러해드. 기본값
@@ -36,16 +36,18 @@ public class CharacterGachaData
 [Serializable]
 public class MailData
 {
-    public MailData(string title, string content, bool isRead)
+    public MailData(string title, string content, bool isRead, int giftGold)
     {
         this.title = title;
         this.content = content;
         this.isRead = isRead;
+        this.giftGold = giftGold;
     }
 
     public string title;
     public string content;
     public bool isRead;
+    public int giftGold;
 }
 
 
@@ -86,6 +88,12 @@ public class SaveSystem : Singleton<SaveSystem>
         string json = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(saveDataPrefKey, json);
         PlayerPrefs.Save();
+    }
+
+    // 저장된 데이터가 있는지 확인
+    public bool IsSaveDataExist()
+    {
+        return PlayerPrefs.HasKey(saveDataPrefKey);
     }
 
     public SaveData LoadGameData()
@@ -142,6 +150,13 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         SaveData saveData = LoadGameData();
         saveData.mailDataList.Add(mailData);
+        SaveGameData(saveData);
+    }
+    
+    public void ResetSaveMailData()
+    {
+        SaveData saveData = LoadGameData();
+        saveData.mailDataList.Clear();
         SaveGameData(saveData);
     }
 

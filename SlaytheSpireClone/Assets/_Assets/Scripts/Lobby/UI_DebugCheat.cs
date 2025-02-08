@@ -57,6 +57,13 @@ public class UI_DebugCheat : MonoBehaviour
             AddChat("[system] Cheat Success");
             return;
         }
+        else if (command[0] == "/resetmail")
+        {
+            SaveSystem.GetInstance().ResetSaveMailData();
+            Parser_MailList.GetInstance().ResetMailList();
+            AddChat("[system] Cheat Success");
+            return;
+        }
 
         AddChat("[system] Cheat Code Error");
     }

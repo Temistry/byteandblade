@@ -19,5 +19,10 @@ namespace CCGKit
         public CardLibrary StartingDeck;
         public CardLibrary RewardDeck;
         public AudioClip[] CharacterBgm;
+
+        [Header("캐릭터 에피소드")]
+        public string CharacterEpisodeTitle;
+        [TextArea(20, 10)]
+        public string CharacterEpisode;
     }
 }

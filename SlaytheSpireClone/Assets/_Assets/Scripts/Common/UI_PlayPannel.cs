@@ -13,22 +13,31 @@ public class UI_PlayPannel : MonoBehaviour
     
     void Awake()
     {
+        BindEvent();
+    }
+    
+    public void BindEvent()
+    {
+        GameManager.GetInstance().OnHealthChanged -= UpdateHealthText;
+        GameManager.GetInstance().OnHealthChanged += UpdateHealthText;
+        GameManager.GetInstance().OnGoldChanged -= UpdateGoldText;
+        GameManager.GetInstance().OnGoldChanged += UpdateGoldText;
+        GameManager.GetInstance().OnMaxHealthChanged -= UpdateMaxHealthText;
+        GameManager.GetInstance().OnMaxHealthChanged += UpdateMaxHealthText;
+        GameManager.GetInstance().OnPlayTimeChanged -= UpdatePlayTimeText;
+        GameManager.GetInstance().OnPlayTimeChanged += UpdatePlayTimeText;
 
+        // 게임 씬이 아니면 플레이 시간 갱신 이벤트 제거
+        if(SceneManager.GetActiveScene().name != "2.Game")
+        {
+            GameManager.GetInstance().OnPlayTimeChanged -= UpdatePlayTimeText;
+            playTimeText.text = "";
+        }
     }
 
     void Start()
     {       
-        GameManager.GetInstance().OnHealthChanged += UpdateHealthText;
-        GameManager.GetInstance().OnGoldChanged += UpdateGoldText;
-        GameManager.GetInstance().OnMaxHealthChanged += UpdateMaxHealthText;
-        GameManager.GetInstance().OnPlayTimeChanged += UpdatePlayTimeText;
 
-        // 게임 씬이 아니면 플레이 시간 갱신 이벤트 제거
-        if(SceneManager.GetActiveScene().name != "1.Game")
-        {
-            GameManager.GetInstance().OnPlayTimeChanged -= UpdatePlayTimeText;
-            playTimeText.text = "00:00:00";
-        }
     }
     
     void OnDestroy()
