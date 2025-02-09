@@ -91,9 +91,6 @@ public class UI_CurrentDeck : MonoBehaviour
         // 선택한 카드 UI -> 카드 목록으로 뒤로가기
         CardUI_Selected.SetActive(false);
 
-        // 뒤로가기 버튼 숨기기
-        BackButton.gameObject.SetActive(false);
-
         // 블록 패널 숨기기
         if(BlockPanel != null)
         {
