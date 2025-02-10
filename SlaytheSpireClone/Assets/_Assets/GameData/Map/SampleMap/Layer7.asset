@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 78989b81b59cc4acda8498b945d63e3c, type: 3}
-  m_Name: Layer5
+  m_Name: Layer7
   m_EditorClassIdentifier: 
-  Type: 6
+  Type: 3
   DistanceFromPreviousLayer:
     Min: 2
     Max: 3
   DistanceBetweenNodes: 2
-  RandomizePosition: 0
+  RandomizePosition: 0.4
   EnemyNodeChance: 0
   EliteNodeChance: 0
   RestNodeChance: 0
-  TreasureNodeChance: 0
+  TreasureNodeChance: 1
   MerchantNodeChance: 0
   UnknownNodeChance: 0
-  BossNodeChance: 1
+  BossNodeChance: 0
