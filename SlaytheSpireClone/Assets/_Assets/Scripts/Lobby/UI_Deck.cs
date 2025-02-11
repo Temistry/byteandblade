@@ -7,6 +7,8 @@ public class UI_Deck : MonoBehaviour
 {
     [SerializeField] GameObject TopPanel;
 
+    [SerializeField] GameObject _UpButtonPanel;
+
     // 카드 지우는 비용
     public int DeleteCost = 50;
 
@@ -37,6 +39,8 @@ public class UI_Deck : MonoBehaviour
     {
         DeleteButton.onClick.AddListener(OnDelete);
         BackButton.onClick.AddListener(OnBack);
+
+        _UpButtonPanel.GetComponent<Button>().onClick.AddListener(OnUpgrade);
     }
 
     private void OnDelete()
@@ -92,14 +96,14 @@ public class UI_Deck : MonoBehaviour
     void OnEnable()
     {
         // 탑 패널 비활성화
-        if(TopPanel != null)
+        if (TopPanel != null)
         {
             TopPanel.gameObject.SetActive(false);
         }
 
 
         // 패널 표시
-        if(Panel != null)
+        if (Panel != null)
         {
             Panel.GetComponent<CanvasGroup>().alpha = 1;
         }
@@ -108,9 +112,9 @@ public class UI_Deck : MonoBehaviour
         // 카드 컨텐츠 초기화
         CardContents.Clear();
         // 카드 UI 삭제
-        for(int i = 0; i < CardContentParent.childCount; ++i)
+        for (int i = 0; i < CardContentParent.childCount; ++i)
             Destroy(CardContentParent.GetChild(i).gameObject);
-        
+
         List<CardTemplate> cardListContents = new List<CardTemplate>();
 
         // 게임매니저로부터 소지한 카드 목록 가져오기
@@ -156,14 +160,14 @@ public class UI_Deck : MonoBehaviour
     void OnDisable()
     {
         // 탑 패널 활성화
-        if(TopPanel != null)
+        if (TopPanel != null)
         {
             TopPanel.gameObject.SetActive(true);
         }
 
 
         // 패널 숨기기
-        if(Panel != null)
+        if (Panel != null)
         {
             Panel.GetComponent<CanvasGroup>().alpha = 0;
         }
@@ -179,6 +183,52 @@ public class UI_Deck : MonoBehaviour
 
         // 뒤로가기 버튼 표시
         BackButton.gameObject.SetActive(true);
+
+        // 합성 조건 확인
+        bool flowControl = CheckUpgradeCondition(card);
+        if (!flowControl)
+        {
+            // 같은 카드가 10장 미만이라면 합성 버튼 비활성화
+            _UpButtonPanel.SetActive(false);
+            return;
+        }
+    }
+
+    // 합성 조건 확인하기
+    private bool CheckUpgradeCondition(CardTemplate card)
+    {
+        // 합성 조건 확인
+        if (card.Upgrade == null)
+        {
+            return false;
+        }
+
+        // 업그레이드 가능한가?
+        if (0 == card.Upgrade.Id)
+        {
+
+            return false;
+        }
+
+        // 같은 카드가 10장 있는지 확인
+        int count = CardContents.FindAll(c => c.Id == card.Id).Count;
+        if (count < 2) // 10
+        {
+            return false;
+        }
+        else
+        {
+            // 같은 카드가 10장 있으면 합성 버튼 활성화
+            _UpButtonPanel.SetActive(true);
+        }
+
+        return true;
+    }
+
+    private void OnUpgrade()
+    {
+        // 합성 버튼 클릭
+        Debug.Log("합성 버튼 클릭");
     }
 }
 

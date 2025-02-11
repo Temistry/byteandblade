@@ -156,6 +156,9 @@ namespace CCGKit
 
         private NodeConfig GetConfig(NodeType type)
         {
+            Debug.Log($"Requested NodeType: {type}");
+            Debug.Log($"Available Nodes: {string.Join(", ", config.Nodes.Select(x => x.Type.ToString()))}");
+
             return config.Nodes.First(x => x.Type == type);
         }
 

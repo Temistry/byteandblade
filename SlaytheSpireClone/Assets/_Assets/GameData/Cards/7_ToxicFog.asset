@@ -10,17 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be4065f389b584708aa1b58cf25db28b, type: 3}
-  m_Name: Fortitude
+  m_Name: 7_ToxicFog
   m_EditorClassIdentifier: 
-  Id: 5
-  Name: Fortitude
-  Cost: 0
+  Id: 7
+  Name: Toxic Fog
+  Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: 21300000, guid: 9b8bfec8a8eb445bb9edaef32d0d62ae, type: 3}
   Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
+  Upgrade: {fileID: 0}
   Effects:
-  - {fileID: 2091401291549307072}
---- !u!114 &2091401291549307072
+  - {fileID: 1166170109961580735}
+--- !u!114 &1166170109961580735
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -32,8 +33,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcfe3081add0a49c39d2ea2fa53f313d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SourceActions: []
+  SourceActions:
+  - Group: {fileID: 11400000, guid: 87c69e1436ad24f139f71fb8b3d5a317, type: 2}
   TargetActions: []
-  Target: 0
+  Target: 1
   Value: 2
-  Status: {fileID: 11400000, guid: 71f3613cdeac64275abdc18725b617ae, type: 2}
+  Status: {fileID: 11400000, guid: 585144e93531748229308b259be71985, type: 2}

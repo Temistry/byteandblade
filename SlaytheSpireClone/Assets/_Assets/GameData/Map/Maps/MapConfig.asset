@@ -13,19 +13,18 @@ MonoBehaviour:
   m_Name: MapConfig
   m_EditorClassIdentifier: 
   Layers:
-  - {fileID: 11400000, guid: c9453373dae05448fb64f540481896f7, type: 2}
-  - {fileID: 11400000, guid: 0da9b66bceef54d5694d3b34d2966312, type: 2}
-  - {fileID: 11400000, guid: 85e54fd0a77f94c628d02f5d3a063bd1, type: 2}
-  - {fileID: 11400000, guid: 62161154828014e1ab21704f226e782a, type: 2}
-  - {fileID: 11400000, guid: d52a78e80beb54dcb9a232a606b74046, type: 2}
-  - {fileID: 11400000, guid: 80a23a7f2dc69654a828e23add4b2bcf, type: 2}
+  - {fileID: 11400000, guid: dca7eab45479f2e4b9efcc3ee41c908f, type: 2}
+  - {fileID: 11400000, guid: d99a94ce301b61043b19397bf2ba15e8, type: 2}
+  - {fileID: 11400000, guid: 52276a31c39d6c0478085fcaa8e4c22e, type: 2}
+  - {fileID: 11400000, guid: 450bbb3549a5c1547bee73627445c49f, type: 2}
+  - {fileID: 11400000, guid: e701ccc6d1bd55e4984993af6fc59e15, type: 2}
   Nodes:
-  - {fileID: 11400000, guid: 2a6eba2654a504b9abde5c70bfa8b97a, type: 2}
-  - {fileID: 11400000, guid: 27dcf0b861b694b8888c5330dcd382e4, type: 2}
-  - {fileID: 11400000, guid: e8b4a3bb67d474c6fa203233fe2cb7b4, type: 2}
+  - {fileID: 11400000, guid: 277e7287fdf200641802a09046989731, type: 2}
+  - {fileID: 11400000, guid: 22d58c5bc4957ca4c83fd6bc18797484, type: 2}
+  - {fileID: 11400000, guid: 3556bc42f755b244396f6e74e7027612, type: 2}
   NumStartingNodes:
     Min: 2
     Max: 3
   NumPreBossNodes:
-    Min: 1
-    Max: 2
+    Min: 3
+    Max: 4

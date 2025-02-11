@@ -141,8 +141,14 @@ namespace CCGKit
                             {
                                 EditorGUILayout.LabelField(new GUIContent("Upgrade", "The card this one upgrades to."),
                                     GUILayout.Width(EditorGUIUtility.labelWidth));
-                                currentCard.Upgrade = (CardTemplate)EditorGUILayout.ObjectField(
-                                    "", currentCard.Upgrade, typeof(CardTemplate), false, GUILayout.Width(200));
+
+                                // 업그레이드 카드 표시
+                                if (currentCard.Upgrade != null)
+                                {
+                                    // 단일 객체 처리
+                                    currentCard.Upgrade = (CardTemplate)EditorGUILayout.ObjectField(
+                                        "", currentCard.Upgrade, typeof(CardTemplate), false, GUILayout.Width(200));
+                                }
                             }
                             GUILayout.EndHorizontal();
                         }

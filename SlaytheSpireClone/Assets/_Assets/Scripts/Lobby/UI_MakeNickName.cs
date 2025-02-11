@@ -16,6 +16,13 @@ public class UI_MakeNickName : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        // 닉네임이 이미 있으면 화면 비활성화
+        if(GameManager.GetInstance().NickName != "")
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         ConfirmButton.onClick.AddListener(OnConfirm);
 
         GameManager.GetInstance().OnRegiserNickName -= OnRegiserNickName;

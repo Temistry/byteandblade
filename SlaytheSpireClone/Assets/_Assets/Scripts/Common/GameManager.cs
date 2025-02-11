@@ -27,7 +27,20 @@ public class GameManager : Singleton<GameManager>
     string nickName = "";
     public string NickName
     {
-        get => nickName;
+        get
+        {
+            if (nickName == "")
+            {
+                SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+                if(saveData.NickName != "")
+                {
+                    nickName = saveData.NickName;
+                    OnRegiserNickName?.Invoke(saveData.NickName);
+                }
+            }
+
+            return nickName; 
+        }
         set
         {
             nickName = value;
