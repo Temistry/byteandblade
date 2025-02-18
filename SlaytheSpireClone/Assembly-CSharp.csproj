@@ -100,6 +100,7 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\TurnManagementSystem.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Common\CharacterRewardSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Architecture\Events\IntentChangeEvent.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Runtime\RuntimeCard.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Runtime\RuntimeCharacter.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Other\ExitToSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\StatusElementWidget.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Event\HoldKeyEvent.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Game\UI_CharacterRewardView.cs" />
     <Compile Include="Assets\_Assets\Scripts\Common\Singleton.cs" />
     <Compile Include="Assets\_Assets\Scripts\Common\GameManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
@@ -235,6 +237,7 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\EffectActionGroup.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\RandomExtensionMethods.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Lobby\UI_GetCharacterButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Configuration\PlayableCharacterConfiguration.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Runtime\CardObject.cs" />
     <Compile Include="Assets\Wizard - 2D Character\Demo\WizDemo1.cs" />

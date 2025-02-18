@@ -24,10 +24,16 @@ namespace CCGKit
         [SerializeField]
         private Button rewardButton;
         [SerializeField]
+        private Button characterRewardButton;
+        [SerializeField]
         private Button goHomeButton;
 
         [SerializeField]
         private GameEvent cardRewardEvent;
+
+        [SerializeField]
+        private GameEvent characterRewardEvent;
+
         [SerializeField]
         private Canvas popupCanvas;
 #pragma warning restore 649
@@ -77,11 +83,25 @@ namespace CCGKit
             Transition.LoadLevel("1.Map", 0.5f, Color.black);
         }
 
+        void DestroySelectedButton()
+        {
+            // 둘 중 하나만 선택 가능
+            Destroy(rewardButton.gameObject);
+            Destroy(characterRewardButton.gameObject);
+        }
+
         public void OnCardRewardButtonPressed()
         {
-            Destroy(rewardButton.gameObject);
+            DestroySelectedButton();
             popupCanvas.gameObject.SetActive(false);
             cardRewardEvent.Raise();
+        }
+
+        public void OnCharacterRewardButtonPressed()
+        {
+            DestroySelectedButton();
+            popupCanvas.gameObject.SetActive(false);
+            characterRewardEvent.Raise();
         }
     }
 }

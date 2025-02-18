@@ -128,7 +128,44 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    List<CharacterPieceData> CharacterPieceDataList
+    {
+        get 
+        {
+            SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+            return saveData.characterPieceDataList;
+        }
+        set
+        {
+            SaveData saveData = SaveSystem.GetInstance().LoadGameData();
+            saveData.characterPieceDataList = value;
+            SaveSystem.GetInstance().SaveGameData(saveData);
+        }
+    }
 
+    public CharacterPieceData GetCharacterPieceData(SaveCharacterIndex characterIndex)
+    {
+        CharacterPieceData data = CharacterPieceDataList.Find(x => x.characterIndex == characterIndex);
+        if(data == null)
+        {
+            data = new CharacterPieceData(characterIndex, 0);
+            CharacterPieceDataList.Add(data);
+        }
+        return data;
+    }
+    public void AddCharacterPiece(CharacterPieceData data)
+    {
+        // 중복 캐릭터는 count만 증가
+        CharacterPieceData existData = CharacterPieceDataList.Find(x => x.characterIndex == data.characterIndex);
+        if(existData != null)
+        {
+            existData.count += data.count;
+        }
+        else
+        {   
+            CharacterPieceDataList.Add(data);
+        }
+    }
 
     #endregion
 

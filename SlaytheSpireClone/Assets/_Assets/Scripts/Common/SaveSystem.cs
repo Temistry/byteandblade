@@ -32,6 +32,48 @@ public class CharacterGachaData
     public SaveCharacterIndex characterIndex;
 }
 
+[Serializable]
+public class CharacterPieceData
+{
+    // 캐릭터 조각 획득 현황
+    public CharacterPieceData(SaveCharacterIndex characterIndex, int count)
+    {
+        this.characterIndex = characterIndex;
+        this.count = count;
+    }
+    public static CharacterPieceData operator +(CharacterPieceData a, CharacterPieceData b)
+    {
+        if (a.characterIndex != b.characterIndex)
+        {
+            throw new ArgumentException("두 CharacterPieceData의 characterIndex가 다릅니다.");
+        }
+        return new CharacterPieceData(a.characterIndex, a.count + b.count);
+    }
+    public static CharacterPieceData operator -(CharacterPieceData a, CharacterPieceData b)
+    {
+        if (a.characterIndex != b.characterIndex)
+        {
+            throw new ArgumentException("두 CharacterPieceData의 characterIndex가 다릅니다.");
+        }
+        return new CharacterPieceData(a.characterIndex, a.count - b.count);
+    }
+    public static CharacterPieceData operator *(CharacterPieceData a, int b)
+    {
+        return new CharacterPieceData(a.characterIndex, a.count * b);
+    }
+    public static CharacterPieceData operator /(CharacterPieceData a, int b)
+    {
+        return new CharacterPieceData(a.characterIndex, a.count / b);
+    }
+    public void SetInfo(SaveCharacterIndex characterIndex, int count)
+    {
+        this.characterIndex = characterIndex;
+        this.count = count;
+    }
+
+    public SaveCharacterIndex characterIndex;
+    public int count;
+}
 
 [Serializable]
 public class MailData
@@ -75,7 +117,11 @@ public class SaveData
     public SaveCharacterIndex currentCharacterIndex;
     public Map map;
 
+    // 메일 데이터
     public List<MailData> mailDataList = new List<MailData>();
+
+    // 캐릭터 조각 획득 현황
+    public List<CharacterPieceData> characterPieceDataList = new List<CharacterPieceData>();
 }
 
 
