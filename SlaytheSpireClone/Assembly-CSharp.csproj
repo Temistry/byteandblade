@@ -73,6 +73,7 @@
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Demo\DemoLaunchURL.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\DeckButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\LineConnection.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Lobby\UI_SelectCharPiece.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\DeckDrawingSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursor.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\GamepadChecker.cs" />
