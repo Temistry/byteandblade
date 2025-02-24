@@ -26,8 +26,9 @@ namespace CCGKit
 #pragma warning restore 649
 
         private Random rng;
+        private GameManager gameManager;
 
-        private readonly string mapPrefKey = "map";
+        //private readonly string mapPrefKey = "map";
         private readonly string saveDataPrefKey = "playerData";
 
         private void Awake()
@@ -35,17 +36,19 @@ namespace CCGKit
             SceneManager.sceneUnloaded += scene => {
                 DOTween.KillAll();
             };
+            gameManager = GameManager.GetInstance();
         }
 
         private void Start()
         {
             rng = new Random();
 
-            var map = LoadMap();
+            // 맵 로드 또는 생성
+            var map = gameManager.LoadOrGenerateMap(rng, mapGenerator);
             mapView.ShowMap(map);
             mapTracker.TrackMap(map, rng);
             
-            SaveSystem.GetInstance().SaveMap(map);
+            gameManager.SaveCurrentMap();
 
             var gameInfo = FindFirstObjectByType<GameInfo>();
             if (gameInfo != null)
@@ -59,7 +62,9 @@ namespace CCGKit
                     mapView.SetLineColors();
                     var mapNodeView = mapView.GetNode(gameInfo.PlayerCoordinate);
                     mapNodeView.ShowSwirl();
-                    SaveSystem.GetInstance().SaveMap(map);
+                    
+                    // 맵 저장
+                    gameManager.SaveCurrentMap();
 
                     var camPos = Camera.main.transform.position;
                     camPos.y = mapNodeView.transform.position.y;
@@ -84,11 +89,6 @@ namespace CCGKit
             }
         }
 
-        private Map LoadMap()
-        {
-            return SaveSystem.GetInstance().LoadMap() ?? mapGenerator.GenerateMap(rng);
-        }
-
         private void LoadPlayerData()
         {
             if (PlayerPrefs.HasKey(saveDataPrefKey))
@@ -105,9 +105,7 @@ namespace CCGKit
 
         private void SavePlayerData(SaveData data)
         {
-            var json = JsonUtility.ToJson(data, true);
-            PlayerPrefs.SetString(saveDataPrefKey, json);
-            PlayerPrefs.Save();
+            gameManager.Save();
         }
     }
 }

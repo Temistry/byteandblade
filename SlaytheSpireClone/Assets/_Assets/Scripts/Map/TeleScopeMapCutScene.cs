@@ -34,14 +34,20 @@ public class TeleScopeMapCutScene : MonoBehaviour
 
     public void ZoomIn()
     {
-        // dotween 사용
-        DOTween.To(() => teleScopeImage.transform.localScale, x => teleScopeImage.transform.localScale = x, new Vector3(zoomScale, zoomScale, 1), 1.0f);
+        if(teleScopeImage != null)
+        {
+            // dotween 사용
+            DOTween.To(() => teleScopeImage.transform.localScale, x => teleScopeImage.transform.localScale = x, new Vector3(zoomScale, zoomScale, 1), 1.0f);
+        }
     }
 
     public void FadeOut()
     {
-        // dotween 사용
-        DOTween.To(() => teleScopeImage.color, x => teleScopeImage.color = x, new Color(1, 1, 1, 0), 1.0f);
+        if(teleScopeImage != null)
+        {
+            // dotween 사용
+            DOTween.To(() => teleScopeImage.color, x => teleScopeImage.color = x, new Color(1, 1, 1, 0), 1.0f);
+        }
     }
 
     public void ZoomOut()

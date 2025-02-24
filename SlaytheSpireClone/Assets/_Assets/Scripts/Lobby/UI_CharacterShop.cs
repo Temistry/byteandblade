@@ -25,14 +25,20 @@ public class UI_CharacterShop : MonoBehaviour
     {
         if (isOn == false)
         {
-            windowAnimator.CrossFade("Window In", 0.1f);
-            isOn = true;
+            if(windowAnimator != null)
+            {
+                windowAnimator.CrossFade("Window In", 0.1f);
+                isOn = true;
+            }
         }
 
         else
         {
-            windowAnimator.CrossFade("Window Out", 0.1f);
-            isOn = false;
+            if(windowAnimator != null)
+            {
+                windowAnimator.CrossFade("Window Out", 0.1f);
+                isOn = false;
+            }
         }
     }
 
@@ -40,8 +46,11 @@ public class UI_CharacterShop : MonoBehaviour
     {
         if (isOn == false)
         {
-            windowAnimator.CrossFade("Window In", 0.1f);
-            isOn = true;
+            if(windowAnimator != null)
+            {
+                windowAnimator.CrossFade("Window In", 0.1f);
+                isOn = true;
+            }
         }
     }
 
@@ -49,8 +58,11 @@ public class UI_CharacterShop : MonoBehaviour
     {
         if (isOn == true)
         {
-            windowAnimator.CrossFade("Window Out", 0.1f);
-            isOn = false;
+            if(windowAnimator != null)
+            {
+                windowAnimator.CrossFade("Window Out", 0.1f);
+                isOn = false;
+            }
         }
     }
 }

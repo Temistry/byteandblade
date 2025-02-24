@@ -31,6 +31,6 @@ public class CharacterRewardSystem : MonoBehaviour
         Canvas.gameObject.SetActive(true);
         var data = new CharacterPieceData(characterIndex, count);
         _CharacterRewardUI.SetInfo(data);
-        GameManager.GetInstance().AddCharacterPiece(data);
+        GameManager.GetInstance().AddCharacterPieceData(characterIndex, count);
     }
 }

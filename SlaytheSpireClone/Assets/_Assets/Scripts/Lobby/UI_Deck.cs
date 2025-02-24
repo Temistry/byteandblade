@@ -60,7 +60,7 @@ public class UI_Deck : MonoBehaviour
         }
 
         // 매니저에서 삭제
-        GameManager.GetInstance().RemoveCard(CardContents[SelectedCardIndex]);
+        GameManager.GetInstance().GetCardList().RemoveAt(SelectedCardIndex);
 
         // 카드 삭제
         CardContents.RemoveAt(SelectedCardIndex);

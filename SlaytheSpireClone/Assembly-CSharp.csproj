@@ -217,6 +217,7 @@
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Core\LSS_ManagerEditor.cs" />
     <Compile Include="Assets\_Assets\Scripts\Lobby\UI_CharacterShop.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\Coordinate.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Common\SaveData.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SwitchManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\_Assets\Scripts\Lobby\UI_Post.cs" />

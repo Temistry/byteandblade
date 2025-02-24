@@ -8,7 +8,6 @@ public class InitVideoLoop : MonoBehaviour
     // 비디오 플레이어
     public VideoPlayer loopvideoPlayer;
 
-    bool bFadeOut = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

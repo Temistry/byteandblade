@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Runtime.Serialization.Formatters;
 
 public class HorizontalScrollSnap : MonoBehaviour
 {
@@ -67,6 +68,9 @@ public class HorizontalScrollSnap : MonoBehaviour
     void SnapToTarget(int index)
     {
         float targetPos = snapPositions[index];
-        scrollRect.DONormalizedPos(new Vector2(targetPos, 0), snapDuration);
+        if(scrollRect != null)
+        {
+            scrollRect.DONormalizedPos(new Vector2(targetPos, 0), snapDuration);
+        }
     }
 }

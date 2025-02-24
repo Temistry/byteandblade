@@ -34,8 +34,8 @@ public class UI_CharacterSelect : MonoBehaviour
     {
         isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
 
-        // 게임매니저로부터 캐릭터 리스트 받기
-        var myCharList = SaveSystem.GetInstance().LoadGameData().SaveCharacterIndexList;
+        // GameManager로부터 캐릭터 리스트 받기
+        var myCharList = GameManager.GetInstance().GetSavedCharacterList();
 
         for (int i = 0; i < (int)SaveCharacterIndex.Max; i++)
         {
@@ -56,11 +56,13 @@ public class UI_CharacterSelect : MonoBehaviour
     // 현재 캐릭터 선택 업데이트
     void UpdateCharacterSelect()
     {
-        var mySaveData = SaveSystem.GetInstance().LoadGameData();
-        if (mySaveData.SaveCharacterIndexList.Contains((SaveCharacterIndex)mySaveData.currentCharacterIndex))
+        var currentCharIndex = GameManager.GetInstance().GetCurrentCharacterIndex();
+        var savedCharList = GameManager.GetInstance().GetSavedCharacterList();
+
+        if (savedCharList.Contains(currentCharIndex))
         {
             // 체크표시
-            ToolFunctions.FindChild<Image>(CharacterList[(int)mySaveData.currentCharacterIndex], "ActiveCheck", true).gameObject.SetActive(true);
+            ToolFunctions.FindChild<Image>(CharacterList[(int)currentCharIndex], "ActiveCheck", true).gameObject.SetActive(true);
 
             // 체크표시 버튼 텍스트 변경
             ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Disable";
@@ -70,20 +72,6 @@ public class UI_CharacterSelect : MonoBehaviour
             // 체크표시 버튼 텍스트 변경
             ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Activate";
         }
-
-        // 캐릭터 선택 시 체력 업데이트
-        var heroTemplate = Parser_CharacterList.GetInstance().GetCharacterAssetReference(mySaveData.currentCharacterIndex);
-        if(heroTemplate != null)
-        {
-            var handle = heroTemplate.LoadAssetAsync<HeroTemplate>();
-            handle.Completed += (heroTemplate) =>
-            {
-                GameManager.GetInstance().MaxHealth = heroTemplate.Result.MaxHealth;
-                GameManager.GetInstance().Health = heroTemplate.Result.Health;
-            };
-
-
-        }
     }
 
     // 스와이프로 캐릭터 선택
@@ -91,15 +79,14 @@ public class UI_CharacterSelect : MonoBehaviour
     public void OnActivateFromSnapScroll()
     {
         // 현재 캐릭터가 소지한 캐릭터인가
-        var mySaveData = SaveSystem.GetInstance().LoadGameData();
-        if (mySaveData.SaveCharacterIndexList.Contains((SaveCharacterIndex)snapScroll.GetIndex()))
+        var mySaveCharacters = GameManager.GetInstance().GetSavedCharacterList();
+        if (mySaveCharacters.Contains((SaveCharacterIndex)snapScroll.GetIndex()))
         {
             // 다른 캐릭터들 모두 선택 해제
             for (int i = 0; i < (int)SaveCharacterIndex.Max; i++)
             {
                 ToolFunctions.FindChild<Image>(CharacterList[i], "ActiveCheck", true).gameObject.SetActive(false);
             }
-            SaveSystem.GetInstance().SetCurrentCharacterIndex(SaveCharacterIndex.Galahad);
 
             // 현재 캐릭터 선택
             isActive = ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text == "Activate";
@@ -109,20 +96,20 @@ public class UI_CharacterSelect : MonoBehaviour
                 ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Disable";
                 ToolFunctions.FindChild<Image>(CharacterList[snapScroll.GetIndex()], "ActiveCheck", true).gameObject.SetActive(true);
 
-                SaveSystem.GetInstance().SetCurrentCharacterIndex((SaveCharacterIndex)snapScroll.GetIndex());
-
+                GameManager.GetInstance().SetCurrentCharacter((SaveCharacterIndex)snapScroll.GetIndex());
                 FindFirstObjectByType<UI_MainMenuController>().SetCurrentCharacter((SaveCharacterIndex)snapScroll.GetIndex());
             }
             else
             {
                 ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Activate";
                 ToolFunctions.FindChild<Image>(CharacterList[snapScroll.GetIndex()], "ActiveCheck", true).gameObject.SetActive(false);
+                
+                GameManager.GetInstance().SetCurrentCharacter(SaveCharacterIndex.Galahad);
                 FindFirstObjectByType<UI_MainMenuController>().SetCurrentCharacter(SaveCharacterIndex.Galahad);
             }
 
             GameManager.GetInstance().UpdateUserData();
         }
-
     }
 
     void Update()

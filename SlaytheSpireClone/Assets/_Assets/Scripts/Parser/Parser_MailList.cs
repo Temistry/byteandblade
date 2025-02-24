@@ -17,22 +17,23 @@ public class Parser_MailList : Singleton<Parser_MailList>
 
     public void InitMailList()
     {
-        // 메일 데이터 리스트 초기화
-        var saveMailDataList = SaveSystem.GetInstance().LoadGameData();
+        // GameManager로부터 저장된 메일 데이터 가져오기
+        var savedMailList = GameManager.GetInstance().GetMailDataList();
         
         // 메일 프리팹 생성
         int i = 0;
         foreach (var mail in _mailDataList)
         {
-            if(0 < saveMailDataList.mailDataList.Count && saveMailDataList.mailDataList[i].title == mail.title)
+            // 저장된 메일이 있다면 읽음 상태 동기화
+            if(savedMailList.Count > i && savedMailList[i].title == mail.title)
             {
-                _mailDataList[i].isRead = saveMailDataList.mailDataList[i].isRead;  
+                _mailDataList[i].isRead = savedMailList[i].isRead;  
             }
             
-            i++;
             var mailObj = Instantiate(_mailPrefab, _mailParent);
             mailObj.GetComponent<UI_Mail>().SetMail(mail.title, mail.isRead, mail.content, mail.giftGold);
             _currentmailDataList.Add(mailObj);
+            i++;
         }
     }
 

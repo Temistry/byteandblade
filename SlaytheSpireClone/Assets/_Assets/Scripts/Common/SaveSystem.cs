@@ -92,135 +92,228 @@ public class MailData
     public int giftGold;
 }
 
-
-[Serializable]
-public class SaveData
+public interface ISaveSystem
 {
-    public string NickName;
-    public int MaxHp;
-    public int CurrHp;
-    public int Shield;
-    public int gold;
-
-
-    public List<int> Deck = new List<int>();// 수집한 카드 목록
-
-    public bool IsGetStartRelic;
-
-    // 저장된 캐릭터들
-    public List<SaveCharacterIndex> SaveCharacterIndexList = new List<SaveCharacterIndex>();
-
-    // 캐릭터 뽑기 데이터. 중복 데이터 처리 포함
-    public CharacterGachaData charGachaData = new CharacterGachaData();
-
-    // 현재 플레이어블 캐릭터
-    public SaveCharacterIndex currentCharacterIndex;
-    public Map map;
-
-    // 메일 데이터
-    public List<MailData> mailDataList = new List<MailData>();
-
-    // 캐릭터 조각 획득 현황
-    public List<CharacterPieceData> characterPieceDataList = new List<CharacterPieceData>();
+    bool IsSaveDataExist();
+    (SaveData, Map) Load();
+    void Save(SaveData saveData, Map map);
+    Map LoadMap();
+    void SaveMap(Map map);
 }
-
 
 public class SaveSystem : Singleton<SaveSystem>
 {
-
     private readonly string saveDataPrefKey = "save";
     private readonly string mapPrefKey = "map";
 
-    public void SaveGameData(SaveData saveData)
+    // GameManager에서만 접근 가능한 인터페이스
+    internal interface ISaveSystem
+    {
+        void SaveGameData(SaveData saveData);
+        SaveData LoadGameData();
+        void SaveMap(Map map);
+        Map LoadMap();
+        bool IsSaveDataExist();
+        (SaveData, Map) Load();
+        void Save(SaveData saveData, Map map);
+    }
+
+    // GameManager 전용 인터페이스 구현체 반환
+    internal ISaveSystem GetManagerInterface()
+    {
+        return new SaveSystemManagerInterface(this);
+    }
+
+    // GameManager 전용 인터페이스 구현
+    private class SaveSystemManagerInterface : ISaveSystem
+    {
+        private readonly SaveSystem saveSystem;
+
+        public SaveSystemManagerInterface(SaveSystem saveSystem)
+        {
+            this.saveSystem = saveSystem;
+        }
+
+        public void SaveGameData(SaveData saveData) => saveSystem.SaveGameDataInternal(saveData);
+        public SaveData LoadGameData() => saveSystem.LoadGameDataInternal();
+        public void SaveMap(Map map) => saveSystem.SaveMapInternal(map);
+        public Map LoadMap() => saveSystem.LoadMapInternal();
+        public bool IsSaveDataExist() => saveSystem.IsSaveDataExistInternal();
+        public (SaveData, Map) Load() => saveSystem.Load();
+        public void Save(SaveData saveData, Map map) => saveSystem.Save(saveData, map);
+    }
+
+    // 내부 구현 메서드들
+    private void SaveGameDataInternal(SaveData saveData)
     {
         string json = JsonUtility.ToJson(saveData);
         PlayerPrefs.SetString(saveDataPrefKey, json);
         PlayerPrefs.Save();
     }
 
-    // 저장된 데이터가 있는지 확인
-    public bool IsSaveDataExist()
-    {
-        return PlayerPrefs.HasKey(saveDataPrefKey);
-    }
-
-    public SaveData LoadGameData()
+    private SaveData LoadGameDataInternal()
     {
         if (PlayerPrefs.HasKey(saveDataPrefKey))
         {
             string json = PlayerPrefs.GetString(saveDataPrefKey);
             return JsonUtility.FromJson<SaveData>(json);
         }
-        return new SaveData(); // 데이터가 없으면 새 인스턴스 반환
+        return new SaveData();
+    }
+
+    private void SaveMapInternal(Map map)
+    {
+        var json = JsonUtility.ToJson(map, true);
+        PlayerPrefs.SetString(mapPrefKey, json);
+        PlayerPrefs.Save();
+    }
+
+    private Map LoadMapInternal()
+    {
+        if (PlayerPrefs.HasKey(mapPrefKey))
+        {
+            var json = PlayerPrefs.GetString(mapPrefKey);
+            return JsonUtility.FromJson<Map>(json);
+        }
+        return null;
+    }
+
+    private bool IsSaveDataExistInternal()
+    {
+        return PlayerPrefs.HasKey(saveDataPrefKey);
+    }
+
+    // GameManager에서만 호출 가능한 저장 메서드
+    internal void Save(SaveData saveData, Map map = null)
+    {
+        SaveGameDataInternal(saveData);
+        if (map != null)
+        {
+            SaveMapInternal(map);
+        }
+    }
+
+    // GameManager에서만 호출 가능한 로드 메서드
+    internal (SaveData, Map) Load()
+    {
+        return (LoadGameDataInternal(), LoadMapInternal());
     }
 
     // 캐릭터 저장
     public void SetSaveCharacterData(SaveCharacterIndex collectedCharacter)
     {
-        SaveData saveData = LoadGameData();
-        saveData.SaveCharacterIndexList.Add(collectedCharacter);
-        saveData.charGachaData.characterIndex = collectedCharacter;
-
-
-        var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-
-        // 캐릭터 기본 덱 추가
-        var template = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)collectedCharacter]).Result;
-        foreach (var entry in template.StartingDeck.Entries)
+        SaveData saveData = LoadGameDataInternal();
+        if (saveData == null)
         {
-            saveData.Deck.Add(entry.Card.Id);
-            Debug.Log($"캐릭터 기본 덱 추가 : {entry.Card.Id}");
+            saveData = new SaveData();
         }
 
-        SaveGameData(saveData);
-        Debug.Log($"캐릭터 저장 완료 : {collectedCharacter.ToString()}");
+        if (saveData.characterData.SaveCharacterIndexList == null)
+        {
+            saveData.characterData.SaveCharacterIndexList = new List<SaveCharacterIndex>();
+        }
+
+        // 기본 캐릭터 추가
+        if (!saveData.characterData.SaveCharacterIndexList.Contains(SaveCharacterIndex.Galahad))
+        {
+            saveData.characterData.SaveCharacterIndexList.Add(SaveCharacterIndex.Galahad);
+        }
+
+        // 새 캐릭터 추가
+        if (collectedCharacter != SaveCharacterIndex.Max && 
+            !saveData.characterData.SaveCharacterIndexList.Contains(collectedCharacter))
+        {
+            saveData.characterData.SaveCharacterIndexList.Add(collectedCharacter);
+        }
+
+        SaveGameDataInternal(saveData);
     }
 
     // 중복 캐릭터 저장
     public void SetSaveOverlapCharacterData(CharacterGachaData collectedCharacter)
     {
-        SaveData saveData = LoadGameData();
-        saveData.SaveCharacterIndexList.Add(collectedCharacter.characterIndex);
-        saveData.charGachaData.overlapCount++;  // 중복 카운트 증가
-        SaveGameData(saveData);
-        Debug.Log($"중복 캐릭터 저장 완료 : {collectedCharacter.characterIndex.ToString()}");
+        SaveData saveData = LoadGameDataInternal();
+        saveData.characterData.SaveCharacterIndexList.Add(collectedCharacter.characterIndex);
+        saveData.characterData.charGachaData.overlapCount++;
+        SaveGameDataInternal(saveData);
     }
 
     // 카드 저장
     public void SetSaveCardData(int id)
     {
-        SaveData saveData = LoadGameData();
-        saveData.Deck.Add(id);
-        SaveGameData(saveData);
+        SaveData saveData = LoadGameDataInternal();
+        saveData.deckData.Deck.Add(id);
+        SaveGameDataInternal(saveData);
     }
 
     public void SetSaveMailData(MailData mailData)
     {
-        SaveData saveData = LoadGameData();
-        saveData.mailDataList.Add(mailData);
-        SaveGameData(saveData);
+        SaveData saveData = LoadGameDataInternal();
+        saveData.mailbox.mailDataList.Add(mailData);
+        SaveGameDataInternal(saveData);
     }
     
     public void ResetSaveMailData()
     {
-        SaveData saveData = LoadGameData();
-        saveData.mailDataList.Clear();
-        SaveGameData(saveData);
+        SaveData saveData = LoadGameDataInternal();
+        saveData.mailbox.mailDataList.Clear();
+        SaveGameDataInternal(saveData);
     }
 
+    public void ResetSaveCharacterData()
+    {
+        SaveData saveData = LoadGameDataInternal();
+        saveData.characterData.SaveCharacterIndexList.Clear();
+        SaveGameDataInternal(saveData);
+    }
     public void SetCurrentCharacterIndex(SaveCharacterIndex characterIndex)
     {
-        // 현재 캐릭터 설정
-        SaveData saveData = LoadGameData();
-        saveData.currentCharacterIndex = characterIndex;
+        try
+        {
+            SaveData saveData = LoadGameDataInternal();
+            if (saveData == null)
+            {
+                saveData = new SaveData();
+            }
 
-        // 현재 캐릭터의 스펙 설정
-        var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-        var template = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)characterIndex]).Result;
-        saveData.MaxHp = template.MaxHealth;
-        saveData.CurrHp = template.Health;
+            saveData.characterData.currentCharacterIndex = characterIndex;
 
-        SaveGameData(saveData);
+            // 기본 체력값 설정
+            int defaultMaxHealth = 80;
+            int defaultHealth = 80;
+
+            try
+            {
+                var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
+                if (characterTemplateList != null && characterTemplateList.Count > (int)characterIndex)
+                {
+                    var template = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)characterIndex]).Result;
+                    if (template != null)
+                    {
+                        defaultMaxHealth = template.MaxHealth;
+                        defaultHealth = template.Health;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"캐릭터 템플릿 로드 실패, 기본값 사용: {e.Message}");
+            }
+
+            saveData.stats.MaxHp = defaultMaxHealth;
+            saveData.stats.CurrHp = defaultHealth;
+
+            SaveGameDataInternal(saveData);
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"캐릭터 인덱스 설정 실패: {e.Message}");
+        }
+    }
+    public SaveCharacterIndex GetCurrentCharacterIndex()
+    {
+        SaveData saveData = LoadGameDataInternal();
+        return saveData.characterData.currentCharacterIndex;
     }
 
     public void Update()
@@ -228,38 +321,26 @@ public class SaveSystem : Singleton<SaveSystem>
         #if UNITY_EDITOR
         if(Input.GetKeyDown(KeyCode.F1))
         {
-            SaveData saveData = LoadGameData();
-            saveData.IsGetStartRelic = true;
-            SaveGameData(saveData);
+            SaveData saveData = LoadGameDataInternal();
+            saveData.progress.IsGetStartRelic = true;
+            SaveGameDataInternal(saveData);
         }
         if(Input.GetKeyDown(KeyCode.F2))
         {
-            SaveData saveData = LoadGameData();
-            if(saveData.IsGetStartRelic)
+            SaveData saveData = LoadGameDataInternal();
+            if(saveData.progress.IsGetStartRelic)
             {
-                saveData.IsGetStartRelic = false;
-                SaveGameData(saveData);
+                saveData.progress.IsGetStartRelic = false;
+                SaveGameDataInternal(saveData);
             }
         }
         #endif
     }
 
-    // 맵 저장
-    public void SaveMap(Map map)
+    // 저장된 캐릭터 인덱스 목록을 반환하는 함수 추가
+    public List<SaveCharacterIndex> GetSavedCharacterIndexList()
     {
-        var json = JsonUtility.ToJson(map, true);
-        PlayerPrefs.SetString(mapPrefKey, json);
-        PlayerPrefs.Save();
-    }
-
-    // 맵 로드
-    public Map LoadMap()
-    {
-        if (PlayerPrefs.HasKey(mapPrefKey))
-        {
-            var json = PlayerPrefs.GetString(mapPrefKey);
-            return JsonUtility.FromJson<Map>(json);
-        }
-        return null; // 맵이 없으면 null 반환
+        SaveData saveData = LoadGameDataInternal();
+        return saveData.characterData.SaveCharacterIndexList;
     }
 }

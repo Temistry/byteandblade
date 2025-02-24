@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UI_PlayPannel : MonoBehaviour
 {
@@ -15,9 +16,27 @@ public class UI_PlayPannel : MonoBehaviour
     
     void Awake()
     {
+        // GameManager가 초기화될 때까지 대기
+        if (GameManager.GetInstance() != null)
+        {
+            BindEvent();
+        }
+        else
+        {
+            // 다음 프레임에서 다시 시도
+            StartCoroutine(WaitForGameManager());
+        }
+    }
+
+    private IEnumerator WaitForGameManager()
+    {
+        while (GameManager.GetInstance() == null)
+        {
+            yield return null;
+        }
         BindEvent();
     }
-    
+
     public void BindEvent()
     {
         GameManager.GetInstance().OnHealthChanged -= UpdateHealthText;
@@ -66,9 +85,9 @@ public class UI_PlayPannel : MonoBehaviour
         goldText.text = GameManager.GetInstance().Gold.ToString() + "G";
     }
 
-    void UpdatePlayTimeText()
+    void UpdatePlayTimeText(string playTime)
     {
-        playTimeText.text = GameManager.GetInstance().PlayTimeString;
+        playTimeText.text = playTime;
     }
 
 }

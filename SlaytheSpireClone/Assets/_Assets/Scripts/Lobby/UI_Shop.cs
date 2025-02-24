@@ -72,7 +72,7 @@ public class UI_Shop : MonoBehaviour
         Debug.Log("GetGachaButton Clicked");
 
         var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-        var cardTemplateList = GameManager.GetInstance().AllcardTemplateList;
+        var cardTemplateList = GameManager.GetInstance().GetCardList();
 
         // 90퍼센트 확률로 카드, 10퍼센트 확률로 캐릭터
         var random = Random.Range(0, 100);
@@ -81,10 +81,7 @@ public class UI_Shop : MonoBehaviour
         {
             randomIndex = Random.Range(0, cardTemplateList.Count);
 
-            // 카드 저장
-            SaveSystem.GetInstance().SetSaveCardData(cardTemplateList[randomIndex].Id);
-
-            // 매니저에 카드 추가
+            // 카드 추가
             GameManager.GetInstance().AddCard(cardTemplateList[randomIndex]);
 
             Debug.Log(cardTemplateList[randomIndex].name);
@@ -96,7 +93,7 @@ public class UI_Shop : MonoBehaviour
         }
         else
         {
-            // 캐릭터 저장
+            // 캐릭터 뽑기
             randomIndex = Random.Range(0, characterTemplateList.Count);
         }
 
@@ -109,7 +106,7 @@ public class UI_Shop : MonoBehaviour
             Debug.Log(heroTemplate.name);
 
             // 같은 캐릭터가 나왔는지 검사
-            if (heroTemplate.name.ToString() == SaveSystem.GetInstance().LoadGameData().charGachaData.ToString())
+            if (heroTemplate.name.ToString() == GameManager.GetInstance().GetCharacterGachaData().characterIndex.ToString())
             {
                 GachaOverlapCharacterProcess(heroTemplate);
             }
@@ -137,41 +134,43 @@ public class UI_Shop : MonoBehaviour
     private static void GachaCharacterProcess(HeroTemplate heroTemplate)
     {
         Debug.Log("캐릭터가 나왔습니다.");
+        var gameManager = GameManager.GetInstance();
 
-        // 캐릭터 저장
         if (heroTemplate.name == "Galahad")
         {
-            SaveSystem.GetInstance().SetSaveCharacterData(SaveCharacterIndex.Galahad);
+            gameManager.AddCharacter(SaveCharacterIndex.Galahad);
         }
         else if (heroTemplate.name == "Lancelot")
         {
-            SaveSystem.GetInstance().SetSaveCharacterData(SaveCharacterIndex.Lancelot);
+            gameManager.AddCharacter(SaveCharacterIndex.Lancelot);
         }
         else if (heroTemplate.name == "Percival")
         {
-            SaveSystem.GetInstance().SetSaveCharacterData(SaveCharacterIndex.Percival);
+            gameManager.AddCharacter(SaveCharacterIndex.Percival);
         }
+
+        gameManager.Save(); // 변경사항 저장
     }
 
     private static void GachaOverlapCharacterProcess(HeroTemplate heroTemplate)
     {
-
         Debug.Log("같은 캐릭터가 나왔습니다.");
+        var gameManager = GameManager.GetInstance();
 
-        // 중복 캐릭터 저장
         if (heroTemplate.name == "Galahad")
         {
-            SaveSystem.GetInstance().SetSaveOverlapCharacterData(new CharacterGachaData(SaveCharacterIndex.Galahad));
+            gameManager.AddOverlapCharacter(SaveCharacterIndex.Galahad);
         }
         else if (heroTemplate.name == "Lancelot")
         {
-            SaveSystem.GetInstance().SetSaveOverlapCharacterData(new CharacterGachaData(SaveCharacterIndex.Lancelot));
+            gameManager.AddOverlapCharacter(SaveCharacterIndex.Lancelot);
         }
         else if (heroTemplate.name == "Percival")
         {
-            SaveSystem.GetInstance().SetSaveOverlapCharacterData(new CharacterGachaData(SaveCharacterIndex.Percival));
+            gameManager.AddOverlapCharacter(SaveCharacterIndex.Percival);
         }
 
+        gameManager.Save(); // 변경사항 저장
     }
 
     // Update is called once per frame

@@ -94,7 +94,7 @@ namespace CCGKit
 
         private void Start()
         {
-            var character = GameManager.GetInstance().GetCurrentCharacterAssetReference();
+            var character = GameManager.GetInstance().GetCurrentCharacterTemplate();
 
             mainCamera = Camera.main;
 
@@ -121,96 +121,91 @@ namespace CCGKit
             };
         }
 
-        private void CreatePlayer(AssetReference templateRef)
+        private void CreatePlayer(HeroTemplate template)
         {
-            var handle = Addressables.LoadAssetAsync<HeroTemplate>(templateRef);
-            handle.Completed += op =>
+            player = Instantiate(template.Prefab, playerPivot);
+            Assert.IsNotNull(player);
+
+
+            // 플레이어 설정 초기화
+            var health = playerConfig.Hp;
+            var mana = playerConfig.Mana;
+            var shield = playerConfig.Shield;
+            health.Value = template.Health;
+            mana.Value = template.Mana;
+            shield.Value = 0;
+
+
+
+            manaResetSystem.SetDefaultMana(template.Mana);
+
+            if (PlayerPrefs.HasKey(saveDataPrefKey))
             {
-                var template = op.Result;
-                player = Instantiate(template.Prefab, playerPivot);
-                Assert.IsNotNull(player);
+                var json = PlayerPrefs.GetString(saveDataPrefKey);
+                var saveData = JsonUtility.FromJson<SaveData>(json);
+                health.Value = saveData.stats.MaxHp;
+                shield.Value = saveData.stats.Shield;
 
-
-                // 플레이어 설정 초기화
-                var health = playerConfig.Hp;
-                var mana = playerConfig.Mana;
-                var shield = playerConfig.Shield;
-                health.Value = template.Health;
-                mana.Value = template.Mana;
-                shield.Value = 0;
-
-
-
-                manaResetSystem.SetDefaultMana(template.Mana);
-
-                if (PlayerPrefs.HasKey(saveDataPrefKey))
+                playerDeck.Clear();
+                foreach (var id in saveData.deckData.Deck)
                 {
-                    var json = PlayerPrefs.GetString(saveDataPrefKey);
-                    var saveData = JsonUtility.FromJson<SaveData>(json);
-                    health.Value = saveData.MaxHp;
-                    shield.Value = saveData.Shield;
-
-                    playerDeck.Clear();
-                    foreach (var id in saveData.Deck)
+                    var card = template.StartingDeck.Entries.Find(x => x.Card.Id == id);
+                    if (card == null)
                     {
-                        var card = template.StartingDeck.Entries.Find(x => x.Card.Id == id);
-                        if (card == null)
-                        {
-                            card = template.RewardDeck.Entries.Find(x => x.Card.Id == id);
-                        }
-                        if (card != null)
-                        {
-                            playerDeck.Add(card.Card);
-                        }
+                        card = template.RewardDeck.Entries.Find(x => x.Card.Id == id);
+                    }
+                    if (card != null)
+                    {
+                        playerDeck.Add(card.Card);
                     }
                 }
-                else
+            }
+            else
+            {
+                foreach (var entry in template.StartingDeck.Entries)
                 {
-                    foreach (var entry in template.StartingDeck.Entries)
+                    for (var i = 0; i < entry.NumCopies; i++)
                     {
-                        for (var i = 0; i < entry.NumCopies; i++)
-                        {
-                            playerDeck.Add(entry.Card);
-                        }
+                        playerDeck.Add(entry.Card);
                     }
                 }
+            }
 
-                var gameInfo = FindFirstObjectByType<GameInfo>();
-                if (gameInfo != null)
+            var gameInfo = FindFirstObjectByType<GameInfo>();
+            if (gameInfo != null)
+            {
+                gameInfo.SaveData.stats.MaxHp = health.Value;
+                gameInfo.SaveData.stats.Shield = shield.Value;
+                gameInfo.SaveData.deckData.Deck.Clear();
+                foreach (var card in playerDeck)
                 {
-                    gameInfo.SaveData.MaxHp = health.Value;
-                    gameInfo.SaveData.Shield = shield.Value;
-                    gameInfo.SaveData.Deck.Clear();
-                    foreach (var card in playerDeck)
-                    {
-                        gameInfo.SaveData.Deck.Add(card.Id);
-                    }
+                    gameInfo.SaveData.deckData.Deck.Add(card.Id);
                 }
+            }
 
-                CreateHpWidget(playerConfig.HpWidget, player, health, template.MaxHealth, shield);
-                CreateStatusWidget(playerConfig.StatusWidget, player);
+            CreateHpWidget(playerConfig.HpWidget, player, health, template.MaxHealth, shield);
+            CreateStatusWidget(playerConfig.StatusWidget, player);
 
 
 
-                manaWidget.Initialize(mana);
+            manaWidget.Initialize(mana);
 
-                var obj = player.GetComponent<CharacterObject>();
-                obj.Template = template;
-                obj.Character = new RuntimeCharacter
-                { 
-                    Hp = health, 
-                    Shield = shield,
-                    Mana = mana, 
-                    Status = playerConfig.Status,
-                    MaxHp = template.MaxHealth,
-                    CurrentUsedCard = null
+            var obj = player.GetComponent<CharacterObject>();
+            obj.Template = template;
+            obj.Character = new RuntimeCharacter
+            {
+                Hp = health,
+                Shield = shield,
+                Mana = mana,
+                Status = playerConfig.Status,
+                MaxHp = template.MaxHealth,
+                CurrentUsedCard = null
 
-                };
-                obj.Character.Status.Value.Clear();
-
-                numAssetsLoaded++;
-                InitializeGame();
             };
+            obj.Character.Status.Value.Clear();
+
+            numAssetsLoaded++;
+            InitializeGame();
         }
 
         private void CreateEnemy(AssetReference templateRef, int index)
@@ -241,12 +236,12 @@ namespace CCGKit
 
                 var obj = enemy.GetComponent<CharacterObject>();
                 obj.Template = template;
-                obj.Character = new RuntimeCharacter 
-                { 
-                    Hp = hp, 
+                obj.Character = new RuntimeCharacter
+                {
+                    Hp = hp,
                     Shield = shield,
                     Status = enemyConfig[index].Status,
-                    MaxHp = enemyConfig[index].Hp.Value 
+                    MaxHp = enemyConfig[index].Hp.Value
                 };
                 obj.Character.Status.Value.Clear();
 
@@ -288,7 +283,7 @@ namespace CCGKit
         private void CreateHpWidget(GameObject prefab, GameObject character, IntVariable hp, int maxHp, IntVariable shield)
         {
             if (canvas == null) return;
-            
+
             var hpWidget = Instantiate(prefab, canvas.transform, false);
             var pivot = character.transform;
             var canvasPos = mainCamera.WorldToViewportPoint(pivot.position + new Vector3(0.0f, -0.5f, 0.0f));

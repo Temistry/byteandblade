@@ -1,7 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 using TMPro;
 using CCGKit;
 
@@ -77,7 +76,10 @@ public class UI_GachaResult : MonoBehaviour
     void OnEnable()
     {
         // 서서히 알파값이 0에서 1로 만들어진다.
-        _background.DOFade(1, 0.5f);
+        if(_background != null)
+        {
+            _background.DOFade(1, 0.5f);
+        }
     }
 
     // 비활성화 될 때
@@ -87,6 +89,9 @@ public class UI_GachaResult : MonoBehaviour
         _resultCharacter.SetActive(false);
 
         // 알파값을 0으로 만든다.
-        _background.DOFade(0, 0.5f);
+        if(_background != null)
+        {
+            _background.DOFade(0, 0.5f);
+        }
     }
 }

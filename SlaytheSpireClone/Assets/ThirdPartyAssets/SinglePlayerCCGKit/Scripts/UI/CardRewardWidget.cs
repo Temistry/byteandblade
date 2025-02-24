@@ -28,7 +28,7 @@ namespace CCGKit
             if(gameInfo == null)
                 return;
             
-            gameInfo.SaveData.Deck.Add(id);
+            gameInfo.SaveData.deckData.Deck.Add(id);
             Canvas.gameObject.SetActive(false);
             PopupCanvas.gameObject.SetActive(true);
         }

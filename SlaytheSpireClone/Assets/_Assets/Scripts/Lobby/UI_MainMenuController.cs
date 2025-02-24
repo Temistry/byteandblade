@@ -39,6 +39,18 @@ public class UI_MainMenuController : MonoBehaviour
 
     void Start()
     {
+        // DOTween 초기화 및 용량 설정
+        DOTween.SetTweensCapacity(1000, 50);
+
+        if (InitVideoLoop != null)
+        {
+            var videoPlayer = InitVideoLoop.GetComponent<VideoPlayer>();
+            if (videoPlayer != null)
+            {
+                videoPlayer.skipOnDrop = true;  // 타임스탬프 스큐 무시
+            }
+        }
+
         CurrentCharacterUI.SetActive(false);
 
         // 버튼 클릭 이벤트 등록
@@ -54,23 +66,15 @@ public class UI_MainMenuController : MonoBehaviour
     }
 
     // 선택되었던 메인 캐릭터 UI 활성화
-    public void LoadMainCharacterActivate()
+    public void LoadMainCharacterActivate(SaveCharacterIndex characterIndex)
     {
-        var character = GameManager.GetInstance().GetCurrentCharacterAssetReference();
-
-        if(character == null)
-        {
-            CurrentCharacterUI.SetActive(false);
-            return;
-        }
-
         // 캐릭터 이름 표시
-        ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = character.editorAsset.name;
-
-        var mySaveData = SaveSystem.GetInstance().LoadGameData();
+        ToolFunctions.FindChild<TextMeshProUGUI>(CurrentCharacterUI, "Name", true).text = characterIndex.ToString();
 
         // 캐릭터 이미지 표시
-        ToolFunctions.FindChild<Image>(CurrentCharacterUI, "Placeholder Model", true).sprite = Parser_CharacterList.GetInstance().CharacterSpriteList[(int)mySaveData.currentCharacterIndex];
+        ToolFunctions.FindChild<Image>
+        (CurrentCharacterUI, "Placeholder Model", true).sprite =
+         Parser_CharacterList.GetInstance().CharacterSpriteList[(int)characterIndex];
 
         Invoke("ActiveCharacterUI", 0.1f);
     }
@@ -82,17 +86,20 @@ public class UI_MainMenuController : MonoBehaviour
 
     void OnEnable()
     {
-        LoadMainCharacterActivate();
+        if (GameManager.GetInstance() != null)
+        {
+            var characterIndex = GameManager.GetInstance().GetCurrentCharacterIndex();
+            if(characterIndex != SaveCharacterIndex.Max)
+            {
+                LoadMainCharacterActivate(characterIndex);
+            }
+        }
     }
 
     public void SetCurrentCharacter(SaveCharacterIndex characterIndex)
     {
-        var  mySaveData = SaveSystem.GetInstance().LoadGameData();
-
         CurrentCharacterUI.SetActive(true);
-        mySaveData.currentCharacterIndex = characterIndex;
-        SaveSystem.GetInstance().SaveGameData(mySaveData);
-        LoadMainCharacterActivate();
+        LoadMainCharacterActivate(characterIndex);
     }
 
     private void ResetPlayerData()
@@ -120,43 +127,85 @@ public class UI_MainMenuController : MonoBehaviour
        
     }
 
-    public void StartGame() 
+    public void StartGame()
     {
         Debug.Log("게임 시작!");
 
-        InitVideo.SetActive(true);
-        InitVideoLoop.SetActive(false);
+        Sequence sequence = DOTween.Sequence();
 
-        // 비디오 재생이 끝나면 캐릭터 선택 패널 열기
-        InitVideo.GetComponent<VideoPlayer>().Play();
-
-        // 상단패널 위로 올리기
-        TopPanel.transform.DOLocalMoveY(1000, 1f);
-
-        // 버튼 패널 오른쪽으로 옮기기
-        homeButtonPanel.transform.DOLocalMoveX(2000, 1f);
-
-        // 비디오 재생이 끝났는지 확인
-        if (!InitVideo.GetComponent<VideoPlayer>().isPlaying)
+        if (InitVideo != null)
         {
-           Invoke("TransitionToMap", 1f);
+            InitVideo.SetActive(true);
+            var videoPlayer = InitVideo.GetComponent<VideoPlayer>();
+            if (videoPlayer != null)
+            {
+                videoPlayer.Play();
+            }
         }
+        if (InitVideoLoop != null) InitVideoLoop.SetActive(false);
+
+        if (TopPanel != null)
+        {
+            sequence.Join(TopPanel.transform.DOLocalMoveY(1000, 1f));
+        }
+
+        if (homeButtonPanel != null)
+        {
+            sequence.Join(homeButtonPanel.transform.DOLocalMoveX(2000, 1f));
+        }
+
+        sequence.OnComplete(() => {
+            if (InitVideo != null)
+            {
+                var videoPlayer = InitVideo.GetComponent<VideoPlayer>();
+                if (videoPlayer != null && !videoPlayer.isPlaying)
+                {
+                    Invoke("TransitionToMap", 1f);
+                }
+            }
+        });
     }
 
     public void TransitionToMap()
     {
-        InitVideo.GetComponent<CanvasGroup>().DOFade(0, 2.5f).OnComplete(() =>
-        {
-            InitVideo.GetComponent<CanvasGroup>().DOFade(1, 0.5f);
-            InitVideo.SetActive(false);
-            InitVideoLoop.SetActive(false);
-        });
+        Sequence sequence = DOTween.Sequence();
 
-        lobbyMenu.GetComponent<CanvasGroup>().DOFade(0, 1.5f).OnComplete(() =>
+        if (InitVideo != null && InitVideo.activeInHierarchy)
         {
-            lobbyMenu.GetComponent<CanvasGroup>().blocksRaycasts = false;
+            var canvasGroup = InitVideo.GetComponent<CanvasGroup>();
+            if (canvasGroup != null)
+            {
+                sequence.Append(canvasGroup.DOFade(0, 2.5f));
+                sequence.AppendCallback(() => {
+                    canvasGroup.DOFade(1, 0.5f);
+                    InitVideo.SetActive(false);
+                    if (InitVideoLoop != null) InitVideoLoop.SetActive(false);
+                });
+            }
+        }
+
+        if (lobbyMenu != null && lobbyMenu.activeInHierarchy)
+        {
+            var canvasGroup = lobbyMenu.GetComponent<CanvasGroup>();
+            if (canvasGroup != null)
+            {
+                sequence.Append(canvasGroup.DOFade(0, 1.5f));
+                sequence.AppendCallback(() => {
+                    canvasGroup.blocksRaycasts = false;
+                });
+            }
+        }
+
+        // 모든 애니메이션이 완료된 후 씬 전환
+        sequence.OnComplete(() => {
             Transition.LoadLevel("1.Map", 0.5f, Color.black);
         });
+
+        // 시퀀스가 비어있다면 바로 씬 전환
+        if (sequence.Duration() <= 0)
+        {
+            Transition.LoadLevel("1.Map", 0.5f, Color.black);
+        }
     }
 
     private void OpenCardCollections()
@@ -207,5 +256,14 @@ public class UI_MainMenuController : MonoBehaviour
     {
         Debug.Log("게임 종료!"); 
         Application.Quit(); 
+    }
+
+    private void OnDestroy()
+    {
+        // 모든 DOTween 애니메이션 정리
+        DOTween.Kill(InitVideo);
+        DOTween.Kill(lobbyMenu);
+        DOTween.Kill(TopPanel);
+        DOTween.Kill(homeButtonPanel);
     }
 }

@@ -71,31 +71,31 @@ public class UI_StartRelic : MonoBehaviour
     // 덱에서 카드 1장 제거하는 버튼
     void OnRemoveCardClick()
     {
-        GameManager.GetInstance().RemoveCard();
-        GameManager.GetInstance().SetIsGetStartRelic(true);
+        GameManager.GetInstance().GetCardList().RemoveAt(0);
+        //GameManager.GetInstance().SetIsGetStartRelic(true);
     }
 
     // 100 골드 획득하는 버튼
     void OnAddGoldClick()
     {
         GameManager.GetInstance().AddGold(100);
-        GameManager.GetInstance().SetIsGetStartRelic(true);
+        //GameManager.GetInstance().SetIsGetStartRelic(true);
     }
 
     // 21 체력 잃고 최대 체력 10 증가하는 버튼
     void OnLoseHealthClick()
     {
-        GameManager.GetInstance().LoseHealth(21);
-        GameManager.GetInstance().AddMaxHealth(10);
-        GameManager.GetInstance().SetIsGetStartRelic(true);
+        //GameManager.GetInstance().LoseHealth(21);
+        //GameManager.GetInstance().AddMaxHealth(10);
+        //GameManager.GetInstance().SetIsGetStartRelic(true);
     }
 
     // 시작 유물 갱신 버튼
     void OnResetRelicClick()
     {
-        GameManager.GetInstance().LoseRandomRelic();
-        GameManager.GetInstance().AddRandomRelic();
-        GameManager.GetInstance().SetIsGetStartRelic(true);
+        //GameManager.GetInstance().LoseRandomRelic();
+        //GameManager.GetInstance().AddRandomRelic();
+        //GameManager.GetInstance().SetIsGetStartRelic(true);
     }
 
     // 유물 선택 버튼
@@ -103,6 +103,6 @@ public class UI_StartRelic : MonoBehaviour
     {
         Debug.Log("Relic button clicked: " + relicIndex);
         selectedRelicIndex = relicIndex;
-        GameManager.GetInstance().SetIsGetStartRelic(true);
+        //GameManager.GetInstance().SetIsGetStartRelic(true);
     }
 }
