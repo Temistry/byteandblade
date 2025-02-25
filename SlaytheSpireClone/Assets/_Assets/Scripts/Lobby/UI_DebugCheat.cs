@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
+using CCGKit;
 
 public class UI_DebugCheat : MonoBehaviour
 {
@@ -91,6 +92,31 @@ public class UI_DebugCheat : MonoBehaviour
             }
 
             AddChat("[system] Cheat Code Error");
+            return;
+        }
+        // 카드 추가
+        else if (command[0] == "/addcard")
+        {
+            // 카드 이름
+            var cardid = int.Parse(command[1]);
+            // 카드 개수
+            var cardCount = int.Parse(command[2]);
+
+            // 카드 템플릿 생성
+            CardTemplate cardTemplate = Parser_CardList.GetInstance().GetCardTemplate(cardid);
+            if (cardTemplate == null)
+            {
+                AddChat("[system] Cheat Code Error");
+                return;
+            }
+
+            // 카드 추가
+            for (int i = 0; i < cardCount; i++)
+            {
+                GameManager.GetInstance().AddCard(cardTemplate);
+            }
+            GameManager.GetInstance().Save();
+            AddChat("[system] Cheat Success");
             return;
         }
 

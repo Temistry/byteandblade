@@ -39,22 +39,45 @@ namespace CCGKit
         public Map GenerateMap(Random random)
         {
             rng = random;
+            
+            Debug.Log("맵 생성 시작");
 
             GenerateLayerDistances();
 
             for (var i = 0; i < config.Layers.Count; i++)
                 PlaceLayer(i);
+            
+            // 레이어별 노드 타입 로깅
+            for (int i = 0; i < nodes.Count; i++)
+            {
+                string nodeTypes = string.Join(", ", nodes[i].Select(n => n.Type.ToString()));
+                Debug.Log($"레이어 {i} 노드 타입: {nodeTypes}");
+            }
+
+            EnsureBossNode();
+            
+            // 보스 노드 확인
+            var lastLayer = nodes[nodes.Count - 1];
+            bool hasBoss = lastLayer.Any(n => n.Type == NodeType.Boss);
+            Debug.Log($"보스 노드 존재 여부: {hasBoss}");
 
             GeneratePaths();
+            
+            // 경로 생성 후 노드 연결 확인
+            var nodesList = nodes.SelectMany(x => x).Where(x => x.Incoming.Count > 0 || x.Outgoing.Count > 0).ToList();
+            int bossNodesInFinalList = nodesList.Count(n => n.Type == NodeType.Boss);
+            Debug.Log($"최종 노드 목록에 포함된 보스 노드 수: {bossNodesInFinalList}");
 
             RandomizeNodePositions();
-
             SetupConnections();
-
             RemoveCrossConnections();
 
-            var nodesList = nodes.SelectMany(x => x).Where(x => x.Incoming.Count > 0 || x.Outgoing.Count > 0).ToList();
-            return new Map(nodesList, new List<Coordinate>());
+            // 최종 맵 생성
+            var finalNodesList = nodes.SelectMany(x => x).Where(x => x.Incoming.Count > 0 || x.Outgoing.Count > 0).ToList();
+            int finalBossNodes = finalNodesList.Count(n => n.Type == NodeType.Boss);
+            Debug.Log($"최종 맵에 포함된 보스 노드 수: {finalBossNodes}");
+            
+            return new Map(finalNodesList, new List<Coordinate>());
         }
 
         private void GenerateLayerDistances()
@@ -73,9 +96,23 @@ namespace CCGKit
 
             var offset = layer.DistanceBetweenNodes * config.GridWidth/2f;
 
+            // 마지막 레이어인지 확인
+            bool isLastLayer = (index == config.Layers.Count - 1);
+
             for (var i = 0; i < gridWidth; i++)
             {
-                var nodeType = GetRandomNode(layer);
+                // 마지막 레이어의 중앙 노드는 보스 노드로 강제 설정
+                NodeType nodeType;
+                if (isLastLayer && i == gridWidth / 2)
+                {
+                    nodeType = NodeType.Boss;
+                    Debug.Log($"레이어 {index}, 위치 {i}에 보스 노드 강제 배치");
+                }
+                else
+                {
+                    nodeType = GetRandomNode(layer);
+                }
+                
                 var node = new Node(nodeType, new Coordinate(i, index))
                 {
                     Position = new Vector2(-offset + i * layer.DistanceBetweenNodes, GetDistanceToLayer(index))
@@ -327,6 +364,72 @@ namespace CCGKit
                     {
                         right.RemoveOutgoing(top.Coordinate);
                         top.RemoveIncoming(right.Coordinate);
+                    }
+                }
+            }
+        }
+
+        private void EnsureBossNode()
+        {
+            // 마지막 레이어 확인
+            var lastLayerIndex = config.Layers.Count - 1;
+            
+            if (lastLayerIndex < 0 || nodes.Count <= lastLayerIndex)
+            {
+                Debug.LogError("맵 레이어가 올바르게 생성되지 않았습니다.");
+                return;
+            }
+            
+            var lastLayer = nodes[lastLayerIndex];
+            
+            if (lastLayer == null || lastLayer.Count == 0)
+            {
+                Debug.LogError("마지막 레이어에 노드가 없습니다.");
+                return;
+            }
+            
+            // 보스 노드가 있는지 확인
+            bool hasBoss = lastLayer.Any(n => n.Type == NodeType.Boss);
+            
+            if (!hasBoss)
+            {
+                // 중앙에 가까운 노드를 보스 노드로 변경
+                int middleIndex = lastLayer.Count / 2;
+                lastLayer[middleIndex].Type = NodeType.Boss;
+                Debug.Log("보스 노드가 없어 마지막 레이어에 강제로 추가했습니다.");
+                
+                // 보스 노드가 제대로 추가되었는지 다시 확인
+                hasBoss = lastLayer.Any(n => n.Type == NodeType.Boss);
+                if (!hasBoss)
+                {
+                    Debug.LogError("보스 노드 추가 실패! 모든 노드를 검사합니다.");
+                    
+                    // 모든 노드 검사
+                    bool foundBoss = false;
+                    for (int i = nodes.Count - 1; i >= 0; i--)
+                    {
+                        var layer = nodes[i];
+                        for (int j = 0; j < layer.Count; j++)
+                        {
+                            if (layer[j].Type == NodeType.Boss)
+                            {
+                                foundBoss = true;
+                                Debug.Log($"보스 노드를 레이어 {i}, 인덱스 {j}에서 찾았습니다.");
+                                break;
+                            }
+                        }
+                        
+                        if (!foundBoss && i == nodes.Count - 1)
+                        {
+                            // 마지막 레이어의 모든 노드를 보스로 설정 시도
+                            for (int j = 0; j < layer.Count; j++)
+                            {
+                                layer[j].Type = NodeType.Boss;
+                                Debug.Log($"레이어 {i}, 인덱스 {j}를 보스 노드로 강제 설정했습니다.");
+                            }
+                        }
+                        
+                        if (foundBoss) break;
                     }
                 }
             }

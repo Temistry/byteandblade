@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Assertions;
+using System;
 
 using Random = UnityEngine.Random;
 
@@ -126,7 +127,6 @@ namespace CCGKit
             player = Instantiate(template.Prefab, playerPivot);
             Assert.IsNotNull(player);
 
-
             // 플레이어 설정 초기화
             var health = playerConfig.Hp;
             var mana = playerConfig.Mana;
@@ -135,47 +135,60 @@ namespace CCGKit
             mana.Value = template.Mana;
             shield.Value = 0;
 
-
-
             manaResetSystem.SetDefaultMana(template.Mana);
 
-            if (PlayerPrefs.HasKey(saveDataPrefKey))
+            // GameManager를 통해 저장된 데이터 로드
+            var gameManager = GameManager.GetInstance();
+            if (gameManager != null && gameManager.IsContinueGame())
             {
-                var json = PlayerPrefs.GetString(saveDataPrefKey);
-                var saveData = JsonUtility.FromJson<SaveData>(json);
-                health.Value = saveData.stats.MaxHp;
-                shield.Value = saveData.stats.Shield;
-
-                playerDeck.Clear();
-                foreach (var id in saveData.deckData.Deck)
+                try
                 {
-                    var card = template.StartingDeck.Entries.Find(x => x.Card.Id == id);
-                    if (card == null)
+                    // 체력과 방어도 설정
+                    health.Value = gameManager.MaxHealth;
+                    shield.Value = gameManager.GetShieldValue();
+
+                    // 덱 설정
+                    playerDeck.Clear();
+                    var savedDeck = gameManager.GetCardList();
+                    if (savedDeck != null && savedDeck.Count > 0)
                     {
-                        card = template.RewardDeck.Entries.Find(x => x.Card.Id == id);
+                        foreach (var card in savedDeck)
+                        {
+                            if (card != null)
+                            {
+                                playerDeck.Add(card);
+                            }
+                        }
                     }
-                    if (card != null)
+                    else
                     {
-                        playerDeck.Add(card.Card);
+                        LoadDefaultDeck(template);
                     }
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"GameManager에서 데이터 로드 중 오류: {e.Message}");
+                    LoadDefaultDeck(template);
                 }
             }
             else
             {
-                foreach (var entry in template.StartingDeck.Entries)
-                {
-                    for (var i = 0; i < entry.NumCopies; i++)
-                    {
-                        playerDeck.Add(entry.Card);
-                    }
-                }
+                LoadDefaultDeck(template);
             }
 
+            // GameInfo 업데이트
             var gameInfo = FindFirstObjectByType<GameInfo>();
-            if (gameInfo != null)
+            if (gameInfo != null && gameInfo.SaveData != null)
             {
+                if (gameInfo.SaveData.stats == null)
+                    gameInfo.SaveData.stats = new SavePlayerStats();
+                    
                 gameInfo.SaveData.stats.MaxHp = health.Value;
                 gameInfo.SaveData.stats.Shield = shield.Value;
+                
+                if (gameInfo.SaveData.deckData == null)
+                    gameInfo.SaveData.deckData = new DeckData();
+                    
                 gameInfo.SaveData.deckData.Deck.Clear();
                 foreach (var card in playerDeck)
                 {
@@ -185,8 +198,6 @@ namespace CCGKit
 
             CreateHpWidget(playerConfig.HpWidget, player, health, template.MaxHealth, shield);
             CreateStatusWidget(playerConfig.StatusWidget, player);
-
-
 
             manaWidget.Initialize(mana);
 
@@ -200,12 +211,22 @@ namespace CCGKit
                 Status = playerConfig.Status,
                 MaxHp = template.MaxHealth,
                 CurrentUsedCard = null
-
             };
             obj.Character.Status.Value.Clear();
 
             numAssetsLoaded++;
             InitializeGame();
+        }
+
+        private void LoadDefaultDeck(HeroTemplate template)
+        {
+            foreach (var entry in template.StartingDeck.Entries)
+            {
+                for (var i = 0; i < entry.NumCopies; i++)
+                {
+                    playerDeck.Add(entry.Card);
+                }
+            }
         }
 
         private void CreateEnemy(AssetReference templateRef, int index)

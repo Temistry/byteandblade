@@ -269,6 +269,7 @@
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Demo\DemoElementSway.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SwitchHandler.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\SplashScreenManager.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Parser\Parser_CardList.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\CardRewardWidget.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\MapConfig.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />

@@ -2,6 +2,7 @@
 // This code can only be used under the standard Unity Asset Store End User License Agreement,
 // a copy of which is available at http://unity3d.com/company/legal/as_terms.
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -142,16 +143,29 @@ namespace CCGKit
 
         private void SetOrientation()
         {
-            var scroll = mapParent.GetComponent<ScrollNonUI>();
-            var span = map.DistanceBetweenFirstAndLastLayers();
-            var bossNode = MapNodes.First(x => x.Node.Type == NodeType.Boss);
-
-            firstParent.transform.position = new Vector3(
-                mainCamera.transform.position.x, mainCamera.transform.position.y, 0f);
-            var offset = orientationOffset;
-            scroll.YConstraints.Max = 0;
-            scroll.YConstraints.Min = -(span + 2f*offset);
-            firstParent.transform.localPosition += new Vector3(0, offset, 0);
+            try
+            {
+                var bossNode = map.GetBossNode();
+                if (bossNode == null)
+                {
+                    Debug.LogWarning("보스 노드가 없어 방향 설정을 건너뜁니다.");
+                    return;
+                }
+                
+                var span = map.DistanceBetweenFirstAndLastLayers();
+                if (span <= 0)
+                {
+                    Debug.LogWarning("레이어 간 거리가 0 이하입니다. 방향 설정을 건너뜁니다.");
+                    return;
+                }
+                
+                var angle = Mathf.Atan(orientationOffset / span) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"맵 방향 설정 중 오류 발생: {e.Message}");
+            }
         }
 
         private NodeConfig GetConfig(NodeType type)

@@ -7,7 +7,7 @@ public class UI_Deck : MonoBehaviour
 {
     [SerializeField] GameObject TopPanel;
 
-    [SerializeField] GameObject _UpButtonPanel;
+    [SerializeField] GameObject _UpButton;
 
     // 카드 지우는 비용
     public int DeleteCost = 50;
@@ -31,6 +31,9 @@ public class UI_Deck : MonoBehaviour
     // 카드 컨텐츠 리스트
     List<CardTemplate> CardContents = new List<CardTemplate>();
 
+    // 같은 카드 10장 존재 여부 리스트에 담기
+    CardTemplate SameCard;
+
     // 선택한 카드 인덱스
     private int SelectedCardIndex = -1;
 
@@ -40,7 +43,8 @@ public class UI_Deck : MonoBehaviour
         DeleteButton.onClick.AddListener(OnDelete);
         BackButton.onClick.AddListener(OnBack);
 
-        _UpButtonPanel.GetComponent<Button>().onClick.AddListener(OnUpgrade);
+        _UpButton.GetComponent<Button>().onClick.AddListener(OnUpgrade);
+        _UpButton.SetActive(false);
     }
 
     private void OnDelete()
@@ -189,7 +193,7 @@ public class UI_Deck : MonoBehaviour
         if (!flowControl)
         {
             // 같은 카드가 10장 미만이라면 합성 버튼 비활성화
-            _UpButtonPanel.SetActive(false);
+            _UpButton.SetActive(false);
             return;
         }
     }
@@ -206,7 +210,6 @@ public class UI_Deck : MonoBehaviour
         // 업그레이드 가능한가?
         if (0 == card.Upgrade.Id)
         {
-
             return false;
         }
 
@@ -219,7 +222,8 @@ public class UI_Deck : MonoBehaviour
         else
         {
             // 같은 카드가 10장 있으면 합성 버튼 활성화
-            _UpButtonPanel.SetActive(true);
+            _UpButton.SetActive(true);
+            SameCard = card;
         }
 
         return true;
@@ -229,6 +233,35 @@ public class UI_Deck : MonoBehaviour
     {
         // 합성 버튼 클릭
         Debug.Log("합성 버튼 클릭");
+
+        // 같은 카드 10장 리스트에서 삭제
+        for (int i = 0; i < 10; i++)
+        {
+            if (CardContents[i].Id == SameCard.Id)
+            {
+                CardContents.RemoveAt(i);
+                GameManager.GetInstance().GetCardList().RemoveAt(i);
+            }
+        }
+
+        // 합성 카드 추가
+        GameManager.GetInstance().GetCardList().Add(SameCard.Upgrade);
+        CardContents.Add(SameCard.Upgrade);
+
+        // 합성 카드 UI 생성
+        var ui = Instantiate(CardUI, CardContentParent);
+        ui.GetComponent<Button>().onClick.AddListener(() => OnCardClick(SameCard.Upgrade));
+        ui.SetActive(true);
+
+        // 합성 버튼 비활성화
+        _UpButton.SetActive(false);
+
+        // 합성 카드 선택 UI 표시
+        CardUI_Selected.GetComponent<CardWidget>().SetInfo(SameCard.Upgrade);
+        CardUI_Selected.SetActive(true);
+
+        // 저장
+        GameManager.GetInstance().Save();
     }
 }
 

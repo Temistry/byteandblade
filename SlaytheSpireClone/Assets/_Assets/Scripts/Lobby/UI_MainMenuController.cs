@@ -158,10 +158,8 @@ public class UI_MainMenuController : MonoBehaviour
             if (InitVideo != null)
             {
                 var videoPlayer = InitVideo.GetComponent<VideoPlayer>();
-                if (videoPlayer != null && !videoPlayer.isPlaying)
-                {
-                    Invoke("TransitionToMap", 1f);
-                }
+                Invoke("TransitionToMap", 1f);
+                
             }
         });
     }

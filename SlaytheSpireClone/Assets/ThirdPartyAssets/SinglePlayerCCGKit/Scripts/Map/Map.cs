@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace CCGKit
 {
@@ -31,7 +32,20 @@ namespace CCGKit
 
         public Node GetBossNode()
         {
-            return Nodes.First(x => x.Type == NodeType.Boss);
+            try
+            {
+                return Nodes.First(x => x.Type == NodeType.Boss);
+            }
+            catch
+            {
+                Debug.LogWarning("보스 노드를 찾을 수 없습니다. 기본 노드를 반환합니다.");
+                // 가장 높은 Y 좌표를 가진 노드를 반환
+                if (Nodes != null && Nodes.Count > 0)
+                {
+                    return Nodes.OrderByDescending(n => n.Coordinate.Y).First();
+                }
+                return null;
+            }
         }
 
         public float DistanceBetweenFirstAndLastLayers()
@@ -43,6 +57,19 @@ namespace CCGKit
                 return 0f;
 
             return bossNode.Position.y - firstLayerNode.Position.y;
+        }
+
+        public bool HasBossNode()
+        {
+            try
+            {
+                var bossNode = Nodes.FirstOrDefault(x => x.Type == NodeType.Boss);
+                return bossNode != null;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

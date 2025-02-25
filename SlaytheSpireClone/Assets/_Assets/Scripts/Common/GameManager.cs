@@ -7,6 +7,9 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using CCGKit;
+using System.Threading.Tasks;
+using System.Collections;
+using System.Linq;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,7 +17,7 @@ public class GameManager : Singleton<GameManager>
     private Map currentMap;
     private SaveSystem.ISaveSystem saveSystem;
 
-    [SerializeField] private GameObject loadingScreen;
+    [SerializeField] private GameObject loadingScreenPrefab;
 
     //private readonly string saveDataPrefKey = "save";
     private readonly string playTimePrefKey = "playTime";
@@ -112,7 +115,7 @@ public class GameManager : Singleton<GameManager>
 
     public void ExitGame()
     {
-        SavePlayTime();
+        Save();
         UI_MessageBox.CreateMessageBox("게임을 종료하시겠습니까?", () =>
         {
             Debug.Log("게임 종료");
@@ -169,51 +172,198 @@ public class GameManager : Singleton<GameManager>
         return saveSystem.IsSaveDataExist();
     }
 
-    // 저장 메서드 - 모든 캐싱된 데이터를 SaveData에 반영하고 저장
-    public async void Save()
+    // 로딩 화면 인스턴스화
+    private GameObject InstantiateLoadingScreen()
     {
-        if (loadingScreen != null) loadingScreen.SetActive(true);
+        if (loadingScreenPrefab != null)
+        {
+            return Instantiate(loadingScreenPrefab);
+        }
+        return null;
+    }
 
-        await System.Threading.Tasks.Task.Delay(100);
+    public void Save()
+    {
+        GameObject tempLoadingScreen = InstantiateLoadingScreen();
+        StartCoroutine(SaveCoroutine(tempLoadingScreen));
+    }
 
-        // 캐싱된 데이터를 SaveData에 반영
-        playerStats.NickName = nickName;
-        playerStats.MaxHp = maxHealth;
-        playerStats.CurrHp = health;
-        playerStats.gold = gold;
-        characterData.characterPieceDataList = characterPieceDataList;
-        mailbox.mailDataList = mailDataList;
+    private IEnumerator SaveCoroutine(GameObject loadingScreen)
+    {
+        // 저장 시간 시뮬레이션 (try 블록 밖으로 이동)
+        float timer = 0;
+        float duration = 1.0f;
+        
+        while (timer < duration)
+        {
+            // 씬 전환 중에는 코루틴 중단
+            if (SceneManager.GetActiveScene().name == "")
+            {
+                if (loadingScreen != null)
+                {
+                    Destroy(loadingScreen);
+                }
+                yield break;
+            }
+            
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        
+        try
+        {
+            // 캐싱된 데이터를 SaveData에 반영
+            playerStats.NickName = nickName;
+            playerStats.MaxHp = maxHealth;
+            playerStats.CurrHp = health;
+            playerStats.gold = gold;
+            characterData.characterPieceDataList = characterPieceDataList;
+            mailbox.mailDataList = mailDataList;
 
-        saveSystem.Save(playerData, currentMap);
-
-        if (loadingScreen != null) loadingScreen.SetActive(false);
+            // PlayerPrefs 기반 저장
+            string json = JsonUtility.ToJson(playerData);
+            PlayerPrefs.SetString("savedata", json);
+            
+            if (currentMap != null)
+            {
+                string mapJson = JsonUtility.ToJson(currentMap);
+                PlayerPrefs.SetString("mapdata", mapJson);
+            }
+            
+            PlayerPrefs.Save();
+            SavePlayTime();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"저장 중 오류 발생: {e.Message}");
+        }
+        finally
+        {
+            if (loadingScreen != null && this != null)
+            {
+                Destroy(loadingScreen);
+            }
+        }
     }
 
     public void ResetPlayerData()
     {
         PlayerPrefs.DeleteAll();
+        
+        // 데이터 초기화
         nickName = "";
-        maxHealth = 0;
-        health = 0;
+        maxHealth = 80;  // 기본 체력
+        health = 80;     // 기본 체력
         gold = 0;
         playTime = 0f;
         timeSpan = TimeSpan.Zero;
         lastUpdateTime = 0f;
-        characterPieceDataList = null;
+        
+        // 컬렉션 초기화
+        characterPieceDataList = new List<CharacterPieceData>();
         playerDeck.Clear();
         mailDataList.Clear();
-        OnResetPlayerData?.Invoke();
-        SaveSystem.GetInstance().SetSaveCharacterData(SaveCharacterIndex.Galahad);
-        SaveSystem.GetInstance().SetCurrentCharacterIndex(SaveCharacterIndex.Galahad);
-        FindFirstObjectByType<UI_MainMenuController>().LoadMainCharacterActivate(SaveCharacterIndex.Galahad);
+        
+        // SaveData 초기화 (새 인스턴스 생성)
+        playerData = new SaveData();
+        
+        try
+        {
+            // 기본 캐릭터 설정 (null 체크 추가)
+            if (characterData != null && characterData.SaveCharacterIndexList != null)
+            {
+                characterData.SaveCharacterIndexList.Clear();
+                characterData.SaveCharacterIndexList.Add(SaveCharacterIndex.Galahad);
+                characterData.currentCharacterIndex = SaveCharacterIndex.Galahad;
+            }
+            
+            // 기본 덱 설정 (예외 처리 추가)
+            try
+            {
+                var characterTemplateList = Parser_CharacterList.GetInstance()?.AllcharacterTemplateList;
+                if (characterTemplateList != null && characterTemplateList.Count > 0 && deckData != null)
+                {
+                    var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)SaveCharacterIndex.Galahad]);
+                    handle.WaitForCompletion();
+                    
+                    if (handle.Result != null)
+                    {
+                        var template = handle.Result;
+                        deckData.Deck.Clear();
+                        
+                        foreach (var entry in template.StartingDeck.Entries)
+                        {
+                            deckData.Deck.Add(entry.Card.Id);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogWarning($"기본 덱 설정 중 오류: {e.Message}");
+            }
+            
+            // 저장
+            Save();
+            
+            // UI 업데이트
+            OnResetPlayerData?.Invoke();
+            
+            var mainMenu = FindFirstObjectByType<UI_MainMenuController>();
+            if (mainMenu != null)
+            {
+                mainMenu.LoadMainCharacterActivate(SaveCharacterIndex.Galahad);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"데이터 초기화 중 오류: {e.Message}");
+        }
     }
 
     public List<CardTemplate> GetCardList() => playerDeck;
 
-    // 씬 전환 시 자동 저장
+    // 씬 전환 시 자동 저장 및 로딩 화면 정리
     private void OnSceneUnloaded(Scene scene)
     {
-        Save();
+        // 저장 코루틴 중단
+        StopAllCoroutines();
+        
+        // 로딩 화면 정리
+        var loadingScreens = FindObjectsOfType<GameObject>().Where(go => go.name.Contains("UI_LoadingScreen"));
+        foreach (var screen in loadingScreens)
+        {
+            Destroy(screen);
+        }
+        
+        // 저장
+        try
+        {
+            // 캐싱된 데이터를 SaveData에 반영
+            playerStats.NickName = nickName;
+            playerStats.MaxHp = maxHealth;
+            playerStats.CurrHp = health;
+            playerStats.gold = gold;
+            characterData.characterPieceDataList = characterPieceDataList;
+            mailbox.mailDataList = mailDataList;
+
+            // PlayerPrefs 기반 저장
+            string json = JsonUtility.ToJson(playerData);
+            PlayerPrefs.SetString("savedata", json);
+            
+            if (currentMap != null)
+            {
+                string mapJson = JsonUtility.ToJson(currentMap);
+                PlayerPrefs.SetString("mapdata", mapJson);
+            }
+            
+            PlayerPrefs.Save();
+            SavePlayTime();
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"씬 전환 중 저장 오류: {e.Message}");
+        }
     }
 
     private void OnEnable()
@@ -434,7 +584,13 @@ public class GameManager : Singleton<GameManager>
     {
         if (currentMap == null)
         {
-            currentMap = saveSystem.LoadMap() ?? mapGenerator.GenerateMap(rng);
+            currentMap = saveSystem.LoadMap();
+            
+            // 맵이 없거나 보스 노드가 없는 경우 새 맵 생성
+            if (currentMap == null || !currentMap.HasBossNode())
+            {
+                currentMap = mapGenerator.GenerateMap(rng);
+            }
         }
         return currentMap;
     }
@@ -458,6 +614,22 @@ public class GameManager : Singleton<GameManager>
             !characterData.SaveCharacterIndexList.Contains(characterIndex))
         {
             characterData.SaveCharacterIndexList.Add(characterIndex);
+        }
+    }
+
+    // 방어도 값 반환
+    public int GetShieldValue()
+    {
+        return playerStats.Shield;
+    }
+
+    private void OnApplicationQuit()
+    {
+        // 로딩 화면 정리
+        var loadingScreens = FindObjectsOfType<GameObject>().Where(go => go.name.Contains("UI_LoadingScreen"));
+        foreach (var screen in loadingScreens)
+        {
+            Destroy(screen);
         }
     }
 }
