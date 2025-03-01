@@ -7,7 +7,9 @@ public class UI_Deck : MonoBehaviour
 {
     [SerializeField] GameObject TopPanel;
 
-    [SerializeField] GameObject _UpButton;
+    [SerializeField] GameObject _MergeBtn;
+    [SerializeField] GameObject _MergePanel;
+    [SerializeField] GameObject _MergeDescription;
 
     // 카드 지우는 비용
     public int DeleteCost = 50;
@@ -43,8 +45,10 @@ public class UI_Deck : MonoBehaviour
         DeleteButton.onClick.AddListener(OnDelete);
         BackButton.onClick.AddListener(OnBack);
 
-        _UpButton.GetComponent<Button>().onClick.AddListener(OnUpgrade);
-        _UpButton.SetActive(false);
+        _MergeBtn.GetComponent<Button>().onClick.AddListener(OnUpgrade);
+        _MergeBtn.SetActive(false);
+        _MergePanel.SetActive(false);
+        _MergeDescription.SetActive(false);
     }
 
     private void OnDelete()
@@ -89,6 +93,9 @@ public class UI_Deck : MonoBehaviour
 
         // 뒤로가기 버튼 숨기기
         BackButton.gameObject.SetActive(false);
+
+        _MergePanel.SetActive(false);
+        _MergeDescription.SetActive(false);
     }
 
     // Update is called once per frame
@@ -128,7 +135,7 @@ public class UI_Deck : MonoBehaviour
             // 카드 목록이 없으면 캐릭터 카드목록만 표시
             // 캐릭터의 기본 카드 목록 불러오기
             var heroTemplate = GameManager.GetInstance().GetCurrentCharacterTemplate();
-            if (heroTemplate != null || heroTemplate.StartingDeck != null)
+            if (heroTemplate != null && heroTemplate.StartingDeck != null)
             {
                 foreach (CardLibraryEntry entry in heroTemplate.StartingDeck.Entries)
                 {
@@ -188,12 +195,14 @@ public class UI_Deck : MonoBehaviour
         // 뒤로가기 버튼 표시
         BackButton.gameObject.SetActive(true);
 
+        _MergePanel.SetActive(true);
+        _MergeDescription.SetActive(true);
         // 합성 조건 확인
         bool flowControl = CheckUpgradeCondition(card);
         if (!flowControl)
         {
             // 같은 카드가 10장 미만이라면 합성 버튼 비활성화
-            _UpButton.SetActive(false);
+            _MergeBtn.SetActive(false);
             return;
         }
     }
@@ -222,7 +231,7 @@ public class UI_Deck : MonoBehaviour
         else
         {
             // 같은 카드가 10장 있으면 합성 버튼 활성화
-            _UpButton.SetActive(true);
+            _MergeBtn.SetActive(true);
             SameCard = card;
         }
 
@@ -235,12 +244,22 @@ public class UI_Deck : MonoBehaviour
         Debug.Log("합성 버튼 클릭");
 
         // 같은 카드 10장 리스트에서 삭제
-        for (int i = 0; i < 10; i++)
+        int i = 0;
+        int deleteCount = 0;
+        while (deleteCount < 10)
         {
             if (CardContents[i].Id == SameCard.Id)
             {
                 CardContents.RemoveAt(i);
                 GameManager.GetInstance().GetCardList().RemoveAt(i);
+                Destroy(CardContentParent.GetChild(i).gameObject);
+
+                deleteCount++;
+            }
+            i++;
+            if (i >= CardContents.Count)
+            {
+                break;
             }
         }
 
@@ -248,13 +267,8 @@ public class UI_Deck : MonoBehaviour
         GameManager.GetInstance().GetCardList().Add(SameCard.Upgrade);
         CardContents.Add(SameCard.Upgrade);
 
-        // 합성 카드 UI 생성
-        var ui = Instantiate(CardUI, CardContentParent);
-        ui.GetComponent<Button>().onClick.AddListener(() => OnCardClick(SameCard.Upgrade));
-        ui.SetActive(true);
-
         // 합성 버튼 비활성화
-        _UpButton.SetActive(false);
+        _MergeBtn.SetActive(false);
 
         // 합성 카드 선택 UI 표시
         CardUI_Selected.GetComponent<CardWidget>().SetInfo(SameCard.Upgrade);

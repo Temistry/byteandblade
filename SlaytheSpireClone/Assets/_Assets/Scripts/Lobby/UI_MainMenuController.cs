@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
 using CCGKit;
+using System.Collections;
+
 public class UI_MainMenuController : MonoBehaviour
 {
     [Header("Main UI Buttons")]
@@ -84,8 +86,18 @@ public class UI_MainMenuController : MonoBehaviour
         CurrentCharacterUI.SetActive(true);
     }
 
-    void OnEnable()
+    private void OnEnable()
     {
+        // GameManager 참조를 코루틴으로 지연 호출
+        StartCoroutine(DelayedCharacterLoad());
+    }
+
+    private IEnumerator DelayedCharacterLoad()
+    {
+        // GameManager가 초기화될 시간을 확보
+        yield return new WaitForSeconds(0.1f);
+        
+        // 이제 GameManager 참조
         if (GameManager.GetInstance() != null)
         {
             var characterIndex = GameManager.GetInstance().GetCurrentCharacterIndex();

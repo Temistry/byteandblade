@@ -48,51 +48,104 @@ public class GameManager : Singleton<GameManager>
     private List<CardTemplate> playerDeck = new List<CardTemplate>();
     private List<MailData> mailDataList = new List<MailData>();
 
+    // 캐릭터 템플릿 캐싱을 위한 딕셔너리 추가
+    private Dictionary<SaveCharacterIndex, HeroTemplate> characterTemplateCache = new Dictionary<SaveCharacterIndex, HeroTemplate>();
+
     new void Awake()
     {
         base.Awake();
         saveSystem = SaveSystem.GetInstance().GetManagerInterface();
         playerData = new SaveData();
-        InitializeGameData();
+        
+        // 캐릭터 템플릿 미리 로드
+        StartCoroutine(PreloadCharacterTemplates());
+        
+        // 세이브 파일 존재 여부 확인 후 로드
+        if (saveSystem.IsSaveDataExist())
+        {
+            // 세이브 파일이 존재하면 로드
+            Load();
+        }
+        else
+        {
+            // 세이브 파일이 없으면 새 게임 데이터 초기화
+            ResetPlayerData();
+        }
     }
 
     private void InitializeGameData()
     {
-        (SaveData loadedData, Map loadedMap) = saveSystem.Load();  // 명시적 타입 선언
-        if (loadedData != null)
-        {
-            playerData = loadedData;
-        }
-        else
-        {
-            ResetPlayerData();
-        }
-        UpdateUserData();
+        // 이 메서드는 이제 Load 메서드로 대체됨
+        Debug.Log("InitializeGameData는 더 이상 사용되지 않습니다. Load 메서드를 사용하세요.");
     }
 
     public void UpdateUserData()
     {
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(
-            Parser_CharacterList.GetInstance().AllcharacterTemplateList[(int)characterData.currentCharacterIndex]);
-
-        handle.Completed += heroInfo =>
+        try
         {
-            var template = heroInfo.Result;
-            playerDeck.Clear();
+            // 현재 캐릭터 템플릿 로드
+            var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
+            var handle = Addressables.LoadAssetAsync<HeroTemplate>(
+                characterTemplateList[(int)characterData.currentCharacterIndex]);
 
-            foreach (var id in deckData.Deck)
+            handle.Completed += heroInfo =>
             {
-                var card = template.StartingDeck.Entries.Find(x => x.Card.Id == id) ??
-                           template.RewardDeck.Entries.Find(x => x.Card.Id == id);
-
-                if (card != null)
+                try
                 {
-                    playerDeck.Add(card.Card);
-                }
-            }
+                    var template = heroInfo.Result;
+                    
+                    // 플레이어 덱 초기화
+                    playerDeck.Clear();
 
-            Addressables.Release(handle);
-        };
+                    // 저장된 덱 데이터가 있으면 로드
+                    if (deckData != null && deckData.Deck != null && deckData.Deck.Count > 0)
+                    {
+                        foreach (var id in deckData.Deck)
+                        {
+                            // 파서에서 카드 템플릿 조회
+                            var cardTemplate = Parser_CardList.GetInstance().GetCardTemplate(id);
+
+                            if (cardTemplate != null)
+                            {
+                                playerDeck.Add(cardTemplate);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        // 저장된 덱이 없으면 기본 덱 로드
+                        foreach (var entry in template.StartingDeck.Entries)
+                        {
+                            for (var i = 0; i < entry.NumCopies; i++)
+                            {
+                                playerDeck.Add(entry.Card);
+                            }
+                        }
+                        
+                        // 기본 덱을 저장 데이터에 반영
+                        deckData.Deck.Clear();
+                        foreach (var card in playerDeck)
+                        {
+                            deckData.Deck.Add(card.Id);
+                        }
+                    }
+                    
+                    // 저장
+                    Save();
+                    
+                    Addressables.Release(handle);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError($"캐릭터 템플릿 처리 중 오류: {e.Message}");
+                    Addressables.Release(handle);
+                }
+            };
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"UpdateUserData 실행 중 오류: {e.Message}");
+        }
     }
 
     void UpdateUserConfigData()
@@ -147,10 +200,53 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    public HeroTemplate GetCurrentCharacterTemplate()
+    // 모든 캐릭터 템플릿 미리 로드하는 코루틴
+    private IEnumerator PreloadCharacterTemplates()
     {
         var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)characterData.currentCharacterIndex]);
+        
+        for (int i = 0; i < (int)SaveCharacterIndex.Max; i++)
+        {
+            var index = (SaveCharacterIndex)i;
+            var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[i]);
+            
+            // 비동기 로드 완료 대기
+            yield return handle;
+            
+            if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
+            {
+                characterTemplateCache[index] = handle.Result;
+                Debug.Log($"캐릭터 템플릿 캐싱 완료: {index}");
+            }
+            else
+            {
+                Debug.LogError($"캐릭터 템플릿 로드 실패: {index}");
+            }
+        }
+        
+        Debug.Log("모든 캐릭터 템플릿 캐싱 완료");
+    }
+
+    // 캐싱된 템플릿 반환하는 메서드로 수정
+    public HeroTemplate GetCurrentCharacterTemplate()
+    {
+        var currentIndex = characterData.currentCharacterIndex;
+        
+        // 캐시에 있으면 바로 반환
+        if (characterTemplateCache.TryGetValue(currentIndex, out var template))
+        {
+            return template;
+        }
+        
+        // 캐시에 없으면 동기적으로 로드 (비상용)
+        Debug.LogWarning($"캐릭터 템플릿 캐시 미스: {currentIndex}, 동기 로드 시도");
+        var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)currentIndex]);
+        handle.WaitForCompletion();
+        
+        // 캐시에 저장
+        characterTemplateCache[currentIndex] = handle.Result;
+        
         return handle.Result;
     }
 
@@ -219,7 +315,7 @@ public class GameManager : Singleton<GameManager>
             playerStats.gold = gold;
             characterData.characterPieceDataList = characterPieceDataList;
             mailbox.mailDataList = mailDataList;
-
+            
             // PlayerPrefs 기반 저장
             string json = JsonUtility.ToJson(playerData);
             PlayerPrefs.SetString("savedata", json);
@@ -346,7 +442,7 @@ public class GameManager : Singleton<GameManager>
             playerStats.gold = gold;
             characterData.characterPieceDataList = characterPieceDataList;
             mailbox.mailDataList = mailDataList;
-
+            
             // PlayerPrefs 기반 저장
             string json = JsonUtility.ToJson(playerData);
             PlayerPrefs.SetString("savedata", json);
@@ -630,6 +726,98 @@ public class GameManager : Singleton<GameManager>
         foreach (var screen in loadingScreens)
         {
             Destroy(screen);
+        }
+    }
+
+    // 세이브 파일 로드 함수
+    public void Load()
+    {
+        try
+        {
+            GameObject tempLoadingScreen = InstantiateLoadingScreen();
+            StartCoroutine(LoadCoroutine(tempLoadingScreen));
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"로드 시작 중 오류: {e.Message}");
+        }
+    }
+
+    // 로드 코루틴
+    private IEnumerator LoadCoroutine(GameObject loadingScreen)
+    {
+        // 로딩 시간 시뮬레이션
+        float timer = 0;
+        float duration = 1.0f;
+        
+        while (timer < duration)
+        {
+            // 씬 전환 중에는 코루틴 중단
+            if (SceneManager.GetActiveScene().name == "")
+            {
+                if (loadingScreen != null)
+                {
+                    Destroy(loadingScreen);
+                }
+                yield break;
+            }
+            
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        
+        try
+        {
+            // SaveSystem에서 데이터 로드
+            (SaveData loadedData, Map loadedMap) = saveSystem.Load();
+            
+            if (loadedData != null)
+            {
+                // 로드된 데이터 적용
+                playerData = loadedData;
+                currentMap = loadedMap;
+                
+                // 캐싱된 데이터 업데이트
+                nickName = playerStats.NickName;
+                maxHealth = playerStats.MaxHp;
+                health = playerStats.CurrHp;
+                gold = playerStats.gold;
+                characterPieceDataList = characterData.characterPieceDataList ?? new List<CharacterPieceData>();
+                mailDataList = mailbox.mailDataList ?? new List<MailData>();
+                
+                // 플레이 타임 로드
+                if (PlayerPrefs.HasKey(playTimePrefKey))
+                {
+                    playTime = PlayerPrefs.GetFloat(playTimePrefKey);
+                    timeSpan = TimeSpan.FromSeconds(playTime);
+                }
+                
+                // 카드 데이터 로드
+                UpdateUserData();
+                
+                // UI 업데이트
+                UpdateUserConfigData();
+                OnPlayTimeChanged?.Invoke(timeSpan.ToString());
+                
+                Debug.Log("세이브 데이터 로드 완료");
+            }
+            else
+            {
+                Debug.LogWarning("로드할 세이브 데이터가 없습니다. 새 게임을 시작합니다.");
+                ResetPlayerData();
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"로드 중 오류 발생: {e.Message}");
+            ResetPlayerData();
+        }
+        finally
+        {
+            if (loadingScreen != null && this != null)
+            {
+                Destroy(loadingScreen);
+            }
         }
     }
 }

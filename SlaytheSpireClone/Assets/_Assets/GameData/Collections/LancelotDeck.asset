@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e31e688086974d25bb4daf05c561641, type: 3}
-  m_Name: GalahadRewards
+  m_Name: LancelotDeck
   m_EditorClassIdentifier: 
-  Name: Rewards
+  Name: Deck
   Entries:
-  - Card: {fileID: 11400000, guid: 7ea28eeaea6cc0c4cb26f4cce2f64910, type: 2}
+  - Card: {fileID: 11400000, guid: 1ad7ba1cdb9fb4c4a8b9fd77b27608f2, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: a599026465324974196f9e860e4be4c8, type: 2}
+  - Card: {fileID: 11400000, guid: 2dca268c20d9c4a44a9f5b3148fc14ec, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: 6814b68881e4e6544bb1d8aaf9e6e1ed, type: 2}
+  - Card: {fileID: 11400000, guid: 7dacaec3cec56c9449ee97a1c3e612b6, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: 0e572ee06be3b3a42926b094a725ab29, type: 2}
+  - Card: {fileID: 11400000, guid: 266b21abd0cd86e4ba04dff654463b26, type: 2}
     NumCopies: 1

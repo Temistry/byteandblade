@@ -34,7 +34,10 @@ public class UI_SelectCharPiece : MonoBehaviour
         if (GameManager.GetInstance().GetSavedCharacterList().Contains(_characterIndex))
         {
             _GetCharacterButton.interactable = false;
-            _ButtonCharacterIllust.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            if(_ButtonCharacterIllust != null)
+            {
+                _ButtonCharacterIllust.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            }
             return 0;
         }
 
@@ -43,13 +46,19 @@ public class UI_SelectCharPiece : MonoBehaviour
         // 1개도 채우지 못했다면 이미지 어둡게
         if (data.count < 1)
         {
-            ToolFunctions.FindChild<Image>
-            (_ButtonCharacterIllust, "Placeholder Model", true).color = new Color(0.1f, 0.1f, 0.1f, 1f);
+            if(_ButtonCharacterIllust != null)
+            {
+                ToolFunctions.FindChild<Image>
+                (_ButtonCharacterIllust, "Placeholder Model", true).color = new Color(0.1f, 0.1f, 0.1f, 1f);
+            }
         }
         else
         {
-            ToolFunctions.FindChild<Image>
-            (_ButtonCharacterIllust, "Placeholder Model", true).color = new Color(1, 1, 1, 1);
+            if(_ButtonCharacterIllust != null)
+            {
+                ToolFunctions.FindChild<Image>
+                (_ButtonCharacterIllust, "Placeholder Model", true).color = new Color(1, 1, 1, 1);
+            }
         }
 
         _countText.text = data.count.ToString() + " / 10";

@@ -19,8 +19,8 @@ MonoBehaviour:
   MaxHealth: 70
   Health: 70
   Mana: 3
-  StartingDeck: {fileID: 11400000, guid: a7bda807eca7559418fa53ab37f762b0, type: 2}
-  RewardDeck: {fileID: 11400000, guid: 8c069151c2b4d144c9febb24a77e82f8, type: 2}
+  StartingDeck: {fileID: 11400000, guid: 22719c31168de9641b6cbf7b39bff2f2, type: 2}
+  RewardDeck: {fileID: 11400000, guid: b8d03823746bade47b4a3b43dcd89eb8, type: 2}
   CharacterBgm:
   - {fileID: 8300000, guid: ff585d4b56271bd49931b05f371e04a0, type: 3}
   CharacterEpisodeTitle: "\uBD88\uC644\uC804\uD55C \uAE30\uC801"

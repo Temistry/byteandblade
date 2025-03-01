@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Deck
   Entries:
-  - Card: {fileID: 11400000, guid: 6e08841db905043afb99a7e7d6e64724, type: 2}
+  - Card: {fileID: 11400000, guid: 7ea28eeaea6cc0c4cb26f4cce2f64910, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: b3adc74dfca5945f29d9d1d448f32f79, type: 2}
+  - Card: {fileID: 11400000, guid: a599026465324974196f9e860e4be4c8, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: 45d3db3b521f94bcab2b4e598649dcbf, type: 2}
+  - Card: {fileID: 11400000, guid: 6814b68881e4e6544bb1d8aaf9e6e1ed, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: 242a563e54f61144f98348dafd049db8, type: 2}
+  - Card: {fileID: 11400000, guid: 1faaff291ce1afe43bdef7ce3853ffad, type: 2}
     NumCopies: 1
