@@ -88,8 +88,6 @@ namespace CCGKit
 
         private GameInfo gameInfo;
 
-        private readonly string saveDataPrefKey = "save";
-
         private int numAssetsToLoad;
         private int numAssetsLoaded;
 

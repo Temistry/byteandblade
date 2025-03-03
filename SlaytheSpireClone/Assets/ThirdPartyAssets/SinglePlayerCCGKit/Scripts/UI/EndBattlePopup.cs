@@ -44,6 +44,8 @@ namespace CCGKit
         private const string DefeatText = "Defeat";
         private const string DefeatDescriptionText = "The dungeon run was too hard this time... better luck next time!";
         private const float FadeInTime = 0.4f;
+        private const string BossVictoryText = "Congratulations!";
+        private const string BossVictoryDescriptionText = "You have conquered the dungeon. Returning to the lobby...";
 
         private void Awake()
         {
@@ -73,8 +75,20 @@ namespace CCGKit
             goHomeButton.gameObject.SetActive(true);
         }
 
+        public void SetBossVictoryText()
+        {
+            titleText.text = BossVictoryText;
+            descriptionText.text = BossVictoryDescriptionText;
+            goHomeButton.gameObject.SetActive(true);
+            continueButton.gameObject.SetActive(false);
+        }
+
         public void OnGoHomeButtonPressed()
         {
+            // Map 데이터 초기화
+            GameManager.GetInstance().ResetMapData();
+
+            // 로비 씬으로 전환
             Transition.LoadLevel("0.Lobby", 0.5f, Color.black);
         }
 

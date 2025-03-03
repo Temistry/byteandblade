@@ -15,6 +15,7 @@ namespace CCGKit
         order = 2)]
     public class EnemyTemplate : CharacterTemplate
     {
+        public bool IsBoss;
         public int HpLow;
         public int HpHigh;
 

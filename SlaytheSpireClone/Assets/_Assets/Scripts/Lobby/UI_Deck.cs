@@ -3,6 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using CCGKit;
 using UnityEngine.AddressableAssets;
+using TMPro;
+
 public class UI_Deck : MonoBehaviour
 {
     [SerializeField] GameObject TopPanel;
@@ -119,7 +121,13 @@ public class UI_Deck : MonoBehaviour
             Panel.GetComponent<CanvasGroup>().alpha = 1;
         }
 
+        // 카드 목록 생성
+        RefreshCardUIList();
+    }
 
+    // 카드 목록 생성
+    private void RefreshCardUIList()
+    {
         // 카드 컨텐츠 초기화
         CardContents.Clear();
         // 카드 UI 삭제
@@ -203,7 +211,17 @@ public class UI_Deck : MonoBehaviour
         {
             // 같은 카드가 10장 미만이라면 합성 버튼 비활성화
             _MergeBtn.SetActive(false);
-            return;
+
+            // 업그레이드 가능한가
+            if (card.Upgrade == null)
+            {
+                _MergeDescription.GetComponent<TextMeshProUGUI>().text = "업그레이드 가능한 카드가 없습니다.";
+            }
+            else
+            {
+                _MergeDescription.GetComponent<TextMeshProUGUI>().text = "같은 카드가 10장 모일 경우 합성할 수 있습니다.\n\n" +
+                    "같은 카드의 수 : " + CardContents.FindAll(c => c.Id == card.Id).Count + " / " + Defines.MAX_UPGRADE_CARD_COUNT;
+            }
         }
     }
 
@@ -224,7 +242,7 @@ public class UI_Deck : MonoBehaviour
 
         // 같은 카드가 10장 있는지 확인
         int count = CardContents.FindAll(c => c.Id == card.Id).Count;
-        if (count < 2) // 10
+        if (count < Defines.MAX_UPGRADE_CARD_COUNT) // 10장 미만이면 합성 버튼 비활성화
         {
             return false;
         }
@@ -235,6 +253,9 @@ public class UI_Deck : MonoBehaviour
             SameCard = card;
         }
 
+        _MergeDescription.GetComponent<TextMeshProUGUI>().text = "같은 카드가 10장 모일 경우 합성할 수 있습니다.\n\n" +
+            "같은 카드의 수 : " + count + " / " + Defines.MAX_UPGRADE_CARD_COUNT;
+
         return true;
     }
 
@@ -244,23 +265,20 @@ public class UI_Deck : MonoBehaviour
         Debug.Log("합성 버튼 클릭");
 
         // 같은 카드 10장 리스트에서 삭제
-        int i = 0;
-        int deleteCount = 0;
-        while (deleteCount < 10)
+        int loopcount = CardContents.FindAll(c => c.Id == SameCard.Id).Count;
+        
+        // 10장만 삭제
+        int correction = loopcount % Defines.MAX_UPGRADE_CARD_COUNT;
+        if (correction != 0)
         {
-            if (CardContents[i].Id == SameCard.Id)
-            {
-                CardContents.RemoveAt(i);
-                GameManager.GetInstance().GetCardList().RemoveAt(i);
-                Destroy(CardContentParent.GetChild(i).gameObject);
+            loopcount -= correction;
+        }
 
-                deleteCount++;
-            }
-            i++;
-            if (i >= CardContents.Count)
-            {
-                break;
-            }
+        // 삭제 카운트
+        for(int i = 0; i < loopcount; i++)
+        {
+            CardContents.RemoveAt(CardContents.FindIndex(c => c.Id == SameCard.Id));
+            GameManager.GetInstance().GetCardList().RemoveAt(GameManager.GetInstance().GetCardList().FindIndex(c => c.Id == SameCard.Id));
         }
 
         // 합성 카드 추가
@@ -273,9 +291,12 @@ public class UI_Deck : MonoBehaviour
         // 합성 카드 선택 UI 표시
         CardUI_Selected.GetComponent<CardWidget>().SetInfo(SameCard.Upgrade);
         CardUI_Selected.SetActive(true);
-
+        
         // 저장
         GameManager.GetInstance().Save();
+
+        // 카드 목록 생성
+        RefreshCardUIList();
     }
 }
 

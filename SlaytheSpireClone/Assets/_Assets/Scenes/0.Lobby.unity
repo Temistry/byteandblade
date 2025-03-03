@@ -39472,6 +39472,7 @@ GameObject:
   - component: {fileID: 1112684532}
   - component: {fileID: 1112684534}
   - component: {fileID: 1112684533}
+  - component: {fileID: 1112684535}
   m_Layer: 0
   m_Name: MergeDescription
   m_TagString: Untagged
@@ -39600,6 +39601,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112684531}
   m_CullTransparentMesh: 1
+--- !u!225 &1112684535
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1112684531}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1001 &1113710293
 PrefabInstance:
   m_ObjectHideFlags: 0

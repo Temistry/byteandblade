@@ -10,8 +10,6 @@ public class UI_PlayPannel : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI goldText;
 
-
-    [SerializeField] GameObject relicsRow;
     [SerializeField] TextMeshProUGUI playTimeText;
     
     void Awake()

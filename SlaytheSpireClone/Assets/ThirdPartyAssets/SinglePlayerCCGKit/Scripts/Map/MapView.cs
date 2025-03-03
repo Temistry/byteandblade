@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using DG.Tweening;
 namespace CCGKit
 {
     /// <summary>
@@ -77,7 +77,11 @@ namespace CCGKit
             mapParent = new GameObject("Scroll");
             mapParent.transform.SetParent(firstParent.transform);
 
+
+            // 맵 스크롤 컴포넌트 추가, 스크롤 반환 시간 3초, 반환 효과 플래시
             var scroll = mapParent.AddComponent<ScrollNonUI>();
+            scroll.TweenBackDuration = 3f;
+            scroll.TweenBackEase = Ease.InOutFlash;
             scroll.FreezeX = true;
             scroll.FreezeY = false;
 

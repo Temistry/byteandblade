@@ -99,12 +99,14 @@ public interface ISaveSystem
     void Save(SaveData saveData, Map map);
     Map LoadMap();
     void SaveMap(Map map);
+    float LoadPlayTime();
 }
 
 public class SaveSystem : Singleton<SaveSystem>
 {
     private readonly string saveDataPrefKey = "save";
     private readonly string mapPrefKey = "map";
+    private readonly string playTimePrefKey = "playTime";
 
     // GameManager에서만 접근 가능한 인터페이스
     internal interface ISaveSystem
@@ -116,6 +118,8 @@ public class SaveSystem : Singleton<SaveSystem>
         bool IsSaveDataExist();
         (SaveData, Map) Load();
         void Save(SaveData saveData, Map map);
+        void SavePlayTime(float playTime, string timeSpanString);
+        float LoadPlayTime();
     }
 
     // GameManager 전용 인터페이스 구현체 반환
@@ -141,6 +145,9 @@ public class SaveSystem : Singleton<SaveSystem>
         public bool IsSaveDataExist() => saveSystem.IsSaveDataExistInternal();
         public (SaveData, Map) Load() => saveSystem.Load();
         public void Save(SaveData saveData, Map map) => saveSystem.Save(saveData, map);
+        public void SavePlayTime(float playTime, string timeSpanString) => 
+            saveSystem.SavePlayTime(playTime, timeSpanString);
+        public float LoadPlayTime() => saveSystem.LoadPlayTime();
     }
 
     // 내부 구현 메서드들
@@ -342,5 +349,36 @@ public class SaveSystem : Singleton<SaveSystem>
     {
         SaveData saveData = LoadGameDataInternal();
         return saveData.characterData.SaveCharacterIndexList;
+    }
+
+    // 플레이 타임 저장 메서드 추가
+    public void SavePlayTime(float playTime, string timeSpanString)
+    {
+        try
+        {
+            PlayerPrefs.SetFloat(playTimePrefKey, playTime);
+            PlayerPrefs.Save();
+            Debug.Log($"플레이 타임 저장: {timeSpanString}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"플레이 타임 저장 중 오류: {e.Message}");
+        }
+    }
+
+    public float LoadPlayTime()
+    {
+        try
+        {
+            if (PlayerPrefs.HasKey(playTimePrefKey))
+            {
+                return PlayerPrefs.GetFloat(playTimePrefKey);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"플레이 타임 로드 중 오류: {e.Message}");
+        }
+        return 0f;
     }
 }

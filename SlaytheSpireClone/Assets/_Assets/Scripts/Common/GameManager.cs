@@ -19,9 +19,6 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private GameObject loadingScreenPrefab;
 
-    //private readonly string saveDataPrefKey = "save";
-    private readonly string playTimePrefKey = "playTime";
-
     public event Action<string> OnRegiserNickName;
     public event Action OnHealthChanged;
     public event Action OnGoldChanged;
@@ -162,7 +159,16 @@ public class GameManager : Singleton<GameManager>
         {
             lastUpdateTime = Time.time;
             timeSpan = TimeSpan.FromSeconds(playTime);
-            OnPlayTimeChanged?.Invoke(timeSpan.ToString());
+
+            // 시, 분, 초
+            int hours = timeSpan.Hours;
+            int minutes = timeSpan.Minutes;
+            int seconds = timeSpan.Seconds;
+
+            // 시, 분, 초 형식으로 변환
+            string timeString = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
+
+            OnPlayTimeChanged?.Invoke(timeString);
         }
     }
 
@@ -181,8 +187,14 @@ public class GameManager : Singleton<GameManager>
 
     public void SavePlayTime()
     {
-        PlayerPrefs.SetFloat(playTimePrefKey, playTime);
-        PlayerPrefs.Save(); // 즉시 저장 실행 (선택 사항)
+        try
+        {
+            saveSystem.SavePlayTime(playTime, timeSpan.ToString());
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"플레이 타임 저장 호출 중 오류: {e.Message}");
+        }
     }
 
     public bool UseGold(int amount)
@@ -286,7 +298,7 @@ public class GameManager : Singleton<GameManager>
 
     private IEnumerator SaveCoroutine(GameObject loadingScreen)
     {
-        // 저장 시간 시뮬레이션 (try 블록 밖으로 이동)
+        // 저장 시간 시뮬레이션
         float timer = 0;
         float duration = 1.0f;
         
@@ -316,18 +328,21 @@ public class GameManager : Singleton<GameManager>
             characterData.characterPieceDataList = characterPieceDataList;
             mailbox.mailDataList = mailDataList;
             
-            // PlayerPrefs 기반 저장
-            string json = JsonUtility.ToJson(playerData);
-            PlayerPrefs.SetString("savedata", json);
-            
-            if (currentMap != null)
+            // 카드 데이터 저장 - 덱 정보 업데이트
+            deckData.Deck.Clear();
+            foreach (var card in playerDeck)
             {
-                string mapJson = JsonUtility.ToJson(currentMap);
-                PlayerPrefs.SetString("mapdata", mapJson);
+                if (card != null)
+                {
+                    deckData.Deck.Add(card.Id);
+                }
             }
-            
-            PlayerPrefs.Save();
+
+            // SaveSystem을 통해 저장
+            saveSystem.Save(playerData, currentMap);
             SavePlayTime();
+            
+            Debug.Log("게임 데이터 저장 완료");
         }
         catch (Exception e)
         {
@@ -426,7 +441,7 @@ public class GameManager : Singleton<GameManager>
         StopAllCoroutines();
         
         // 로딩 화면 정리
-        var loadingScreens = FindObjectsOfType<GameObject>().Where(go => go.name.Contains("UI_LoadingScreen"));
+        var loadingScreens = FindObjectsByType<GameObject>(FindObjectsSortMode.None).Where(go => go.name.Contains("UI_LoadingScreen"));
         foreach (var screen in loadingScreens)
         {
             Destroy(screen);
@@ -443,17 +458,18 @@ public class GameManager : Singleton<GameManager>
             characterData.characterPieceDataList = characterPieceDataList;
             mailbox.mailDataList = mailDataList;
             
-            // PlayerPrefs 기반 저장
-            string json = JsonUtility.ToJson(playerData);
-            PlayerPrefs.SetString("savedata", json);
-            
-            if (currentMap != null)
+            // 카드 데이터 저장
+            deckData.Deck.Clear();
+            foreach (var card in playerDeck)
             {
-                string mapJson = JsonUtility.ToJson(currentMap);
-                PlayerPrefs.SetString("mapdata", mapJson);
+                if (card != null)
+                {
+                    deckData.Deck.Add(card.Id);
+                }
             }
-            
-            PlayerPrefs.Save();
+
+            // SaveSystem을 통해 저장
+            saveSystem.Save(playerData, currentMap);
             SavePlayTime();
         }
         catch (Exception e)
@@ -678,7 +694,7 @@ public class GameManager : Singleton<GameManager>
     // 맵 생성 또는 로드
     public Map LoadOrGenerateMap(System.Random rng, MapGenerator mapGenerator)
     {
-        if (currentMap == null)
+        if (currentMap == null || !currentMap.HasBossNode())
         {
             currentMap = saveSystem.LoadMap();
             
@@ -689,6 +705,14 @@ public class GameManager : Singleton<GameManager>
             }
         }
         return currentMap;
+    }
+
+    public void ResetMapData()
+    {
+        // Map 데이터를 초기화하는 로직 추가
+        currentMap = null;
+        saveSystem.SaveMap(null);
+        Debug.Log("Map 데이터가 초기화되었습니다.");
     }
 
     // 캐릭터 저장 관련 메서드들
@@ -722,7 +746,7 @@ public class GameManager : Singleton<GameManager>
     private void OnApplicationQuit()
     {
         // 로딩 화면 정리
-        var loadingScreens = FindObjectsOfType<GameObject>().Where(go => go.name.Contains("UI_LoadingScreen"));
+        var loadingScreens = FindObjectsByType<GameObject>(FindObjectsSortMode.None).Where(go => go.name.Contains("UI_LoadingScreen"));
         foreach (var screen in loadingScreens)
         {
             Destroy(screen);
@@ -786,11 +810,8 @@ public class GameManager : Singleton<GameManager>
                 mailDataList = mailbox.mailDataList ?? new List<MailData>();
                 
                 // 플레이 타임 로드
-                if (PlayerPrefs.HasKey(playTimePrefKey))
-                {
-                    playTime = PlayerPrefs.GetFloat(playTimePrefKey);
-                    timeSpan = TimeSpan.FromSeconds(playTime);
-                }
+                playTime = saveSystem.LoadPlayTime();
+                timeSpan = TimeSpan.FromSeconds(playTime);
                 
                 // 카드 데이터 로드
                 UpdateUserData();

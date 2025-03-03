@@ -18,7 +18,7 @@ MonoBehaviour:
   - Group: {fileID: 11400000, guid: 94a1649b897694424a73f09fe91cd518, type: 2}
   - Group: {fileID: 11400000, guid: adcfc4fb01ea74122bd92a230f003318, type: 2}
   Target: 1
-  Value: 13
+  Value: 50
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

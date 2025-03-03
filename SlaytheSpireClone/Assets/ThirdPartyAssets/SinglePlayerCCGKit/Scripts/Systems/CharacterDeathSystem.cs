@@ -19,7 +19,7 @@ namespace CCGKit
         [SerializeField]
         private float endBattlePopupDelay = 1.0f;
 #pragma warning restore 649
-        
+
         public void OnPlayerHpChanged(int hp)
         {
             if (hp <= 0)
@@ -98,13 +98,35 @@ namespace CCGKit
                 }
                 else
                 {
-                    endBattlePopup.SetVictoryText();
+                    if(IsBossDefeated())
+                    {
+                        endBattlePopup.SetBossVictoryText();
+                    }
+                    else
+                    {
+                        endBattlePopup.SetVictoryText();
+                    }
                     gameInfo.PlayerWonEncounter = true;
                 }
 
                 var turnManagementSystem = FindFirstObjectByType<TurnManagementSystem>();
                 turnManagementSystem.SetEndOfGame(true);
             }
+        }
+
+        // 보스가 죽었는지 확인하는 메서드
+        private bool IsBossDefeated()
+        {
+            // 보스 캐릭터를 식별할 수 있는 로직 추가
+            // 예: 모든 적 중에서 보스 태그를 가진 캐릭터가 죽었는지 확인
+            foreach (var enemy in Enemies)
+            {
+                if ((enemy.Template as EnemyTemplate).IsBoss && enemy.IsDead)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
