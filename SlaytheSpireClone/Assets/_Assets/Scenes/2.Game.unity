@@ -11819,7 +11819,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 868391477}
-  prevCanvas: {fileID: 0}
+  prevCanvas: {fileID: 2013165896}
 --- !u!1 &1861129958
 GameObject:
   m_ObjectHideFlags: 0
@@ -14231,6 +14231,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1897586563837585437, guid: 7d005580227359044a75d826f20f6d90,
+        type: 3}
+      propertyPath: m_text
+      value: "\uCE90\uB9AD\uD130 \uC870\uAC01 \uC120\uD0DD"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2489229993587237632, guid: 7d005580227359044a75d826f20f6d90,
+        type: 3}
+      propertyPath: m_Name
+      value: CardRewardButton
+      objectReference: {fileID: 0}
     - target: {fileID: 2554562876965295212, guid: 7d005580227359044a75d826f20f6d90,
         type: 3}
       propertyPath: m_SizeDelta.x
@@ -14260,6 +14270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475739943499345097, guid: 7d005580227359044a75d826f20f6d90,
+        type: 3}
+      propertyPath: m_text
+      value: "\uBCF4\uC0C1 \uCE74\uB4DC \uC120\uD0DD"
       objectReference: {fileID: 0}
     - target: {fileID: 7245096051491253273, guid: 7d005580227359044a75d826f20f6d90,
         type: 3}

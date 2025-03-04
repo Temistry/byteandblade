@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 10
   Name: CriticalAttack
-  Cost: 3
+  Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: -1043062072, guid: 82a17ffec46130b45afcaf84167ca6e2, type: 3}
   Type: {fileID: 11400000, guid: 18f473b7891687e46be7cae1f6806bcd, type: 2}

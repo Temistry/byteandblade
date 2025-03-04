@@ -85,6 +85,7 @@
     <Compile Include="Assets\_Assets\Scripts\Lobby\UI_Shop.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Patterns\RandomPattern.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Common\UI_LoadingScreen.cs" />
     <Compile Include="Assets\_Assets\Scripts\Common\SaveSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Other\CanvasManager.cs" />
     <Compile Include="Assets\_Assets\Scripts\Lobby\InitVideoLoop.cs" />

@@ -292,6 +292,12 @@ public class GameManager : Singleton<GameManager>
 
     public void Save()
     {
+        var loadingScreen = FindFirstObjectByType<UI_LoadingScreen>();
+        if (loadingScreen != null)
+        {
+            Destroy(loadingScreen.gameObject);
+        }
+
         GameObject tempLoadingScreen = InstantiateLoadingScreen();
         StartCoroutine(SaveCoroutine(tempLoadingScreen));
     }
@@ -300,20 +306,10 @@ public class GameManager : Singleton<GameManager>
     {
         // 저장 시간 시뮬레이션
         float timer = 0;
-        float duration = 1.0f;
+        float duration = 0.5f;
         
         while (timer < duration)
         {
-            // 씬 전환 중에는 코루틴 중단
-            if (SceneManager.GetActiveScene().name == "")
-            {
-                if (loadingScreen != null)
-                {
-                    Destroy(loadingScreen);
-                }
-                yield break;
-            }
-            
             timer += Time.deltaTime;
             yield return null;
         }
@@ -437,45 +433,7 @@ public class GameManager : Singleton<GameManager>
     // 씬 전환 시 자동 저장 및 로딩 화면 정리
     private void OnSceneUnloaded(Scene scene)
     {
-        // 저장 코루틴 중단
-        StopAllCoroutines();
-        
-        // 로딩 화면 정리
-        var loadingScreens = FindObjectsByType<GameObject>(FindObjectsSortMode.None).Where(go => go.name.Contains("UI_LoadingScreen"));
-        foreach (var screen in loadingScreens)
-        {
-            Destroy(screen);
-        }
-        
-        // 저장
-        try
-        {
-            // 캐싱된 데이터를 SaveData에 반영
-            playerStats.NickName = nickName;
-            playerStats.MaxHp = maxHealth;
-            playerStats.CurrHp = health;
-            playerStats.gold = gold;
-            characterData.characterPieceDataList = characterPieceDataList;
-            mailbox.mailDataList = mailDataList;
-            
-            // 카드 데이터 저장
-            deckData.Deck.Clear();
-            foreach (var card in playerDeck)
-            {
-                if (card != null)
-                {
-                    deckData.Deck.Add(card.Id);
-                }
-            }
-
-            // SaveSystem을 통해 저장
-            saveSystem.Save(playerData, currentMap);
-            SavePlayTime();
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"씬 전환 중 저장 오류: {e.Message}");
-        }
+        Save();
     }
 
     private void OnEnable()

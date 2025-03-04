@@ -5,6 +5,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CCGKit
 {
@@ -17,6 +18,11 @@ namespace CCGKit
 
         private List<GameObject> widgets = new List<GameObject>(16);
 
+        private void Start()
+        {
+
+        }
+
         public void AddCards(List<RuntimeCard> cards)
         {
             var sortedCards = cards.OrderBy(x => x.Template.Id).ToList();
@@ -25,6 +31,7 @@ namespace CCGKit
                 var widget = Instantiate(CardPrefab);
                 widget.transform.SetParent(Content.transform, false);
                 widget.GetComponent<CardWidget>().SetInfo(card);
+                widget.gameObject.SetActive(true);
                 widgets.Add(widget);
             }
         }
@@ -38,12 +45,18 @@ namespace CCGKit
 
             widgets.Clear();
 
-            HandPresentationSystem.SetHandCardsInteractable(false);
+            if (HandPresentationSystem != null)
+            {
+                HandPresentationSystem.SetHandCardsInteractable(false);
+            }
         }
 
         private void OnDisable()
         {
-            HandPresentationSystem.SetHandCardsInteractable(true);
+            if (HandPresentationSystem != null)
+            {
+                HandPresentationSystem.SetHandCardsInteractable(true);
+            }
         }
     }
 }
