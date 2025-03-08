@@ -23,6 +23,15 @@ namespace CCGKit
 
         private void Awake()
         {
+            // 이미 존재하는 TransitionCanvas 찾기
+            var existingCanvas = GameObject.Find("TransitionCanvas");
+            if (existingCanvas != null)
+            {
+                Debug.LogWarning("이미 TransitionCanvas가 존재합니다. 기존 캔버스를 사용합니다.");
+                canvasObject = existingCanvas;
+                return;
+            }
+
             canvasObject = new GameObject("TransitionCanvas");
             var canvas = canvasObject.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;

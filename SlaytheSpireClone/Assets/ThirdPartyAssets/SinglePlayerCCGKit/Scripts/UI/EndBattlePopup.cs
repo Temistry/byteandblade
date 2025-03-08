@@ -26,6 +26,8 @@ namespace CCGKit
         [SerializeField]
         private Button characterRewardButton;
         [SerializeField]
+        private Button goldRewardButton;
+        [SerializeField]
         private Button goHomeButton;
 
         [SerializeField]
@@ -33,6 +35,9 @@ namespace CCGKit
 
         [SerializeField]
         private GameEvent characterRewardEvent;
+
+        [SerializeField]
+        private GameEvent goldRewardEvent;
 
         [SerializeField]
         private Canvas popupCanvas;
@@ -99,9 +104,10 @@ namespace CCGKit
 
         void DestroySelectedButton()
         {
-            // 둘 중 하나만 선택 가능
+            // 하나만 선택 가능
             Destroy(rewardButton.gameObject);
             Destroy(characterRewardButton.gameObject);
+            Destroy(goldRewardButton.gameObject);
         }
 
         public void OnCardRewardButtonPressed()
@@ -116,6 +122,13 @@ namespace CCGKit
             DestroySelectedButton();
             popupCanvas.gameObject.SetActive(false);
             characterRewardEvent.Raise();
+        }
+
+        public void OnGoldRewardButtonPressed()
+        {
+            DestroySelectedButton();
+            //popupCanvas.gameObject.SetActive(false);
+            goldRewardEvent.Raise();
         }
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
+
 public class UI_Option : MonoBehaviour
 {
     public Button backButton;
@@ -12,7 +13,7 @@ public class UI_Option : MonoBehaviour
         backButton.onClick.AddListener(OnBack);
 
         messageBox = GetComponent<UI_MessageBox>();
-        messageBox.SetMessage("데이터를 초기화하시겠습니까? 되돌릴 수 없습니다.");
+        messageBox.SetMessage(LanguageManager.GetText("reset player data?"));
         
         
         Action eventOK = () => OnResetButton();

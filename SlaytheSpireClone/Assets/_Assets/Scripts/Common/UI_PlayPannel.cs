@@ -88,4 +88,37 @@ public class UI_PlayPannel : MonoBehaviour
         playTimeText.text = playTime;
     }
 
+    // 모든 UI 요소를 강제로 업데이트하는 메서드
+    public void UpdateUI()
+    {
+        var gameManager = GameManager.GetInstance();
+        if (gameManager != null)
+        {
+            // 닉네임 업데이트
+            if (nickNameText != null)
+            {
+                UpdateNickNameText(gameManager.NickName);
+            }
+            
+            // 체력 업데이트
+            if (healthText != null)
+            {
+                UpdateHealthText();
+            }
+            
+            // 골드 업데이트
+            if (goldText != null)
+            {
+                UpdateGoldText();
+            }
+            
+            // 플레이 시간 업데이트
+            if (playTimeText != null)
+            {
+                UpdatePlayTimeText(playTimeText.text);
+            }
+            
+            Debug.Log("UI_PlayPannel 텍스트가 업데이트되었습니다.");
+        }
+    }
 }

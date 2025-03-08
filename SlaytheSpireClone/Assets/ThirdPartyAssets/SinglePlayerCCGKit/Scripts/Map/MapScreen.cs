@@ -33,21 +33,52 @@ namespace CCGKit
 
         private void Awake()
         {
-            SceneManager.sceneUnloaded += scene => {
+            SceneManager.sceneUnloaded += scene =>
+            {
                 DOTween.KillAll();
             };
             gameManager = GameManager.GetInstance();
         }
+        // 게임 오브젝트의 전체 경로를 반환하는 헬퍼 메서드
+        private string GetGameObjectPath(GameObject obj)
+        {
+            string path = obj.name;
+            Transform parent = obj.transform.parent;
 
+            while (parent != null)
+            {
+                path = parent.name + "/" + path;
+                parent = parent.parent;
+            }
+
+            return path;
+        }
         private void Start()
         {
+            var mapScreens = FindObjectsByType<MapScreen>(FindObjectsSortMode.None);
+            Debug.Log($"씬에 존재하는 MapScreen 컴포넌트 수: {mapScreens.Length}");
+
+            foreach (var screen in mapScreens)
+            {
+                Debug.Log($"MapScreen 인스턴스: {screen.gameObject.name}, 경로: {GetGameObjectPath(screen.gameObject)}");
+            }
+
             rng = new Random();
 
             // 맵 로드 또는 생성
             var map = gameManager.LoadOrGenerateMap(rng, mapGenerator);
             mapView.ShowMap(map);
             mapTracker.TrackMap(map, rng);
-            
+
+            // 현재 노드 설정 (맵의 마지막 경로 지점을 현재 노드로 설정)
+            if (map.Path != null && map.Path.Count > 0)
+            {
+                var currentCoordinate = map.Path[map.Path.Count - 1];
+                var currentNode = map.GetNode(currentCoordinate);
+                gameManager.SetCurrentNode(currentNode);
+                Debug.Log($"현재 노드 설정: {currentNode.Type} at {currentCoordinate}");
+            }
+
             gameManager.SaveCurrentMap();
 
             var gameInfo = FindFirstObjectByType<GameInfo>();
@@ -58,11 +89,19 @@ namespace CCGKit
                     var mapNode = map.GetNode(gameInfo.PlayerCoordinate);
                     map.Path.Add(mapNode.Coordinate);
 
+                    // 보스 노드를 클리어했는지 확인
+                    if (mapNode.Type == NodeType.Boss)
+                    {
+                        // 보스 클리어 처리
+                        gameManager.SetBossCleared(true);
+                        Debug.Log("보스를 클리어했습니다! 다음 맵을 준비합니다.");
+                    }
+
                     mapView.SetReachableNodes();
                     mapView.SetLineColors();
                     var mapNodeView = mapView.GetNode(gameInfo.PlayerCoordinate);
                     mapNodeView.ShowSwirl();
-                    
+
                     // 맵 저장
                     gameManager.SaveCurrentMap();
 

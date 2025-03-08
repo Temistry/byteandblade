@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
-
+using System.Collections;
 public class UI_MakeNickName : MonoBehaviour
 {
     // 닉네임 입력 필드
@@ -11,16 +11,33 @@ public class UI_MakeNickName : MonoBehaviour
     // 확인버튼
     public Button ConfirmButton;
 
+    private CanvasGroup canvasGroup;
+
     UI_MessageBox msgbox;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // 닉네임이 이미 있으면 화면 비활성화
+        canvasGroup = GetComponent<CanvasGroup>();
+        StartCoroutine(LoadCoroutine());
+
+       
+    }
+
+    IEnumerator LoadCoroutine()
+    {
+        canvasGroup.alpha = 0;
+
+        GameManager.GetInstance().Load();
+        yield return new WaitForSeconds(1.0f);
+
+        canvasGroup.alpha = 1;
+
+         // 닉네임이 이미 있으면 화면 비활성화
         if(GameManager.GetInstance().NickName != "")
         {
             gameObject.SetActive(false);
-            return;
+            yield break;
         }
 
         ConfirmButton.onClick.AddListener(OnConfirm);
@@ -71,6 +88,7 @@ public class UI_MakeNickName : MonoBehaviour
             GameManager.GetInstance().UpdateUserData();
 
             GameManager.GetInstance().NickName = nickName;
+            GameManager.GetInstance().Save();
 
             gameObject.SetActive(false);
             Destroy(msgbox.gameObject);

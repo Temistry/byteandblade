@@ -95,7 +95,7 @@ public class UI_MainMenuController : MonoBehaviour
     private IEnumerator DelayedCharacterLoad()
     {
         // GameManager가 초기화될 시간을 확보
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         
         // 이제 GameManager 참조
         if (GameManager.GetInstance() != null)

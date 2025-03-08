@@ -39,7 +39,8 @@ public class MailboxData
 [Serializable]
 public class GameProgressData
 {
-    public bool IsGetStartRelic;
+    public bool IsBossCleared;  // 보스 클리어 여부
+    public int BossClearCount;  // 보스 클리어 횟수
     public Map map;  // 맵 데이터도 여기에 저장
 }
 

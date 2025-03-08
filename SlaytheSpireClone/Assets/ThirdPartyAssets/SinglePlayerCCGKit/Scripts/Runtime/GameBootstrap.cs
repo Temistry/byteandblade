@@ -9,6 +9,7 @@ using UnityEngine.Assertions;
 using System;
 
 using Random = UnityEngine.Random;
+using Mono.Cecil.Cil;
 
 namespace CCGKit
 {
@@ -127,13 +128,12 @@ namespace CCGKit
 
             // 플레이어 설정 초기화
             var health = playerConfig.Hp;
-            var mana = playerConfig.Mana;
-            var shield = playerConfig.Shield;
             health.Value = template.Health;
-            mana.Value = template.Mana;
-            shield.Value = 0;
 
-            manaResetSystem.SetDefaultMana(template.Mana);
+            var mana = playerConfig.Mana;
+            mana.Value = template.Mana;
+
+            manaResetSystem.SetDefaultMana(mana.Value);
 
             // GameManager를 통해 저장된 데이터 로드
             var gameManager = GameManager.GetInstance();
@@ -141,10 +141,6 @@ namespace CCGKit
             {
                 try
                 {
-                    // 체력과 방어도 설정
-                    health.Value = gameManager.MaxHealth;
-                    shield.Value = gameManager.GetShieldValue();
-
                     // 덱 설정
                     playerDeck.Clear();
                     var savedDeck = gameManager.GetCardList();
@@ -171,6 +167,14 @@ namespace CCGKit
             }
             else
             {
+
+                // 캐릭터 설정에 따른 체력 설정
+                health.Value = template.Health;
+
+                // 게임매니저에 저장
+                gameManager.Health = health.Value;
+                gameManager.MaxHealth = template.MaxHealth;
+                
                 LoadDefaultDeck(template);
             }
 
@@ -180,13 +184,13 @@ namespace CCGKit
             {
                 if (gameInfo.SaveData.stats == null)
                     gameInfo.SaveData.stats = new SavePlayerStats();
-                    
+
                 gameInfo.SaveData.stats.MaxHp = health.Value;
-                gameInfo.SaveData.stats.Shield = shield.Value;
-                
+                gameInfo.SaveData.stats.Shield = 0;
+
                 if (gameInfo.SaveData.deckData == null)
                     gameInfo.SaveData.deckData = new DeckData();
-                    
+
                 gameInfo.SaveData.deckData.Deck.Clear();
                 foreach (var card in playerDeck)
                 {
@@ -194,26 +198,40 @@ namespace CCGKit
                 }
             }
 
-            CreateHpWidget(playerConfig.HpWidget, player, health, template.MaxHealth, shield);
+
+            CreateHpWidget(playerConfig.HpWidget, player, playerConfig.Hp, template.MaxHealth, playerConfig.Shield);
             CreateStatusWidget(playerConfig.StatusWidget, player);
 
-            manaWidget.Initialize(mana);
+            manaWidget.Initialize(playerConfig.Mana);
 
             var obj = player.GetComponent<CharacterObject>();
             obj.Template = template;
             obj.Character = new RuntimeCharacter
             {
-                Hp = health,
-                Shield = shield,
-                Mana = mana,
+                Hp = playerConfig.Hp,
+                Shield = playerConfig.Shield,
+                Mana = playerConfig.Mana,
                 Status = playerConfig.Status,
-                MaxHp = template.MaxHealth,
+                MaxHp = playerConfig.Hp.Value,
                 CurrentUsedCard = null
             };
             obj.Character.Status.Value.Clear();
 
             numAssetsLoaded++;
             InitializeGame();
+
+
+            // UI_PlayPannel 찾아서 텍스트 업데이트
+            var playPannel = FindFirstObjectByType<UI_PlayPannel>();
+            if (playPannel != null)
+            {
+                // 강제로 UI 업데이트 호출
+                playPannel.UpdateUI();
+            }
+            else
+            {
+                Debug.LogWarning("UI_PlayPannel을 찾을 수 없습니다.");
+            }
         }
 
         private void LoadDefaultDeck(HeroTemplate template)

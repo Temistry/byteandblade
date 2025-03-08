@@ -36,10 +36,61 @@ public class GameManager : Singleton<GameManager>
     // 캐싱된 데이터들
     private string nickName = "";
     private int maxHealth;
-    private int health;
+
+    private int health; 
+
     private int gold;
+    // 속성들 수정 - SaveSystem 직접 호출 제거
+    public string NickName
+    {
+        get => nickName;
+        set
+        {
+            nickName = value;
+            playerStats.NickName = nickName;
+            OnRegiserNickName?.Invoke(nickName);
+        }
+    }
+
+    public int MaxHealth
+    {
+        get => maxHealth;
+        set
+        {
+            maxHealth = value;
+            playerStats.MaxHp = maxHealth;
+
+            if(Health > maxHealth)
+            {
+                Health = maxHealth;
+            }
+        }
+    }
+
+    public int Health
+    {
+        get => health;
+        set
+        {
+            health = Mathf.Clamp(value, 0, MaxHealth);
+            playerStats.CurrHp = health;
+            OnHealthChanged?.Invoke();
+        }
+    }
+
+    public int Gold
+    {
+        get => gold;
+        set
+        {
+            gold = value;
+            playerStats.gold = gold;
+        }
+    }
+
     private float playTime;
     private TimeSpan timeSpan;
+
     private float lastUpdateTime = 0f;
     private List<CharacterPieceData> characterPieceDataList;
     private List<CardTemplate> playerDeck = new List<CardTemplate>();
@@ -48,15 +99,18 @@ public class GameManager : Singleton<GameManager>
     // 캐릭터 템플릿 캐싱을 위한 딕셔너리 추가
     private Dictionary<SaveCharacterIndex, HeroTemplate> characterTemplateCache = new Dictionary<SaveCharacterIndex, HeroTemplate>();
 
+    // 현재 노드 정보를 저장할 변수 추가
+    private Node currentNode;
+
     new void Awake()
     {
         base.Awake();
         saveSystem = SaveSystem.GetInstance().GetManagerInterface();
         playerData = new SaveData();
-        
+
         // 캐릭터 템플릿 미리 로드
         StartCoroutine(PreloadCharacterTemplates());
-        
+
         // 세이브 파일 존재 여부 확인 후 로드
         if (saveSystem.IsSaveDataExist())
         {
@@ -90,7 +144,7 @@ public class GameManager : Singleton<GameManager>
                 try
                 {
                     var template = heroInfo.Result;
-                    
+
                     // 플레이어 덱 초기화
                     playerDeck.Clear();
 
@@ -118,7 +172,7 @@ public class GameManager : Singleton<GameManager>
                                 playerDeck.Add(entry.Card);
                             }
                         }
-                        
+
                         // 기본 덱을 저장 데이터에 반영
                         deckData.Deck.Clear();
                         foreach (var card in playerDeck)
@@ -126,10 +180,37 @@ public class GameManager : Singleton<GameManager>
                             deckData.Deck.Add(card.Id);
                         }
                     }
-                    
+
+                    // 체력과 최대 체력 설정 - 덱 로드와 관계없이 항상 실행
+                    if (playerData != null && playerData.stats != null)
+                    {
+                        Health = playerData.stats.CurrHp;
+                        MaxHealth = playerData.stats.MaxHp;
+                        
+                        // 최대 체력이 0이하면 기본값 설정
+                        if (MaxHealth <= 0)
+                        {
+                            MaxHealth = template.MaxHealth;
+                        }
+                        
+                        // 체력이 0이하면 기본값 설정
+                        if (Health <= 0)
+                        {
+                            Health = template.Health;
+                        }
+
+                        // 체력이 최대 체력보다 크면 최대 체력으로 조정
+                        if (Health > MaxHealth)
+                        {
+                            Health = MaxHealth;
+                        }
+                        
+                        Debug.Log($"세이브 데이터에서 체력 정보 로드: HP {Health}/{MaxHealth}");
+                    }
+
                     // 저장
                     Save();
-                    
+
                     Addressables.Release(handle);
                 }
                 catch (Exception e)
@@ -143,13 +224,6 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.LogError($"UpdateUserData 실행 중 오류: {e.Message}");
         }
-    }
-
-    void UpdateUserConfigData()
-    {
-        Gold = gold;
-        Health = health;
-        MaxHealth = maxHealth;
     }
 
     public void Update()
@@ -175,7 +249,7 @@ public class GameManager : Singleton<GameManager>
     public void ExitGame()
     {
         Save();
-        UI_MessageBox.CreateMessageBox("게임을 종료하시겠습니까?", () =>
+        UI_MessageBox.CreateMessageBox(LanguageManager.GetText("Exit Game?"), () =>
         {
             Debug.Log("게임 종료");
             Application.Quit();
@@ -199,9 +273,9 @@ public class GameManager : Singleton<GameManager>
 
     public bool UseGold(int amount)
     {
-        if (gold >= amount)
+        if (Gold >= amount)
         {
-            gold -= amount;
+            Gold -= amount;
             OnGoldChanged?.Invoke();
             return true;
         }
@@ -216,15 +290,15 @@ public class GameManager : Singleton<GameManager>
     private IEnumerator PreloadCharacterTemplates()
     {
         var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-        
+
         for (int i = 0; i < (int)SaveCharacterIndex.Max; i++)
         {
             var index = (SaveCharacterIndex)i;
             var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[i]);
-            
+
             // 비동기 로드 완료 대기
             yield return handle;
-            
+
             if (handle.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
             {
                 characterTemplateCache[index] = handle.Result;
@@ -235,7 +309,7 @@ public class GameManager : Singleton<GameManager>
                 Debug.LogError($"캐릭터 템플릿 로드 실패: {index}");
             }
         }
-        
+
         Debug.Log("모든 캐릭터 템플릿 캐싱 완료");
     }
 
@@ -243,34 +317,34 @@ public class GameManager : Singleton<GameManager>
     public HeroTemplate GetCurrentCharacterTemplate()
     {
         var currentIndex = characterData.currentCharacterIndex;
-        
+
         // 캐시에 있으면 바로 반환
         if (characterTemplateCache.TryGetValue(currentIndex, out var template))
         {
             return template;
         }
-        
+
         // 캐시에 없으면 동기적으로 로드 (비상용)
         Debug.LogWarning($"캐릭터 템플릿 캐시 미스: {currentIndex}, 동기 로드 시도");
         var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
         var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)currentIndex]);
         handle.WaitForCompletion();
-        
+
         // 캐시에 저장
         characterTemplateCache[currentIndex] = handle.Result;
-        
+
         return handle.Result;
     }
 
     public void AddGold(int amount)
     {
-        gold += amount;
+        Gold += amount;
         OnGoldChanged?.Invoke();
     }
 
     public void AddMaxHealth(int amount)
     {
-        maxHealth += amount;
+        MaxHealth += amount;
         OnHealthChanged?.Invoke();
     }
 
@@ -306,24 +380,27 @@ public class GameManager : Singleton<GameManager>
     {
         // 저장 시간 시뮬레이션
         float timer = 0;
-        float duration = 0.5f;
-        
+        float duration = 0.2f;
+
         while (timer < duration)
         {
             timer += Time.deltaTime;
             yield return null;
         }
-        
+
         try
         {
             // 캐싱된 데이터를 SaveData에 반영
-            playerStats.NickName = nickName;
-            playerStats.MaxHp = maxHealth;
-            playerStats.CurrHp = health;
-            playerStats.gold = gold;
+            playerStats.NickName = NickName;
+            playerStats.MaxHp = MaxHealth;
+            playerStats.CurrHp = Health;
+            playerStats.gold = Gold;
             characterData.characterPieceDataList = characterPieceDataList;
             mailbox.mailDataList = mailDataList;
-            
+
+            // 맵 데이터 저장
+            saveSystem.SaveMap(currentMap);
+
             // 카드 데이터 저장 - 덱 정보 업데이트
             deckData.Deck.Clear();
             foreach (var card in playerDeck)
@@ -337,7 +414,7 @@ public class GameManager : Singleton<GameManager>
             // SaveSystem을 통해 저장
             saveSystem.Save(playerData, currentMap);
             SavePlayTime();
-            
+
             Debug.Log("게임 데이터 저장 완료");
         }
         catch (Exception e)
@@ -356,24 +433,27 @@ public class GameManager : Singleton<GameManager>
     public void ResetPlayerData()
     {
         PlayerPrefs.DeleteAll();
-        
+
         // 데이터 초기화
-        nickName = "";
-        maxHealth = 80;  // 기본 체력
-        health = 80;     // 기본 체력
-        gold = 0;
+        NickName = "";
+        MaxHealth = 0;
+        Health = 0;
+        Gold = 0;
         playTime = 0f;
         timeSpan = TimeSpan.Zero;
         lastUpdateTime = 0f;
-        
+
         // 컬렉션 초기화
         characterPieceDataList = new List<CharacterPieceData>();
         playerDeck.Clear();
         mailDataList.Clear();
-        
+
         // SaveData 초기화 (새 인스턴스 생성)
         playerData = new SaveData();
-        
+
+        // 맵 데이터 초기화
+        currentMap = new Map(new List<Node>(), new List<Coordinate>());
+
         try
         {
             // 기본 캐릭터 설정 (null 체크 추가)
@@ -383,7 +463,7 @@ public class GameManager : Singleton<GameManager>
                 characterData.SaveCharacterIndexList.Add(SaveCharacterIndex.Galahad);
                 characterData.currentCharacterIndex = SaveCharacterIndex.Galahad;
             }
-            
+
             // 기본 덱 설정 (예외 처리 추가)
             try
             {
@@ -392,12 +472,12 @@ public class GameManager : Singleton<GameManager>
                 {
                     var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)SaveCharacterIndex.Galahad]);
                     handle.WaitForCompletion();
-                    
+
                     if (handle.Result != null)
                     {
                         var template = handle.Result;
                         deckData.Deck.Clear();
-                        
+
                         foreach (var entry in template.StartingDeck.Entries)
                         {
                             deckData.Deck.Add(entry.Card.Id);
@@ -409,13 +489,13 @@ public class GameManager : Singleton<GameManager>
             {
                 Debug.LogWarning($"기본 덱 설정 중 오류: {e.Message}");
             }
-            
+
             // 저장
             Save();
-            
+
             // UI 업데이트
             OnResetPlayerData?.Invoke();
-            
+
             var mainMenu = FindFirstObjectByType<UI_MainMenuController>();
             if (mainMenu != null)
             {
@@ -431,17 +511,17 @@ public class GameManager : Singleton<GameManager>
     public List<CardTemplate> GetCardList() => playerDeck;
 
     // 씬 전환 시 자동 저장 및 로딩 화면 정리
-    private void OnSceneUnloaded(Scene scene)
+    void OnSceneUnloaded(Scene scene)
     {
         Save();
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
-    private void OnDisable()
+    void OnDisable()
     {
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
@@ -515,50 +595,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // 속성들 수정 - SaveSystem 직접 호출 제거
-    public string NickName
-    {
-        get => nickName;
-        set
-        {
-            nickName = value;
-            playerStats.NickName = nickName;
-            OnRegiserNickName?.Invoke(nickName);
-        }
-    }
-
-    public int MaxHealth
-    {
-        get => maxHealth;
-        set
-        {
-            maxHealth = value;
-            playerStats.MaxHp = maxHealth;
-        }
-    }
-
-    public int Health
-    {
-        get => health;
-        set
-        {
-            health = Mathf.Clamp(value, 0, maxHealth);
-            playerStats.CurrHp = health;
-            OnHealthChanged?.Invoke();
-        }
-    }
-
-    public int Gold
-    {
-        get => gold;
-        set
-        {
-            gold = value;
-            playerStats.gold = gold;
-            OnGoldChanged?.Invoke();
-        }
-    }
-
     public CharacterPieceData GetCharacterPieceData(SaveCharacterIndex characterIndex)
     {
         // 리스트가 null이면 초기화
@@ -569,7 +605,7 @@ public class GameManager : Singleton<GameManager>
 
         // 해당 캐릭터의 조각 데이터를 찾음
         var pieceData = characterPieceDataList.Find(x => x.characterIndex == characterIndex);
-        
+
         // 없으면 새로 생성
         if (pieceData == null)
         {
@@ -649,19 +685,78 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    // 맵 생성 또는 로드
+    // 보스 클리어 여부 설정
+    public void SetBossCleared(bool cleared)
+    {
+        progress.IsBossCleared = cleared;
+
+        if (cleared)
+        {
+            // 보스 클리어 시 카운트 증가
+            progress.BossClearCount++;
+            Debug.Log($"보스 클리어! 총 클리어 횟수: {progress.BossClearCount}");
+        }
+
+        // 변경사항 저장
+        Save();
+    }
+
+    // 보스 클리어 여부 확인
+    public bool IsBossCleared()
+    {
+        return progress.IsBossCleared;
+    }
+
+    // 보스 클리어 횟수 반환
+    public int GetBossClearCount()
+    {
+        return progress.BossClearCount;
+    }
+
+    // 맵 생성 또는 로드 메서드 수정
     public Map LoadOrGenerateMap(System.Random rng, MapGenerator mapGenerator)
     {
-        if (currentMap == null || !currentMap.HasBossNode())
+        // 보스 클리어 여부 확인
+        bool needNewMap = IsBossCleared();
+
+        // 맵이 없거나 보스를 클리어했거나 보스 노드가 없는 경우 새 맵 생성
+        if (currentMap == null || needNewMap || !currentMap.HasBossNode())
         {
-            currentMap = saveSystem.LoadMap();
-            
-            // 맵이 없거나 보스 노드가 없는 경우 새 맵 생성
-            if (currentMap == null || !currentMap.HasBossNode())
+            if (needNewMap)
             {
-                currentMap = mapGenerator.GenerateMap(rng);
+                Debug.Log("보스를 클리어했으므로 새 맵을 생성합니다.");
+                // 보스 클리어 플래그 초기화
+                progress.IsBossCleared = false;
+
+                // 맵 데이터 초기화
+                currentMap = new Map(new List<Node>(), new List<Coordinate>());
+
+                Save();
             }
+            else
+            {
+                // 기존 맵 로드 시도
+                currentMap = saveSystem.LoadMap();
+
+                // 맵이 없거나 보스 노드가 없는 경우에만 새 맵 생성
+                if (currentMap == null || !currentMap.HasBossNode())
+                {
+                    Debug.Log("유효한 맵이 없어 새 맵을 생성합니다.");
+                }
+                else
+                {
+                    // 유효한 맵이 있으면 그대로 반환
+                    return currentMap;
+                }
+            }
+
+            // 새 맵 생성
+            currentMap = mapGenerator.GenerateMap(rng);
+
+            // 새 맵 저장
+            SaveCurrentMap();
         }
+
         return currentMap;
     }
 
@@ -688,7 +783,7 @@ public class GameManager : Singleton<GameManager>
         }
 
         // 새 캐릭터 추가
-        if (characterIndex != SaveCharacterIndex.Max && 
+        if (characterIndex != SaveCharacterIndex.Max &&
             !characterData.SaveCharacterIndexList.Contains(characterIndex))
         {
             characterData.SaveCharacterIndexList.Add(characterIndex);
@@ -730,8 +825,8 @@ public class GameManager : Singleton<GameManager>
     {
         // 로딩 시간 시뮬레이션
         float timer = 0;
-        float duration = 1.0f;
-        
+        float duration = 0.2f;
+
         while (timer < duration)
         {
             // 씬 전환 중에는 코루틴 중단
@@ -743,41 +838,39 @@ public class GameManager : Singleton<GameManager>
                 }
                 yield break;
             }
-            
+
             timer += Time.deltaTime;
             yield return null;
         }
-        
+
         try
         {
             // SaveSystem에서 데이터 로드
             (SaveData loadedData, Map loadedMap) = saveSystem.Load();
-            
+
             if (loadedData != null)
             {
                 // 로드된 데이터 적용
                 playerData = loadedData;
                 currentMap = loadedMap;
-                
+
                 // 캐싱된 데이터 업데이트
-                nickName = playerStats.NickName;
-                maxHealth = playerStats.MaxHp;
-                health = playerStats.CurrHp;
-                gold = playerStats.gold;
+                NickName = playerStats.NickName;
+                MaxHealth = playerStats.MaxHp;
+                Health = playerStats.CurrHp;
+                Gold = playerStats.gold;
                 characterPieceDataList = characterData.characterPieceDataList ?? new List<CharacterPieceData>();
                 mailDataList = mailbox.mailDataList ?? new List<MailData>();
-                
+
                 // 플레이 타임 로드
                 playTime = saveSystem.LoadPlayTime();
                 timeSpan = TimeSpan.FromSeconds(playTime);
-                
-                // 카드 데이터 로드
+
+                // 유저 데이터 로드
                 UpdateUserData();
-                
-                // UI 업데이트
-                UpdateUserConfigData();
+
                 OnPlayTimeChanged?.Invoke(timeSpan.ToString());
-                
+
                 Debug.Log("세이브 데이터 로드 완료");
             }
             else
@@ -798,5 +891,28 @@ public class GameManager : Singleton<GameManager>
                 Destroy(loadingScreen);
             }
         }
+    }
+
+    // 현재 노드 반환 메서드
+    public Node GetCurrentNode()
+    {
+        return currentNode;
+    }
+
+    // 현재 노드 설정 메서드
+    public void SetCurrentNode(Node node)
+    {
+        currentNode = node;
+    }
+
+    // 엘리트 클리어 여부 확인 메서드
+    public bool IsEliteCleared()
+    {
+        return currentNode != null && currentNode.Type == NodeType.Elite;
+    }
+
+    public string GetPlayTimeString()
+    {
+        return timeSpan.ToString(@"hh\:mm\:ss");
     }
 }

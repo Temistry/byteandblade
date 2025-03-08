@@ -105,6 +105,9 @@ namespace CCGKit
             gameInfo.Encounter = mapNode.Node.Encounter;
             gameInfo.PlayerCoordinate = mapNode.Node.Coordinate;
 
+            // 현재 노드 업데이트
+            GameManager.GetInstance().SetCurrentNode(mapNode.Node);
+
             Transition.LoadLevel("2.Game", 0.5f, Color.black);
         }
     }

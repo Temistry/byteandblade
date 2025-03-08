@@ -3,6 +3,7 @@
 // a copy of which is available at http://unity3d.com/company/legal/as_terms.
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace CCGKit
 {
@@ -23,14 +24,17 @@ namespace CCGKit
             if(null == cardWidget.Card)
                 return;
 
-            var id =  cardWidget.Card.Id;
             var gameInfo = FindFirstObjectByType<GameInfo>();
             if(gameInfo == null)
                 return;
             
-            gameInfo.SaveData.deckData.Deck.Add(id);
-            Canvas.gameObject.SetActive(false);
-            PopupCanvas.gameObject.SetActive(true);
+            if(SceneManager.GetActiveScene().name == "2.Game")
+            {
+                GameManager.GetInstance().AddCard(cardWidget.Card);
+                GameManager.GetInstance().Save();
+                Canvas.gameObject.SetActive(false);
+                PopupCanvas.gameObject.SetActive(true);
+            }
         }
     }
 }

@@ -32,6 +32,7 @@ namespace CCGKit
                 widget.GetComponent<CardWidget>().SetInfo(randomCards[i]);
                 widget.GetComponent<CardRewardWidget>().Canvas = Canvas;
                 widget.GetComponent<CardRewardWidget>().PopupCanvas = PopupCanvas;
+                widget.SetActive(true);
                 widgets.Add(widget);
             }
         }

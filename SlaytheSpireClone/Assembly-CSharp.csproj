@@ -210,6 +210,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\UIElementSound.cs" />
     <Compile Include="Assets\_Assets\Scripts\Lobby\UI_Mail.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Common\LanguageManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Scripts\Demo\PresetButtonManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\StatusTemplate.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Element\SliderManager.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\PlayAnimationAction.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Actions\EffectActionGroup.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Map\UI_GotoLobby.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\RandomExtensionMethods.cs" />
     <Compile Include="Assets\_Assets\Scripts\Lobby\UI_GetCharacterButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Configuration\PlayableCharacterConfiguration.cs" />
@@ -305,6 +307,7 @@
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\MainPanelManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Rendering\UIParticleRenderer.cs" />
     <Compile Include="Assets\_Assets\Scripts\Parser\Parser_MailList.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Game\GoldRewardSystem.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManager.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\HeroTemplate.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Panel\FriendsPanelManager.cs" />
@@ -335,6 +338,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Shaders\Fast UI Blur.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\Resources\Languages\english.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Shaders\UI Particle Additive.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -348,6 +352,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Shaders\Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\Resources\Languages\korean.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Shaders\UI Blur.shader" />

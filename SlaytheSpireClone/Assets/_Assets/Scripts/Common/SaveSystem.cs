@@ -323,27 +323,6 @@ public class SaveSystem : Singleton<SaveSystem>
         return saveData.characterData.currentCharacterIndex;
     }
 
-    public void Update()
-    {
-        #if UNITY_EDITOR
-        if(Input.GetKeyDown(KeyCode.F1))
-        {
-            SaveData saveData = LoadGameDataInternal();
-            saveData.progress.IsGetStartRelic = true;
-            SaveGameDataInternal(saveData);
-        }
-        if(Input.GetKeyDown(KeyCode.F2))
-        {
-            SaveData saveData = LoadGameDataInternal();
-            if(saveData.progress.IsGetStartRelic)
-            {
-                saveData.progress.IsGetStartRelic = false;
-                SaveGameDataInternal(saveData);
-            }
-        }
-        #endif
-    }
-
     // 저장된 캐릭터 인덱스 목록을 반환하는 함수 추가
     public List<SaveCharacterIndex> GetSavedCharacterIndexList()
     {

@@ -66,16 +66,4 @@ public class UI_CharacterRewardView : MonoBehaviour
         _characterDescriptionText.text = $"체력 : {herodata.MaxHealth}\n" +
                                           $"마나 : {herodata.Mana}";
     }
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        // 초기화 코드가 필요하면 여기에 추가
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // 업데이트 코드가 필요하면 여기에 추가
-    }
 }
