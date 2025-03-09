@@ -6,6 +6,10 @@ using System;
 public class UI_Option : MonoBehaviour
 {
     public Button backButton;
+
+    public Button englishButton;
+    public Button koreanButton;
+
     UI_MessageBox messageBox;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,5 +38,21 @@ public class UI_Option : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnEnglishButton()
+    {
+        LanguageManager.SetLanguage(LanguageManager.Language.English);
+        GameManager.GetInstance().SaveLanguageSetting(LanguageManager.Language.English);
+        englishButton.interactable = false;
+        koreanButton.interactable = true;
+    }
+
+    public void OnKoreanButton()
+    {
+        LanguageManager.SetLanguage(LanguageManager.Language.Korean);
+        GameManager.GetInstance().SaveLanguageSetting(LanguageManager.Language.Korean);
+        englishButton.interactable = true;
+        koreanButton.interactable = false;
     }
 }

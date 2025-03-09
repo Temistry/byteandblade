@@ -16,7 +16,18 @@ namespace CCGKit
     public class CardTemplate : ScriptableObject
     {
         public int Id;
-        public string Name;
+        [SerializeField]
+        private string _name; // 기본 이름 (영어)
+        public string Name 
+        { 
+            get 
+            {
+                // 한국어일 때는 번역된 이름 반환, 아니면 기본 이름 반환
+                return LanguageManager.GetCurrentLanguage() == LanguageManager.Language.Korean ? 
+                    LanguageManager.GetText(_name) : _name;
+            }
+            set { _name = value; }
+        }
         public int Cost;
         public Material Material;
         public Sprite Picture;

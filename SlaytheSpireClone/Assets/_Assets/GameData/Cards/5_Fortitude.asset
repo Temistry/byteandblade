@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: 5_Fortitude
   m_EditorClassIdentifier: 
   Id: 5
-  Name: Fortitude
+  _name: 
   Cost: 0
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: 21300000, guid: 9b8bfec8a8eb445bb9edaef32d0d62ae, type: 3}
   Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
+  Upgrade: {fileID: 0}
   Effects:
   - {fileID: 2091401291549307072}
 --- !u!114 &2091401291549307072

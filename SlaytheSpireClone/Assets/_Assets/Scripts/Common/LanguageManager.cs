@@ -93,90 +93,8 @@ public class LanguageManager : MonoBehaviour
             currentLanguage = (Language)PlayerPrefs.GetInt("Language");
         }
         
-        // 기본 단어 사전 초기화
-        InitializeDefaultDictionary();
-
+        // 언어 파일 로드 (하드코딩된 번역 대신 파일에서 로드)
         LoadAllLanguages();
-    }
-
-    /// <summary>
-    /// 기본 단어 사전을 초기화합니다.
-    /// </summary>
-    private void InitializeDefaultDictionary()
-    {
-        // 기본 단어 추가
-        AddWord("Deal", Language.English, "Deal");
-        AddWord("Deal", Language.Korean, "공격");
-        
-        AddWord("Damage", Language.English, "Damage");
-        AddWord("Damage", Language.Korean, "데미지");
-        
-        AddWord("Gain", Language.English, "Gain");
-        AddWord("Gain", Language.Korean, "획득");
-        
-        AddWord("Block", Language.English, "Block");
-        AddWord("Block", Language.Korean, "방어도");
-        
-        AddWord("Draw", Language.English, "Draw");
-        AddWord("Draw", Language.Korean, "뽑기");
-        
-        AddWord("Card", Language.English, "Card");
-        AddWord("Card", Language.Korean, "카드");
-        
-        AddWord("Cards", Language.English, "Cards");
-        AddWord("Cards", Language.Korean, "카드");
-
-        AddWord("Reset", Language.English, "Reset");
-        AddWord("Reset", Language.Korean, "초기화");
-
-        AddWord("Yes", Language.English, "Yes");
-        AddWord("Yes", Language.Korean, "예");
-
-        AddWord("No", Language.English, "No");
-        AddWord("No", Language.Korean, "아니오");
-
-        AddWord("Cancel", Language.English, "Cancel");
-        AddWord("Cancel", Language.Korean, "취소");
-
-        AddWord("OK", Language.English, "OK");
-        AddWord("OK", Language.Korean, "확인");
-
-        AddWord("Back", Language.English, "Back");
-        AddWord("Back", Language.Korean, "뒤로");
-
-        AddWord("Exit", Language.English, "Exit");
-        AddWord("Exit", Language.Korean, "종료");
-
-        AddWord("Save", Language.English, "Save");
-        AddWord("Save", Language.Korean, "저장");
-
-        AddWord("Load", Language.English, "Load");
-        AddWord("Load", Language.Korean, "불러오기");
-
-        AddWord("Option", Language.English, "Option");
-        AddWord("Option", Language.Korean, "설정");
-
-        AddWord("Help", Language.English, "Help");
-        AddWord("Help", Language.Korean, "도움말");
-
-        AddWord("About", Language.English, "About");
-        AddWord("About", Language.Korean, "정보");
-
-        AddWord("Language", Language.English, "Language");
-        AddWord("Language", Language.Korean, "언어");
-
-        AddWord("English", Language.English, "English");
-        AddWord("English", Language.Korean, "영어");
-
-        AddWord("Korean", Language.English, "Korean");
-        AddWord("Korean", Language.Korean, "한국어");
-
-        AddWord("Player", Language.English, "Player");
-        AddWord("Player", Language.Korean, "플레이어");
-
-        AddWord("Data", Language.English, "Data");
-        AddWord("Data", Language.Korean, "데이터");
-        
     }
 
     /// <summary>
@@ -222,9 +140,16 @@ public class LanguageManager : MonoBehaviour
         }
         else if (currentLanguage == Language.Korean)
         {
-            // 한국어 모드: 패턴에 따라 다르게 처리
-            List<object> translatedArgs = new List<object>();
+            // 한국어 모드: 먼저 전체 문구를 패턴으로 처리 시도
+            string fullPhrase = string.Join(" ", args);
+            string translatedPhrase = TranslateFullPhrase(fullPhrase);
+            if (translatedPhrase != fullPhrase)
+            {
+                return translatedPhrase;
+            }
             
+            // 개별 단어 번역
+            List<object> translatedArgs = new List<object>();
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] is string strArg)
@@ -258,34 +183,6 @@ public class LanguageManager : MonoBehaviour
                 }
             }
             
-            // 한국어 패턴 적용
-            if (args.Length == 3 && args[0] is string && args[2] is string)
-            {
-                // "Deal 14 Damage" -> "14 데미지로 공격"
-                if (args[0].ToString() == "Deal" && args[2].ToString() == "Damage")
-                {
-                    return $"{args[1]} {TranslateWord("Damage")}로 {TranslateWord("Deal")}";
-                }
-                // "Gain 5 Block" -> "5 방어도 획득"
-                else if (args[0].ToString() == "Gain" && args[2].ToString() == "Block")
-                {
-                    return $"{args[1]} {TranslateWord("Block")} {TranslateWord("Gain")}";
-                }
-                // "Draw 2 Cards" -> "카드 2장 뽑기"
-                else if (args[0].ToString() == "Draw" && (args[2].ToString() == "Card" || args[2].ToString() == "Cards"))
-                {
-                    return $"{TranslateWord("Card")} {args[1]}장 {TranslateWord("Draw")}";
-                }
-            }
-            
-            // 특수 패턴 처리 - 띄어쓰기가 있는 문구 전체를 키로 사용
-            string fullPhrase = string.Join(" ", args);
-            string translatedPhrase = TranslateFullPhrase(fullPhrase);
-            if (translatedPhrase != fullPhrase)
-            {
-                return translatedPhrase;
-            }
-            
             // 기본 패턴: 번역된 인자들을 공백으로 연결
             return string.Join(" ", translatedArgs);
         }
@@ -301,40 +198,59 @@ public class LanguageManager : MonoBehaviour
         // 전체 문구를 키로 사용하여 번역 시도
         string translatedPhrase = TranslateWord(phrase);
         
-        // 번역이 없으면 원본 반환
+        // 번역이 없으면 패턴 매칭 시도
         if (translatedPhrase == phrase)
         {
-            // 숫자 치환 패턴 처리
-            return TranslateWithNumberPattern(phrase);
+            // 숫자 패턴 처리
+            return TranslateWithPattern(phrase);
         }
         
         return translatedPhrase;
     }
 
     /// <summary>
-    /// 숫자가 포함된 패턴을 번역합니다.
+    /// 패턴을 사용하여 번역합니다.
     /// </summary>
-    public string TranslateWithNumberPattern(string phrase)
+    public string TranslateWithPattern(string phrase)
     {
-        // 숫자 추출을 위한 정규식
-        var regex = new System.Text.RegularExpressions.Regex(@"\d+");
-        var match = regex.Match(phrase);
+        // 1. 숫자 하나를 포함하는 패턴 (예: "Deal 14 Damage")
+        var regex1 = new System.Text.RegularExpressions.Regex(@"(\w+)\s+(\d+)\s+(\w+)");
+        var match1 = regex1.Match(phrase);
         
-        if (match.Success)
+        if (match1.Success)
         {
-            // 숫자 추출
-            string number = match.Value;
+            string action = match1.Groups[1].Value;
+            string number = match1.Groups[2].Value;
+            string target = match1.Groups[3].Value;
             
-            // 숫자를 제외한 패턴 생성 (숫자를 {0}으로 치환)
-            string pattern = regex.Replace(phrase, "{0}");
-            
-            // 패턴 번역 시도
+            string pattern = $"{action} {{0}} {target}";
             string translatedPattern = TranslateWord(pattern);
             
-            // 패턴이 번역되었으면 숫자 삽입
             if (translatedPattern != pattern)
             {
                 return string.Format(translatedPattern, number);
+            }
+        }
+        
+        // 2. 숫자 두 개를 포함하는 패턴 (예: "Deal 14 Damage and Gain 5 Block")
+        var regex2 = new System.Text.RegularExpressions.Regex(@"(\w+)\s+(\d+)\s+(\w+)\s+and\s+(\w+)\s+(\d+)\s+(\w+)");
+        var match2 = regex2.Match(phrase);
+        
+        if (match2.Success)
+        {
+            string action1 = match2.Groups[1].Value;
+            string number1 = match2.Groups[2].Value;
+            string target1 = match2.Groups[3].Value;
+            string action2 = match2.Groups[4].Value;
+            string number2 = match2.Groups[5].Value;
+            string target2 = match2.Groups[6].Value;
+            
+            string pattern = $"{action1} {{0}} {target1} and {action2} {{1}} {target2}";
+            string translatedPattern = TranslateWord(pattern);
+            
+            if (translatedPattern != pattern)
+            {
+                return string.Format(translatedPattern, number1, number2);
             }
         }
         
@@ -474,11 +390,28 @@ public class LanguageManager : MonoBehaviour
                 continue;
             
             string[] parts = line.Split(',');
-            if (parts.Length >= 2)
+            if (parts.Length >= 3)  // 한국어, 영어 모두 포함
             {
                 string key = parts[0].Trim();
-                string translation = parts[1].Trim();
-                AddWord(key, language, translation);
+                string koreanTranslation = parts[1].Trim();
+                string englishTranslation = parts[2].Trim();
+                
+                // 한국어 번역 추가
+                AddWord(key, Language.Korean, koreanTranslation);
+                
+                // 영어 번역 추가
+                AddWord(key, Language.English, englishTranslation);
+            }
+            else if (parts.Length >= 2)  // 한국어만 포함
+            {
+                string key = parts[0].Trim();
+                string koreanTranslation = parts[1].Trim();
+                
+                // 한국어 번역 추가
+                AddWord(key, Language.Korean, koreanTranslation);
+                
+                // 영어는 키 그대로 사용
+                AddWord(key, Language.English, key);
             }
         }
     }

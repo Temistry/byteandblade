@@ -215,12 +215,11 @@ public class UI_Deck : MonoBehaviour
             // 업그레이드 가능한가
             if (card.Upgrade == null)
             {
-                _MergeDescription.GetComponent<TextMeshProUGUI>().text = "업그레이드 가능한 카드가 없습니다.";
+                UpdateMergeDescription(false);
             }
             else
             {
-                _MergeDescription.GetComponent<TextMeshProUGUI>().text = "같은 카드가 10장 모일 경우 합성할 수 있습니다.\n\n" +
-                    "같은 카드의 수 : " + CardContents.FindAll(c => c.Id == card.Id).Count + " / " + Defines.MAX_UPGRADE_CARD_COUNT;
+                UpdateMergeDescription(true);
             }
         }
     }
@@ -253,8 +252,7 @@ public class UI_Deck : MonoBehaviour
             SameCard = card;
         }
 
-        _MergeDescription.GetComponent<TextMeshProUGUI>().text = "같은 카드가 10장 모일 경우 합성할 수 있습니다.\n\n" +
-            "같은 카드의 수 : " + count + " / " + Defines.MAX_UPGRADE_CARD_COUNT;
+        UpdateMergeDescription(true);
 
         return true;
     }
@@ -297,6 +295,13 @@ public class UI_Deck : MonoBehaviour
 
         // 카드 목록 생성
         RefreshCardUIList();
+    }
+
+    private void UpdateMergeDescription(bool hasUpgradeableCards)
+    {
+        _MergeDescription.GetComponent<TextMeshProUGUI>().text = hasUpgradeableCards ? 
+            LanguageManager.GetText("Merge description") : 
+            LanguageManager.GetText("No upgradeable cards");
     }
 }
 

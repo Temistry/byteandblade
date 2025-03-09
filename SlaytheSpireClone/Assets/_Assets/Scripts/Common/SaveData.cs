@@ -52,6 +52,7 @@ public class SaveData
     public DeckData deckData = new DeckData();
     public MailboxData mailbox = new MailboxData();
     public GameProgressData progress = new GameProgressData();
+    public LanguageManager.Language language = LanguageManager.Language.English;  // 언어 설정 추가
 }
 
 

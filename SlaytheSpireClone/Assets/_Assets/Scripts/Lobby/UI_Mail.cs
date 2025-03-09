@@ -27,7 +27,7 @@ public class UI_Mail : MonoBehaviour
         txt_MailTitle.text = title;
 
         this.isRead = isRead;
-        SetMailState(isRead);
+        UpdateMailState(isRead);
 
         ui_MessageBox = UI_MessageBox.CreateMessageBox(title, OnOKButtonClick, null);
         ui_MessageBox.SetMessage(content + "\n\n" + giftGold.ToString() + " Gold 지급");
@@ -35,11 +35,9 @@ public class UI_Mail : MonoBehaviour
         this.giftGold = giftGold;
     }
 
-    void SetMailState(bool isRead)
+    private void UpdateMailState(bool isRead)
     {
-        txt_MailState.text = isRead ? "읽음" : "읽지않음";
-        txt_MailState.color = isRead ? new Color(0.5f, 0.5f, 0.5f) : Color.white;
-        this.isRead = isRead;
+        txt_MailState.text = isRead ? LanguageManager.GetText("Read") : LanguageManager.GetText("Unread");
     }
 
     void OnOKButtonClick()
@@ -53,7 +51,7 @@ public class UI_Mail : MonoBehaviour
         GameManager.GetInstance().AddGold(giftGold);
 
         // 읽음 상태로 변경
-        SetMailState(true);
+        UpdateMailState(true);
     }
 
     public void OpenMail()

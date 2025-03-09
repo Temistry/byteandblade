@@ -36,7 +36,6 @@ public class UI_MainMenuController : MonoBehaviour
     
     GameObject CurrentCharacter; // 현재 캐릭터
 
-    string continueGameText = "이어하기";
     bool bLateOnceUpdate = false;
 
     void Start()
@@ -124,19 +123,20 @@ public class UI_MainMenuController : MonoBehaviour
     {
         if(!bLateOnceUpdate)
         {
-            if(GameManager.GetInstance().IsContinueGame())
-            {
-                continueGameText = "Continue";
-            }
-            else
-            {
-                continueGameText = "New Game";
-            }
-            ToolFunctions.FindChild<TextMeshProUGUI>(startGameButton.gameObject, "Title", true).text = continueGameText;
+            UpdateContinueButtonText();
         
             bLateOnceUpdate = true;
         }
        
+    }
+
+    private void UpdateContinueButtonText()
+    {
+        string continueGameText = GameManager.GetInstance().IsContinueGame() ? 
+            LanguageManager.GetText("Continue") : 
+            LanguageManager.GetText("New Game");
+            
+        ToolFunctions.FindChild<TextMeshProUGUI>(startGameButton.gameObject, "Title", true).text = continueGameText;
     }
 
     public void StartGame()

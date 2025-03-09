@@ -23,7 +23,7 @@ namespace CCGKit
 
         public void OnPlayerTurnBegan()
         {
-            text.text = "Player Turn";
+            ShowPlayerTurn();
             var seq = DOTween.Sequence();
             seq.Append(turnIndicator.GetComponent<RectTransform>().DOScale(0.5f, InAnimDuration));
             seq.AppendInterval(ShowcaseDuration);
@@ -32,11 +32,21 @@ namespace CCGKit
 
         public void OnEnemyTurnBegan()
         {
-            text.text = "Enemy Turn";
+            ShowEnemyTurn();
             var seq = DOTween.Sequence();
             seq.Append(turnIndicator.GetComponent<RectTransform>().DOScale(0.5f, InAnimDuration));
             seq.AppendInterval(ShowcaseDuration);
             seq.Append(turnIndicator.GetComponent<RectTransform>().DOScale(0.0f, OutAnimDuration));
+        }
+
+        private void ShowPlayerTurn()
+        {
+            text.text = LanguageManager.GetText("Player Turn");
+        }
+
+        private void ShowEnemyTurn()
+        {
+            text.text = LanguageManager.GetText("Enemy Turn");
         }
     }
 }

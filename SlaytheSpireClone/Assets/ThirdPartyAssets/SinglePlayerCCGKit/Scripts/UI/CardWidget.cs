@@ -37,14 +37,16 @@ namespace CCGKit
             Card = template;
 
             costText.text = template.Cost.ToString();
-            nameText.text = template.Name;
-            typeText.text = "Spell";
+            nameText.text = LanguageManager.GetText(template.Name);
+            typeText.text = LanguageManager.GetText("Spell");
+            
             var builder = new StringBuilder();
             foreach (var effect in template.Effects)
             {
-                builder.AppendFormat("{0}. ", effect.GetName());
+                string effectName = effect.GetName();
+                builder.AppendFormat("{0}. ", effectName);
             }
-            descriptionText.text = builder.ToString();
+            descriptionText.text = LanguageManager.GetText(builder.ToString());
             picture.sprite = template.Picture;
         }
 

@@ -866,6 +866,9 @@ public class GameManager : Singleton<GameManager>
                 playTime = saveSystem.LoadPlayTime();
                 timeSpan = TimeSpan.FromSeconds(playTime);
 
+                // 언어 설정 로드
+                LanguageManager.SetLanguage(playerData.language);
+
                 // 유저 데이터 로드
                 UpdateUserData();
 
@@ -914,5 +917,11 @@ public class GameManager : Singleton<GameManager>
     public string GetPlayTimeString()
     {
         return timeSpan.ToString(@"hh\:mm\:ss");
+    }
+
+    public void SaveLanguageSetting(LanguageManager.Language language)
+    {
+        playerData.language = language;
+        Save();
     }
 }

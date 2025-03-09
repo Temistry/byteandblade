@@ -73,14 +73,14 @@ public class UI_PlayPannel : MonoBehaviour
         nickNameText.text = nickName;
     }
 
-    void UpdateHealthText()
+    private void UpdateHealthText()
     {
-        healthText.text =  "HP " + GameManager.GetInstance().MaxHealth.ToString() + " / " + GameManager.GetInstance().Health.ToString();
+        healthText.text = $"{LanguageManager.GetText("HP")} {GameManager.GetInstance().Health}/{GameManager.GetInstance().MaxHealth}";
     }
 
-    void UpdateGoldText()
+    private void UpdateGoldText()
     {
-        goldText.text = GameManager.GetInstance().Gold.ToString() + "G";
+        goldText.text = $"{GameManager.GetInstance().Gold}{LanguageManager.GetText("Gold")}";
     }
 
     void UpdatePlayTimeText(string playTime)

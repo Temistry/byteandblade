@@ -93,18 +93,18 @@ namespace CCGKit
 
                 if (playerDied)
                 {
-                    endBattlePopup.SetDefeatText();
+                    endBattlePopup.ShowDefeat();
                     gameInfo.PlayerWonEncounter = false;
                 }
                 else
                 {
                     if(IsBossDefeated())
                     {
-                        endBattlePopup.SetBossVictoryText();
+                        endBattlePopup.ShowBossVictory();
                     }
                     else
                     {
-                        endBattlePopup.SetVictoryText();
+                        endBattlePopup.ShowVictory();
                     }
                     gameInfo.PlayerWonEncounter = true;
                 }

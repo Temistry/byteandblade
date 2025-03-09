@@ -65,12 +65,12 @@ public class UI_CharacterSelect : MonoBehaviour
             ToolFunctions.FindChild<Image>(CharacterList[(int)currentCharIndex], "ActiveCheck", true).gameObject.SetActive(true);
 
             // 체크표시 버튼 텍스트 변경
-            ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Disable";
+            UpdateActiveButtonText(true);
         }
         else
         {
             // 체크표시 버튼 텍스트 변경
-            ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = "Activate";
+            UpdateActiveButtonText(false);
         }
     }
 
@@ -130,5 +130,11 @@ public class UI_CharacterSelect : MonoBehaviour
     {
         Debug.Log("돌아가기 버튼 클릭됨");
         gameObject.SetActive(false);
+    }
+
+    private void UpdateActiveButtonText(bool isActive)
+    {
+        ToolFunctions.FindChild<TextMeshProUGUI>(ActiveButton.gameObject, "Text", true).text = 
+            isActive ? LanguageManager.GetText("Disable") : LanguageManager.GetText("Activate");
     }
 }

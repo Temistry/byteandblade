@@ -45,12 +45,7 @@ namespace CCGKit
 
         private CanvasGroup canvasGroup;
 
-        private const string VictoryText = "Victory";
-        private const string DefeatText = "Defeat";
-        private const string DefeatDescriptionText = "The dungeon run was too hard this time... better luck next time!";
         private const float FadeInTime = 0.4f;
-        private const string BossVictoryText = "Congratulations!";
-        private const string BossVictoryDescriptionText = "You have conquered the dungeon. Returning to the lobby...";
 
         private void Awake()
         {
@@ -64,28 +59,22 @@ namespace CCGKit
             canvasGroup.DOFade(1.0f, FadeInTime);
         }
 
-        public void SetVictoryText()
+        public void ShowVictory()
         {
-            titleText.text = VictoryText;
+            titleText.text = LanguageManager.GetText("Victory");
             descriptionText.text = string.Empty;
-            goHomeButton.gameObject.SetActive(false);
         }
 
-        public void SetDefeatText()
+        public void ShowDefeat()
         {
-            Destroy(rewardButton.gameObject);
-            titleText.text = DefeatText;
-            descriptionText.text = DefeatDescriptionText;
-            continueButton.gameObject.SetActive(false);
-            goHomeButton.gameObject.SetActive(true);
+            titleText.text = LanguageManager.GetText("Defeat");
+            descriptionText.text = LanguageManager.GetText("Dungeon defeat");
         }
 
-        public void SetBossVictoryText()
+        public void ShowBossVictory()
         {
-            titleText.text = BossVictoryText;
-            descriptionText.text = BossVictoryDescriptionText;
-            goHomeButton.gameObject.SetActive(true);
-            continueButton.gameObject.SetActive(false);
+            titleText.text = LanguageManager.GetText("Boss victory");
+            descriptionText.text = LanguageManager.GetText("Boss victory description");
         }
 
         public void OnGoHomeButtonPressed()
