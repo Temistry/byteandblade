@@ -38,15 +38,17 @@ namespace CCGKit
 
             costText.text = template.Cost.ToString();
             nameText.text = LanguageManager.GetText(template.Name);
-            typeText.text = LanguageManager.GetText("Spell");
+            typeText.text = LanguageManager.GetText(template.Type.name);
             
-            var builder = new StringBuilder();
+            string translateText = "";
             foreach (var effect in template.Effects)
             {
                 string effectName = effect.GetName();
+                var builder = new StringBuilder();
                 builder.AppendFormat("{0}. ", effectName);
+                translateText += LanguageManager.GetText(builder.ToString()) + ". ";
             }
-            descriptionText.text = LanguageManager.GetText(builder.ToString());
+            descriptionText.text = translateText;
             picture.sprite = template.Picture;
         }
 

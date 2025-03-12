@@ -15,7 +15,7 @@ namespace CCGKit
     {
         public override string GetName()
         {
-            return $"Clone {Value.ToString()} card And Add to Deck";
+            return $"Clone {Value.ToString()} card";
         }
 
         public override void Resolve(RuntimeCharacter instigator, RuntimeCharacter target)

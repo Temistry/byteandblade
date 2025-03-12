@@ -76,9 +76,9 @@ Draw {0} Card,카드 {0}장 뽑기,Draw {0} Card
 Heal {0} HP,체력 {0} 회복,Heal {0} HP
 Apply {0} Poison,독 {0} 부여,Apply {0} Poison
 Apply {0} Weak,약화 {0} 부여,Apply {0} Weak
-Apply {0} Vulnerable,취약 {0} 부여,Apply {0} Vulnerable
-Deal {0} Damage and Gain {1} Block,{0} 데미지로 공격하고 {1} 방어도를 획득합니다,Deal {0} Damage and Gain {1} Block
+Apply {0} Vulnerable,취약 {0} 부여,Apply {0} Vulnerable 
+Gain {0} Shield,{0}방어도를 획득합니다,Gain {0} Shield
 Apply {0} Strength,힘 {0} 부여,Apply {0} Strength
 Gain {0} HP, 체력 {0} 회복, Gain {0} HP
 Gain {0} Mana, 마나 {0} 회복, Gain {0} Mana
-Clone {0} card And Add to Deck. Deal {1} damage.,{1}만큼 공격 후 {0}장의 카드를 복사,Clone {0} card And Add to Deck. Deal {1} damage
+Clone {0} card,{0}장의 카드를 복사,Clone {0} card
