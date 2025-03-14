@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using System.Reflection;
 
 public class LanguageManager : MonoBehaviour
 {
@@ -133,34 +134,39 @@ public class LanguageManager : MonoBehaviour
         if (args == null || args.Length == 0)
             return string.Empty;
             
+        // 전체 문구 구성
+        string fullPhrase = string.Join(" ", args);
+        
+        // 1. 패턴 번역 먼저 시도
+        string patternTranslated = TranslateWithPattern(fullPhrase);
+        if (patternTranslated != fullPhrase)
+        {
+            return patternTranslated;
+        }
+        
+        // 2. 전체 문구 번역 시도
+        string phraseTranslated = TranslateFullPhrase(fullPhrase);
+        if (phraseTranslated != fullPhrase)
+        {
+            return phraseTranslated;
+        }
+        
+        // 3. 언어별 처리
         if (currentLanguage == Language.English)
         {
             // 영어 모드: 단순히 인자들을 공백으로 연결
-            return string.Join(" ", args);
+            return fullPhrase;
         }
         else if (currentLanguage == Language.Korean)
         {
-            // 한국어 모드: 먼저 전체 문구를 패턴으로 처리 시도
-            string fullPhrase = string.Join(" ", args);
-            string translatedPhrase = TranslateFullPhrase(fullPhrase);
-            if (translatedPhrase != fullPhrase)
-            {
-                return translatedPhrase;
-            }
-            
             // 개별 단어 번역
             List<object> translatedArgs = new List<object>();
             for (int i = 0; i < args.Length; i++)
             {
                 if (args[i] is string strArg)
                 {
-                    // 먼저 통번역이 가능한 문자인지 검사
-                    if (TranslateWord(strArg) != strArg)
-                    {
-                        translatedArgs.Add(TranslateWord(strArg));
-                    }
                     // 띄어쓰기가 있는 문자열인 경우 각 단어를 개별적으로 번역
-                    else if (strArg.Contains(" "))
+                    if (strArg.Contains(" "))
                     {
                         string[] words = strArg.Split(' ');
                         List<string> translatedWords = new List<string>();
@@ -183,11 +189,11 @@ public class LanguageManager : MonoBehaviour
                 }
             }
             
-            // 기본 패턴: 번역된 인자들을 공백으로 연결
+            // 번역된 인자들을 공백으로 연결
             return string.Join(" ", translatedArgs);
         }
         
-        return string.Join(" ", args);
+        return fullPhrase;
     }
 
     /// <summary>
@@ -196,16 +202,7 @@ public class LanguageManager : MonoBehaviour
     public string TranslateFullPhrase(string phrase)
     {
         // 전체 문구를 키로 사용하여 번역 시도
-        string translatedPhrase = TranslateWord(phrase);
-        
-        // 번역이 없으면 패턴 매칭 시도
-        if (translatedPhrase == phrase)
-        {
-            // 숫자 패턴 처리
-            return TranslateWithPattern(phrase);
-        }
-        
-        return translatedPhrase;
+        return TranslateWord(phrase);
     }
 
     /// <summary>
@@ -213,6 +210,56 @@ public class LanguageManager : MonoBehaviour
     /// </summary>
     public string TranslateWithPattern(string phrase)
     {
+        // 카드 효과 패턴 번역기 참조 오류 수정
+        // 직접 참조 대신 리플렉션을 사용하여 존재 여부 확인 후 호출
+        try {
+            // 여러 가능한 네임스페이스 시도
+            Type translatorType = null;
+            string[] possibleTypeNames = new[] {
+                "CardEffectPatternTranslator",
+                "Assets._Assets.Scripts.Editor.CardEffectPatternTranslator"
+            };
+            
+            foreach (var typeName in possibleTypeNames)
+            {
+                translatorType = Type.GetType(typeName);
+                if (translatorType != null) break;
+            }
+            
+            // Assembly에서 직접 검색 시도
+            if (translatorType == null)
+            {
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    foreach (var typeName in possibleTypeNames)
+                    {
+                        translatorType = assembly.GetType(typeName);
+                        if (translatorType != null) break;
+                    }
+                    if (translatorType != null) break;
+                }
+            }
+            
+            if (translatorType != null)
+            {
+                // 메서드 정보 가져오기
+                var method = translatorType.GetMethod("TranslateEffectToKorean", 
+                    BindingFlags.Public | BindingFlags.Static);
+                if (method != null)
+                {
+                    // 메서드 호출
+                    var result = method.Invoke(null, new object[] { phrase }) as string;
+                    if (result != null && result != phrase)
+                    {
+                        return result;
+                    }
+                }
+            }
+        }
+        catch (Exception) {
+            // 리플렉션 호출 실패 시 무시하고 계속 진행
+        }
+        
         // 1. 숫자 하나를 포함하는 패턴 (예: "Deal 14 Damage")
         var regex1 = new System.Text.RegularExpressions.Regex(@"(\w+)\s+(\d+)\s+(\w+)");
         var match1 = regex1.Match(phrase);

@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: CardData
+  m_EditorClassIdentifier: 
+  m_GroupName: CardData
+  m_GUID: 9b31175e423b37646b2d3d970cc3e335
+  m_SerializeEntries:
+  - m_GUID: 0e572ee06be3b3a42926b094a725ab29
+    m_Address: Assets/_Assets/GameData/Cards/4_PowerUp.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1ad7ba1cdb9fb4c4a8b9fd77b27608f2
+    m_Address: Assets/_Assets/GameData/Cards/9_Anger.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1faaff291ce1afe43bdef7ce3853ffad
+    m_Address: Assets/_Assets/GameData/Cards/5_Fortitude.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 266b21abd0cd86e4ba04dff654463b26
+    m_Address: Assets/_Assets/GameData/Cards/7_ToxicFogVirus.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2c19f93fad82ced4b82f18b94ca74f44
+    m_Address: Assets/_Assets/GameData/Cards/6_Inspiration.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2dca268c20d9c4a44a9f5b3148fc14ec
+    m_Address: Assets/_Assets/GameData/Cards/11_Sword_x3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 37412b0f681ac4b4b944be78539a8aeb
+    m_Address: Assets/_Assets/GameData/Cards/12_Anger_x2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 61cf76ba9c35b414fa933268fbf75d57
+    m_Address: Assets/_Assets/GameData/Cards/13_Shieldx2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6814b68881e4e6544bb1d8aaf9e6e1ed
+    m_Address: Assets/_Assets/GameData/Cards/3_Potion.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7dacaec3cec56c9449ee97a1c3e612b6
+    m_Address: Assets/_Assets/GameData/Cards/8_Sword_x2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ea28eeaea6cc0c4cb26f4cce2f64910
+    m_Address: Assets/_Assets/GameData/Cards/1_Sword.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 943b91cff3d2aeb40b55b9aafe9fc9a6
+    m_Address: Assets/_Assets/GameData/Cards/10_CriticalAttack.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a599026465324974196f9e860e4be4c8
+    m_Address: Assets/_Assets/GameData/Cards/2_Shield.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c8795941f3506c64f9253426133986f2
+    m_Address: Assets/_Assets/GameData/Cards/15_FullCharge.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d23ebebf5b435294a9a3fe0b4470f8c5
+    m_Address: Assets/_Assets/GameData/Cards/14_Offering.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9828f5947ca84b640acadf391ff5759a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: b925e82969a6f4647827ac0f0c6237b8, type: 2}
+    - {fileID: 11400000, guid: 04656f452fde43548aa146f81b5c782b, type: 2}

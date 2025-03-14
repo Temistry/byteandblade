@@ -3,7 +3,7 @@ using UnityEngine;
 public class Singleton<T> : MonoBehaviour where T : UnityEngine.Object
 {
     private static T instance;
-    public void Awake()
+    public virtual void Awake()
     {
         if(instance != null)
         {

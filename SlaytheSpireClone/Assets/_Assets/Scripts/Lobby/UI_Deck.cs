@@ -143,14 +143,7 @@ public class UI_Deck : MonoBehaviour
             // 카드 목록이 없으면 캐릭터 카드목록만 표시
             // 캐릭터의 기본 카드 목록 불러오기
             var heroTemplate = GameManager.GetInstance().GetCurrentCharacterTemplate();
-            if (heroTemplate != null && heroTemplate.StartingDeck != null)
-            {
-                foreach (CardLibraryEntry entry in heroTemplate.StartingDeck.Entries)
-                {
-                    cardListContents.Add(entry.Card);
-                }
-            }
-            else
+            if (heroTemplate == null)
             {
                 // 기본 캐릭터도 없다면 카드 목록 없음
                 return;

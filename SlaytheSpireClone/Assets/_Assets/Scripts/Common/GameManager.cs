@@ -149,7 +149,7 @@ public class GameManager : Singleton<GameManager>
                     playerDeck.Clear();
 
                     // 저장된 덱 데이터가 있으면 로드
-                    if (deckData != null && deckData.Deck != null && deckData.Deck.Count > 0)
+                    if (NickName != "")
                     {
                         foreach (var id in deckData.Deck)
                         {

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 9_Anger
   m_EditorClassIdentifier: 
   Id: 9
-  _name: 
+  _name: Anger
   Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: -1470961829, guid: 82a17ffec46130b45afcaf84167ca6e2, type: 3}

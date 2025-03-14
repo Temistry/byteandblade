@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Deck
   Entries:
+  - Card: {fileID: 11400000, guid: d23ebebf5b435294a9a3fe0b4470f8c5, type: 2}
+    NumCopies: 1
   - Card: {fileID: 11400000, guid: 7ea28eeaea6cc0c4cb26f4cce2f64910, type: 2}
     NumCopies: 1
   - Card: {fileID: 11400000, guid: a599026465324974196f9e860e4be4c8, type: 2}
@@ -21,4 +23,6 @@ MonoBehaviour:
   - Card: {fileID: 11400000, guid: 6814b68881e4e6544bb1d8aaf9e6e1ed, type: 2}
     NumCopies: 1
   - Card: {fileID: 11400000, guid: 1faaff291ce1afe43bdef7ce3853ffad, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: c8795941f3506c64f9253426133986f2, type: 2}
     NumCopies: 1

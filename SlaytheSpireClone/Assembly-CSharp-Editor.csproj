@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\HeroesTab.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Loading Screen Studio\Editor\Scripts\ToolsMenu.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Editor\CardEffectPatternTranslator.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Editor\Scripts\ToolsMenu.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\SinglePlayerCcgKitEditor.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\ResetPlayerProgression.cs" />
@@ -73,8 +74,10 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\CardsTab.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\ActionsTab.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\CardLibrariesTab.cs" />
+    <Compile Include="Assets\Editor\CardDataCopier.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\BuildContent.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Editor\Scripts\InitShiftUI.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Editor\CardTranslationGenerator.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\EnemiesTab.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Editor\EditorTab.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Editor\Scripts\UIManagerEditor.cs" />

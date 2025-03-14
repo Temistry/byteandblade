@@ -1,6 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-622422793570048790
+--- !u!114 &-5176035776580168933
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccda36b344e3440f0a29f392946bfadf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions: []
+  TargetActions: []
+  Target: 1
+  Value: 10
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4065f389b584708aa1b58cf25db28b, type: 3}
+  m_Name: 15_FullCharge
+  m_EditorClassIdentifier: 
+  Id: 15
+  _name: FullCharge
+  Cost: 1
+  Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  Picture: {fileID: 2655488045262296915, guid: cf51ac317ea208a4fb3e32c8ba29bc36, type: 3}
+  Type: {fileID: 11400000, guid: 5706228d194fe4efc9c75176d0986ca6, type: 2}
+  Upgrade: {fileID: 0}
+  Effects:
+  - {fileID: 0}
+  - {fileID: 3721009905981823706}
+--- !u!114 &3721009905981823706
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12,31 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c6cc1e3715bf47e4ac4b5e000e9c445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SourceActions:
-  - Group: {fileID: 11400000, guid: 87c69e1436ad24f139f71fb8b3d5a317, type: 2}
-  TargetActions:
-  - Group: {fileID: 11400000, guid: 94a1649b897694424a73f09fe91cd518, type: 2}
-  - Group: {fileID: 11400000, guid: adcfc4fb01ea74122bd92a230f003318, type: 2}
+  SourceActions: []
+  TargetActions: []
   Target: 1
-  Value: 14
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be4065f389b584708aa1b58cf25db28b, type: 3}
-  m_Name: 8_Sword_x2
-  m_EditorClassIdentifier: 
-  Id: 8
-  _name: Sword_x2
-  Cost: 1
-  Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  Picture: {fileID: 21300000, guid: c34bd77facf784754b39c071c8d81187, type: 3}
-  Type: {fileID: 11400000, guid: 5706228d194fe4efc9c75176d0986ca6, type: 2}
-  Upgrade: {fileID: 11400000, guid: 2dca268c20d9c4a44a9f5b3148fc14ec, type: 2}
-  Effects:
-  - {fileID: -622422793570048790}
+  Value: 10
