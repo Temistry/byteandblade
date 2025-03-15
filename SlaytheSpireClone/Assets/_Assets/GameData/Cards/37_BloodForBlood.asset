@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4065f389b584708aa1b58cf25db28b, type: 3}
+  m_Name: 37_BloodForBlood
+  m_EditorClassIdentifier: 
+  Id: 37
+  _name: BloodForBlood
+  Cost: 4
+  Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  Picture: {fileID: -5873285660149789354, guid: ee3f0bf9149ff5045ab067515c7a1fb4,
+    type: 3}
+  Type: {fileID: 11400000, guid: 5706228d194fe4efc9c75176d0986ca6, type: 2}
+  Upgrade: {fileID: 0}
+  Effects:
+  - {fileID: 7727122735955841027}
+  - {fileID: 2864787867217829361}
+--- !u!114 &2864787867217829361
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6cc1e3715bf47e4ac4b5e000e9c445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions:
+  - Group: {fileID: 11400000, guid: adcfc4fb01ea74122bd92a230f003318, type: 2}
+  TargetActions: []
+  Target: 0
+  Value: 10
+--- !u!114 &7727122735955841027
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6cc1e3715bf47e4ac4b5e000e9c445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions:
+  - Group: {fileID: 11400000, guid: 87c69e1436ad24f139f71fb8b3d5a317, type: 2}
+  TargetActions:
+  - Group: {fileID: 11400000, guid: adcfc4fb01ea74122bd92a230f003318, type: 2}
+  Target: 1
+  Value: 20

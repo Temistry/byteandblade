@@ -16,7 +16,8 @@ MonoBehaviour:
   _name: ToxicFogVirus
   Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  Picture: {fileID: 21300000, guid: 9b8bfec8a8eb445bb9edaef32d0d62ae, type: 3}
+  Picture: {fileID: -8625906013721215279, guid: 9bda9d54911ef8c49931359d5f953b9d,
+    type: 3}
   Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
   Upgrade: {fileID: 0}
   Effects:

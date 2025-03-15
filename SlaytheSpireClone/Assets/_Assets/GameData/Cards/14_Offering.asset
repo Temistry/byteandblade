@@ -63,11 +63,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 14
   _name: Offering
-  Cost: 0
+  Cost: 2
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: 21300000, guid: 30743e565e110b943b2397acfad648d5, type: 3}
   Type: {fileID: 11400000, guid: 9c69fd0030dd74af2965de4ca9e2c7dc, type: 2}
-  Upgrade: {fileID: 0}
+  Upgrade: {fileID: 11400000, guid: 0616b1fdae36c5a4286c043dd02b43fd, type: 2}
   Effects:
   - {fileID: -5176035776580168933}
   - {fileID: -5082242888375626998}

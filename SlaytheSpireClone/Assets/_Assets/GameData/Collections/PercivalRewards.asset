@@ -14,11 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Rewards
   Entries:
+  - Card: {fileID: 11400000, guid: 6814b68881e4e6544bb1d8aaf9e6e1ed, type: 2}
+    NumCopies: 3
+  - Card: {fileID: 11400000, guid: 2c19f93fad82ced4b82f18b94ca74f44, type: 2}
+    NumCopies: 1
   - Card: {fileID: 11400000, guid: 7ea28eeaea6cc0c4cb26f4cce2f64910, type: 2}
     NumCopies: 1
+  - Card: {fileID: 11400000, guid: 25e52947e415bbe4e972a08aa8dcaee2, type: 2}
+    NumCopies: 1
   - Card: {fileID: 11400000, guid: a599026465324974196f9e860e4be4c8, type: 2}
+    NumCopies: 2
+  - Card: {fileID: 11400000, guid: cc6f7c0dda2a5cd4fb049d6ec9d6f37f, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: 6814b68881e4e6544bb1d8aaf9e6e1ed, type: 2}
+  - Card: {fileID: 11400000, guid: 4926c70466663da4f989935ea8e7a7f5, type: 2}
     NumCopies: 1
-  - Card: {fileID: 11400000, guid: 0e572ee06be3b3a42926b094a725ab29, type: 2}
+  - Card: {fileID: 11400000, guid: a132d7f4e1d34d245b8c11facce96548, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: 87cdc5a0a0d78b04e88f3ec8ac4249e0, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: 1faaff291ce1afe43bdef7ce3853ffad, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: d1b981195d345e9479649528f5c450a7, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: 7b71a079227d6a54aa85fb0d552086fa, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: 16d370be4e5212c4fb182c8be84e2ef4, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: 266b21abd0cd86e4ba04dff654463b26, type: 2}
+    NumCopies: 1
+  - Card: {fileID: 11400000, guid: d23ebebf5b435294a9a3fe0b4470f8c5, type: 2}
     NumCopies: 1

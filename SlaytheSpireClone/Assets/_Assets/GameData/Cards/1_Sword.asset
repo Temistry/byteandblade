@@ -35,7 +35,7 @@ MonoBehaviour:
   _name: Sword
   Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  Picture: {fileID: 21300000, guid: c34bd77facf784754b39c071c8d81187, type: 3}
+  Picture: {fileID: 712035800519618848, guid: d01e5d4fdbf92a54c8a426c10db1f9d8, type: 3}
   Type: {fileID: 11400000, guid: 5706228d194fe4efc9c75176d0986ca6, type: 2}
   Upgrade: {fileID: 11400000, guid: 7dacaec3cec56c9449ee97a1c3e612b6, type: 2}
   Effects:

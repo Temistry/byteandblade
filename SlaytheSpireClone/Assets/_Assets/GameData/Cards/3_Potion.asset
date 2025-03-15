@@ -16,7 +16,7 @@ MonoBehaviour:
   - Group: {fileID: 11400000, guid: 912ae48835d3e4174a03d88784134633, type: 2}
   TargetActions: []
   Target: 0
-  Value: 3
+  Value: 2
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,7 +33,8 @@ MonoBehaviour:
   _name: Potion
   Cost: 2
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  Picture: {fileID: 21300000, guid: 7598aa95320a94a509a76de3d47aa87e, type: 3}
+  Picture: {fileID: -4456225766891094810, guid: 4b942c455284daa429a77bdebadaeaff,
+    type: 3}
   Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
   Upgrade: {fileID: 0}
   Effects:

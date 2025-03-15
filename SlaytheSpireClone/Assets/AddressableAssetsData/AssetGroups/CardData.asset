@@ -15,8 +15,32 @@ MonoBehaviour:
   m_GroupName: CardData
   m_GUID: 9b31175e423b37646b2d3d970cc3e335
   m_SerializeEntries:
+  - m_GUID: 0616b1fdae36c5a4286c043dd02b43fd
+    m_Address: Assets/_Assets/GameData/Cards/40_Offering x2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cb67ecdbe7d0cd4b99ab87082eb55d1
+    m_Address: Assets/_Assets/GameData/Cards/24_Shockwave.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 0e572ee06be3b3a42926b094a725ab29
     m_Address: Assets/_Assets/GameData/Cards/4_PowerUp.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16d370be4e5212c4fb182c8be84e2ef4
+    m_Address: Assets/_Assets/GameData/Cards/16_Immolate.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 180a8547c551d6a4489f88f2648ddb94
+    m_Address: Assets/_Assets/GameData/Cards/38_FullCharge x2.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -33,8 +57,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 21c0b5d686255b241aaa73da6be6afb1
+    m_Address: Assets/_Assets/GameData/Cards/31_Bloodletting.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 25e52947e415bbe4e972a08aa8dcaee2
+    m_Address: Assets/_Assets/GameData/Cards/15_FullCharge.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 266b21abd0cd86e4ba04dff654463b26
     m_Address: Assets/_Assets/GameData/Cards/7_ToxicFogVirus.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 28cb63cc7751fbd4fa18969e3f611d1f
+    m_Address: Assets/_Assets/GameData/Cards/20_PowerOverwhelming.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -51,8 +93,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3035c8feb59d3a44d870a30533cd03ab
+    m_Address: Assets/_Assets/GameData/Cards/29_Burning.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 37412b0f681ac4b4b944be78539a8aeb
     m_Address: Assets/_Assets/GameData/Cards/12_Anger_x2.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4587902784d7daf45b8f2d477eddbdb2
+    m_Address: Assets/_Assets/GameData/Cards/23_Trance.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4926c70466663da4f989935ea8e7a7f5
+    m_Address: Assets/_Assets/GameData/Cards/34_ReadyBattle.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -69,6 +129,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b71a079227d6a54aa85fb0d552086fa
+    m_Address: Assets/_Assets/GameData/Cards/30_BarelySafe.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7dacaec3cec56c9449ee97a1c3e612b6
     m_Address: Assets/_Assets/GameData/Cards/8_Sword_x2.asset
     m_ReadOnly: 0
@@ -81,8 +147,38 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83161be181a72be4f9fa16068f74b26d
+    m_Address: Assets/_Assets/GameData/Cards/26_FlameBarrier.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 83d633b4f42ed9840bcf9f2370435f68
+    m_Address: Assets/_Assets/GameData/Cards/17_Corruption.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87cdc5a0a0d78b04e88f3ec8ac4249e0
+    m_Address: Assets/_Assets/GameData/Cards/37_BloodForBlood.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8b6cea8fa2443e14892c108f08c191e4
+    m_Address: Assets/_Assets/GameData/Cards/27_KeyboardShot.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 943b91cff3d2aeb40b55b9aafe9fc9a6
     m_Address: Assets/_Assets/GameData/Cards/10_CriticalAttack.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a132d7f4e1d34d245b8c11facce96548
+    m_Address: Assets/_Assets/GameData/Cards/28_SearchWeakness.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -93,14 +189,86 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c8795941f3506c64f9253426133986f2
-    m_Address: Assets/_Assets/GameData/Cards/15_FullCharge.asset
+  - m_GUID: a9469429531a41c4784b154c9d2075b6
+    m_Address: Assets/_Assets/GameData/Cards/42_Immolate x3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b78f486efd9a1de419a6220bcf8ea9c7
+    m_Address: Assets/_Assets/GameData/Cards/35_Inflame.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bbd99c9731bace243a818f4a07e06d6d
+    m_Address: Assets/_Assets/GameData/Cards/43_Immolate x4.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bc84d90838ab2a440ac1265b99f25e0d
+    m_Address: Assets/_Assets/GameData/Cards/36_RightStraight.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cc6f7c0dda2a5cd4fb049d6ec9d6f37f
+    m_Address: Assets/_Assets/GameData/Cards/18_Disarm.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1b981195d345e9479649528f5c450a7
+    m_Address: Assets/_Assets/GameData/Cards/32_Barricade.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d23ebebf5b435294a9a3fe0b4470f8c5
     m_Address: Assets/_Assets/GameData/Cards/14_Offering.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2ec54ed3f6942746be7e2ed089ecda1
+    m_Address: Assets/_Assets/GameData/Cards/39_FullCharge x3.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d7de33e70c8b40143a688dbd303abf63
+    m_Address: Assets/_Assets/GameData/Cards/22_Deflect.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df47e36cfc5f3514eb03761ce55f03dd
+    m_Address: Assets/_Assets/GameData/Cards/19_NoPain.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e4a1e7f914b5c7241a5a733f5855b805
+    m_Address: Assets/_Assets/GameData/Cards/33_Brutality.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ed6791f25e2af704482cb60b33e3babf
+    m_Address: Assets/_Assets/GameData/Cards/21_DarkEmbrace.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f301cc97a6ba2a44ea41599c48ef6f93
+    m_Address: Assets/_Assets/GameData/Cards/25_Reaper.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f62c778a848a5a242b8ce2b2a2d7f3d7
+    m_Address: Assets/_Assets/GameData/Cards/41_Immolate x2.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData

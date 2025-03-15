@@ -45,7 +45,7 @@ namespace CCGKit
             {
                 string effectName = effect.GetName();
                 var builder = new StringBuilder();
-                builder.AppendFormat("{0}. ", effectName);
+                builder.AppendFormat("{0}", effectName);
                 translateText += LanguageManager.GetText(builder.ToString()) + ". ";
             }
             descriptionText.text = translateText;

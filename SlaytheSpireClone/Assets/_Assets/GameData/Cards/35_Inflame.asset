@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8265195716285348306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcfe3081add0a49c39d2ea2fa53f313d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions:
+  - Group: {fileID: 11400000, guid: 87c69e1436ad24f139f71fb8b3d5a317, type: 2}
+  TargetActions: []
+  Target: 0
+  Value: 2
+  Status: {fileID: 11400000, guid: 71f3613cdeac64275abdc18725b617ae, type: 2}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be4065f389b584708aa1b58cf25db28b, type: 3}
+  m_Name: 35_Inflame
+  m_EditorClassIdentifier: 
+  Id: 35
+  _name: Inflame
+  Cost: 1
+  Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  Picture: {fileID: -6932747087132080230, guid: b7fd40c11c5792e47bf6527d693ecc4e,
+    type: 3}
+  Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
+  Upgrade: {fileID: 0}
+  Effects:
+  - {fileID: -8265195716285348306}

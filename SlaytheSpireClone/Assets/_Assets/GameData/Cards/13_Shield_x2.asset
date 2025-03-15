@@ -16,7 +16,7 @@ MonoBehaviour:
   - Group: {fileID: 11400000, guid: 049bc2a9071db46039d35d06ed1251b7, type: 2}
   TargetActions: []
   Target: 0
-  Value: 100
+  Value: 4
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33,7 +33,8 @@ MonoBehaviour:
   _name: Shield_x2
   Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  Picture: {fileID: 21300000, guid: 9b0fd2da10f404ed6973b1a2a9aa9dc2, type: 3}
+  Picture: {fileID: -2546329573739116512, guid: 04dbcab6b0d4fac49a631344e4399b21,
+    type: 3}
   Type: {fileID: 11400000, guid: 9c69fd0030dd74af2965de4ca9e2c7dc, type: 2}
   Upgrade: {fileID: 0}
   Effects:

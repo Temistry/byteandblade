@@ -46,7 +46,7 @@ Merge description,같은 카드가 10장 모일 경우 합성할 수 있습니�
 New Game,새 게임,New Game
 No upgradeable cards,업그레이드 가능한 카드가 없습니다,No upgradeable cards
 Player Turn,플레이어 턴,Player Turn
-Read,읽음,Read
+Read,새 카드 20,New Card 20
 reset player data?,플레이어 데이터를 초기화하시겠습니까?,Reset player data?
 Unread,읽지않음,Unread
 Victory,승리,Victory
@@ -55,8 +55,81 @@ Victory,승리,Victory
 Spell,주문,Spell
 
 # 카드 이름들
+Immolate x4,새 카드 29,Immolate x3 Copy
+Immolate x3,새 카드 28,Immolate x2 Copy
+Immolate x2,새 카드 27,Immolate Copy
+Offering x2,새 카드 26,Offering Copy
+FullCharge x3,새 카드 25,FullCharge x2 Copy
+FullCharge x2,새 카드 24,FullCharge Copy
+Anger,분노,Anger
+Anger_x2,극도의 분노,Intense Anger
+BarelySafe,아슬아슬,Barely Safe
+Barricade,바리케이드,Barricade
+BloodForBlood,피에는피,Blood for Blood
+Bloodletting,선혈,Bloodletting
+Brutality,잔혹함,Brutality
+Burning,불타오르네,Burning
+Corruption,오염,Corruption
+CriticalAttack,치명타,Critical Attack
+DarkEmbrace,어둠잠식,Dark Embrace
+Deflect,흘려내기,Deflect
+Disarm,무장해제,Disarm
+FlameBarrier,화염장벽,Flame Barrier
+Fortitude,인내,Fortitude
+FullCharge,충전100%,FullCharge
+Immolate,부동자세,Immolate
+Inflame,화염,InFlame
+Inspiration,영감,Inspiration
+KeyboardShot,키보드샷건,Keyboard Shot
+NoPain,무통,No Pain
+Offering,제물,Offering
+Potion,회복,Potion
+PowerOverwhelming,압도적 힘,Power Overwhelming
+PowerUp,힘 증가,PowerUp
+ReadyBattle,전투준비,Ready Battle
+Reaper,학살자,Reaper
+RightStraight,스트레이트펀치,Right Straight
+SearchWeakness,약점 탐색,Search Weakness
+Shield,방패,Shield
+Shield_x2,2단 방패,Shield_x2
+Shockwave,충격파,Shockwave
+Sword,검,Sword
+Sword_x2,이중 검,Double Sword
+Sword_x3,삼중 검,Triple Sword
+ToxicFogVirus,바이러스,Virus
+Trance,집중,Trance
 
 # 효과 이름들
+Apply 1 Poison,Apply 1 Poison,Apply 1 Poison
+Apply 1 Strength,Apply 1 Strength,Apply 1 Strength
+Apply 1 Weak,Apply 1 Weak,Apply 1 Weak
+Apply 2 Poison,Apply 2 Poison,Apply 2 Poison
+Apply 2 Strength,Apply 2 Strength,Apply 2 Strength
+Apply 2 Weak,Apply 2 Weak,Apply 2 Weak
+Clone 1 card,Clone 1 card,Clone 1 card
+Deal 1 damage,Deal 1 damage,Deal 1 damage
+Deal 10 damage,Deal 10 damage,Deal 10 damage
+Deal 13 damage,Deal 13 damage,Deal 13 damage
+Deal 15 damage,Deal 15 damage,Deal 15 damage
+Deal 20 damage,Deal 20 damage,Deal 20 damage
+Deal 3 damage,Deal 3 damage,Deal 3 damage
+Deal 4 damage,Deal 4 damage,Deal 4 damage
+Deal 50 damage,Deal 50 damage,Deal 50 damage
+Deal 6 damage,Deal 6 damage,Deal 6 damage
+Deal 9 damage,Deal 9 damage,Deal 9 damage
+Draw 1 cards,Draw 1 cards,Draw 1 cards
+Draw 2 cards,Draw 2 cards,Draw 2 cards
+Draw 3 cards,Draw 3 cards,Draw 3 cards
+Gain 1 HP,Gain 1 HP,Gain 1 HP
+Gain 1 mana,Gain 1 mana,Gain 1 mana
+Gain 10 Shield,Gain 10 Shield,Gain 10 Shield
+Gain 100 Shield,Gain 100 Shield,Gain 100 Shield
+Gain 2 mana,Gain 2 mana,Gain 2 mana
+Gain 20 Shield,Gain 20 Shield,Gain 20 Shield
+Gain 3 HP,Gain 3 HP,Gain 3 HP
+Gain 3 Shield,Gain 3 Shield,Gain 3 Shield
+Gain 5 Shield,Gain 5 Shield,Gain 5 Shield
+Gain 7 Shield,Gain 7 Shield,Gain 7 Shield
 
 # 패턴 번역
 Apply {0} Poison,독 {0} 부여,Apply {0} Poison
@@ -67,6 +140,7 @@ Clone {0} card,{0}장의 카드를 복사,Clone {0} card
 Deal {0} damage,{0} 데미지로 공격,Deal {0} Damage
 Draw {0} card,카드 {0}장 뽑기,Draw {0} Card
 Draw {0} Card,카드 {0}장 뽑기,Draw {0} Card
+Draw {0} cards,카드 {0}장 뽑기,Draw {0} Card
 Draw {0} Cards,카드 {0}장 뽑기,Draw {0} Cards
 Gain {0} HP,체력 {0} 회복,Gain {0} HP
 Gain {0} mana,마나 {0} 회복,Gain {0} mana
@@ -75,17 +149,8 @@ Gain {0} Shield,{0} 방어도 획득,Gain {0} Shield
 Heal {0} HP,체력 {0} 회복,Heal {0} HP
 
 # 기타 번역
-Anger,분노,Anger
-Anger_x2,극도의 분노,Intense Anger
-CriticalAttack,치명타,Critical Attack
-Draw {0} cards,카드 {0}장 뽑기,Draw {0} Card
-Fortitude,인내,Fortitude
-Inspiration,영감,Inspiration
+cards,카드,Card
 MagicBook,마법서,Magic Book
-Potion,물약,Potion
-Shield,방패,Shield
+mana,마나,Mana
 Shieldx2,이중 방패,Double Shield
-Sword,검,Sword
-Sword_x2,이중 검,Double Sword
-Sword_x3,삼중 검,Triple Sword
 ToxicFog,독안개,Toxic Fog

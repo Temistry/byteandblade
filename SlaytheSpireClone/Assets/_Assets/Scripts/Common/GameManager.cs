@@ -10,6 +10,7 @@ using CCGKit;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Linq;
+using System.Reflection;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -780,6 +781,8 @@ public class GameManager : Singleton<GameManager>
         if (!characterData.SaveCharacterIndexList.Contains(SaveCharacterIndex.Galahad))
         {
             characterData.SaveCharacterIndexList.Add(SaveCharacterIndex.Galahad);
+            // 기본 캐릭터의 기본 덱 추가
+            AddDefaultDeckForCharacter(SaveCharacterIndex.Galahad);
         }
 
         // 새 캐릭터 추가
@@ -787,7 +790,130 @@ public class GameManager : Singleton<GameManager>
             !characterData.SaveCharacterIndexList.Contains(characterIndex))
         {
             characterData.SaveCharacterIndexList.Add(characterIndex);
+            // 새 캐릭터의 기본 덱 추가
+            AddDefaultDeckForCharacter(characterIndex);
         }
+    }
+
+    /// <summary>
+    /// 캐릭터별 기본 덱을 추가합니다.
+    /// </summary>
+    private void AddDefaultDeckForCharacter(SaveCharacterIndex characterIndex)
+    {
+        // deckData.Deck이 null인 경우 초기화
+        if (deckData.Deck == null)
+        {
+            deckData.Deck = new List<int>();
+        }
+        
+        // playerDeck이 null인 경우 초기화
+        if (playerDeck == null)
+        {
+            playerDeck = new List<CardTemplate>();
+        }
+        
+        // 캐릭터 템플릿에서 기본 덱 가져오기
+        try
+        {
+            var characterTemplateList = Parser_CharacterList.GetInstance()?.AllcharacterTemplateList;
+            if (characterTemplateList != null && characterTemplateList.Count > (int)characterIndex && (int)characterIndex >= 0)
+            {
+                // 캐릭터 템플릿 로드
+                var handle = Addressables.LoadAssetAsync<HeroTemplate>(characterTemplateList[(int)characterIndex]);
+                handle.WaitForCompletion();
+
+                if (handle.Result != null)
+                {
+                    var template = handle.Result;
+                    
+                    // 캐릭터의 시작 덱 추가 (기존 덱 유지)
+                    if (template.StartingDeck != null && template.StartingDeck.Entries != null)
+                    {
+                        int addedCardCount = 0;
+                        
+                        foreach (var entry in template.StartingDeck.Entries)
+                        {
+                            if (entry.Card != null)
+                            {
+                                // 카드 ID를 덱 데이터에 추가
+                                deckData.Deck.Add(entry.Card.Id);
+                                
+                                // 카드 템플릿을 플레이어 덱에 추가
+                                playerDeck.Add(entry.Card);
+                                
+                                addedCardCount++;
+                            }
+                        }
+                        
+                        Debug.Log($"{characterIndex} 캐릭터의 기본 덱이 추가되었습니다. 추가된 카드 수: {addedCardCount}, 총 카드 수: {deckData.Deck.Count}");
+                        return;
+                    }
+                }
+                
+                // 템플릿에서 덱을 가져오지 못한 경우 기본 덱 사용
+                Debug.LogWarning($"{characterIndex} 캐릭터의 템플릿에서 시작 덱을 가져오지 못했습니다. 기본 덱을 사용합니다.");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"캐릭터 템플릿에서 기본 덱을 가져오는 중 오류 발생: {e.Message}");
+        }
+        
+        // 템플릿에서 덱을 가져오지 못한 경우 하드코딩된 기본 덱 사용
+        List<int> defaultCardIds = new List<int>();
+        
+        // 캐릭터별 기본 덱 정의
+        switch (characterIndex)
+        {
+            case SaveCharacterIndex.Galahad:
+                // 갈라하드 기본 덱 (기사 캐릭터)
+                defaultCardIds = new List<int> { 1, 1, 1, 2, 2, 3, 4, 5, 6, 7 }; // 예시 카드 ID
+                break;
+                
+            case SaveCharacterIndex.Lancelot:
+                // 랜슬롯 기본 덱 (전사 캐릭터)
+                defaultCardIds = new List<int> { 16, 16, 17, 17, 18, 19, 20, 21, 22, 23 }; // 예시 카드 ID
+                break;
+                
+            case SaveCharacterIndex.Percival:
+                // 퍼시발 기본 덱 (마법사 캐릭터)
+                defaultCardIds = new List<int> { 8, 8, 9, 9, 10, 11, 12, 13, 14, 15 }; // 예시 카드 ID
+                break;
+                
+            default:
+                // 기본 덱 (모든 캐릭터 공통)
+                defaultCardIds = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }; // 예시 카드 ID
+                break;
+        }
+        
+        // 기본 덱의 카드들을 플레이어 덱에 추가 (기존 덱 유지)
+        int addedCount = 0;
+        foreach (int cardId in defaultCardIds)
+        {
+            CardTemplate cardTemplate = FindCardTemplateById(cardId);
+            if (cardTemplate != null)
+            {
+                AddCard(cardTemplate);
+                addedCount++;
+            }
+        }
+        
+        Debug.Log($"{characterIndex} 캐릭터의 기본 덱이 추가되었습니다. 추가된 카드 수: {addedCount}, 총 카드 수: {deckData.Deck.Count}");
+    }
+    
+    /// <summary>
+    /// 카드 ID로 카드 템플릿을 찾습니다.
+    /// </summary>
+    private CardTemplate FindCardTemplateById(int cardId)
+    {
+        // Parser_CardList에서 카드 템플릿 찾기
+        if (Parser_CardList.GetInstance() != null)
+        {
+            return Parser_CardList.GetInstance().GetCardTemplate(cardId);
+        }
+        
+        Debug.LogWarning($"카드 ID {cardId}에 해당하는 카드 템플릿을 찾을 수 없습니다.");
+        return null;
     }
 
     // 방어도 값 반환

@@ -154,8 +154,21 @@ public class LanguageManager : MonoBehaviour
         // 3. 언어별 처리
         if (currentLanguage == Language.English)
         {
-            // 영어 모드: 단순히 인자들을 공백으로 연결
-            return fullPhrase;
+            // 영어 모드: 영어 번역 반환
+            List<object> translatedArgs = new List<object>();
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i] is string strArg)
+                {
+                    translatedArgs.Add(TranslateWordToEnglish(strArg));
+                }
+                else
+                {
+                    translatedArgs.Add(args[i]);
+                }
+            }
+            
+            return string.Join(" ", translatedArgs);
         }
         else if (currentLanguage == Language.Korean)
         {
@@ -194,6 +207,18 @@ public class LanguageManager : MonoBehaviour
         }
         
         return fullPhrase;
+    }
+
+    private string TranslateWordToEnglish(string key)
+    {
+        if (wordDictionary.TryGetValue(key, out var translations) && 
+            translations.TryGetValue(Language.English, out var translation))
+        {
+            return translation;
+        }
+        
+        // 번역이 없으면 원본 반환
+        return key;
     }
 
     /// <summary>
@@ -243,15 +268,22 @@ public class LanguageManager : MonoBehaviour
             if (translatorType != null)
             {
                 // 메서드 정보 가져오기
-                var method = translatorType.GetMethod("TranslateEffectToKorean", 
-                    BindingFlags.Public | BindingFlags.Static);
-                if (method != null)
+                var method = translatorType.GetMethod("TranslateEffectToKorean", BindingFlags.Public | BindingFlags.Static);
+                var method2 = translatorType.GetMethod("TranslateEffectToEnglish", BindingFlags.Public | BindingFlags.Static);
+
+                // 한국어, 영어모드별 분기
+                if (currentLanguage == Language.Korean)
                 {
-                    // 메서드 호출
-                    var result = method.Invoke(null, new object[] { phrase }) as string;
-                    if (result != null && result != phrase)
+                    if (method != null)
                     {
-                        return result;
+                        return method.Invoke(null, new object[] { phrase }) as string;
+                    }
+                }
+                else if (currentLanguage == Language.English)
+                {
+                    if (method2 != null)
+                    {
+                        return method2.Invoke(null, new object[] { phrase }) as string;
                     }
                 }
             }

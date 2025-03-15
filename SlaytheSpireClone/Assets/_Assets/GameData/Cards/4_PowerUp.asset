@@ -15,7 +15,7 @@ MonoBehaviour:
   SourceActions: []
   TargetActions: []
   Target: 0
-  Value: 2
+  Value: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30,9 +30,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 4
   _name: PowerUp
-  Cost: 0
+  Cost: 1
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  Picture: {fileID: 21300000, guid: 9b8bfec8a8eb445bb9edaef32d0d62ae, type: 3}
+  Picture: {fileID: 6422941587558069478, guid: 8b8e55b8c65620149a4f590ca55d41bf, type: 3}
   Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
   Upgrade: {fileID: 0}
   Effects:
