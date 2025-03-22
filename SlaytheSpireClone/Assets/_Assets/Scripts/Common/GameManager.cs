@@ -127,8 +127,54 @@ public class GameManager : Singleton<GameManager>
 
     private void InitializeGameData()
     {
-        // 이 메서드는 이제 Load 메서드로 대체됨
-        Debug.Log("InitializeGameData는 더 이상 사용되지 않습니다. Load 메서드를 사용하세요.");
+        // 세이브 시스템 초기화
+        saveSystem = SaveSystem.GetInstance().GetManagerInterface();
+        
+        // 세이브 데이터 초기화
+        playerData = new SaveData();
+        
+        // 효과음 파서 초기화 (추가)
+        StartCoroutine(InitializeSoundEffects());
+        
+        // 캐릭터 템플릿 미리 로드
+        StartCoroutine(PreloadCharacterTemplates());
+    }
+
+    // 효과음 초기화 코루틴
+    private IEnumerator InitializeSoundEffects()
+    {
+        // 효과음 파서가 생성될 때까지 잠시 대기
+        yield return new WaitForSeconds(0.5f);
+        
+        // 효과음 파서 찾기
+        var soundParser = FindFirstObjectByType<Parser_EffectSound>();
+        if (soundParser != null)
+        {
+            Debug.Log("효과음 파서 초기화 중...");
+            soundParser.OnSoundEffectsLoaded += OnSoundEffectsLoaded;
+        }
+        else
+        {
+            Debug.LogError("효과음 파서 인스턴스를 찾을 수 없습니다. 새로 생성합니다.");
+            
+            // 효과음 파서 오브젝트 생성
+            GameObject soundParserObj = new GameObject("EffectSoundParser");
+            soundParser = soundParserObj.AddComponent<Parser_EffectSound>();
+            soundParser.OnSoundEffectsLoaded += OnSoundEffectsLoaded;
+        }
+    }
+
+    // 효과음 로드 완료 이벤트 핸들러
+    private void OnSoundEffectsLoaded(bool success, int count, string error)
+    {
+        if (success)
+        {
+            Debug.Log($"효과음 {count}개가 성공적으로 로드되었습니다.");
+        }
+        else
+        {
+            Debug.LogError($"효과음 로드 실패: {error}");
+        }
     }
 
     public void UpdateUserData()

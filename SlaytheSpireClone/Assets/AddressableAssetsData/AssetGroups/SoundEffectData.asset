@@ -1,0 +1,167 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SoundEffectData
+  m_EditorClassIdentifier: 
+  m_GroupName: SoundEffectData
+  m_GUID: 7921d6f84832d944cacc0c3d6d5567b8
+  m_SerializeEntries:
+  - m_GUID: 02f82a5e7f11baa449c378d36fe49245
+    m_Address: electric gun
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0c08d4bce507d454ab01eed3653e55d7
+    m_Address: kick1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 0cbd14a18e5556a478cf8eb8679b779d
+    m_Address: electirc gun3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 138c595e621141a4da509601fd4aeefd
+    m_Address: card draw
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 16e623f5093a6bb4b94d81cfaa7bde1f
+    m_Address: etc debuff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d982974db2c90e468f9981920c1ee2a
+    m_Address: lazer_sword_hit_sound2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 212ceddeb46c9f4489e120d0050867f5
+    m_Address: lazer_sword_hit_sound
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2411ee5f8e7a37b4784bba7b20c229bf
+    m_Address: emergency_signal
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 26eea7dfdccc2464394cec1ee2cf89e8
+    m_Address: lazer sword
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a96a5e500a587a44954ee184addd68c
+    m_Address: boomerang
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f15143705821bb459267b45d46b8f2a
+    m_Address: heal sound
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4681fd901f154064389c95d6b23cc2d2
+    m_Address: defense1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 47cb9a705cbfa0a43ac945d4463feba7
+    m_Address: cirtical attack
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c2619c65d3655f43b345dede89e48ea
+    m_Address: posion debuff
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5adc0cb9921a3ce4585a24fa941f721b
+    m_Address: electric gun2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a06d4d8bc126cf46a5d9bb99cbb20a0
+    m_Address: buff4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8641ea0b96fbb2e41b6d46dad0287b23
+    m_Address: buff2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 97ed80519344fc64090471dad8422f4d
+    m_Address: lazer_sword_hit_sound3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aaf0617aa48109f4683fa7c882f7207e
+    m_Address: lazer_sword_hit_sound4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b6c96211c9706ab499668a0966a09d29
+    m_Address: electric hit
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: be93869aba77acc428755240a34aa55c
+    m_Address: buff3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c824a95e5e165fd4e8431cfba364ba2b
+    m_Address: buff1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f53eda8cbb6fc8c408e2777655346de1
+    m_Address: clenching_my_hand
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc53635610d0bb844a980bdc764d7b49
+    m_Address: hitting1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SoundEffect
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 9828f5947ca84b640acadf391ff5759a, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 553bcf886da2fc840b46ff145c7a7bae, type: 2}
+    - {fileID: 11400000, guid: e577ff945e4035e4d88d63404c4f73a1, type: 2}

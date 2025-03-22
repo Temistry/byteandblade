@@ -99,6 +99,7 @@ namespace CCGKit
             descriptionText.text = builder.ToString();
             picture.material = Template.Material;
             picture.sprite = Template.Picture;
+            picture.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);
         }
 
         public void SetGlowEnabled(bool glowEnabled)

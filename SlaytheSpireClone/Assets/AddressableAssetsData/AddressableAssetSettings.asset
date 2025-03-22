@@ -60,6 +60,7 @@ MonoBehaviour:
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
   - {fileID: 11400000, guid: b7104866b1d590a499f7bd4a34f19436, type: 2}
+  - {fileID: 11400000, guid: 3e91256cd0a0e0c46b44d996c656bbba, type: 2}
   - {fileID: 11400000, guid: 5a4a5dee0be02f34fa4169aa8ae097cc, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
@@ -101,6 +102,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - CardData
+    - SoundEffect
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 4847774dfe224a0429c51974f6590d70, type: 2}

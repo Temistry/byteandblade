@@ -60,6 +60,11 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4c5ea6cb491b30243818e0c7a14ba453
+    m_Address: Assets/_Assets/GameData/CardSoundData.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5bf92602858db274ebde565baa3267bd
     m_Address: Percival
     m_ReadOnly: 0

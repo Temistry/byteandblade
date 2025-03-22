@@ -17,7 +17,7 @@ using UnityEditor.AddressableAssets.Settings.GroupSchemas;
 
 public class Parser_CardList : Singleton<Parser_CardList>
 {
-    public List<CardTemplate> cardList = new List<CardTemplate>();
+    private List<CardTemplate> cardList = new List<CardTemplate>();
     
     // Addressables 라벨 (카드 에셋에 이 라벨을 추가해야 함)
     private const string CARD_ASSETS_LABEL = "CardData";
@@ -74,7 +74,7 @@ public class Parser_CardList : Singleton<Parser_CardList>
             try
             {
                 // 초기화 전에 모든 이전 작업 해제 시도
-                Resources.UnloadUnusedAssets();
+                await Resources.UnloadUnusedAssets();
                 System.GC.Collect();
                 
                 // 초기화 시도

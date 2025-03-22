@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4695754d58b1a004eaba15ab3fccbefd, type: 3}
+  m_Name: CardSoundData
+  m_EditorClassIdentifier: 
+  cardTypeSounds:
+  - cardType: {fileID: 11400000, guid: 5706228d194fe4efc9c75176d0986ca6, type: 2}
+    soundName: card draw
+    variations: []
+  - cardType: {fileID: 11400000, guid: 18f473b7891687e46be7cae1f6806bcd, type: 2}
+    soundName: card draw
+    variations: []
+  - cardType: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
+    soundName: card draw
+    variations: []
+  - cardType: {fileID: 11400000, guid: 9c69fd0030dd74af2965de4ca9e2c7dc, type: 2}
+    soundName: card draw
+    variations: []
+  attackPowerSounds:
+  - minPower: 1
+    maxPower: 5
+    soundName: lazer sword
+    variations: []
+  - minPower: 5
+    maxPower: 10
+    soundName: lazer_sword_hit_sound
+    variations:
+    - lazer_sword_hit_sound2
+  - minPower: 10
+    maxPower: 50
+    soundName: lazer_sword_hit_sound3
+    variations:
+    - lazer_sword_hit_sound4
+  effectTypeSounds: []
+  specialEffectSounds: []
+  defaultSound: card draw
