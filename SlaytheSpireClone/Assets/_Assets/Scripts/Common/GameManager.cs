@@ -103,6 +103,8 @@ public class GameManager : Singleton<GameManager>
     // 현재 노드 정보를 저장할 변수 추가
     private Node currentNode;
 
+    private bool isDeckInitialized = false;
+
     new void Awake()
     {
         base.Awake();
@@ -181,96 +183,139 @@ public class GameManager : Singleton<GameManager>
     {
         try
         {
-            // 현재 캐릭터 템플릿 로드
-            var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-            var handle = Addressables.LoadAssetAsync<HeroTemplate>(
-                characterTemplateList[(int)characterData.currentCharacterIndex]);
-
-            handle.Completed += heroInfo =>
+            // 현재 씬 정보 확인
+            string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            bool isLobbyScene = currentScene == "0.Lobby";
+            
+            // 로비 씬으로 돌아갈 때 덱 초기화 상태 리셋
+            if (isLobbyScene)
             {
-                try
-                {
-                    var template = heroInfo.Result;
-
-                    // 플레이어 덱 초기화
-                    playerDeck.Clear();
-
-                    // 저장된 덱 데이터가 있으면 로드
-                    if (NickName != "")
-                    {
-                        foreach (var id in deckData.Deck)
-                        {
-                            // 파서에서 카드 템플릿 조회
-                            var cardTemplate = Parser_CardList.GetInstance().GetCardTemplate(id);
-
-                            if (cardTemplate != null)
-                            {
-                                playerDeck.Add(cardTemplate);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        // 저장된 덱이 없으면 기본 덱 로드
-                        foreach (var entry in template.StartingDeck.Entries)
-                        {
-                            for (var i = 0; i < entry.NumCopies; i++)
-                            {
-                                playerDeck.Add(entry.Card);
-                            }
-                        }
-
-                        // 기본 덱을 저장 데이터에 반영
-                        deckData.Deck.Clear();
-                        foreach (var card in playerDeck)
-                        {
-                            deckData.Deck.Add(card.Id);
-                        }
-                    }
-
-                    // 체력과 최대 체력 설정 - 덱 로드와 관계없이 항상 실행
-                    if (playerData != null && playerData.stats != null)
-                    {
-                        Health = playerData.stats.CurrHp;
-                        MaxHealth = playerData.stats.MaxHp;
-                        
-                        // 최대 체력이 0이하면 기본값 설정
-                        if (MaxHealth <= 0)
-                        {
-                            MaxHealth = template.MaxHealth;
-                        }
-                        
-                        // 체력이 0이하면 기본값 설정
-                        if (Health <= 0)
-                        {
-                            Health = template.Health;
-                        }
-
-                        // 체력이 최대 체력보다 크면 최대 체력으로 조정
-                        if (Health > MaxHealth)
-                        {
-                            Health = MaxHealth;
-                        }
-                        
-                        Debug.Log($"세이브 데이터에서 체력 정보 로드: HP {Health}/{MaxHealth}");
-                    }
-
-                    // 저장
-                    Save();
-
-                    Addressables.Release(handle);
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError($"캐릭터 템플릿 처리 중 오류: {e.Message}");
-                    Addressables.Release(handle);
-                }
-            };
+                isDeckInitialized = false;
+            }
+            
+            // 현재 캐릭터 템플릿 로드
+            LoadCharacterTemplate();
         }
         catch (Exception e)
         {
             Debug.LogError($"UpdateUserData 실행 중 오류: {e.Message}");
         }
+    }
+
+    private void LoadCharacterTemplate()
+    {
+        var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
+        var handle = Addressables.LoadAssetAsync<HeroTemplate>(
+            characterTemplateList[(int)characterData.currentCharacterIndex]);
+
+        handle.Completed += heroInfo =>
+        {
+            try
+            {
+                var template = heroInfo.Result;
+
+                // Map 씬에서 덱 초기화
+                if (IsMapScene() && !isDeckInitialized)
+                {
+                    InitializeDeck(template);
+                }
+
+                // 체력 정보 업데이트
+                UpdateHealthStats(template);
+
+                // 변경사항 저장
+                Save();
+
+                Addressables.Release(handle);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"캐릭터 템플릿 처리 중 오류: {e.Message}");
+                Addressables.Release(handle);
+            }
+        };
+    }
+
+    private bool IsMapScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "1.Map";
+    }
+
+    private void InitializeDeck(HeroTemplate template)
+    {
+        // 플레이어 덱 초기화
+        playerDeck.Clear();
+
+        if (NickName != "")
+        {
+            // 저장된 덱 데이터 로드
+            LoadSavedDeck();
+        }
+        else
+        {
+            // 기본 덱 로드
+            LoadDefaultDeck(template);
+        }
+    }
+
+    private void LoadSavedDeck()
+    {
+        foreach (var id in deckData.Deck)
+        {
+            var cardTemplate = Parser_CardList.GetInstance().GetCardTemplate(id);
+            if (cardTemplate != null)
+            {
+                playerDeck.Add(cardTemplate);
+            }
+        }
+    }
+
+    private void LoadDefaultDeck(HeroTemplate template)
+    {
+        // 기본 덱 로드
+        foreach (var entry in template.StartingDeck.Entries)
+        {
+            for (var i = 0; i < entry.NumCopies; i++)
+            {
+                playerDeck.Add(entry.Card);
+            }
+        }
+
+        // 기본 덱을 저장 데이터에 반영
+        deckData.Deck.Clear();
+        foreach (var card in playerDeck)
+        {
+            deckData.Deck.Add(card.Id);
+        }
+    }
+
+    private void UpdateHealthStats(HeroTemplate template)
+    {
+        if (playerData?.stats == null) return;
+
+        // 체력과 최대 체력 설정
+        Health = playerData.stats.CurrHp;
+        MaxHealth = playerData.stats.MaxHp;
+        
+        // 최대 체력이 0이하면 기본값 설정
+        if (MaxHealth <= 0)
+        {
+            MaxHealth = template.MaxHealth;
+        }
+        
+        // 체력이 0이하면 기본값 설정
+        if (Health <= 0)
+        {
+            Health = template.Health;
+        }
+
+        // 체력이 최대 체력보다 크면 최대 체력으로 조정
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        
+        Debug.Log($"세이브 데이터에서 체력 정보 로드: HP {Health}/{MaxHealth}");
     }
 
     public void Update()

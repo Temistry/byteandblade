@@ -75,9 +75,9 @@
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Map\LineConnection.cs" />
     <Compile Include="Assets\_Assets\Scripts\Lobby\UI_SelectCharPiece.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\DeckDrawingSystem.cs" />
-    <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursor.cs" />
     <Compile Include="Assets\_Assets\Scripts\Audio\CardSoundData.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\GamepadChecker.cs" />
+    <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Input\VirtualCursor.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Types\EffectTargetType.cs" />
     <Compile Include="Assets\_Assets\Scripts\Map\UI_CardCollections.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Templates\CardLibrary.cs" />
@@ -96,9 +96,9 @@
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\MainPanelButton.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Other\LaunchURL.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Other\QualityManager.cs" />
+    <Compile Include="Assets\_Assets\Scripts\Audio\SoundEffectHelper.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\UI Manager\UIManagerParticle.cs" />
     <Compile Include="Assets\ThirdPartyAssets\Shift - Complete Sci-Fi UI\Scripts\Buttons\QuickMatchButton.cs" />
-    <Compile Include="Assets\_Assets\Scripts\Audio\SoundEffectHelper.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Effects\GainManaEffect.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\UI\Transition.cs" />
     <Compile Include="Assets\ThirdPartyAssets\SinglePlayerCCGKit\Scripts\Systems\TurnManagementSystem.cs" />

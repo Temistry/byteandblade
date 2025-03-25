@@ -63,32 +63,47 @@ namespace CCGKit
         {
             titleText.text = LanguageManager.GetText("Victory");
             descriptionText.text = string.Empty;
+            SetButtonsForNormalVictory();
         }
 
         public void ShowDefeat()
         {
             titleText.text = LanguageManager.GetText("Defeat");
             descriptionText.text = LanguageManager.GetText("Dungeon defeat");
+            SetButtonsForNormalVictory();
         }
 
         public void ShowBossVictory()
         {
             titleText.text = LanguageManager.GetText("Boss victory");
             descriptionText.text = LanguageManager.GetText("Boss victory description");
+            SetButtonsForBossVictory();
+        }
+
+        private void SetButtonsForBossVictory()
+        {
+            continueButton.gameObject.SetActive(false);
+            goHomeButton.gameObject.SetActive(true);
+        }
+
+        private void SetButtonsForNormalVictory()
+        {
+            continueButton.gameObject.SetActive(true);
+            goHomeButton.gameObject.SetActive(false);
+        }
+
+        public void OnContinueButtonPressed()
+        {
+            // 로비 씬으로 전환
+            Transition.LoadLevel("1.Map", 0.5f, Color.black);
         }
 
         public void OnGoHomeButtonPressed()
         {
             // Map 데이터 초기화
             GameManager.GetInstance().ResetMapData();
-
             // 로비 씬으로 전환
             Transition.LoadLevel("0.Lobby", 0.5f, Color.black);
-        }
-
-        public void OnContinueButtonPressed()
-        {
-            Transition.LoadLevel("1.Map", 0.5f, Color.black);
         }
 
         void DestroySelectedButton()

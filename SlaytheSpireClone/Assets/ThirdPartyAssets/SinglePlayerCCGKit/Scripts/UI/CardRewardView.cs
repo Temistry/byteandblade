@@ -13,6 +13,7 @@ namespace CCGKit
         public Canvas PopupCanvas;
         public GameObject CardPrefab;
         public GameObject Content;
+        public bool isRewardMode = true;
 
         private List<GameObject> widgets = new List<GameObject>(16);
 
@@ -32,6 +33,7 @@ namespace CCGKit
                 widget.GetComponent<CardWidget>().SetInfo(randomCards[i]);
                 widget.GetComponent<CardRewardWidget>().Canvas = Canvas;
                 widget.GetComponent<CardRewardWidget>().PopupCanvas = PopupCanvas;
+                widget.GetComponent<CardRewardWidget>().isRewardMode = isRewardMode;
                 widget.SetActive(true);
                 widgets.Add(widget);
             }

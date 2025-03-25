@@ -67,6 +67,34 @@ namespace CCGKit
 
             // 맵 로드 또는 생성
             var map = gameManager.LoadOrGenerateMap(rng, mapGenerator);
+            
+            var gameInfo = FindFirstObjectByType<GameInfo>();
+            if (gameInfo != null && gameInfo.PlayerWonEncounter)
+            {
+                var mapNode = map.GetNode(gameInfo.PlayerCoordinate);
+                if (!map.Path.Contains(gameInfo.PlayerCoordinate))
+                {
+                    map.Path.Add(mapNode.Coordinate);
+                }
+
+                // 보스 노드를 클리어했는지 확인
+                if (mapNode.Type == NodeType.Boss)
+                {
+                    // 보스 클리어 처리
+                    gameManager.SetBossCleared(true);
+                    Debug.Log("보스를 클리어했습니다! 다음 맵을 준비합니다.");
+                }
+
+                // 맵 저장
+                gameManager.SaveCurrentMap();
+
+                SavePlayerData(gameInfo.SaveData);
+            }
+            else
+            {
+                LoadPlayerData();
+            }
+
             mapView.ShowMap(map);
             mapTracker.TrackMap(map, rng);
 
@@ -79,52 +107,15 @@ namespace CCGKit
                 Debug.Log($"현재 노드 설정: {currentNode.Type} at {currentCoordinate}");
             }
 
-            gameManager.SaveCurrentMap();
-
-            var gameInfo = FindFirstObjectByType<GameInfo>();
-            if (gameInfo != null)
+            // 경로에 있는 모든 노드에 대해 이펙트 표시
+            foreach (var coordinate in map.Path)
             {
-                if (gameInfo.PlayerWonEncounter)
-                {
-                    var mapNode = map.GetNode(gameInfo.PlayerCoordinate);
-                    map.Path.Add(mapNode.Coordinate);
+                var mapNode = mapView.GetNode(coordinate);
+                mapNode.ShowSwirl();
 
-                    // 보스 노드를 클리어했는지 확인
-                    if (mapNode.Type == NodeType.Boss)
-                    {
-                        // 보스 클리어 처리
-                        gameManager.SetBossCleared(true);
-                        Debug.Log("보스를 클리어했습니다! 다음 맵을 준비합니다.");
-                    }
-
-                    mapView.SetReachableNodes();
-                    mapView.SetLineColors();
-                    var mapNodeView = mapView.GetNode(gameInfo.PlayerCoordinate);
-                    mapNodeView.ShowSwirl();
-
-                    // 맵 저장
-                    gameManager.SaveCurrentMap();
-
-                    var camPos = Camera.main.transform.position;
-                    camPos.y = mapNodeView.transform.position.y;
-                    Camera.main.transform.position = camPos;
-
-                    SavePlayerData(gameInfo.SaveData);
-                }
-            }
-            else
-            {
-                LoadPlayerData();
-
-                foreach (var coordinate in map.Path)
-                {
-                    var mapNode = mapView.GetNode(coordinate);
-                    mapNode.ShowSwirl();
-
-                    var camPos = Camera.main.transform.position;
-                    camPos.y = mapNode.transform.position.y;
-                    Camera.main.transform.position = camPos;
-                }
+                var camPos = Camera.main.transform.position;
+                camPos.y = mapNode.transform.position.y;
+                Camera.main.transform.position = camPos;
             }
         }
 
