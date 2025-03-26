@@ -105,6 +105,10 @@ public class GameManager : Singleton<GameManager>
 
     private bool isDeckInitialized = false;
 
+    // 필요한 플래그 추가
+    private bool isLoading = false;
+    private bool isLoadingFromSave = false;
+
     new void Awake()
     {
         base.Awake();
@@ -204,36 +208,56 @@ public class GameManager : Singleton<GameManager>
 
     private void LoadCharacterTemplate()
     {
-        var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
-        var handle = Addressables.LoadAssetAsync<HeroTemplate>(
-            characterTemplateList[(int)characterData.currentCharacterIndex]);
+        // 이미 로드된 상태라면 중복 로드 방지
+        if (isLoading) return;
+        isLoading = true;
 
-        handle.Completed += heroInfo =>
+        try
         {
-            try
-            {
-                var template = heroInfo.Result;
+            var characterTemplateList = Parser_CharacterList.GetInstance().AllcharacterTemplateList;
+            var handle = Addressables.LoadAssetAsync<HeroTemplate>(
+                characterTemplateList[(int)characterData.currentCharacterIndex]);
 
-                // Map 씬에서 덱 초기화
-                if (IsMapScene() && !isDeckInitialized)
+            handle.Completed += heroInfo =>
+            {
+                try
                 {
-                    InitializeDeck(template);
+                    var template = heroInfo.Result;
+
+                    // Map 씬에서 덱 초기화
+                    if (IsMapScene() && !isDeckInitialized)
+                    {
+                        InitializeDeck(template);
+                        isDeckInitialized = true;
+                    }
+
+                    // 체력 정보 업데이트
+                    UpdateHealthStats(template);
+
+                    // 변경사항 저장 (세이브 로드 직후에는 저장하지 않음)
+                    if (!isLoadingFromSave)
+                    {
+                        Save();
+                    }
+
+                    Addressables.Release(handle);
                 }
-
-                // 체력 정보 업데이트
-                UpdateHealthStats(template);
-
-                // 변경사항 저장
-                Save();
-
-                Addressables.Release(handle);
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"캐릭터 템플릿 처리 중 오류: {e.Message}");
-                Addressables.Release(handle);
-            }
-        };
+                catch (Exception e)
+                {
+                    Debug.LogError($"캐릭터 템플릿 처리 중 오류: {e.Message}");
+                    Addressables.Release(handle);
+                }
+                finally
+                {
+                    isLoading = false;
+                }
+            };
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"캐릭터 템플릿 로드 중 오류: {e.Message}");
+            isLoading = false;
+        }
     }
 
     private bool IsMapScene()

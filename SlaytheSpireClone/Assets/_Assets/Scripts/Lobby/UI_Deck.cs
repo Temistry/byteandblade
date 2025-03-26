@@ -134,27 +134,39 @@ public class UI_Deck : MonoBehaviour
         for (int i = 0; i < CardContentParent.childCount; ++i)
             Destroy(CardContentParent.GetChild(i).gameObject);
 
-        List<CardTemplate> cardListContents = new List<CardTemplate>();
-
-        // 게임매니저로부터 소지한 카드 목록 가져오기
-        cardListContents = GameManager.GetInstance().GetCardList();
+        // 게임매니저로부터 소지한 카드 목록 가져오기 (복사본 생성)
+        List<CardTemplate> cardListContents = new List<CardTemplate>(GameManager.GetInstance().GetCardList());
+        
         if (cardListContents == null || cardListContents.Count == 0)
         {
-            // 카드 목록이 없으면 캐릭터 카드목록만 표시
-            // 캐릭터의 기본 카드 목록 불러오기
+            // 카드 목록이 없으면 캐릭터의 기본 카드 목록 불러오기
             var heroTemplate = GameManager.GetInstance().GetCurrentCharacterTemplate();
-            if (heroTemplate == null)
+            if (heroTemplate != null)
             {
-                // 기본 캐릭터도 없다면 카드 목록 없음
-                return;
+                // GameManager의 카드 목록이 비어있을 때만 추가
+                if (GameManager.GetInstance().GetCardList().Count == 0)
+                {
+                    foreach (var entry in heroTemplate.StartingDeck.Entries)
+                    {
+                        for (int i = 0; i < entry.NumCopies; i++)
+                        {
+                            // 게임 매니저에 추가
+                            GameManager.GetInstance().AddCard(entry.Card);
+                        }
+                    }
+                    
+                    // 다시 카드 목록 가져오기
+                    cardListContents = new List<CardTemplate>(GameManager.GetInstance().GetCardList());
+                    // 저장
+                    GameManager.GetInstance().Save();
+                }
             }
-
         }
 
         // 카드 컨텐츠 생성
         foreach (CardTemplate card in cardListContents)
         {
-            // 리스트 추가
+            // 리스트 추가 (UI 표시용)
             CardContents.Add(card);
 
             // 카드 UI 설정

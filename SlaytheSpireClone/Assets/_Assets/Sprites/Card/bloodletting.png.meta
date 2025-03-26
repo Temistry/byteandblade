@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bloodletting_0: -6690130344894749556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
