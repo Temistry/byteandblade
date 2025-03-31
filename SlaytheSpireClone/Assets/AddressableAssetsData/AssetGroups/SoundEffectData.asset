@@ -135,12 +135,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - SoundEffect
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: be93869aba77acc428755240a34aa55c
-    m_Address: buff3
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - SoundEffect
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c824a95e5e165fd4e8431cfba364ba2b
     m_Address: buff1
     m_ReadOnly: 0

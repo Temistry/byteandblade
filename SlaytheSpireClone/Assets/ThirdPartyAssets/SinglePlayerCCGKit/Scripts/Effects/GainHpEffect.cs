@@ -26,6 +26,9 @@ namespace CCGKit
                 finalHp = target.MaxHp;
             }
             targetHp.SetValue(finalHp);
+
+            // 효과음 재생
+            SoundEffectHelper.PlayCardEffectSound(Parser_EffectSound.CardEffectType.Heal);
         }
     }
 }

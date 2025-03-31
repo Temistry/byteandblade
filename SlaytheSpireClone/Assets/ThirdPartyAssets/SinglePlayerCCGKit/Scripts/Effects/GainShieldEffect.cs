@@ -21,6 +21,9 @@ namespace CCGKit
         {
             var targetShield = target.Shield;
             targetShield.SetValue(targetShield.Value + Value);
+
+            // 효과음 재생
+            SoundEffectHelper.PlayCardEffectSound(Parser_EffectSound.CardEffectType.Shield);
         }
     }
 }

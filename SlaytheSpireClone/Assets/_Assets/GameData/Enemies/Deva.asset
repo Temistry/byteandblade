@@ -390,6 +390,8 @@ MonoBehaviour:
   - {fileID: 5998279882273832137}
   - {fileID: -2667289564955638810}
   - {fileID: -7548985105162259709}
+  IsBoss: 0
+  IsElite: 1
   HpLow: 50
   HpHigh: 60
   Patterns:

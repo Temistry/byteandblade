@@ -22,6 +22,10 @@ namespace CCGKit
         {
             DeckDrawingSystem deckDrawingSystem = FindFirstObjectByType<DeckDrawingSystem>();
             deckDrawingSystem.AddCardToDeck(instigator.CurrentUsedCard);
+
+
+            // 효과음 재생
+            SoundEffectHelper.PlayCardEffectSound(Parser_EffectSound.CardEffectType.Clone);
         }
     }
 }

@@ -40,6 +40,33 @@ MonoBehaviour:
     soundName: lazer_sword_hit_sound3
     variations:
     - lazer_sword_hit_sound4
-  effectTypeSounds: []
+  effectTypeSounds:
+  - effectType: 1
+    soundName: defense1
+    variations: []
+  - effectType: 2
+    soundName: card draw
+    variations: []
+  - effectType: 3
+    soundName: heal sound
+    variations: []
+  - effectType: 4
+    soundName: heal sound
+    variations: []
+  - effectType: 5
+    soundName: etc debuff
+    variations: []
+  - effectType: 6
+    soundName: etc debuff
+    variations: []
+  - effectType: 7
+    soundName: buff2
+    variations: []
+  - effectType: 8
+    soundName: lazer_sword_hit_sound3
+    variations: []
+  - effectType: 9
+    soundName: boomerang
+    variations: []
   specialEffectSounds: []
   defaultSound: card draw

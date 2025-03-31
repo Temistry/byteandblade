@@ -47,6 +47,8 @@ public class Parser_EffectSound : Singleton<Parser_EffectSound>
         Vulnerable,
         Strength,
         Critical,
+        Clone,  
+        Mana,
         None
     }
 
@@ -412,6 +414,14 @@ public class Parser_EffectSound : Singleton<Parser_EffectSound>
                 
             case CardEffectType.Critical:
                 soundName = "cirtical attack";
+                break;
+
+            case CardEffectType.Clone:
+                soundName = "card draw";
+                break;
+
+            case CardEffectType.Mana:
+                soundName = "mana";
                 break;
                 
             default:

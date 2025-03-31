@@ -156,12 +156,14 @@ namespace CCGKit
                     else
                     {
                         LoadDefaultDeck(template);
+                        GameManager.GetInstance().Save();
                     }
                 }
                 catch (Exception e)
                 {
                     Debug.LogError($"GameManager에서 데이터 로드 중 오류: {e.Message}");
                     LoadDefaultDeck(template);
+                    GameManager.GetInstance().Save();
                 }
             }
             else
@@ -240,6 +242,7 @@ namespace CCGKit
                 for (var i = 0; i < entry.NumCopies; i++)
                 {
                     playerDeck.Add(entry.Card);
+                    GameManager.GetInstance().AddCard(entry.Card);
                 }
             }
         }
@@ -257,6 +260,18 @@ namespace CCGKit
                 }
 
                 var template = op.Result;
+
+                // 적이 보스라면 브금 변경
+                if (template.IsBoss)
+                {
+                    BGMManager.Instance.PlayBossBGM();
+                }
+                // 적이 엘리트라면 브금 변경
+                else if (template.IsElite)
+                {
+                    BGMManager.Instance.PlayEliteBGM();
+                }
+
                 var enemy = Instantiate(template.Prefab, pivots[index]);
                 Assert.IsNotNull(enemy);
 

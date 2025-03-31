@@ -21,6 +21,9 @@ namespace CCGKit
         {
             var targetMana = target.Mana;
             targetMana.SetValue(targetMana.Value + Value);
+
+            // 효과음 재생
+            SoundEffectHelper.PlayCardEffectSound(Parser_EffectSound.CardEffectType.Mana);
         }
     }
 }

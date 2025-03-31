@@ -35,6 +35,16 @@ namespace CCGKit
         {
             var currentValue = target.Status.GetValue(Status.Name);
             target.Status.SetValue(Status, currentValue + Value);
+
+            // 효과음 재생
+            if(0 < Value)
+            {
+                SoundEffectHelper.PlayCardEffectSound(Parser_EffectSound.CardEffectType.Strength);
+            }
+            else if(Value < 0)
+            {
+                SoundEffectHelper.PlayCardEffectSound(Parser_EffectSound.CardEffectType.Weak);
+            }
         }
 
 #if UNITY_EDITOR
