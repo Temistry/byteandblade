@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: Dragon
   m_EditorClassIdentifier: 
   Name: Dragon
+  Description: 
   Prefab: {fileID: 1547345334317979282, guid: 7efaba625569b4100a68ef09a474e3a2, type: 3}
   Actions:
   - {fileID: 6455251167728607953}
@@ -389,6 +390,8 @@ MonoBehaviour:
   - {fileID: 5998279882273832137}
   - {fileID: -2667289564955638810}
   - {fileID: -7548985105162259709}
+  IsBoss: 0
+  IsElite: 0
   HpLow: 50
   HpHigh: 60
   Patterns:

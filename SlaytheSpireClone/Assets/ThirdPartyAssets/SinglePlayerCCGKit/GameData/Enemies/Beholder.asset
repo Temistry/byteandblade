@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: Beholder
   m_EditorClassIdentifier: 
   Name: Beholder
+  Description: 
   Prefab: {fileID: 6204200235959858272, guid: 906f66d7f7c5a4eb5910933f38958dec, type: 3}
   Actions:
   - {fileID: 6455251167728607953}
@@ -389,6 +390,8 @@ MonoBehaviour:
   - {fileID: 5998279882273832137}
   - {fileID: -2667289564955638810}
   - {fileID: -7548985105162259709}
+  IsBoss: 0
+  IsElite: 0
   HpLow: 20
   HpHigh: 25
   Patterns:

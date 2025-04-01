@@ -212,6 +212,22 @@ MonoBehaviour:
   - {fileID: 8378277819789983163}
   Times: 1
   Sprite: {fileID: 21300000, guid: 9074ad2755c8c4035b559cdaddbf9230, type: 3}
+--- !u!114 &-4764794571192388219
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6cc1e3715bf47e4ac4b5e000e9c445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions: []
+  TargetActions: []
+  Target: 1
+  Value: 30
 --- !u!114 &-4547736125728090779
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -226,6 +242,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Duration: 0.2
   Offset: {x: -0.7, y: 0, z: 0}
+--- !u!114 &-3790331028967389361
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69320ca4a48714254a7323e18c873ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effects:
+  - {fileID: -478882074087514266}
+  Times: 2
+  Sprite: {fileID: 21300000, guid: 865b98fa869ef430b8f1e5b39b907819, type: 3}
 --- !u!114 &-3692493081839299971
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,6 +399,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Duration: 0.4
   Strength: {x: 0.2, y: 0.2, z: 0}
+--- !u!114 &-478882074087514266
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6e22d632db2471b9782fe8ba4ae0d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions: []
+  TargetActions: []
+  Target: 0
+  Value: 15
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b95182502fc4277b897af15ceb2c04, type: 3}
   m_Name: Deva
   m_EditorClassIdentifier: 
-  Name: Dragon
+  Name: Deva
   Description: 
   Prefab: {fileID: 1547345334317979282, guid: b39b36195900e3446ad00a39ba4b6523, type: 3}
   Actions:
@@ -398,6 +446,7 @@ MonoBehaviour:
   - {fileID: -8774929868729022565}
   - {fileID: 7302436051158524884}
   - {fileID: -5422625369788103560}
+  - {fileID: -3790331028967389361}
 --- !u!114 &125747836140305373
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -724,8 +773,11 @@ MonoBehaviour:
   Effects:
   - {fileID: 1436054406649713176}
   - {fileID: 1163108476276904855}
+  - {fileID: -4764794571192388219}
   Probabilities:
-  - Value: 75
+  - Value: 50
+    Sprite: {fileID: 21300000, guid: c758bb61eb38b4f748fea98ac8d6fcba, type: 3}
+  - Value: 25
     Sprite: {fileID: 21300000, guid: c758bb61eb38b4f748fea98ac8d6fcba, type: 3}
   - Value: 25
     Sprite: {fileID: 21300000, guid: c758bb61eb38b4f748fea98ac8d6fcba, type: 3}

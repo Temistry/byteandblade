@@ -24,7 +24,7 @@ namespace CCGKit
 
         private List<EnemyBrain> brains;
 
-        private const float ThinkingTime = 1.5f;
+        private const float ThinkingTime = 2.5f;
 
         public override void Initialize(CharacterObject player, List<CharacterObject> enemies)
         {

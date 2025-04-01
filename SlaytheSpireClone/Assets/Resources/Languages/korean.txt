@@ -55,81 +55,8 @@ Victory,승리,Victory
 Spell,주문,Spell
 
 # 카드 이름들
-Immolate x4,새 카드 29,Immolate x3 Copy
-Immolate x3,새 카드 28,Immolate x2 Copy
-Immolate x2,새 카드 27,Immolate Copy
-Offering x2,새 카드 26,Offering Copy
-FullCharge x3,새 카드 25,FullCharge x2 Copy
-FullCharge x2,새 카드 24,FullCharge Copy
-Anger,분노,Anger
-Anger_x2,극도의 분노,Intense Anger
-BarelySafe,아슬아슬,Barely Safe
-Barricade,바리케이드,Barricade
-BloodForBlood,피에는피,Blood for Blood
-Bloodletting,선혈,Bloodletting
-Brutality,잔혹함,Brutality
-Burning,불타오르네,Burning
-Corruption,오염,Corruption
-CriticalAttack,치명타,Critical Attack
-DarkEmbrace,어둠잠식,Dark Embrace
-Deflect,흘려내기,Deflect
-Disarm,무장해제,Disarm
-FlameBarrier,화염장벽,Flame Barrier
-Fortitude,인내,Fortitude
-FullCharge,충전100%,FullCharge
-Immolate,부동자세,Immolate
-Inflame,화염,InFlame
-Inspiration,영감,Inspiration
-KeyboardShot,키보드샷건,Keyboard Shot
-NoPain,무통,No Pain
-Offering,제물,Offering
-Potion,회복,Potion
-PowerOverwhelming,압도적 힘,Power Overwhelming
-PowerUp,힘 증가,PowerUp
-ReadyBattle,전투준비,Ready Battle
-Reaper,학살자,Reaper
-RightStraight,스트레이트펀치,Right Straight
-SearchWeakness,약점 탐색,Search Weakness
-Shield,방패,Shield
-Shield_x2,2단 방패,Shield_x2
-Shockwave,충격파,Shockwave
-Sword,검,Sword
-Sword_x2,이중 검,Double Sword
-Sword_x3,삼중 검,Triple Sword
-ToxicFogVirus,바이러스,Virus
-Trance,집중,Trance
 
 # 효과 이름들
-Apply 1 Poison,Apply 1 Poison,Apply 1 Poison
-Apply 1 Strength,Apply 1 Strength,Apply 1 Strength
-Apply 1 Weak,Apply 1 Weak,Apply 1 Weak
-Apply 2 Poison,Apply 2 Poison,Apply 2 Poison
-Apply 2 Strength,Apply 2 Strength,Apply 2 Strength
-Apply 2 Weak,Apply 2 Weak,Apply 2 Weak
-Clone 1 card,Clone 1 card,Clone 1 card
-Deal 1 damage,Deal 1 damage,Deal 1 damage
-Deal 10 damage,Deal 10 damage,Deal 10 damage
-Deal 13 damage,Deal 13 damage,Deal 13 damage
-Deal 15 damage,Deal 15 damage,Deal 15 damage
-Deal 20 damage,Deal 20 damage,Deal 20 damage
-Deal 3 damage,Deal 3 damage,Deal 3 damage
-Deal 4 damage,Deal 4 damage,Deal 4 damage
-Deal 50 damage,Deal 50 damage,Deal 50 damage
-Deal 6 damage,Deal 6 damage,Deal 6 damage
-Deal 9 damage,Deal 9 damage,Deal 9 damage
-Draw 1 cards,Draw 1 cards,Draw 1 cards
-Draw 2 cards,Draw 2 cards,Draw 2 cards
-Draw 3 cards,Draw 3 cards,Draw 3 cards
-Gain 1 HP,Gain 1 HP,Gain 1 HP
-Gain 1 mana,Gain 1 mana,Gain 1 mana
-Gain 10 Shield,Gain 10 Shield,Gain 10 Shield
-Gain 100 Shield,Gain 100 Shield,Gain 100 Shield
-Gain 2 mana,Gain 2 mana,Gain 2 mana
-Gain 20 Shield,Gain 20 Shield,Gain 20 Shield
-Gain 3 HP,Gain 3 HP,Gain 3 HP
-Gain 3 Shield,Gain 3 Shield,Gain 3 Shield
-Gain 5 Shield,Gain 5 Shield,Gain 5 Shield
-Gain 7 Shield,Gain 7 Shield,Gain 7 Shield
 
 # 패턴 번역
 Apply {0} Poison,독 {0} 부여,Apply {0} Poison
@@ -149,8 +76,91 @@ Gain {0} Shield,{0} 방어도 획득,Gain {0} Shield
 Heal {0} HP,체력 {0} 회복,Heal {0} HP
 
 # 기타 번역
+Anger,분노,Anger
+Anger_x2,극도의 분노,Intense Anger
+Apply 1 Poison,포션1증가,Apply 1 Poison
+Apply 1 Strength,힘1증가,Apply 1 Strength
+Apply 1 Weak,약화1부여,Apply 1 Weak
+Apply 2 Poison,포션2증가,Apply 2 Poison
+Apply 2 Strength,힘2증가,Apply 2 Strength
+Apply 2 Weak,약화2부여,Apply 2 Weak
+BarelySafe,아슬아슬,Barely Safe
+Barricade,바리케이드,Barricade
+BloodForBlood,피에는피,Blood for Blood
+Bloodletting,선혈,Bloodletting
+Brutality,잔혹함,Brutality
+Burning,불타오르네,Burning
 cards,카드,Card
+Carnage,새 카드 33,New Card 33
+Clone 1 card,Clone 1 card,Clone 1 card
+Corruption,오염,Corruption
+CriticalAttack,치명타,Critical Attack
+DarkEmbrace,어둠잠식,Dark Embrace
+Deal 1 damage,1 데미지 부여,Deal 1 damage
+Deal 10 damage,10 데미지 부여,Deal 10 damage
+Deal 13 damage,13 데미지 부여,Deal 13 damage
+Deal 15 damage,15 데미지 부여,Deal 15 damage
+Deal 20 damage,20 데미지 부여,Deal 20 damage
+Deal 3 damage,3 데미지 부여,Deal 3 damage
+Deal 4 damage,4 데미지 부여,Deal 4 damage
+Deal 50 damage,50 데미지 부여,Deal 50 damage
+Deal 6 damage,6 데미지 부여,Deal 6 damage
+Deal 9 damage,9 데미지 부여,Deal 9 damage
+Deflect,흘려내기,Deflect
+Demon Form,악마화,Demon Form
+Disarm,무장해제,Disarm
+Draw 1 cards,카드 1장 뽑기,Draw 1 cards
+Draw 2 cards,카드 2장 뽑기,Draw 2 cards
+Draw 3 cards,카드 3장 뽑기,Draw 3 cards
+Dropkick,드롭킥,DropKick
+Evolve,진화,Evolve
+FlameBarrier,화염장벽,Flame Barrier
+Fortitude,인내,Fortitude
+FullCharge,충전,FullCharge
+FullCharge x2,충전 200%,FullCharge 200%
+FullCharge x3,충전 300%,FullCharge 300%
+Gain 1 HP,체력 1증가,Gain 1 HP
+Gain 1 mana,마나 1증가,Gain 1 mana
+Gain 10 Shield,실드 10 증가,Gain 10 Shield
+Gain 100 Shield,실드 100 증가,Gain 100 Shield
+Gain 2 mana,마나 2 증가,Gain 2 mana
+Gain 20 Shield,실드 20 증가,Gain 20 Shield
+Gain 3 HP,체력 3 증가,Gain 3 HP
+Gain 3 Shield,실드 3 증가,Gain 3 Shield
+Gain 5 Shield,실드 5 증가,Gain 5 Shield
+Gain 7 Shield,실드 7 증가,Gain 7 Shield
+GhostArmor,유령갑옷,Ghost Armor
+Headbutt,박치기,Head butt
+Headbutt_x2,박치기 2,Head butt 2
+Headbutt_x3,박치기 3,Head butt 3
+Immolate,부동자세,Immolate
+Immolate x2,부동자세 2,Immolate 2
+Immolate x3,부동자세 3,Immolate 3
+Inflame,화염,InFlame
+Inspiration,영감,Inspiration
+KeyboardShot,키보드샷건,Keyboard Shot
 MagicBook,마법서,Magic Book
 mana,마나,Mana
+NoPain,무통,No Pain
+Offering,제물,Offering
+Offering x2,새 카드 26,Offering Copy
+Potion,회복,Potion
+PowerOverwhelming,압도적 힘,Power Overwhelming
+PowerThrough,기사회생,Power Through
+PowerUp,힘 증가,PowerUp
+ReadyBattle,전투준비,Ready Battle
+Reaper,학살자,Reaper
+RedSight,붉은 눈,Red Sight
+RightStraight,스트레이트펀치,Right Straight
+SearchWeakness,약점 탐색,Search Weakness
+Shield,방패,Shield
+Shield_x2,2단 방패,Shield_x2
 Shieldx2,이중 방패,Double Shield
+Shockwave,충격파,Shockwave
+Sword,검,Sword
+Sword_x2,이중 검,Double Sword
+Sword_x3,삼중 검,Triple Sword
 ToxicFog,독안개,Toxic Fog
+ToxicFogVirus,바이러스,Virus
+Trance,집중,Trance
+Whirlwind,해머휠윈드,HammerWhirlwind

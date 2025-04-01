@@ -353,6 +353,23 @@ MonoBehaviour:
   Particles: {fileID: 1723060350495794923, guid: 2b64d473569714ab68971f12230fafbc,
     type: 3}
   Offset: {x: 0, y: 2, z: 0}
+--- !u!114 &-804595763610589919
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cf5140e9e4f144919929b415be5cdb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Effects:
+  - {fileID: 6339210598221525398}
+  Probabilities:
+  - Value: 100
+    Sprite: {fileID: 21300000, guid: c758bb61eb38b4f748fea98ac8d6fcba, type: 3}
 --- !u!114 &-651712451434684124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b95182502fc4277b897af15ceb2c04, type: 3}
   m_Name: Zecu
   m_EditorClassIdentifier: 
-  Name: Beholder
+  Name: Zecu
   Description: 
   Prefab: {fileID: 1547345334317979282, guid: f6a6e53cf43cf4e41b9a641d7681975d, type: 3}
   Actions:
@@ -390,12 +407,15 @@ MonoBehaviour:
   - {fileID: 5998279882273832137}
   - {fileID: -2667289564955638810}
   - {fileID: -7548985105162259709}
+  IsBoss: 0
+  IsElite: 0
   HpLow: 20
-  HpHigh: 25
+  HpHigh: 35
   Patterns:
-  - {fileID: -8774929868729022565}
-  - {fileID: 7302436051158524884}
   - {fileID: -5422625369788103560}
+  - {fileID: 7302436051158524884}
+  - {fileID: -804595763610589919}
+  - {fileID: -8774929868729022565}
 --- !u!114 &125747836140305373
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -693,6 +713,22 @@ MonoBehaviour:
   Particles: {fileID: 1075949616459259925, guid: b031640605d3445348ebeaa03b291177,
     type: 3}
   Offset: {x: 0, y: 2, z: 0}
+--- !u!114 &6339210598221525398
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c6cc1e3715bf47e4ac4b5e000e9c445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SourceActions: []
+  TargetActions: []
+  Target: 1
+  Value: 6
 --- !u!114 &6455251167728607953
 MonoBehaviour:
   m_ObjectHideFlags: 1

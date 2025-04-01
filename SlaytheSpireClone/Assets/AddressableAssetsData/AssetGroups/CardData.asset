@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1050066605f8de94a8716edee2e81a2b
+    m_Address: 33_New_Card_33
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 16d370be4e5212c4fb182c8be84e2ef4
     m_Address: Assets/_Assets/GameData/Cards/16_Immolate.asset
     m_ReadOnly: 0
@@ -117,6 +123,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 493e89ce1f1990344810d496f7f9c809
+    m_Address: 39_New_Card_39
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 54a5189d2cb19b943ab0c9a534d9af8d
+    m_Address: 34_New_Card_34
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 61cf76ba9c35b414fa933268fbf75d57
     m_Address: Assets/_Assets/GameData/Cards/13_Shieldx2.asset
     m_ReadOnly: 0
@@ -177,8 +195,26 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 965ee63d54457454398bfd8b73793b58
+    m_Address: 37_New_Card_37
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9e2e3eb63438f9f4e8ade9d58e9fa75f
+    m_Address: 44_Headbutt
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a132d7f4e1d34d245b8c11facce96548
     m_Address: Assets/_Assets/GameData/Cards/28_SearchWeakness.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a31d5df475a28494aa5ecf14dbcae3fe
+    m_Address: 32_New_Card_32
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -195,8 +231,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b35fb520a2d5b454183fededc1165eaf
+    m_Address: 30_Headbutt_Copy
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b78f486efd9a1de419a6220bcf8ea9c7
     m_Address: Assets/_Assets/GameData/Cards/35_Inflame.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b899607285106124cbcf2c119afce624
+    m_Address: 31_Headbutt_x2_Copy
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -215,6 +263,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: cc6f7c0dda2a5cd4fb049d6ec9d6f37f
     m_Address: Assets/_Assets/GameData/Cards/18_Disarm.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d0594bac1888d1d4e8ba147df4d25170
+    m_Address: 36_New_Card_36
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
@@ -243,8 +297,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - CardData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8ab3abfd62a9ac4eb32cccb8d7c48ce
+    m_Address: 35_New_Card_35
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df47e36cfc5f3514eb03761ce55f03dd
     m_Address: Assets/_Assets/GameData/Cards/19_NoPain.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - CardData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e00e1b731dd98ba4e94aa9c667fda516
+    m_Address: 38_New_Card_38
     m_ReadOnly: 0
     m_SerializedLabels:
     - CardData
