@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+using UnityEngine.SceneManagement;
 
 public class UI_Option : MonoBehaviour
 {
@@ -32,6 +32,7 @@ public class UI_Option : MonoBehaviour
     public void OnResetButton()
     {
         GameManager.GetInstance().ResetPlayerData();
+        SceneManager.LoadScene("0.Lobby");
     }
 
     // Update is called once per frame
@@ -46,6 +47,7 @@ public class UI_Option : MonoBehaviour
         GameManager.GetInstance().SaveLanguageSetting(LanguageManager.Language.English);
         englishButton.interactable = false;
         koreanButton.interactable = true;
+         SceneManager.LoadScene("0.Lobby");
     }
 
     public void OnKoreanButton()
@@ -54,5 +56,6 @@ public class UI_Option : MonoBehaviour
         GameManager.GetInstance().SaveLanguageSetting(LanguageManager.Language.Korean);
         englishButton.interactable = true;
         koreanButton.interactable = false;
+         SceneManager.LoadScene("0.Lobby");
     }
 }

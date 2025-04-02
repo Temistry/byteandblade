@@ -16,6 +16,8 @@
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*  # Addressables 데이터
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/Build
+/SlaytheSpireClone/Build
 
 # Unity Crash Reports
 sysinfo.txt  # Unity 충돌 보고서

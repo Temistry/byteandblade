@@ -55,6 +55,8 @@ Victory,승리,Victory
 Spell,주문,Spell
 
 # 카드 이름들
+PowerUp x3,새 카드 41,PowerUp x2 Copy
+PowerUp x2,새 카드 40,PowerUp Copy
 
 # 효과 이름들
 

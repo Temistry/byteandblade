@@ -70,7 +70,6 @@ namespace CCGKit
         {
             titleText.text = LanguageManager.GetText("Defeat");
             descriptionText.text = LanguageManager.GetText("Dungeon defeat");
-            SetButtonsForNormalVictory();
         }
 
         public void ShowBossVictory()

@@ -1,0 +1,24 @@
+# Unity 관련 폴더와 파일
+/[Ll]ibrary/  # Unity Library 폴더 (컴파일된 데이터와 캐시)
+/[Tt]emp/     # Temp 폴더 (임시 파일)
+/[Oo]bj/      # Obj 폴더 (객체 파일)
+/[Bb]uild/    # Build 폴더 (빌드된 결과물)
+/[Bb]uilds/   # Builds 폴더 (빌드 결과물)
+/[Ll]ogs/     # Logs 폴더 (로그 파일)
+/[Uu]ser[Ss]ettings/  # 사용자별 설정
+
+# 큰 용량 파일과 빌드 데이터
+/SlaytheSpireClone/[Bb]uild/
+/SlaytheSpireClone/[Bb]uild*/
+/SlaytheSpireClone/[Bb]uilds/
+*_Data/
+*.unity3d
+*.assets
+*.resS
+*.resource
+
+# 큰 용량 파일
+/SlaytheSpireClone/Build/Byte and Blade_Data/data.unity3d
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.unity3d
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.assets
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.resS 

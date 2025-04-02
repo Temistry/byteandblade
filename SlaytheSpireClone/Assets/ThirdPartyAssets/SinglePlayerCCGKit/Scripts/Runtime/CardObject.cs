@@ -89,14 +89,18 @@ namespace CCGKit
             RuntimeCard = card;
             Template = card.Template;
             costText.text = Template.Cost.ToString();
-            nameText.text = Template.Name;
-            typeText.text = "Spell";
-            var builder = new StringBuilder();
+            nameText.text = LanguageManager.GetText(Template.Name);
+            typeText.text = LanguageManager.GetText(Template.Type.name);
+
+            string translateText = "";
             foreach (var effect in Template.Effects)
             {
-                builder.AppendFormat("{0}. ", effect.GetName());
+                string effectName = effect.GetName();
+                var builder = new StringBuilder();
+                builder.AppendFormat("{0}", effectName);
+                translateText += LanguageManager.GetText(builder.ToString()) + ". ";
             }
-            descriptionText.text = builder.ToString();
+            descriptionText.text = translateText;
             picture.material = Template.Material;
             picture.sprite = Template.Picture;
             picture.transform.localScale = new Vector3(0.3f, 0.3f, 1.0f);

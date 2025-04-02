@@ -30,10 +30,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 4
   _name: PowerUp
-  Cost: 1
+  Cost: 0
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: 6422941587558069478, guid: 8b8e55b8c65620149a4f590ca55d41bf, type: 3}
   Type: {fileID: 11400000, guid: e6503e5286322445a86878b0265c4fd8, type: 2}
-  Upgrade: {fileID: 0}
+  Upgrade: {fileID: 11400000, guid: 507e703951a55ad4ba2a07373f483128, type: 2}
   Effects:
   - {fileID: -2183231783985802859}

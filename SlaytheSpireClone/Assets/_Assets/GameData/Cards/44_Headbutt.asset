@@ -51,7 +51,7 @@ MonoBehaviour:
   Material: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   Picture: {fileID: 2601935378187584745, guid: 0a25cb78a44327e48b7fec72ab0346b2, type: 3}
   Type: {fileID: 11400000, guid: 5706228d194fe4efc9c75176d0986ca6, type: 2}
-  Upgrade: {fileID: 0}
+  Upgrade: {fileID: 11400000, guid: b35fb520a2d5b454183fededc1165eaf, type: 2}
   Effects:
   - {fileID: -5470289419341753623}
   - {fileID: -440465585238492681}
