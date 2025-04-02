@@ -7,15 +7,39 @@
 /[Ll]ogs/     # Logs 폴더 (로그 파일)
 /[Uu]ser[Ss]ettings/  # 사용자별 설정
 
-# 큰 용량 파일과 빌드 데이터
-/SlaytheSpireClone/[Bb]uild/
-/SlaytheSpireClone/[Bb]uild*/
-/SlaytheSpireClone/[Bb]uilds/
-*_Data/
-*.unity3d
-*.assets
-*.resS
-*.resource
+# 빌드 및 큰 용량 파일
+/SlaytheSpireClone/Build/
+/SlaytheSpireClone/Builds/
+/Build/
+/Builds/
+**/[Bb]uild/
+**/[Bb]uilds/
+**/*_Data/
+**/*.unity3d
+**/*.assets
+**/*.resS
+**/*.resource
+**/*.bundle
+**/*.dll
+**/*.so
+**/*.dylib
+**/*.dat
+**/*.bytes
+**/StreamingAssets/
+**/Resources/
+**/*.bin
+**/*.raw
+
+# 특정 빌드 파일
+/SlaytheSpireClone/Build/Byte and Blade_Data/
+/SlaytheSpireClone/Build/Byte and Blade_Data/data.unity3d
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.unity3d
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.assets
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.resS
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.resource
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.bundle
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.dat
+/SlaytheSpireClone/Build/Byte and Blade_Data/*.bytes
 
 # 큰 용량 파일
 /SlaytheSpireClone/Build/Byte and Blade_Data/data.unity3d
