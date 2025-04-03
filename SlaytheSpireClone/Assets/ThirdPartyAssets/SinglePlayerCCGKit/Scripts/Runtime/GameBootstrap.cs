@@ -338,9 +338,16 @@ namespace CCGKit
             var hpWidget = Instantiate(prefab, canvas.transform, false);
             var pivot = character.transform;
             var canvasPos = mainCamera.WorldToViewportPoint(pivot.position + new Vector3(0.0f, -0.5f, 0.0f));
-            hpWidget.GetComponent<RectTransform>().anchorMin = canvasPos;
-            hpWidget.GetComponent<RectTransform>().anchorMax = canvasPos;
+            var rectTransform = hpWidget.GetComponent<RectTransform>();
+            rectTransform.anchorMin = canvasPos;
+            rectTransform.anchorMax = canvasPos;
             hpWidget.GetComponent<HpWidget>().Initialize(hp, maxHp, shield);
+
+            // HP 위젯 스케일 적용
+            if (UIScaleManager.Instance != null)
+            {
+                UIScaleManager.Instance.ScaleHPWidget(rectTransform);
+            }
         }
 
         private void CreateStatusWidget(GameObject prefab, GameObject character)

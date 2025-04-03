@@ -30,11 +30,11 @@
     <type fullname="CCGKit.RepeatPattern" preserve="all" />
     <type fullname="CCGKit.ShakeCharacterAction" preserve="all" />
     <type fullname="CCGKit.StatusTemplate" preserve="all" />
-    <type fullname="CCGKit.EffectActionGroupEntry" preserve="nothing" serialized="true" />
     <type fullname=".CardSoundData/AttackPowerSoundEntry" preserve="nothing" serialized="true" />
     <type fullname=".CardSoundData/CardTypeSoundEntry" preserve="nothing" serialized="true" />
     <type fullname=".CardSoundData/EffectTypeSoundEntry" preserve="nothing" serialized="true" />
     <type fullname="CCGKit.CardLibraryEntry" preserve="nothing" serialized="true" />
+    <type fullname="CCGKit.EffectActionGroupEntry" preserve="nothing" serialized="true" />
     <type fullname="CCGKit.FloatMinMax" preserve="nothing" serialized="true" />
     <type fullname="CCGKit.IntMinMax" preserve="nothing" serialized="true" />
     <type fullname="CCGKit.Probability" preserve="nothing" serialized="true" />

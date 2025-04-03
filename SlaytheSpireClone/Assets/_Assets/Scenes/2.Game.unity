@@ -5742,7 +5742,7 @@ PrefabInstance:
     - target: {fileID: 59077238618192899, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -225.1315
+      value: -311.1812
       objectReference: {fileID: 0}
     - target: {fileID: 59077238618192899, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
@@ -5757,7 +5757,7 @@ PrefabInstance:
     - target: {fileID: 59077238618192899, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -41.3756
+      value: -26.85095
       objectReference: {fileID: 0}
     - target: {fileID: 124652845582058385, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
@@ -6341,7 +6341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 150, y: 260}
+  m_AnchoredPosition: {x: 87.5, y: 217.01001}
   m_SizeDelta: {x: 175, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &769039561
@@ -8879,6 +8879,7 @@ GameObject:
   - component: {fileID: 1337986104}
   - component: {fileID: 1337986103}
   - component: {fileID: 1337986102}
+  - component: {fileID: 1337986106}
   m_Layer: 5
   m_Name: PopupCanvas
   m_TagString: Untagged
@@ -8970,6 +8971,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1337986106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337986101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd40ee4b10fe5146a75b76f0546a922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneSettings:
+  - sceneName: 0.Game
+    scaleFactor: 0.3
+    cardScaleFactor: 0.9
+    hpWidgetScaleFactor: 0.7
+    referenceResolution: {x: 1280, y: 800}
 --- !u!1 &1345785187
 GameObject:
   m_ObjectHideFlags: 0
@@ -11587,7 +11606,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -245, y: 231}
+  m_AnchoredPosition: {x: -171, y: 279.04004}
   m_SizeDelta: {x: 342, y: 132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1761636840
@@ -13899,6 +13918,7 @@ GameObject:
   - component: {fileID: 2013165896}
   - component: {fileID: 2013165895}
   - component: {fileID: 2013165894}
+  - component: {fileID: 2013165898}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -13996,6 +14016,24 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2013165898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013165893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcd40ee4b10fe5146a75b76f0546a922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneSettings:
+  - sceneName: 2.Game
+    scaleFactor: 1
+    cardScaleFactor: 0.9
+    hpWidgetScaleFactor: 0.3
+    referenceResolution: {x: 1280, y: 800}
 --- !u!1 &2025518209
 GameObject:
   m_ObjectHideFlags: 0
