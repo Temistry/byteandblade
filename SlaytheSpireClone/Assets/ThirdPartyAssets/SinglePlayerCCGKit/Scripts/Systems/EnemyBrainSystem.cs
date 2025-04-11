@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 namespace CCGKit
 {
@@ -23,16 +24,29 @@ namespace CCGKit
 #pragma warning restore 649
 
         private List<EnemyBrain> brains;
-
+        private PatternGenerator patternGenerator;
         private const float ThinkingTime = 2.5f;
 
         public override void Initialize(CharacterObject player, List<CharacterObject> enemies)
         {
             base.Initialize(player, enemies);
             brains = new List<EnemyBrain>(enemies.Count);
+            patternGenerator = PatternGenerator.Instance;
+
             for (var i = 0; i < enemies.Count; i++)
             {
                 brains.Add(new EnemyBrain(enemies[i]));
+                InitializeEnemyPatterns(enemies[i], player.Template as HeroTemplate);
+            }
+        }
+
+        private async void InitializeEnemyPatterns(CharacterObject enemy, HeroTemplate playerTemplate)
+        {
+            var enemyTemplate = enemy.Template as EnemyTemplate;
+            if (enemyTemplate != null)
+            {
+                var patterns = await patternGenerator.GeneratePatternsAsync(enemyTemplate, playerTemplate, 3);
+                enemyTemplate.Patterns = patterns;
             }
         }
 

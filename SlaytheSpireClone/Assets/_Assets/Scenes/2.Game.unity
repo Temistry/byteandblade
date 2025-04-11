@@ -5757,7 +5757,7 @@ PrefabInstance:
     - target: {fileID: 59077238618192899, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -26.85095
+      value: -48
       objectReference: {fileID: 0}
     - target: {fileID: 124652845582058385, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
@@ -6016,10 +6016,25 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 5379419045627149817, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379419045627149817, guid: 2bc56f1a63a7200468feffc76281f642,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -8961318386935700176, guid: f8c644047f0bdc74eb7273ad3ac9a408,
         type: 2}
+    - target: {fileID: 5379419045627149817, guid: 2bc56f1a63a7200468feffc76281f642,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5379419045627149817, guid: 2bc56f1a63a7200468feffc76281f642,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5379419045627149817, guid: 2bc56f1a63a7200468feffc76281f642,
         type: 3}
       propertyPath: m_hasFontAssetChanged
