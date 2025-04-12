@@ -11,7 +11,7 @@ namespace CCGKit
 {
     public class DeepInfraAPI : MonoBehaviour
     {
-        private const string API_KEY = "hTMFGe4TaeXrZqA664KtdssyciKnxfbO";
+        private const string API_KEY = "api key input";
         private const string API_URL = "https://api.deepinfra.com/v1/openai/chat/completions";
         private const string MODEL = "meta-llama/Meta-Llama-3-8B-Instruct";
 
